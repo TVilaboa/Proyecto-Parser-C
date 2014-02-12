@@ -1,0 +1,288 @@
+
+#include "stdafx.h"
+#include "conio.h"
+#include "stdlib.h"
+#include "string.h"
+#include "stdio.h"
+
+char Name[20];
+char A[20];
+float Deuda;
+int c=0;
+int z=100;
+struct A{
+	int Codigo;
+	char Nombre[20];
+	float Deuda;
+}
+
+int fAltas ();
+void sAltas (int f);
+int fBajas ();
+void sBajas (int f);
+int fModifica ();
+void sModifica (int f);
+int fVisualiza ();
+void sVisualiza (int f);
+void errorE();
+void errorNE();
+
+void main ()
+{
+	int n,cod;
+	printf ("Opciones disponibles:\n");
+	printf ("\n\t1. Alta");
+	printf ("\n\t2. Baja");
+	printf ("\n\t3. Modificacion");
+	printf ("\n\t4. Visualizacion");
+	printf ("\n\t5. Salida del programa");
+	printf ("\n\nElija opcion: ");
+	scanf ("%i", &n);
+	switch (n)
+	{
+	case 1:
+		system("cls");
+		cod=fAltas();
+		sAltas(cod);
+		break;
+	case 2:
+		system("cls");
+		cod=fBajas();
+		sBajas(cod);
+		break;
+	case 3:
+		system("cls");
+		cod=fModifica ();
+		sModifica (cod);
+		break;
+	case 4:
+		system("cls");
+		cod=fVisualiza();
+		sVisualiza(cod);
+		break;
+	case 5:
+		system("cls");
+		exit(0);
+	default:
+		system("cls");
+		main ();
+		break;
+	}
+}
+
+int fAltas()
+{
+	int f=0,i;
+	char v=0;
+	printf ("Ingrese un codigo numerico: ");
+	scanf ("%i", &f);
+	for(i=0;i<=50;i++)
+		if((*(Datos+i)).Codigo==f)
+		{
+			z=i;
+			errorE();
+		}
+	return f;
+}
+
+void sAltas(int f)
+{
+	char N[20],aceptar=0,v=0;
+	float D;
+	printf ("\n");
+	(*(Datos+c)).Codigo=f;
+	gets(A);
+	system("cls");
+	printf ("Ingrese un codigo numerico: %i\n",(*(Datos+c)).Codigo);
+	printf("Ingrese el nombre: ");
+	gets(N);
+	strcpy ((*(Datos+c)).Nombre, N);
+	printf("Ingrese la deuda: ");
+	scanf("%f",&D);
+	(*(Datos+c)).Deuda=D;
+	system("cls");
+	printf( "Codigo: %i", (*(Datos+c)).Codigo);
+	printf( "\nNombre: %s", (*(Datos+c)).Nombre);
+	printf( "\nDeuda: %.2f", (*(Datos+c)).Deuda);
+	printf( "\n\n");
+	printf( "Aceptar? (s/n): ");
+	aceptar=getche();
+	if (aceptar=='s'||aceptar=='S')
+	{
+		system("cls");
+		printf( "El usuario \"%s\" fue dado de alta satifactoriamente\n\n",(*(Datos+c)).Nombre);
+		c++;
+		system("pause");
+	}
+	else
+	{
+		system("cls");
+		printf( "El usuario \"%s\" no fue dado de alta\n\n",(*(Datos+c)).Nombre);
+		(*(Datos+c)).Codigo=NULL;
+		system("pause");
+	}
+	z=100;
+	system("cls");
+	main ();
+}
+
+int fBajas ()
+{
+	int f=0,i;
+	char v=0;
+	printf ("Ingrese el codigo a dar de baja: ");
+	scanf ("%i", &f);
+	for(i=0;i<=50;i++)
+		if((*(Datos+i)).Codigo==f)
+			z=i;
+	if(z==100)
+		errorNE();
+	return f;
+}
+
+void sBajas (int f)
+{
+	char borrar=0;
+	system("cls");
+	printf( "Codigo: %i", (*(Datos+z)).Codigo);
+	printf( "\nNombre: %s", (*(Datos+z)).Nombre);
+	printf( "\nDeuda: %.2f", (*(Datos+z)).Deuda);
+	printf( "\n\n");
+	strcpy (Name, (*(Datos+z)).Nombre);
+	printf( "Dar de baja? (s/n): ");
+	borrar=getche();
+	if (borrar=='s'||borrar=='S')
+	{
+		system("cls");
+		(*(Datos+z)).Codigo=NULL;
+		printf( "El usuario \"%s\" fue dado de baja satifactoriamente\n\n",Name);
+		system("pause");
+	}
+	else
+	{
+		system("cls");
+		printf( "El usuario \"%s\" no fue dado de baja\n\n",Name);
+		system("pause");
+	}
+	z=100;
+	system("cls");
+	main ();
+}
+
+int fModifica()
+{
+	int f=0,i;
+	printf ("Ingrese el codigo a modificar: ");
+	scanf ("%i", &f);
+	for(i=0;i<=50;i++)
+		if((*(Datos+i)).Codigo==f)
+			z=i;
+	if(z==100)
+		errorNE();
+	return f;
+}
+
+void sModifica(int f)
+{
+	char N[20],aceptar=0;
+	float D;
+	strcpy (Name, (*(Datos+z)).Nombre);
+	Deuda=(*(Datos+z)).Deuda;
+	gets(A);
+	system("cls");
+	printf( "Codigo: %i", (*(Datos+z)).Codigo);
+	printf( "\nNombre: %s", (*(Datos+z)).Nombre);
+	printf( "\nDeuda: %.2f\n", (*(Datos+z)).Deuda);
+	printf( "\nModificar? (s/n): ");
+	aceptar=getche();
+	if (aceptar=='s'||aceptar=='S')
+	{
+		printf("\n\nIngrese el nuevo nombre: ");
+		gets(N);
+		strcpy ((*(Datos+z)).Nombre, N);
+		printf("Ingrese la nueva deuda: ");
+		scanf("%f",&D);
+		(*(Datos+z)).Deuda=D;
+		system("cls");
+		printf( "Codigo: %i", (*(Datos+z)).Codigo);
+		printf( "\n\nAnterior Nombre: %s", Name);
+		printf( "\nNuevo Nombre: %s", (*(Datos+z)).Nombre);
+		printf( "\n\nAnterior Deuda: %.2f", Deuda);
+		printf( "\nNueva Deuda: %.2f", (*(Datos+z)).Deuda);
+		printf( "\n\n");
+		printf( "Aceptar cambios? (s/n): ");
+		aceptar=getche();
+		if (aceptar=='s'||aceptar=='S')
+		{
+			system("cls");
+			printf( "El usuario \"%s\" fue modificado satifactoriamente\n\n",(*(Datos+z)).Nombre);
+			system("pause");
+		}
+		else
+		{
+			system("cls");
+			strcpy ((*(Datos+z)).Nombre, Name);
+			(*(Datos+z)).Deuda=Deuda;
+			printf( "El usuario \"%s\" no fue modificado\n\n",(*(Datos+z)).Nombre);
+			system("pause");
+		}
+	}
+	else
+	{
+		system("cls");
+		printf( "El usuario \"%s\" no fue modificado\n\n",(*(Datos+z)).Nombre);
+		system("pause");
+	}
+	z=100;
+	system("cls");
+	main ();
+}
+
+int fVisualiza ()
+{
+	int f=0,i;
+	printf ("Ingrese el codigo a visualizar: ");
+	scanf ("%i", &f);
+	for(i=0;i<=50;i++)
+		if((*(Datos+i)).Codigo==f)
+			z=i;
+	if(z==100)
+		errorNE();
+	return f;
+}
+
+void sVisualiza (int f)
+{
+	int j=1;
+	system("cls");
+	printf( "Codigo: %i", (*(Datos+z)).Codigo);
+	printf( "\nNombre: %s", (*(Datos+z)).Nombre);
+	printf( "\nDeuda: %.2f\n\n",(*(Datos+z)).Deuda);
+	system("pause");
+	z=100;
+	system("cls");
+	main ();
+}
+
+void errorNE()
+{
+	system("cls");
+	printf ("Usuario inexistente\n\n");
+	system("pause");
+	system("cls");
+	z=100;
+	main();
+}
+
+void errorE()
+{
+	system("cls");
+	printf ("Usuario ya registrado como: \n\n");
+	printf( "Codigo: %i", (*(Datos+z)).Codigo);
+	printf( "\nNombre: %s", (*(Datos+z)).Nombre);
+	printf( "\nDeuda: %.2f\n\n", (*(Datos+z)).Deuda);
+	system("pause");
+	system("cls");
+	z=100;
+	main();
+}

@@ -1,0 +1,101 @@
+#include "stdafx.h"
+#include <stdio.h>
+#include <conio.h>
+#include <stdlib.h>
+#include <string.h>
+
+void main () 
+{
+	int x,i=0;
+	FILE *file;
+	char c='s',d,a[25],ASCII=10;
+	struct CD 
+	{
+		int codigo;
+		char artista[25];
+		char titulo[25];
+		float precio;
+	};//carga estructura
+	struct CD Tango[3];
+	(*Tango).codigo=1;
+	strcpy((*Tango).artista,"Carlos Gardel");
+	strcpy((*Tango).titulo,"Caminito");
+	(*Tango).precio=10.5;
+	(*(Tango+1)).codigo=2;
+	strcpy((*(Tango+1)).artista,"Astor Piazzola");
+	strcpy((*(Tango+1)).titulo,"Balada para un loco");
+	(*(Tango+1)).precio=11;
+	(*(Tango+2)).codigo=3;
+	strcpy((*(Tango+2)).artista,"Los Pericos");
+	strcpy((*(Tango+2)).titulo,"Palermo"); 
+	(*(Tango+2)).precio=15;
+	file=fopen("d:\\salida.txt","w");
+	while(c=='s'||c=='S')
+	{//pide codigo
+		printf("Introduzca Codigo: ");
+		scanf("%i",&x);
+		system("cls");
+		if(x==1||x==2||x==3)
+		{//mustra datos del codigo
+			printf("Datos del Codigo seleccionado: \n\n");
+			printf("\tCodigo: %d",(*(Tango+x-1)).codigo);
+			printf("\n\tArtista: %s",(*(Tango+x-1)).artista);
+			printf("\n\tTitulo: %s",(*(Tango+x-1)).titulo);
+			printf("\n\tPrecio: %.2f",(*(Tango+x-1)).precio);
+			printf("\n\nGuardar en archivo? (s/n): ");
+			d=getche();
+			if(d=='s'||d=='S')
+			{//escrive el archivo
+				if(file!=NULL)
+				{
+					sprintf(a,"%i",(*(Tango+x-1)).codigo);
+					while(*(a+i)!=NULL)
+					{
+						fputc(*(a+i),file);
+						i++;
+					}
+					*(a+i)=ASCII;
+					fputc(*(a+i),file);
+					i=0;
+					strcpy(a,(*(Tango+x-1)).artista);
+					while(*(a+i)!=NULL)
+					{
+						fputc(*(a+i),file);
+						i++;
+					}
+					*(a+i)=ASCII;
+					fputc(*(a+i),file);
+					i=0;
+					strcpy(a,(*(Tango+x-1)).titulo);
+					while(*(a+i)!=NULL)
+					{
+						fputc(*(a+i),file);
+						i++;
+					}
+					*(a+i)=ASCII;
+					fputc(*(a+i),file);
+					i=0;
+					sprintf(a,"%.2f",(*(Tango+x-1)).precio);
+					while(*(a+i)!=NULL)
+					{
+						fputc(*(a+i),file);
+						i++;
+					}
+					*(a+i)=ASCII;
+					fputc(*(a+i),file);
+					fputc(*(a+i),file);
+					i=0;
+				}
+				else
+					printf("\n\nError al abrir el archivo");
+			}
+		}
+		else
+			printf("El codigo no existe");
+		printf("\n\nContiruar? (s/n): ");
+		c=getche();
+		system("cls");
+	}
+	fclose(file);
+	printf("Fin del programa\n\n");
+}
