@@ -373,6 +373,9 @@ public class TokenListFactory {
         if (readOperator.equals(COMMA_OPERATOR)) {
             return new Token(readOperator, TokenType.COMMA_OPERATOR);
         }
+        if (readOperator.equalsIgnoreCase("->")) {
+            return new Token(readOperator,TokenType.POINT_OPERATOR);
+        }
 
         throw new InvalidExpressionException(readOperator);
     }
