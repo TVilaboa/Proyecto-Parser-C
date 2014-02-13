@@ -6,4 +6,9 @@ package compiler;
  * Time: 11:49 AM
  */
 public class InvalidExpressionException extends Exception{
+    public InvalidExpressionException(String message) {
+        super(message);
+    }
+
+
 }

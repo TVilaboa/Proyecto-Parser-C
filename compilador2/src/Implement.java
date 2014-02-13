@@ -14,7 +14,7 @@ import java.io.IOException;
 public class Implement {
 
     public static void main (String [] Args) {
-        Compiler myCompiler = new Compiler("MIXADT1 (1).C");
+        Compiler myCompiler = new Compiler("Aeropuerto.C");
         try {
             myCompiler.run();
         } catch (IOException e) {

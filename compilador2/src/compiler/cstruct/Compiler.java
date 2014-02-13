@@ -165,22 +165,22 @@ public class Compiler {
                         mainFunction = new MainFunction(type, arguments, token.getValue());
                     }
                 } else {
-                    throw new InvalidExpressionException();
+                    throw new InvalidExpressionException(token.toString());
                 }
             } else if (token.getType() == TokenType.SQUARE_BRACKET_BLOCK) {
                 token = tokenIterator.next();
                 if (token.getType() == TokenType.SENTENCE_END) {
                     attributes.add(new Attribute(type, name, true, 0));
                 } else {
-                    throw new InvalidExpressionException();
+                    throw new InvalidExpressionException(token.toString());
                 }
             } else if (token.getType() == TokenType.SENTENCE_END) {
                 attributes.add(new Attribute(type, name, false, 0));
             } else {
-                throw new InvalidExpressionException();
+                throw new InvalidExpressionException(token.toString());
             }
         } else {
-            throw new InvalidExpressionException();
+            throw new InvalidExpressionException(token.toString());
         }
 
     }

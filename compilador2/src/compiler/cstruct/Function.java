@@ -65,10 +65,10 @@ public class Function implements Comparable<Function> {
                         token = tokenIterator.next();
                     }
                 } else {
-                    throw new InvalidExpressionException();
+                    throw new InvalidExpressionException(token.toString());
                 }
             } else {
-                throw new InvalidExpressionException();
+                throw new InvalidExpressionException(token.toString());
             }
         }
         return arguments;
@@ -90,7 +90,7 @@ public class Function implements Comparable<Function> {
         } else if (token.getType() == TokenType.COMMA_OPERATOR || token.getType() == TokenType.CLOSING_BRACKET) {
             attribute = new Attribute(type, "", false, 0);
         } else {
-            throw new InvalidExpressionException();
+            throw new InvalidExpressionException(token.toString());
         }
         attributes.add(attribute);
         if (token.getType() == TokenType.COMMA_OPERATOR) {

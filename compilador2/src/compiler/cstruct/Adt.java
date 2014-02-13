@@ -75,7 +75,7 @@ public class Adt {
                 }
             }
         }
-        throw new InvalidExpressionException();
+        throw new InvalidExpressionException(token.toString());
 
     }
 
@@ -90,13 +90,13 @@ public class Adt {
                 if (token.getType() == TokenType.SENTENCE_END) {
                     return new Attribute(type, name, true, 1);
                 } else {
-                    throw new InvalidExpressionException();
+                    throw new InvalidExpressionException(token.toString());
                 }
             } else {
-                throw new InvalidExpressionException();
+                throw new InvalidExpressionException(token.toString());
             }
         } else {
-            throw new InvalidExpressionException();
+            throw new InvalidExpressionException(token.toString());
         }
     }
 }

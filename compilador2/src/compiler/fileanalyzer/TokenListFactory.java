@@ -137,7 +137,7 @@ public class TokenListFactory {
                         readCharacter = cFile.read();
                         break;
                     default:
-                        throw new InvalidExpressionException();
+                        throw new InvalidExpressionException(readToken.toString());
                 }
             }
         }
@@ -159,7 +159,7 @@ public class TokenListFactory {
                 }
                 readCharacter = cFile.read();
             }
-            throw new InvalidExpressionException();
+            throw new InvalidExpressionException(readToken.toString());
         } else {
             return readOperator(readToken, cFile);
         }
@@ -179,7 +179,7 @@ public class TokenListFactory {
                 }
                 readCharacter = cFile.read();
             }
-            throw new InvalidExpressionException();
+            throw new InvalidExpressionException(readToken.toString());
         } else {
             while (readCharacter != -1 && readCharacter != '\n') {
                 readToken.append((char) readCharacter);
@@ -191,7 +191,7 @@ public class TokenListFactory {
                 }
                 readCharacter = cFile.read();
             }
-            throw new InvalidExpressionException();
+            throw new InvalidExpressionException(readToken.toString());
         }
 
     }
@@ -213,7 +213,7 @@ public class TokenListFactory {
         while (('0' <= readCharacter && readCharacter <= '9') || readCharacter == '.') {
             if (readCharacter == '.') {
                 if (hasDecimalPart) {
-                    throw new InvalidExpressionException();
+                    throw new InvalidExpressionException(readToken.toString());
                 } else {
                     hasDecimalPart = true;
                     readToken.append((char) readCharacter);
@@ -244,13 +244,13 @@ public class TokenListFactory {
             readCharacter = cFile.read();
         }
 
-        throw new InvalidExpressionException();
+        throw new InvalidExpressionException(readToken.toString());
     }
 
     private Token readAsterisk(StringBuilder readToken, Reader cFile) throws IOException, InvalidExpressionException {
         readCharacter = cFile.read();
         if (readCharacter == -1) {
-            throw new InvalidExpressionException();
+            throw new InvalidExpressionException(readToken.toString());
         } else if (readCharacter == '=') {
             readToken.append((char) readCharacter);
             readCharacter = cFile.read();
@@ -278,7 +278,7 @@ public class TokenListFactory {
             readCharacter = cFile.read();
         }
 
-        throw new InvalidExpressionException();
+        throw new InvalidExpressionException(readToken.toString());
     }
 
     private Token readPreProcessorInstruction(StringBuilder readToken, Reader cFile) throws IOException, InvalidExpressionException {
@@ -296,7 +296,7 @@ public class TokenListFactory {
             }
         }
 
-        throw new InvalidExpressionException();
+        throw new InvalidExpressionException(readToken.toString());
     }
 
     private Token readDivisionOrComment(StringBuilder readToken, Reader cFile) throws IOException {
@@ -373,7 +373,8 @@ public class TokenListFactory {
         if (readOperator.equals(COMMA_OPERATOR)) {
             return new Token(readOperator, TokenType.COMMA_OPERATOR);
         }
-        throw new InvalidExpressionException();
+
+        throw new InvalidExpressionException(readOperator);
     }
 
     private Token readIdentifierOrKeyWord(StringBuilder readToken, Reader cFile) throws IOException {

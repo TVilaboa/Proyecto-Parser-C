@@ -50,7 +50,7 @@ public class MainFunction extends Function {
                 case SENTENCE_END:
                     break;
                 default:
-                    throw new InvalidExpressionException();
+                    throw new InvalidExpressionException(token.toString());
             }
         }
 
@@ -85,10 +85,10 @@ public class MainFunction extends Function {
                         }
                         sentenceTokens.add(token);
                     } else {
-                        throw new InvalidExpressionException();
+                        throw new InvalidExpressionException(token.toString());
                     }
                 } else {
-                    throw new InvalidExpressionException();
+                    throw new InvalidExpressionException(token.toString());
                 }
             }
             sentence = new Sentence(SentenceType.DO_WHILE, sentenceTokens);
@@ -135,7 +135,7 @@ public class MainFunction extends Function {
                 throw new NoSupportedInstructionException();
             }
         } else {
-            throw new InvalidExpressionException();
+            throw new InvalidExpressionException(token.toString());
         }
     }
 
@@ -210,7 +210,7 @@ public class MainFunction extends Function {
                                     throw new NoSupportedInstructionException();
                                 }
                             } else {
-                                throw new InvalidExpressionException();
+                                throw new InvalidExpressionException(token.toString());
                             }
                         }
                     }
@@ -226,7 +226,7 @@ public class MainFunction extends Function {
                     throw new NoSupportedInstructionException(); //TODO prepare to support other sentence types
                 }
             } else {
-                throw new InvalidExpressionException();
+                throw new InvalidExpressionException(token.toString());
             }
         }
         sentences.add(sentence);
