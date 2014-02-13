@@ -7,6 +7,7 @@ import compiler.fileanalyzer.TokenType;
 
 import java.io.IOException;
 import java.io.StringReader;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -55,13 +56,15 @@ public class Adt {
 
         while (tokenIterator.hasNext()) {
             token = tokenIterator.next();
-            attributeList.add(readAttribute(token, tokenIterator, adts));
+            for (Attribute attribute : readAttribute(token, tokenIterator, adts)) {
+                attributeList.add(attribute);
+            }
         }
 
         return attributeList;
     }
 
-    private static Attribute readAttribute(Token token, Iterator<Token> tokenIterator, List<Adt> adts) throws InvalidExpressionException {
+    private static List<Attribute> readAttribute(Token token, Iterator<Token> tokenIterator, List<Adt> adts) throws InvalidExpressionException {
         if (token.getType() == TokenType.BASIC_TYPE) {
             String type = token.getValue();
             token = tokenIterator.next();
@@ -79,24 +82,34 @@ public class Adt {
 
     }
 
-    private static Attribute readAttributeWithType(String type, Token token, Iterator<Token> tokenIterator) throws InvalidExpressionException {
-        if (token.getType() == TokenType.IDENTIFIER) {
-            String name = token.getValue();
-            token = tokenIterator.next();
-            if (token.getType() == TokenType.SENTENCE_END) {
-                return new Attribute(type, name, false, 0);
-            } else if (token.getType() == TokenType.SQUARE_BRACKET_BLOCK) {
+    private static List<Attribute> readAttributeWithType(String type, Token token, Iterator<Token> tokenIterator) throws InvalidExpressionException {
+        ArrayList<Attribute> attributes = new ArrayList<>();
+        while (true) {
+            if (token.getType() == TokenType.IDENTIFIER) {
+                String name = token.getValue();
                 token = tokenIterator.next();
                 if (token.getType() == TokenType.SENTENCE_END) {
-                    return new Attribute(type, name, true, 1);
+                    attributes.add(new Attribute(type, name, false, 0));
+                    return attributes;
+                } else if (token.getType() == TokenType.SQUARE_BRACKET_BLOCK) {
+                    token = tokenIterator.next();
+                    attributes.add(new Attribute(type, name, true, 1));
+                    if (token.getType() == TokenType.SENTENCE_END) {
+                        return attributes;
+                    } else if (token.getType() == TokenType.COMMA_OPERATOR) {
+                        token = tokenIterator.next();
+                    } else {
+                        throw new InvalidExpressionException(token.toString());
+                    }
+                } else if (token.getType() == TokenType.COMMA_OPERATOR) {
+                    token = tokenIterator.next();
                 } else {
                     throw new InvalidExpressionException(token.toString());
                 }
             } else {
                 throw new InvalidExpressionException(token.toString());
             }
-        } else {
-            throw new InvalidExpressionException(token.toString());
         }
     }
+
 }

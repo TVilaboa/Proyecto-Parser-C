@@ -110,7 +110,7 @@ void idle (  airport *, int ) ;
 void conclude (  airport *, int ) ;
 int randomnumber ( double ) ;
 void apaddqueue (  airport *, char ) ;
-plane apdelqueue (  airport *, char ) ;
+plane apdelqueue (  airport *, char ) ;  //posiblemente se genere problema  con las funciones q devuelven una struct
 int apsize (  airport, char ) ;
 int apfull (  airport, char ) ;
 int apempty (  airport, char ) ;

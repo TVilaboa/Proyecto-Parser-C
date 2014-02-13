@@ -1,1 +1,3 @@
 The files provided MUST use typedef struct {} s; syntax instead of struct s {}; .
+"->" will be treated as "." .
+Now supports mulitple atributte definitions in one sentence.
