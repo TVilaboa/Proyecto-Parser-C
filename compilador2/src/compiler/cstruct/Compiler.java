@@ -24,6 +24,7 @@ public class Compiler {
     private List<Module> modules;
     private List<Attribute> attributes;
     private Map<String, CandidateClass> candidates;
+    private Map<String, Integer> globalAttributes;
 
     private List<Token> tokenList;
 
@@ -34,6 +35,7 @@ public class Compiler {
         modules = new ArrayList<Module>();
         attributes = new ArrayList<Attribute>();
         candidates = new TreeMap<String, CandidateClass>();
+        globalAttributes = new TreeMap<String, Integer>();
     }
 
     public void run() throws IOException, InvalidExpressionException, NoSupportedInstructionException {
@@ -45,6 +47,7 @@ public class Compiler {
             Token token = tokenIterator.next();
             switch (token.getType()) {
                 case IDENTIFIER:
+                    processIdentifier(token, tokenIterator);                  //There are 2 cases, a global attribute or a function that returns a struct .1er case treated in prerpocess
                     break;
                 case COMMENT:
                     break;
@@ -108,6 +111,17 @@ public class Compiler {
             mainFunction.generateSentenceList(adts, attributes, functions);
         }
         printLists();
+
+    }
+
+    private void processIdentifier(Token token, Iterator<Token> tokenIterator) throws InvalidExpressionException, IOException {
+        for (Adt adt : adts) {
+            if (token.getValue().equals(adt.getName())) {
+                processBasicType(token, tokenIterator);
+                return;
+            }
+        }
+        throw new InvalidExpressionException(token.toString());
 
     }
 
@@ -191,13 +205,29 @@ public class Compiler {
         }
     }
 
-    private void preProcess(List<Token> tokenList) {
+    private void preProcess(List<Token> tokenList) throws InvalidExpressionException {
         for (int i = 0; i < tokenList.size(); i++) {
             if (tokenList.get(i).getType() == TokenType.PRE_PROCESSOR_INSTRUCTION) {
                 if (tokenList.get(i).getValue().equals("#include")) {
                     i = processInclude(tokenList, i);
                 }
+                if (tokenList.get(i).getValue().equals("#define")) {
+                    i = processDefine(tokenList, i);
+                }
             }
+        }
+    }
+
+    private int processDefine(List<Token> tokenList, int i) throws InvalidExpressionException {
+        tokenList.remove(i);
+        Token token = tokenList.get(i);
+        if (token.getType() == TokenType.IDENTIFIER) {
+            globalAttributes.put(token.getValue(), Integer.parseInt(tokenList.get(i + 1).getValue()));
+            tokenList.remove(i);
+            tokenList.remove(i);
+            return i - 1;
+        } else {
+            throw new InvalidExpressionException(token.toString());
         }
     }
 

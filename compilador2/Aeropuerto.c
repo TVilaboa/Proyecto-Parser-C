@@ -111,7 +111,7 @@ void conclude (  airport *, int ) ;
 int randomnumber ( double ) ;
 void apaddqueue (  airport *, char ) ;
 plane apdelqueue (  airport *, char ) ;  //posiblemente se genere problema  con las funciones q devuelven una struct
-int apsize (  airport, char ) ;
+int apsize (  airport, char ) ;          //el problema es q ignora los identifier e intenta crear una funcion a partir del tipo basico char
 int apfull (  airport, char ) ;
 int apempty (  airport, char ) ;
 void myrandomize ( ) ;
@@ -243,7 +243,7 @@ void conclude (  airport *ap, int endtime )
 	printf ( "\tNumber left ready to take off: %d\n", apsize ( *ap, 't' ) ) ;
 
 	if ( endtime > 0 )
-		printf ( "\tPercentage of time runway idle: %lf \n", ( ( double ) ap -> idletime / endtime ) * 100.0 ) ;
+		printf ( "\tPercentage of time runway idle: %lf \n", ( ( double ) ap -> idletime / endtime ) * 100 ) ;
 
 	if ( ap -> nland > 0 )
 		printf ( "\tAverage wait time to land: %lf \n", ( ( double ) ap -> landwait / ap -> nland ) ) ;

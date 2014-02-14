@@ -133,9 +133,15 @@ public class TokenListFactory {
                         readToken = new StringBuilder();
                         break;
 
-                    case 13:
+
+                    case '\'':
                         readCharacter = cFile.read();
                         break;
+
+                    case 13:     // case carriage return
+                        readCharacter = cFile.read();
+                        break;
+
                     default:
                         throw new InvalidExpressionException(readToken.toString());
                 }
@@ -219,6 +225,9 @@ public class TokenListFactory {
                     readToken.append((char) readCharacter);
                 }
                 readToken.append((char) readCharacter);
+            } else {
+                readToken.append((char) readCharacter);
+                readCharacter = cFile.read();
             }
 
         }

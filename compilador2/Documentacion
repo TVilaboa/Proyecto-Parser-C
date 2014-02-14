@@ -1,3 +1,7 @@
 The files provided MUST use typedef struct {} s; syntax instead of struct s {}; .
 "->" will be treated as "." .
-Now supports mulitple atributte definitions in one sentence.
+Supports mulitple atributte definitions in one sentence.
+Supports globalAttributes (only numbers), but still dont show them.
+Supports reading more than 1 cipher numbers.
+Supports reading characters written between  '  ' .
+Supports functions that return structs.
