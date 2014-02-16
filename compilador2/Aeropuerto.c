@@ -356,7 +356,8 @@ int main( )
 	double expectarrive, expectdepart ;
 	 plane temp ;
 
-  system ( "cls" ) ;
+  //system ( "cls" ) ;
+
 
     initairport ( &a );
 

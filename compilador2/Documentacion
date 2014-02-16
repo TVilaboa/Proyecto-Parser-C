@@ -5,3 +5,5 @@ Supports globalAttributes (only numbers), but still dont show them.
 Supports reading more than 1 cipher numbers.
 Supports reading characters written between  '  ' .
 Supports functions that return structs.
+Use of functions from libraries should be avoided since moudles function are still not supported and
+the parser doesnt recognises it as a function when called.

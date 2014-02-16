@@ -303,10 +303,11 @@ public class Compiler {
         printSimple(attributes, "Variables are: ", "It has no attributes");
         printSimple(candidates.values(), "Candidate classes are:", "No candidates are suggested");
 
-        if (mainFunction != null) {
+        /*if (mainFunction != null) {
             System.out.println("+------------------------------------+");
             System.out.println(mainFunction);
-        }
+        }*/
+        printSimple(globalAttributes.entrySet(), "GlobalVariables are: ", "It has no GlobalVariables");
     }
 
     private void printSimple(Collection list, String nonEmptyListMessage, String emptyListMessage) {

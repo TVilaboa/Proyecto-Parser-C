@@ -141,7 +141,11 @@ public class TokenListFactory {
                     case 13:     // case carriage return
                         readCharacter = cFile.read();
                         break;
-
+                    case '_':
+                        readToken.append((char) readCharacter);
+                        tokensList.add(readIdentifierOrKeyWord(readToken, cFile));
+                        readToken = new StringBuilder();
+                        break;
                     default:
                         throw new InvalidExpressionException(readToken.toString());
                 }
