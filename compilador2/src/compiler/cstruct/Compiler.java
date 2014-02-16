@@ -39,7 +39,7 @@ public class Compiler {
     }
 
     public void run() throws IOException, InvalidExpressionException, NoSupportedInstructionException {
-        TokenListFactory tokenListFactory = new TokenListFactory();
+        TokenListFactory tokenListFactory = new TokenListFactory(globalAttributes);
         tokenList = tokenListFactory.getTokenFileFromCFile(new BufferedReader(new FileReader(myFile)));
         preProcess(tokenList);
         Iterator<Token> tokenIterator = tokenList.iterator();
@@ -146,14 +146,14 @@ public class Compiler {
             token = tokenIterator.next();
             if (token.getType() == TokenType.BLOCK) {
                 List<Attribute> adtAttributes = Adt.readAttributesFromBlock(token, adts);
-                adts.add(new Adt(name, adtAttributes));
+                adts.add(new Adt(name, adtAttributes, globalAttributes));
             }
         } else if (token.getType() == TokenType.BLOCK) {
             Token block = token;
             token = tokenIterator.next();
             if (token.getType() == TokenType.IDENTIFIER) {
                 List<Attribute> adtAttributes = Adt.readAttributesFromBlock(block, adts);
-                adts.add(new Adt(token.getValue(), adtAttributes));
+                adts.add(new Adt(token.getValue(), adtAttributes, globalAttributes));
             }
         } else {
             throw new NoSupportedInstructionException();
@@ -171,7 +171,7 @@ public class Compiler {
                 List<Attribute> arguments = Function.getArguments(token, tokenIterator, adts);
                 token = tokenIterator.next();
                 if (token.getType() == TokenType.SENTENCE_END) {
-                    addFunction(new Function(type, name, arguments));
+                    addFunction(new Function(type, name, arguments, globalAttributes));
                 } else if (token.getType() == TokenType.BLOCK) {
                     if (!name.equals("main")) {
                         addFunction(new Function(type, name, arguments, token.getValue()));

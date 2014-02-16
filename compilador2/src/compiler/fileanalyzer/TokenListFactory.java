@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Stack;
 
 /**
@@ -30,11 +31,13 @@ public class TokenListFactory {
     private static final String[] LOGIC_OPERATORS = {"||", "&&"};
     private static final String LOGIC_NEG_OPERATOR = "!";
     private static final String COMMA_OPERATOR = ",";
+    private final Map<String, Integer> globalAttributes;
 
     private static final String[] PRE_PROCESSOR_INSTRUCTION = {"#define", "#undef", "#if", "#ifdef", "#ifndef", "#endif",
             "#else", "#elif", "#include", "#pragma", "#error"};
 
-    public TokenListFactory() {
+    public TokenListFactory(Map<String, Integer> globalAttributes) {
+        this.globalAttributes = globalAttributes;
     }
 
     public List<Token> getTokenFileFromCFile(Reader cFile) throws IOException, InvalidExpressionException {
@@ -248,7 +251,11 @@ public class TokenListFactory {
             } else if (readCharacter == ']') {
                 if (bracketStack.isEmpty()) {
                     readCharacter = cFile.read();
-                    return new Token(readToken.toString(), TokenType.SQUARE_BRACKET_BLOCK);
+                    String tokenStr = readToken.toString();
+                    for (Map.Entry<String, Integer> entry : globalAttributes.entrySet()) {
+                        tokenStr = tokenStr.replaceAll(entry.getKey(), entry.getValue() + ""); //replaces each globalAttribute ocurrence for its actual valor
+                    }
+                    return new Token(tokenStr, TokenType.SQUARE_BRACKET_BLOCK);
                 } else {
                     bracketStack.pop();
                     readToken.append((char) readCharacter);

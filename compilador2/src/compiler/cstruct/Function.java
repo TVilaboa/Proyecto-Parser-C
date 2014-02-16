@@ -10,6 +10,7 @@ import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 /**
  * User: Javier Isoldi
@@ -23,11 +24,14 @@ public class Function implements Comparable<Function> {
     private List<Attribute> arguments;
     protected String body;
     protected List<Token> bodyTokenList;
+    private static Map<String, Integer> globalAttributes;
 
-    public Function(String returns, String name, List<Attribute> arguments) {
+    public Function(String returns, String name, List<Attribute> arguments, Map<String, Integer> globalAttributes) {
         this.returns = returns;
         this.name = name;
         this.arguments = arguments;
+        this.globalAttributes = globalAttributes;
+
     }
 
     public Function(String returns, String name, List<Attribute> arguments, String body) throws IOException, InvalidExpressionException {
@@ -35,7 +39,7 @@ public class Function implements Comparable<Function> {
         this.name = name;
         this.arguments = arguments;
         this.body = body;
-        TokenListFactory tokenListFactory = new TokenListFactory();
+        TokenListFactory tokenListFactory = new TokenListFactory(globalAttributes);
         String bodyWithOutBrackets = body.substring(1, body.length() - 1);
         bodyTokenList = tokenListFactory.getTokenFileFromCFile(new StringReader(bodyWithOutBrackets));
     }

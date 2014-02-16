@@ -7,10 +7,7 @@ import compiler.fileanalyzer.TokenType;
 
 import java.io.IOException;
 import java.io.StringReader;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * User: Javier Isoldi
@@ -20,10 +17,12 @@ import java.util.List;
 public class Adt {
     private String name; // name of the Adt
     private List<Attribute> attributes; // attributes of the Adt
+    private static Map<String, Integer> globalAttributes;
 
-    public Adt(String name, List<Attribute> attributes) {
+    public Adt(String name, List<Attribute> attributes, Map<String, Integer> globalAttributes) {
         this.name = name;
         this.attributes = attributes;
+        this.globalAttributes = globalAttributes;
     }
 
     public String getName() {
@@ -48,7 +47,7 @@ public class Adt {
     public static List<Attribute> readAttributesFromBlock(Token token, List<Adt> adts) throws IOException, InvalidExpressionException {
         String adtBody = token.getValue();
         String adtBodyWithoutBrackets = adtBody.substring(1, adtBody.length() - 1);
-        TokenListFactory tokenListFactory = new TokenListFactory();
+        TokenListFactory tokenListFactory = new TokenListFactory(globalAttributes);
         Iterator<Token> tokenIterator;
         tokenIterator = tokenListFactory.getTokenFileFromCFile(new StringReader(adtBodyWithoutBrackets)).iterator();
 
@@ -92,8 +91,9 @@ public class Adt {
                     attributes.add(new Attribute(type, name, false, 0));
                     return attributes;
                 } else if (token.getType() == TokenType.SQUARE_BRACKET_BLOCK) {
+                    String arrayCap = token.getValue();
                     token = tokenIterator.next();
-                    attributes.add(new Attribute(type, name, true, 1));
+                    attributes.add(new Attribute(type, name, true, parseInt(arrayCap)));
                     if (token.getType() == TokenType.SENTENCE_END) {
                         return attributes;
                     } else if (token.getType() == TokenType.COMMA_OPERATOR) {
@@ -110,6 +110,11 @@ public class Adt {
                 throw new InvalidExpressionException(token.toString());
             }
         }
+    }
+
+    private static int parseInt(String arraycap) {
+        arraycap = arraycap.substring(1, arraycap.length() - 1);
+        return Integer.parseInt(arraycap);
     }
 
 }

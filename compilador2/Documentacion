@@ -7,3 +7,4 @@ Supports reading characters written between  '  ' .
 Supports functions that return structs.
 Use of functions from libraries should be avoided since moudles function are still not supported and
 the parser doesnt recognises it as a function when called.
+Reads array size correctly for adts,but not for candidate classes.
