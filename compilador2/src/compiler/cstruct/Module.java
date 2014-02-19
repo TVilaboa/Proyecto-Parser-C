@@ -19,6 +19,14 @@ public class Module {
     // This list contain modules that are part of the language (e.g. stdio.h)
     private static final String[] MODULE_LIST;
 
+    public void addFunction(Function function) {
+        functions.add(function);
+    }
+
+    public void addModule(Module module) {
+        modulesIncluded.add(module);
+    }
+
     static {
         MODULE_LIST = new String[]{"assert.h", "complex.h", "ctype.h",
                 "errno.h", "fenv.h", "float.h",
@@ -38,13 +46,12 @@ public class Module {
     }
 
 
-
-    private static boolean isBasicModule(String module) {
-        boolean aux = true;
-        module = module.substring(1, module.length() - 1);
+    public boolean isBasicModule() {
+        boolean aux = false;
+        String module = file.getName();
         for (String moduleListItem : MODULE_LIST) {
             if (module.equals(moduleListItem)) {
-                aux = false;
+                aux = true;
             }
         }
         return aux;
@@ -71,25 +78,30 @@ public class Module {
     }
 
     public String toString() {
-        String modulePrint = "\t\"" + file.getName() + "\"\n\n";
-        if (functions != null) {
-            if (!functions.isEmpty()) {
-                String intro = "\tThe functions in this module are: \n";
-                modulePrint += intro + printList(functions);
-            } else {
-                String intro = "\tThis module has no functions \n";
-                modulePrint += intro;
+        String modulePrint = null;
+        if (!isBasicModule()) {
+            modulePrint = "\t\"" + file.getName() + "\"\n\n";
+            if (functions != null) {
+                if (!functions.isEmpty()) {
+                    String intro = "\tThe functions in this module are: \n";
+                    modulePrint += intro + printList(functions);
+                } else {
+                    String intro = "\tThis module has no functions \n";
+                    modulePrint += intro;
+                }
             }
-        }
-        if (modulesIncluded != null) {
-            if (!modulesIncluded.isEmpty()) {
-                String intro = "\tThe modules of this module are: \n";
-                modulePrint += intro + printList(modulesIncluded);
-            } else {
-                String intro = "\tThis module has no modules \n";
-                modulePrint += intro;
-            }
+            if (modulesIncluded != null) {
+                if (!modulesIncluded.isEmpty()) {
+                    String intro = "\tThe modules of this module are: \n";
+                    modulePrint += intro + printList(modulesIncluded);
+                } else {
+                    String intro = "\tThis module has no modules \n";
+                    modulePrint += intro;
+                }
 
+            }
+        } else {
+            modulePrint = "\t\"" + file.getName() + "\"\n\n" + "This is a basic module.\n";
         }
 
         return modulePrint;
@@ -106,6 +118,8 @@ public class Module {
         return aux;
     }
 
-
+    public File getFile() {
+        return file;
+    }
 }
 

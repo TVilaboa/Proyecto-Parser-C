@@ -17,7 +17,6 @@ import java.util.*;
 
 public class Compiler {
 
-    private File myFile;
     private List<Adt> adts;
     private Set<Function> functions;
     private MainFunction mainFunction;
@@ -25,23 +24,44 @@ public class Compiler {
     private List<Attribute> attributes;
     private Map<String, CandidateClass> candidates;
     private Map<String, Integer> globalAttributes;
+    private List<File> alreadyProcessed;
 
-    private List<Token> tokenList;
+    //private List<Token> tokenList;
 
-    public Compiler(String fileName) {
-        myFile = new File(fileName);
+    public Compiler() {
+        // myFile = new File(fileName);
         adts = new ArrayList<Adt>();
         functions = new TreeSet<Function>();
         modules = new ArrayList<Module>();
         attributes = new ArrayList<Attribute>();
         candidates = new TreeMap<String, CandidateClass>();
         globalAttributes = new TreeMap<String, Integer>();
+        alreadyProcessed = new ArrayList<>();
     }
 
-    public void run() throws IOException, InvalidExpressionException, NoSupportedInstructionException {
+    public void run(File myFile) throws IOException, InvalidExpressionException, NoSupportedInstructionException {
+        System.out.println("Analisys for : " + myFile + "\n");
+        subrun(myFile);
+        if (mainFunction != null) {
+            mainFunction.generateSentenceList(adts, attributes, functions);
+        }
+        printLists();
+    }
+
+
+    private void subrun(File myFile) throws IOException, InvalidExpressionException, NoSupportedInstructionException {
+        alreadyProcessed.add(myFile);
         TokenListFactory tokenListFactory = new TokenListFactory(globalAttributes);
-        tokenList = tokenListFactory.getTokenFileFromCFile(new BufferedReader(new FileReader(myFile)));
-        preProcess(tokenList);
+        List<Token> tokenList = tokenListFactory.getTokenFileFromCFile(new BufferedReader(new FileReader(myFile)));
+        for (int i = 0; i < tokenList.size(); i++) {
+            Token token = tokenList.get(i);
+            if (token.getValue().equals("short") || token.getValue().equals("unsigned")) {
+                tokenList.remove(token);
+            }
+        }
+        preProcess(tokenList, myFile);
+        uploadModules(); //take all the information of each modules (listed in the header the main file). The names of all modules are stored in ListD modules
+        //first upload modules so that module´s functions and structs can be recognised later
         Iterator<Token> tokenIterator = tokenList.iterator();
         while (tokenIterator.hasNext()) {
             Token token = tokenIterator.next();
@@ -102,15 +122,19 @@ public class Compiler {
             }
         }
 
-        uploadModules(); //take all the information of each modules (listed in the header the main file). The names of all modules are stored in ListD modules
 
         createCandidatesFromADTs();  //start merging the 4 independent lists (functions, modules, vars and ADT)
+        for (int i = 0; i < modules.size(); i++) {
+            Module module = modules.get(i);
+            if (myFile.equals(module.getFile())) {
+                for (Iterator<Function> iterator = functions.iterator(); iterator.hasNext(); ) {
+                    Function function = iterator.next();
+                    module.addFunction(function);
+                }
 
-
-        if (mainFunction != null) {
-            mainFunction.generateSentenceList(adts, attributes, functions);
+            }
         }
-        printLists();
+
 
     }
 
@@ -205,18 +229,31 @@ public class Compiler {
         }
     }
 
-    private void preProcess(List<Token> tokenList) throws InvalidExpressionException {
+    private void preProcess(List<Token> tokenList, File myFile) throws InvalidExpressionException {
         for (int i = 0; i < tokenList.size(); i++) {
             if (tokenList.get(i).getType() == TokenType.PRE_PROCESSOR_INSTRUCTION) {
                 if (tokenList.get(i).getValue().equals("#include")) {
-                    i = processInclude(tokenList, i);
+                    i = processInclude(tokenList, i, myFile);
                 }
                 if (tokenList.get(i).getValue().equals("#define")) {
                     i = processDefine(tokenList, i);
                 }
+                if (tokenList.get(i).getValue().equals("#ifndef")) {
+                    i = processIfndef(tokenList, i); //tiene q omitir los proximos 3 tokens
+                }
             }
         }
     }
+
+    private int processIfndef(List<Token> tokenList, int i) throws InvalidExpressionException {
+        tokenList.remove(i);  //#ifndef
+        tokenList.remove(i);  // identifier
+        tokenList.remove(i);  //#define
+        tokenList.remove(i);  //identifier
+        return i;
+
+    }
+
 
     private int processDefine(List<Token> tokenList, int i) throws InvalidExpressionException {
         tokenList.remove(i);
@@ -231,11 +268,27 @@ public class Compiler {
         }
     }
 
-    private int processInclude(List<Token> tokenList, int i) {
+    private int processInclude(List<Token> tokenList, int i, File myFile) {
         tokenList.remove(i);
         Token token = tokenList.get(i);
         if (token.getType() == TokenType.FILE_TO_INCLUDE) {
-            modules.add(new Module(new File(token.getValue().substring(1, token.getValue().length() - 2))));
+            Module module = new Module(new File(token.getValue().substring(1, token.getValue().length() - 1)));
+            for (Module addedModule : modules) {
+                if (addedModule.getFile().getName().equals(module.getFile().getName())) {
+                    tokenList.remove(i);
+                    return i;
+
+                }
+            }
+            modules.add(module);
+            for (Module module1 : modules) {
+                if (myFile.equals(module1.getFile())) {  //submodules loading. Module is the new module and module1 is the module in which the parser is working
+                    module1.addModule(module);
+                    break;
+
+                }
+            }
+
             tokenList.remove(i);
         }
         return i;
@@ -289,25 +342,30 @@ public class Compiler {
 
     // this method read each name of modules (stored in listD modules) and adds all the information implemented inside
     // each file to each object of the list.
-    private void uploadModules() {
+    private void uploadModules() throws InvalidExpressionException, NoSupportedInstructionException, IOException {
 
+        for (int i = 0; i < modules.size(); i++) {
+            Module module = modules.get(i);
+            if (!module.isBasicModule() && !alreadyProcessed.contains(module.getFile()))
+                this.subrun(module.getFile());
+        }
 
     }
 
 
     private void printLists() {
-
         printSimple(modules, "Modules are: ", "It has no modules");
         printSimple(functions, "Functions are: ", "It has no functions");
         printSimple(adts, "ADTs are: ", "It has no ADTs");
         printSimple(attributes, "Variables are: ", "It has no attributes");
+        printSimple(globalAttributes.entrySet(), "GlobalVariables are: ", "It has no GlobalVariables");
         printSimple(candidates.values(), "Candidate classes are:", "No candidates are suggested");
 
         /*if (mainFunction != null) {
             System.out.println("+------------------------------------+");
             System.out.println(mainFunction);
         }*/
-        printSimple(globalAttributes.entrySet(), "GlobalVariables are: ", "It has no GlobalVariables");
+
     }
 
     private void printSimple(Collection list, String nonEmptyListMessage, String emptyListMessage) {

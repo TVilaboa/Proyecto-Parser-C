@@ -21,7 +21,7 @@ public class TokenListFactory {
     private static final String[] KEY_WORDS = {"auto", "break", "case", "const", "continue", "default", "do",
             "else", "enum", "extern", "for", "goto", "if", "register", "return", "signed", "static", "struct",
             "switch", "typedef", "union", "unsigned", "volatile", "while"};
-    private static final String[] BASIC_TYPES = {"char", "double", "float", "for", "int", "long", "short", "void"};
+    private static final String[] BASIC_TYPES = {"char", "double", "float", "for", "int", "long", "short", "void", "FILE"};
     private static final String SIZE_OF_OPERATOR = "sizeof";
 
     private static final String[] ARITHMETIC_OPERATORS = {"+", "-", "*", "/", "%"};
@@ -184,7 +184,7 @@ public class TokenListFactory {
         if (tokensList.get(tokensList.size() - 1).getValue().equals("#include")) {
             while (readCharacter != -1 && readCharacter != '\n') {
                 readToken.append((char) readCharacter);
-                if (readCharacter == '>') {
+                if (readCharacter == '>' || readCharacter == '"') {
 
                     readCharacter = cFile.read();
                     return new Token(readToken.toString(), TokenType.FILE_TO_INCLUDE);
@@ -404,7 +404,8 @@ public class TokenListFactory {
         readCharacter = cFile.read();
         while (readCharacter != -1 && (('a' <= readCharacter && readCharacter <= 'z') ||
                 ('A' <= readCharacter && readCharacter <= 'Z') ||
-                ('0' <= readCharacter && readCharacter <= '9'))) {
+                ('0' <= readCharacter && readCharacter <= '9') ||
+                readCharacter == '_')) {
             readToken.append((char) readCharacter);
             readCharacter = cFile.read();
         }

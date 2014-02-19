@@ -1,24 +1,20 @@
 Modules are:
 
-	"stdio."
+	"stdio.h"
 
-	This module has no functions
-	This module has no modules
+This is a basic module.
 
-	"stdlib."
+	"stdlib.h"
 
-	This module has no functions
-	This module has no modules
+This is a basic module.
 
-	"math."
+	"math.h"
 
-	This module has no functions
-	This module has no modules
+This is a basic module.
 
-	"limits."
+	"limits.h"
 
-	This module has no functions
-	This module has no modules
+This is a basic module.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Functions are:
@@ -28,101 +24,122 @@ Functions are:
 	The arguments are:
 		queue
 		plane
+
 	Function name: apaddqueue
 	Returns: void
 	The arguments are:
 		airport
 		char
+
 	Function name: apdelqueue
 	Returns: plane
 	The arguments are:
 		airport
 		char
+
 	Function name: apempty
 	Returns: int
 	The arguments are:
 		airport
 		char
+
 	Function name: apfull
 	Returns: int
 	The arguments are:
 		airport
 		char
+
 	Function name: apsize
 	Returns: int
 	The arguments are:
 		airport
 		char
+
 	Function name: conclude
 	Returns: void
 	The arguments are:
 		airport
 		int
+
 	Function name: delqueue
 	Returns: plane
 	The arguments are:
 		queue
+
 	Function name: empty
 	Returns: int
 	The arguments are:
 		queue
+
 	Function name: fly
 	Returns: void
 	The arguments are:
 		airport
 		plane
 		int
+
 	Function name: full
 	Returns: int
 	The arguments are:
 		queue
+
 	Function name: idle
 	Returns: void
 	The arguments are:
 		airport
 		int
+
 	Function name: initairport
 	Returns: void
 	The arguments are:
 		airport
+
 	Function name: initqueue
 	Returns: void
 	The arguments are:
 		queue
+
 	Function name: land
 	Returns: void
 	The arguments are:
 		airport
 		plane
 		int
+
 	Function name: myrandomize
 	Returns: void
 	The arguments are:
+
 	Function name: newplane
 	Returns: void
 	The arguments are:
 		airport
 		int
 		int
+
 	Function name: randomnumber
 	Returns: int
 	The arguments are:
 		double
+
 	Function name: refuse
 	Returns: void
 	The arguments are:
 		airport
 		int
+
 	Function name: size
 	Returns: int
 	The arguments are:
 		queue
+
 	Function name: start
 	Returns: void
 	The arguments are:
 		int
 		double
 		double
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ADTs are:
 
@@ -135,7 +152,7 @@ ADTs are:
 		int count
 		int front
 		int rear
-		plane p[1]
+		plane p[3]
 
 	The name is : airport
 	The variables are:
@@ -148,28 +165,24 @@ ADTs are:
 		int ntakeoff
 		plane pln
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-It has no attributes
+GlobalVariables are:
+
+ARRIVE=0
+DEPART=1
+MAX=3
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Candidate classes are:
 
 CandidateClass: airport
 	Attributes are:
-			queue landing[0]
-
-			queue takeoff[0]
-
-			queue pl[0]
-
-			queue pt[0]
-
-			int idletime[0]
-
-			int takeoffwait[0]
-
-			int ntakeoff[0]
-
-			plane pln[0]
-
+			queue landing
+			queue takeoff
+			queue pl
+			queue pt
+			int idletime
+			int takeoffwait
+			int ntakeoff
+			plane pln
 	Methods are:
 			Method name: apaddqueue
 	Returns: void
@@ -235,10 +248,8 @@ CandidateClass: airport
 		int
 CandidateClass: plane
 	Attributes are:
-			int id[0]
-
-			int tm[0]
-
+			int id
+			int tm
 	Methods are:
 			Method name: addqueue
 	Returns: void
@@ -268,13 +279,11 @@ CandidateClass: plane
 		int
 CandidateClass: queue
 	Attributes are:
-			int count[0]
+			int count
+			int front
+			int rear
+			plane p[3]
 
-			int front[0]
-
-			int rear[0]
-
-			plane p
 	Methods are:
 			Method name: addqueue
 	Returns: void
@@ -301,10 +310,4 @@ CandidateClass: queue
 	Returns: int
 	The arguments are:
 		queue
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-GlobalVariables are:
-
-ARRIVE=0
-DEPART=1
-MAX=3
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

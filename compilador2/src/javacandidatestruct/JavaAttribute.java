@@ -28,7 +28,7 @@ public class JavaAttribute {
     }
 
     public String toString() {
-        if (isArray) {
+        if (!isArray) {
             return "\t" + (type + " " + name);
         } else {
             return "\t" + (type + " " + name + "[" + arrayCapacity + "]") + "\n";

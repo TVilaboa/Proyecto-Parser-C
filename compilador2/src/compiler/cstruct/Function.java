@@ -47,8 +47,8 @@ public class Function implements Comparable<Function> {
     // args : token = initial bracket, tokenIterator = iterator of the following tokens
     public static List<Attribute> getArguments(Token token, Iterator<Token> tokenIterator, List<Adt> adts) throws InvalidExpressionException {
         List<Attribute> arguments = new ArrayList<Attribute>();
-
         token = tokenIterator.next();
+
         while (token.getType() != TokenType.CLOSING_BRACKET) {
             if (token.getType() == TokenType.BASIC_TYPE) {
                 String type = token.getValue();
@@ -128,7 +128,7 @@ public class Function implements Comparable<Function> {
                 result += "\n\t" + argument;
             }
         }
-        return result;
+        return result + "\n";
     }
 
     public String getBody() {

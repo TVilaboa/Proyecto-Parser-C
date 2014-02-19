@@ -1,10 +1,13 @@
 The files provided MUST use typedef struct {} s; syntax instead of struct s {}; .
 "->" will be treated as "." .
 Supports mulitple atributte definitions in one sentence.
-Supports globalAttributes (only numbers), but still dont show them.
+Supports globalAttributes (only numbers).
 Supports reading more than 1 cipher numbers.
 Supports reading characters written between  '  ' .
 Supports functions that return structs.
-Use of functions from libraries should be avoided since moudles function are still not supported and
-the parser doesnt recognises it as a function when called.
-Reads array size correctly for adts,but not for candidate classes.
+Use of functions from standart libraries libraries should be avoided by now, since their functions
+are still not loaded and arent recognised.
+Reads array size correctly for adts and candidate classes.
+Since parser dont read * , multiplication is impossible.
+Include´s name must be the full path.
+Shows file module´s submodules and functions.
