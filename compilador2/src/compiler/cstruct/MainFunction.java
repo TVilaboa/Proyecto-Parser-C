@@ -17,12 +17,12 @@ import java.util.*;
  */
 public class MainFunction extends Function {
 
-    private List<Sentence> globalAttributes;
+    private List<Sentence> oldGlobalAttributes;
     private List<Sentence> sentenceList;
 
-    public MainFunction(String returns, List<Attribute> arguments, String body) throws IOException, InvalidExpressionException {
-        super(returns, "main", arguments, body);
-        globalAttributes = new ArrayList<Sentence>();
+    public MainFunction(String returns, List<Attribute> arguments, String body, Map<String, Integer> globalAttributes) throws IOException, InvalidExpressionException {
+        super(returns, "main", arguments, body, globalAttributes);
+        oldGlobalAttributes = new ArrayList<Sentence>();
     }
 
     public List<Sentence> generateSentenceList(List<Adt> fileAdt, List<Attribute> fileAttributes,
@@ -57,7 +57,7 @@ public class MainFunction extends Function {
         this.sentenceList = sentenceList;
         for (Sentence sentence : sentenceList) {
             if (sentence.getType() == SentenceType.ATTRIBUTE_DECLARATION_FROM_FUNCTION) {
-                globalAttributes.add(sentence);
+                oldGlobalAttributes.add(sentence);
             }
         }
         return sentenceList;
@@ -149,8 +149,14 @@ public class MainFunction extends Function {
         token = tokenIterator.next();
         if (token.getType() == TokenType.IDENTIFIER) {
             sentenceTokens.add(token);
-            internalAttributes.add(new Attribute(sentenceTokens.get(0).getValue(), token.getValue(), false, 0));
             token = tokenIterator.next();
+            if (token.getType() == TokenType.SQUARE_BRACKET_BLOCK) {
+                internalAttributes.add(new Attribute(sentenceTokens.get(0).getValue(), sentenceTokens.get(1).getValue(), true,
+                        Integer.parseInt(token.getValue().substring(1, token.getValue().length() - 1))));
+                sentenceTokens.add(token);
+                token = tokenIterator.next();
+            } else
+                internalAttributes.add(new Attribute(sentenceTokens.get(0).getValue(), token.getValue(), false, 0));
             if (token.getType() == TokenType.SENTENCE_END) {
                 sentenceTokens.add(token);
                 sentence = new Sentence(SentenceType.ATTRIBUTE_DECLARATION, sentenceTokens);
@@ -247,8 +253,9 @@ public class MainFunction extends Function {
 
     private void processIdentifier(Token token, Iterator<Token> tokenIterator, List<Adt> fileAdt, List<Attribute> fileAttributes,
                                    List<Attribute> internalAttributes, Set<Function> fileDeclaredFunctions, List<Sentence> sentenceList) throws NoSupportedInstructionException, InvalidExpressionException {
-        Sentence sentence = null;
-        for (Adt adt : fileAdt) {
+        if (!token.getValue().equals("printf")) {
+            Sentence sentence = null;
+            for (Adt adt : fileAdt) {
             if (adt.getName().equals(token.getValue())) {
                 processBasicType(token, tokenIterator, fileAttributes, internalAttributes, fileDeclaredFunctions, sentenceList);
                 return;
@@ -270,6 +277,11 @@ public class MainFunction extends Function {
             }
             sentenceTokens.add(token);
             return;
+        }
+        } else {
+            while (token.getType() != TokenType.SENTENCE_END) {
+                token = tokenIterator.next();
+            }
         }
     }
 
@@ -343,7 +355,7 @@ public class MainFunction extends Function {
     public String toString() {
         String result = "MainFunction" +
                 "\n\tGlobal Sentences are :";
-        for (Sentence globalAttribute : globalAttributes) {
+        for (Sentence globalAttribute : oldGlobalAttributes) {
             result += globalAttribute.toString();
         }
 

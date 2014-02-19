@@ -31,7 +31,7 @@ public class TokenListFactory {
     private static final String[] LOGIC_OPERATORS = {"||", "&&"};
     private static final String LOGIC_NEG_OPERATOR = "!";
     private static final String COMMA_OPERATOR = ",";
-    private final Map<String, Integer> globalAttributes;
+    private Map<String, Integer> globalAttributes;
 
     private static final String[] PRE_PROCESSOR_INSTRUCTION = {"#define", "#undef", "#if", "#ifdef", "#ifndef", "#endif",
             "#else", "#elif", "#include", "#pragma", "#error"};
@@ -252,8 +252,10 @@ public class TokenListFactory {
                 if (bracketStack.isEmpty()) {
                     readCharacter = cFile.read();
                     String tokenStr = readToken.toString();
-                    for (Map.Entry<String, Integer> entry : globalAttributes.entrySet()) {
-                        tokenStr = tokenStr.replaceAll(entry.getKey(), entry.getValue() + ""); //replaces each globalAttribute ocurrence for its actual valor
+                    if (!globalAttributes.isEmpty()) {
+                        for (Map.Entry<String, Integer> entry : globalAttributes.entrySet()) {
+                            tokenStr = tokenStr.replaceAll(entry.getKey(), entry.getValue() + ""); //replaces each globalAttribute ocurrence for its actual valor
+                        }
                     }
                     return new Token(tokenStr, TokenType.SQUARE_BRACKET_BLOCK);
                 } else {
@@ -394,7 +396,7 @@ public class TokenListFactory {
             return new Token(readOperator, TokenType.COMMA_OPERATOR);
         }
         if (readOperator.equalsIgnoreCase("->")) {
-            return new Token(readOperator,TokenType.POINT_OPERATOR);
+            return new Token(readOperator, TokenType.POINT_OPERATOR);
         }
 
         throw new InvalidExpressionException(readOperator);

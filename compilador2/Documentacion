@@ -11,3 +11,5 @@ Reads array size correctly for adts and candidate classes.
 Since parser dont read * , multiplication is impossible.
 Include´s name must be the full path.
 Shows file module´s submodules and functions.
+#ifndef, short and unsigned ignored.
+printf ignored.

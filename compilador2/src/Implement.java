@@ -17,8 +17,7 @@ public class Implement {
     public static void main (String [] Args) {
         Compiler myCompiler = new Compiler();
         try {
-            //myCompiler.run(new File("Aeropuerto.C"));
-            myCompiler.run(new File("C:\\Users\\Toto\\Projects\\Proyecto Nacho Cassol\\Proyecto-Parser-C\\compilador2\\Lote de pruebas\\Case 3\\WAV\\main.c"));
+            myCompiler.run(new File("C:\\Users\\Toto\\Projects\\Proyecto Nacho Cassol\\Proyecto-Parser-C\\compilador2\\Lote de pruebas\\Case 6\\University.c"));
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InvalidExpressionException e) {

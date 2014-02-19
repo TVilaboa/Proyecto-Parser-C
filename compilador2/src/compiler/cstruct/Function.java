@@ -24,7 +24,7 @@ public class Function implements Comparable<Function> {
     private List<Attribute> arguments;
     protected String body;
     protected List<Token> bodyTokenList;
-    private static Map<String, Integer> globalAttributes;
+    private Map<String, Integer> globalAttributes;
 
     public Function(String returns, String name, List<Attribute> arguments, Map<String, Integer> globalAttributes) {
         this.returns = returns;
@@ -34,11 +34,12 @@ public class Function implements Comparable<Function> {
 
     }
 
-    public Function(String returns, String name, List<Attribute> arguments, String body) throws IOException, InvalidExpressionException {
+    public Function(String returns, String name, List<Attribute> arguments, String body, Map<String, Integer> globalAttributes) throws IOException, InvalidExpressionException {
         this.returns = returns;
         this.name = name;
         this.arguments = arguments;
         this.body = body;
+        this.globalAttributes = globalAttributes;
         TokenListFactory tokenListFactory = new TokenListFactory(globalAttributes);
         String bodyWithOutBrackets = body.substring(1, body.length() - 1);
         bodyTokenList = tokenListFactory.getTokenFileFromCFile(new StringReader(bodyWithOutBrackets));
@@ -148,14 +149,14 @@ public class Function implements Comparable<Function> {
         }
 
         final int argumentSizeResult = arguments.size() - o.arguments.size();
-        if (argumentSizeResult != 0){
+        if (argumentSizeResult != 0) {
             return argumentSizeResult;
         }
 
         int argumentResult;
-        for (int i = 0; i < arguments.size(); i++){
+        for (int i = 0; i < arguments.size(); i++) {
             argumentResult = arguments.get(i).getType().compareTo(o.arguments.get(i).getType());
-            if (argumentResult != 0){
+            if (argumentResult != 0) {
                 return argumentResult;
             }
         }
@@ -165,7 +166,7 @@ public class Function implements Comparable<Function> {
 
     public boolean hasArgument(Attribute argument) {
         for (Attribute attribute : arguments) {
-            if (attribute.compareTo(argument) == 0){
+            if (attribute.compareTo(argument) == 0) {
                 return true;
             }
         }

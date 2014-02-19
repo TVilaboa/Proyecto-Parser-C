@@ -9,10 +9,9 @@ import javacandidatestruct.CandidateClass;
 import javacandidatestruct.JavaAttribute;
 import javacandidatestruct.JavaMethod;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import java.io.*;
 import java.util.*;
 
 public class Compiler {
@@ -25,6 +24,8 @@ public class Compiler {
     private Map<String, CandidateClass> candidates;
     private Map<String, Integer> globalAttributes;
     private List<File> alreadyProcessed;
+    private StringBuilder output;
+    private File myFile;
 
     //private List<Token> tokenList;
 
@@ -37,10 +38,22 @@ public class Compiler {
         candidates = new TreeMap<String, CandidateClass>();
         globalAttributes = new TreeMap<String, Integer>();
         alreadyProcessed = new ArrayList<>();
+        output = new StringBuilder();
+    }
+
+    public void run() throws IOException, InvalidExpressionException, NoSupportedInstructionException {
+        myFile = loadFile();
+        output.append("Analisys for : " + myFile + "\n\n");
+        subrun(myFile);
+        if (mainFunction != null) {
+            mainFunction.generateSentenceList(adts, attributes, functions);
+        }
+        printLists();
     }
 
     public void run(File myFile) throws IOException, InvalidExpressionException, NoSupportedInstructionException {
-        System.out.println("Analisys for : " + myFile + "\n");
+        this.myFile = myFile;
+        output.append("Analisys for : " + myFile + "\n\n");
         subrun(myFile);
         if (mainFunction != null) {
             mainFunction.generateSentenceList(adts, attributes, functions);
@@ -198,9 +211,9 @@ public class Compiler {
                     addFunction(new Function(type, name, arguments, globalAttributes));
                 } else if (token.getType() == TokenType.BLOCK) {
                     if (!name.equals("main")) {
-                        addFunction(new Function(type, name, arguments, token.getValue()));
+                        addFunction(new Function(type, name, arguments, token.getValue(), globalAttributes));
                     } else {
-                        mainFunction = new MainFunction(type, arguments, token.getValue());
+                        mainFunction = new MainFunction(type, arguments, token.getValue(), globalAttributes);
                     }
                 } else {
                     throw new InvalidExpressionException(token.toString());
@@ -233,13 +246,11 @@ public class Compiler {
         for (int i = 0; i < tokenList.size(); i++) {
             if (tokenList.get(i).getType() == TokenType.PRE_PROCESSOR_INSTRUCTION) {
                 if (tokenList.get(i).getValue().equals("#include")) {
-                    i = processInclude(tokenList, i, myFile);
-                }
-                if (tokenList.get(i).getValue().equals("#define")) {
-                    i = processDefine(tokenList, i);
-                }
-                if (tokenList.get(i).getValue().equals("#ifndef")) {
-                    i = processIfndef(tokenList, i); //tiene q omitir los proximos 3 tokens
+                    i = processInclude(tokenList, i, myFile) - 1;
+                } else if (tokenList.get(i).getValue().equals("#define")) {
+                    i = processDefine(tokenList, i) - 1;
+                } else if (tokenList.get(i).getValue().equals("#ifndef")) {
+                    i = processIfndef(tokenList, i - 1); //tiene q omitir los proximos 3 tokens
                 }
             }
         }
@@ -262,7 +273,7 @@ public class Compiler {
             globalAttributes.put(token.getValue(), Integer.parseInt(tokenList.get(i + 1).getValue()));
             tokenList.remove(i);
             tokenList.remove(i);
-            return i - 1;
+            return i;
         } else {
             throw new InvalidExpressionException(token.toString());
         }
@@ -365,20 +376,39 @@ public class Compiler {
             System.out.println("+------------------------------------+");
             System.out.println(mainFunction);
         }*/
-
+        System.out.println(output.toString());
+        File f = new File("Output " + myFile.getName());
+        try (PrintWriter pr = new PrintWriter(new BufferedWriter(new FileWriter(f)))) {
+            pr.write(output.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void printSimple(Collection list, String nonEmptyListMessage, String emptyListMessage) {
         if (!list.isEmpty()) {
-            System.out.println(nonEmptyListMessage);
-            System.out.println("");
+            output.append(nonEmptyListMessage + "\n");
+            output.append("" + "\n");
             for (Object o : list) {
-                System.out.println(o.toString());
+                output.append(o.toString() + "\n");
             }
-            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+            output.append("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" + "\n");
         } else {
-            System.out.println(emptyListMessage);
-            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+            output.append(emptyListMessage + "\n");
+            output.append("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" + "\n\n");
         }
+    }
+
+    private File loadFile() {
+        JOptionPane.showMessageDialog(null, "A continuacion elija el archivo que quiere correjir");
+        JFileChooser chooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(
+                "ansiC", "c", "h");
+        chooser.setFileFilter(filter);
+        int returnVal = chooser.showOpenDialog(null);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            return new File(chooser.getSelectedFile().getAbsolutePath());
+        }
+        return null;
     }
 }
