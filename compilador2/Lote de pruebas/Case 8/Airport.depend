@@ -1,0 +1,37 @@
+# depslib dependency file v1.0
+1386125099 source:c:\documents and settings\administrador\escritorio\airport\main.c
+	<stdio.h>
+	<stdlib.h>
+	"queue.h"
+	"flight.h"
+
+1386113372 c:\documents and settings\administrador\escritorio\airport\queue.h
+	<stdio.h>
+	<conio.h>
+	<stdlib.h>
+	"plane.h"
+
+1386114150 c:\documents and settings\administrador\escritorio\airport\plane.h
+	<time.h>
+
+1386125233 c:\documents and settings\administrador\escritorio\airport\flight.h
+	<time.h>
+
+1386679688 source:c:\documents and settings\administrador\escritorio\investigation project\programmed\airport\main.c
+	<stdio.h>
+	<stdlib.h>
+	"queue.h"
+	"flight.h"
+
+1386113372 c:\documents and settings\administrador\escritorio\investigation project\programmed\airport\queue.h
+	<stdio.h>
+	<conio.h>
+	<stdlib.h>
+	"plane.h"
+
+1386203324 c:\documents and settings\administrador\escritorio\investigation project\programmed\airport\plane.h
+	<time.h>
+
+1386883730 c:\documents and settings\administrador\escritorio\investigation project\programmed\airport\flight.h
+	<time.h>
+

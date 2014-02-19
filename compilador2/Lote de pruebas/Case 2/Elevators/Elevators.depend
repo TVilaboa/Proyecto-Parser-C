@@ -1,0 +1,20 @@
+# depslib dependency file v1.0
+1386367969 source:c:\users\ignacio\dropbox\doctorado\compilador\test cases\test from testori and vilaboa\case 2\main.c
+	<stdio.h>
+	<stdlib.h>
+	"Elevator.h"
+	"call.h"
+	"treeElevators.h"
+	"queueCalls.h"
+
+1386368045 c:\users\ignacio\dropbox\doctorado\compilador\test cases\test from testori and vilaboa\case 2\elevator.h
+
+1386789764 c:\users\ignacio\dropbox\doctorado\compilador\test cases\test from testori and vilaboa\case 2\call.h
+
+1386368314 c:\users\ignacio\dropbox\doctorado\compilador\test cases\test from testori and vilaboa\case 2\treeelevators.h
+
+1386789866 c:\users\ignacio\dropbox\doctorado\compilador\test cases\test from testori and vilaboa\case 2\queuecalls.h
+	<stdio.h>
+	<conio.h>
+	<stdlib.h>
+

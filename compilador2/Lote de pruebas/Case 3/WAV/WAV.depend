@@ -1,0 +1,27 @@
+# depslib dependency file v1.0
+1386368649 source:c:\users\ignacio\dropbox\doctorado\compilador\test cases\test from testori and vilaboa\case 3\main.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	"make_wav.h"
+
+1386368766 c:\users\ignacio\dropbox\doctorado\compilador\test cases\test from testori and vilaboa\case 3\make_wav.h
+
+1386368730 source:c:\users\ignacio\dropbox\doctorado\compilador\test cases\test from testori and vilaboa\case 3\make_wav.c
+	<stdio.h>
+	<assert.h>
+	"make_wav.h"
+
+1386790633 source:c:\users\ignacio\dropbox\doctorado\compilador\test cases\test from testori and vilaboa\case 3\wav\main.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	"make_wav.h"
+
+1386368766 c:\users\ignacio\dropbox\doctorado\compilador\test cases\test from testori and vilaboa\case 3\wav\make_wav.h
+
+1386368730 source:c:\users\ignacio\dropbox\doctorado\compilador\test cases\test from testori and vilaboa\case 3\wav\make_wav.c
+	<stdio.h>
+	<assert.h>
+	"make_wav.h"
+

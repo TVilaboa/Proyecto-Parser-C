@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1382882996 source:c:\documents and settings\administrador\escritorio\bankaccount\main.c
+	<stdio.h>
+	<conio.h>
+	<string.h>
+	<stdlib.h>
+
