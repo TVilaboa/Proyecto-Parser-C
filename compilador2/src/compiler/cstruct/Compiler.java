@@ -134,9 +134,12 @@ public class Compiler {
                     break;
             }
         }
-
-
+        if (mainFunction != null) {
+            functions.add(mainFunction);
+        }
         createCandidatesFromADTs();  //start merging the 4 independent lists (functions, modules, vars and ADT)
+        //createCandidatesFromAttributes();
+        createCandidatesFromFunction();
         for (int i = 0; i < modules.size(); i++) {
             Module module = modules.get(i);
             if (myFile.equals(module.getFile())) {
@@ -208,20 +211,26 @@ public class Compiler {
                 List<Attribute> arguments = Function.getArguments(token, tokenIterator, adts);
                 token = tokenIterator.next();
                 if (token.getType() == TokenType.SENTENCE_END) {
-                    addFunction(new Function(type, name, arguments, globalAttributes));
+                    // addFunction(new Function(type, name, arguments, globalAttributes,attributes));  añade prototipos, no tiene sentido ya que se va a añadir luego la funcion real
                 } else if (token.getType() == TokenType.BLOCK) {
                     if (!name.equals("main")) {
-                        addFunction(new Function(type, name, arguments, token.getValue(), globalAttributes));
+                        addFunction(new Function(type, name, arguments, token.getValue(), globalAttributes, attributes, functions));
                     } else {
-                        mainFunction = new MainFunction(type, arguments, token.getValue(), globalAttributes);
+                        mainFunction = new MainFunction(type, arguments, token.getValue(), globalAttributes, attributes, functions);
                     }
                 } else {
                     throw new InvalidExpressionException(token.toString());
                 }
             } else if (token.getType() == TokenType.SQUARE_BRACKET_BLOCK) {
+                if (!globalAttributes.isEmpty()) {
+                    for (Map.Entry<String, Integer> entry : globalAttributes.entrySet()) {
+                        token.setValue(token.getValue().replaceAll(entry.getKey(), entry.getValue() + ""));  //replaces each globalAttribute ocurrence for its actual valor
+                    }
+                }
+                int arrayCap = Integer.parseInt(token.getValue().substring(1, token.getValue().length() - 1));
                 token = tokenIterator.next();
                 if (token.getType() == TokenType.SENTENCE_END) {
-                    attributes.add(new Attribute(type, name, true, 0));
+                    attributes.add(new Attribute(type, name, true, arrayCap));
                 } else {
                     throw new InvalidExpressionException(token.toString());
                 }
@@ -250,7 +259,7 @@ public class Compiler {
                 } else if (tokenList.get(i).getValue().equals("#define")) {
                     i = processDefine(tokenList, i) - 1;
                 } else if (tokenList.get(i).getValue().equals("#ifndef")) {
-                    i = processIfndef(tokenList, i - 1); //tiene q omitir los proximos 3 tokens
+                    i = processIfndef(tokenList, i) - 1; //tiene q omitir los proximos 3 tokens
                 }
             }
         }
@@ -346,7 +355,19 @@ public class Compiler {
         for (Function function : functions) {
             CandidateClass candidateClass = new CandidateClass(function.getName());
             candidateClass.addMethod(JavaMethod.getJavaMethodFromCFunction(function));
+            for (Attribute attribute : function.getArguments()) {
+                candidateClass.addAttribute(JavaAttribute.getJavaAttributeFromCVariable(attribute));
+            }
+            for (Attribute attribute : function.getGlobalVariablesUsed()) {
+                candidateClass.addAttribute(JavaAttribute.getJavaAttributeFromCVariable(attribute));
+            }
             candidates.put(candidateClass.getName(),candidateClass);
+            for (Function function1 : function.getUsedFunctions()) {
+                candidateClass.addMethod(JavaMethod.getJavaMethodFromCFunction(function1));
+            }
+            if (!function.getReturns().equals("void")) {
+                candidateClass.addAttribute(new JavaAttribute(function.getReturns(), "return", false, 0));
+            }
         }
     }
 
@@ -365,6 +386,7 @@ public class Compiler {
 
 
     private void printLists() {
+
         printSimple(modules, "Modules are: ", "It has no modules");
         printSimple(functions, "Functions are: ", "It has no functions");
         printSimple(adts, "ADTs are: ", "It has no ADTs");
@@ -372,7 +394,7 @@ public class Compiler {
         printSimple(globalAttributes.entrySet(), "GlobalVariables are: ", "It has no GlobalVariables");
         printSimple(candidates.values(), "Candidate classes are:", "No candidates are suggested");
 
-        /*if (mainFunction != null) {
+       /* if (mainFunction != null) {
             System.out.println("+------------------------------------+");
             System.out.println(mainFunction);
         }*/
@@ -400,7 +422,7 @@ public class Compiler {
     }
 
     private File loadFile() {
-        JOptionPane.showMessageDialog(null, "A continuacion elija el archivo que quiere correjir");
+        JOptionPane.showMessageDialog(null, "A continuacion elija el archivo que quiere analizar");
         JFileChooser chooser = new JFileChooser();
         FileNameExtensionFilter filter = new FileNameExtensionFilter(
                 "ansiC", "c", "h");

@@ -7,10 +7,7 @@ import compiler.fileanalyzer.TokenType;
 
 import java.io.IOException;
 import java.io.StringReader;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * User: Javier Isoldi
@@ -25,8 +22,11 @@ public class Function implements Comparable<Function> {
     protected String body;
     protected List<Token> bodyTokenList;
     private Map<String, Integer> globalAttributes;
+    private List<Attribute> globalVariablesUsed = new ArrayList<>();
+    private List<Function> usedFunctions = new ArrayList<>();
 
-    public Function(String returns, String name, List<Attribute> arguments, Map<String, Integer> globalAttributes) {
+    public Function(String returns, String name, List<Attribute> arguments, Map<String, Integer> globalAttributes, List<Attribute> variables
+    ) {
         this.returns = returns;
         this.name = name;
         this.arguments = arguments;
@@ -34,7 +34,8 @@ public class Function implements Comparable<Function> {
 
     }
 
-    public Function(String returns, String name, List<Attribute> arguments, String body, Map<String, Integer> globalAttributes) throws IOException, InvalidExpressionException {
+    public Function(String returns, String name, List<Attribute> arguments, String body,
+                    Map<String, Integer> globalAttributes, List<Attribute> variables, Set<Function> functions) throws IOException, InvalidExpressionException {
         this.returns = returns;
         this.name = name;
         this.arguments = arguments;
@@ -43,6 +44,23 @@ public class Function implements Comparable<Function> {
         TokenListFactory tokenListFactory = new TokenListFactory(globalAttributes);
         String bodyWithOutBrackets = body.substring(1, body.length() - 1);
         bodyTokenList = tokenListFactory.getTokenFileFromCFile(new StringReader(bodyWithOutBrackets));
+        for (Token token : bodyTokenList) {
+            for (Attribute attribute : variables) {
+                if (attribute.getName().equals(token.getValue())) {
+                    globalVariablesUsed.add(attribute);
+                }
+            }
+            for (Function function : functions) {
+                if (function.getName().equals(token.getValue()) && !usedFunctions.contains(function)) {
+                    usedFunctions.add(function);
+                }
+            }
+        }
+
+    }
+
+    public List<Function> getUsedFunctions() {
+        return usedFunctions;
     }
 
     // args : token = initial bracket, tokenIterator = iterator of the following tokens
@@ -171,5 +189,9 @@ public class Function implements Comparable<Function> {
             }
         }
         return false;
+    }
+
+    public List<Attribute> getGlobalVariablesUsed() {
+        return globalVariablesUsed;
     }
 }

@@ -20,8 +20,9 @@ public class MainFunction extends Function {
     private List<Sentence> oldGlobalAttributes;
     private List<Sentence> sentenceList;
 
-    public MainFunction(String returns, List<Attribute> arguments, String body, Map<String, Integer> globalAttributes) throws IOException, InvalidExpressionException {
-        super(returns, "main", arguments, body, globalAttributes);
+    public MainFunction(String returns, List<Attribute> arguments, String body, Map<String, Integer> globalAttributes,
+                        List<Attribute> variables, Set<Function> functions) throws IOException, InvalidExpressionException {
+        super(returns, "main", arguments, body, globalAttributes, variables, functions);
         oldGlobalAttributes = new ArrayList<Sentence>();
     }
 

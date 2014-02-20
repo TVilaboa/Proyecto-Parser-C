@@ -13,3 +13,5 @@ Include´s name must be the full path.
 Shows file module´s submodules and functions.
 #ifndef, short and unsigned ignored.
 printf ignored.
+Uses 1,2,3,4,5 heuristics together in createCandidateFromFunction();
+Loads mainFunction as a normal function.

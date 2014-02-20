@@ -2,7 +2,6 @@ import compiler.InvalidExpressionException;
 import compiler.NoSupportedInstructionException;
 import compiler.cstruct.Compiler;
 
-import java.io.File;
 import java.io.IOException;
 
 /**
@@ -14,10 +13,11 @@ import java.io.IOException;
  */
 public class Implement {
 
-    public static void main (String [] Args) {
+    public static void main(String[] Args) {
         Compiler myCompiler = new Compiler();
         try {
-            myCompiler.run(new File("C:\\Users\\Toto\\Projects\\Proyecto Nacho Cassol\\Proyecto-Parser-C\\compilador2\\Lote de pruebas\\Case 6\\University.c"));
+            myCompiler.run();
+            //myCompiler.run(new File("C:\\Users\\Toto\\Projects\\Proyecto Nacho Cassol\\Proyecto-Parser-C\\compilador2\\Lote de pruebas\\Case 6\\University.c"));
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InvalidExpressionException e) {

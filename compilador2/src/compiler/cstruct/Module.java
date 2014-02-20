@@ -35,7 +35,7 @@ public class Module {
                 "signal.h", "stdarg.h", "stdbool.h",
                 "stdint.h", "stddef.h", "stdio.h",
                 "stdlib.h", "string.h", "tgmath.h",
-                "time.h", "wchar.h", "wctype.h"};
+                "time.h", "wchar.h", "wctype.h", "windows.h"};
     }
 
 

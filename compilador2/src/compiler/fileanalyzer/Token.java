@@ -27,5 +27,7 @@ public class Token {
         return "Token{" + " value = '" + value + '\'' + ", type = " + type + '}';
     }
 
-
+    public void setValue(String value) {
+        this.value = value;
+    }
 }
