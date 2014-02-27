@@ -2,16 +2,16 @@
 #include<stdlib.h>
 #include<conio.h>
 
-#define TAM 6
-#define MAX TAM-1
-#define TAM2 6
-#define MAX2 TAM2-1
+#define TAMSTACK 6
+#define MAXSTACK TAMSTACK-1
+#define TAMQUEUE 6
+#define MAXQUEUE TAMQUEUE-1
 
 
 typedef struct
 {
    int top;
-   int item[TAM];
+   int item[TAMSTACK];
 }stack;
 
 
@@ -20,7 +20,7 @@ typedef struct
    int front;
    int rear;
    int lenght;
-   int item2[TAM2];
+   int item2[TAMQUEUE];
    int cant;
 }queue;
 
@@ -199,7 +199,7 @@ int main()
 /*implementation of the stack functions*/
 int full(stack *p)
 {
-   return(p.top==MAX);
+   return(p.top==MAXSTACK);
 }
 
 int empty(stack *p)
@@ -224,7 +224,7 @@ void push(stack *p,int dato)
 
 void enqueue(queue *c, int x)
 {
-	if (c.cant!=TAM2 && c.rear<=(TAM2-1))
+	if (c.cant!=TAMQUEUE && c.rear<=(TAMQUEUE-1))
 	{
 		c.item2 [c.rear] = x;
 		(c.rear)++;
@@ -232,7 +232,7 @@ void enqueue(queue *c, int x)
 	}
 	else
 	{
-		if (c.rear==TAM2 && c.cant<TAM2)
+		if (c.rear==TAMQUEUE && c.cant<TAMQUEUE)
 			{
 			c.rear = 0;
 			c.item2 [c.rear] = x;
@@ -249,10 +249,10 @@ void enqueue(queue *c, int x)
 void dequeue(queue *c, int *x)
 {
 	(c.cant)--;
-	if (c.front==(TAM2-1))
+	if (c.front==(TAMQUEUE-1))
 	{
 		c.front=0;
-		*x = c.item2[(TAM2-1)];
+		*x = c.item2[(TAMQUEUE-1)];
 	}
 	*x = c.item2[(c.front)++];
 }
@@ -260,7 +260,7 @@ void dequeue(queue *c, int *x)
 
 int isFull(queue *c)
 {
-	return(c.cant==MAX2);
+	return(c.cant==MAXQUEUE);
 }
 
 

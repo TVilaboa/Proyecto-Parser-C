@@ -185,14 +185,14 @@ public class Compiler {
             String name = token.getValue();
             token = tokenIterator.next();
             if (token.getType() == TokenType.BLOCK) {
-                List<Attribute> adtAttributes = Adt.readAttributesFromBlock(token, adts);
+                List<Attribute> adtAttributes = Adt.readAttributesFromBlock(token, adts, globalAttributes);
                 adts.add(new Adt(name, adtAttributes, globalAttributes));
             }
         } else if (token.getType() == TokenType.BLOCK) {
             Token block = token;
             token = tokenIterator.next();
             if (token.getType() == TokenType.IDENTIFIER) {
-                List<Attribute> adtAttributes = Adt.readAttributesFromBlock(block, adts);
+                List<Attribute> adtAttributes = Adt.readAttributesFromBlock(block, adts, globalAttributes);
                 adts.add(new Adt(token.getValue(), adtAttributes, globalAttributes));
             }
         } else {
@@ -224,6 +224,7 @@ public class Compiler {
             } else if (token.getType() == TokenType.SQUARE_BRACKET_BLOCK) {
                 if (!globalAttributes.isEmpty()) {
                     for (Map.Entry<String, Integer> entry : globalAttributes.entrySet()) {
+                        token.setType(TokenType.NUMERICAL_CONSTANT);
                         token.setValue(token.getValue().replaceAll(entry.getKey(), entry.getValue() + ""));  //replaces each globalAttribute ocurrence for its actual valor
                     }
                 }
@@ -279,6 +280,15 @@ public class Compiler {
         tokenList.remove(i);
         Token token = tokenList.get(i);
         if (token.getType() == TokenType.IDENTIFIER) {
+            if (!globalAttributes.isEmpty()) {
+                for (Token token1 : tokenList) {
+                    for (Map.Entry<String, Integer> entry : globalAttributes.entrySet())
+                        if (token1.getValue().equals(entry.getKey())) {
+                            token1.setType(TokenType.NUMERICAL_CONSTANT);
+                            token1.setValue(token1.getValue().replaceAll(entry.getKey(), entry.getValue() + ""));
+                        }
+                }
+            }
             globalAttributes.put(token.getValue(), Integer.parseInt(tokenList.get(i + 1).getValue()));
             tokenList.remove(i);
             tokenList.remove(i);

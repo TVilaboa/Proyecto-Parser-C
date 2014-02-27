@@ -8,10 +8,11 @@ Supports functions that return structs.
 Use of functions from standart libraries libraries should be avoided by now, since their functions
 are still not loaded and arent recognised.
 Reads array size correctly for adts and candidate classes.
-Since parser dont read * , multiplication is impossible.
 Include´s name must be the full path.
 Shows file module´s submodules and functions.
 #ifndef, short and unsigned ignored.
 printf ignored.
 Uses 1,2,3,4,5 heuristics together in createCandidateFromFunction();
 Loads mainFunction as a normal function.
+GlobalConstants with names that includes previous GlobalConstants as "TAM","TAM2" shouldn't be
+used since parser recognizes TAM, replaces for its value and then the 2.

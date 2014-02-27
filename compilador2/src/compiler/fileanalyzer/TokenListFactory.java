@@ -113,7 +113,13 @@ public class TokenListFactory {
                         break;
                     case '*':
                         readToken.append((char) readCharacter);
-                        Token token = readAsterisk(readToken, cFile);
+                        Token token;
+                        if (tokensList.get(tokensList.size() - 1).getType() == TokenType.NUMERICAL_CONSTANT) {
+                            token = readNumericalAsterisk(cFile, Integer.parseInt(tokensList.get(tokensList.size() - 1).getValue()));
+                            tokensList.remove(tokensList.size() - 1);
+                        } else {
+                            token = readAsterisk(readToken, cFile);
+                        }
                         if (token.getType() != TokenType.ASTERISK) {
                             tokensList.add(token);
                         }
@@ -280,6 +286,17 @@ public class TokenListFactory {
         }
         return new Token(readToken.toString(), TokenType.ASTERISK);
 
+    }
+
+    private Token readNumericalAsterisk(Reader cFile, int operand) throws IOException, InvalidExpressionException {
+        readCharacter = cFile.read();
+        if ('0' <= readCharacter && readCharacter <= '9') {
+            return new Token(operand * Character.getNumericValue(readCharacter) + "", TokenType.NUMERICAL_CONSTANT);
+        } else if (readCharacter == '=') {
+            throw new InvalidExpressionException(readCharacter + "");
+
+        }
+        return null;
     }
 
     private Token readBlock(StringBuilder readToken, Reader cFile) throws IOException, InvalidExpressionException {

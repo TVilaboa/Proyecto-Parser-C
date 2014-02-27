@@ -44,7 +44,7 @@ public class Adt {
         return result;
     }
 
-    public static List<Attribute> readAttributesFromBlock(Token token, List<Adt> adts) throws IOException, InvalidExpressionException {
+    public static List<Attribute> readAttributesFromBlock(Token token, List<Adt> adts, Map<String, Integer> globalAttributes) throws IOException, InvalidExpressionException {
         String adtBody = token.getValue();
         String adtBodyWithoutBrackets = adtBody.substring(1, adtBody.length() - 1);
         TokenListFactory tokenListFactory = new TokenListFactory(globalAttributes);
