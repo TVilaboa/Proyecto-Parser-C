@@ -1,7 +1,8 @@
 #include <time.h>
 
-#define ELEMENTS    200
-#define STUDENTS    50
+//#define ELEMENTS    200       Ya estan definidas en University.c, entonces el parser las
+//                              reemplaza por su valor y crashea al quedar #define 50 50
+//#define STUDENTS    50
 #define GRADES  10
 
 /**

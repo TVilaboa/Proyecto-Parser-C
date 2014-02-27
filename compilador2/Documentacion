@@ -16,3 +16,4 @@ Uses 1,2,3,4,5 heuristics together in createCandidateFromFunction();
 Loads mainFunction as a normal function.
 GlobalConstants with names that includes previous GlobalConstants as "TAM","TAM2" shouldn't be
 used since parser recognizes TAM, replaces for its value and then the 2.
+GlobalConstans should be defined only once in project scope.

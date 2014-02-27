@@ -3,7 +3,7 @@
 #include<conio.h>
 
 #define TAMSTACK 6
-#define MAXSTACK TAMSTACK-1
+#define MAXSTACK TAMSTACK-1 //actualmente no toma en cuenta el -1
 #define TAMQUEUE 6
 #define MAXQUEUE TAMQUEUE-1
 
