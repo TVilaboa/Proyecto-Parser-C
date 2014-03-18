@@ -409,7 +409,7 @@ public class Compiler {
             System.out.println(mainFunction);
         }*/
         System.out.println(output.toString());
-        File f = new File("Output " + myFile.getName());
+        File f = new File("Output " + myFile.getName() + ".doc");
         try (PrintWriter pr = new PrintWriter(new BufferedWriter(new FileWriter(f)))) {
             pr.write(output.toString());
         } catch (IOException e) {

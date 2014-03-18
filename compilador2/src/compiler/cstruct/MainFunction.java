@@ -271,8 +271,8 @@ public class MainFunction extends Function {
         List<Token> sentenceTokens = new ArrayList<Token>();
         sentenceTokens.add(token);
         token = tokenIterator.next();
-        if (token.getType() == TokenType.POINT_OPERATOR) {
-            while (token.getType() != TokenType.SENTENCE_END) {
+            if (token.getType() == TokenType.POINT_OPERATOR || token.getType() == TokenType.ASSIGNATION_OPERATOR) {
+                while (token.getType() != TokenType.SENTENCE_END) {
                 sentenceTokens.add(token);
                 token = tokenIterator.next();
             }
