@@ -1,9 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "Elevator.h"
-#include "call.h"
-#include "treeElevators.h"
-#include "queueCalls.h"
+
+#include "C:\Users\Toto\Projects\Proyecto Nacho Cassol\Proyecto-Parser-C\compilador2\Lote de pruebas\Case 2\treeElevators.h"
+#include "C:\Users\Toto\Projects\Proyecto Nacho Cassol\Proyecto-Parser-C\compilador2\Lote de pruebas\Case 2\queuecalls.h"
+#include "C:\Users\Toto\Projects\Proyecto Nacho Cassol\Proyecto-Parser-C\compilador2\Lote de pruebas\Case 2\elevator.h"
+#include "C:\Users\Toto\Projects\Proyecto Nacho Cassol\Proyecto-Parser-C\compilador2\Lote de pruebas\Case 2\call.h"
 int cantElevators;
 //Elevators calls are stored and processed when 5 secs are simulated
 int main()
@@ -13,17 +14,17 @@ int main()
     printf("Welcome to Elevators 2.0\n");
     printf("Please enter the numbers of elevators to simulate.\n");
     scanf("%d",&cantElevators);
-    struct elevator elevators[cantElevators];
+    elevator elevators[cantElevators];
     int i=0;
     for(i;i<cantElevators;i++){
-            struct elevator elevator;
+             elevator elevator;
                 elevator.floor=0;
     elevator.busy=0;
             elevators[i]=elevator;
     }
     i=0;
     for(i;i<25;i++){
-            struct call call;
+             call call;
             call.floor=i;
         call.active=0;
         call.delay=0;
@@ -46,16 +47,16 @@ int main()
 
 
 void storeCall(int number){
-        struct call call;
+         call call;
         call.number=number;
         push(call);
 }
-void simulate(node * tree,struct elevator elevators[]){
+void simulate(node * tree, elevator elevators[]){
     int i=0;
      for(i;i<cantElevators;i++){
         if(elevators[i].floor ==0 && elevators[i].busy==0 ){
-           struct call call;
-           struct Node *nextCall=delQueue();
+            call call;
+          Node *nextCall=delQueue();
            call=nextCall->Data;
            if(call.active != 2){
                 callElevator(elevators[i],tree,call,i);
@@ -68,7 +69,7 @@ void simulate(node * tree,struct elevator elevators[]){
     traverseTree(tree,elevators);
 }
 
-void traverseTree(node * tree,struct elevator elevators[])
+void traverseTree(node * tree, elevator elevators[])
 {
     if (tree)
     {
@@ -95,14 +96,14 @@ void traverseTree(node * tree,struct elevator elevators[])
     }
 }
 
-void seeElevator(struct elevator elevators[]){
+void seeElevator( elevator elevators[]){
    printf("Please enter the number of elevator to see.\n");
     int  elev;
     scanf("%d",&elev);
     printf("Elevator %d is in floor %d",elev,elevators[elev].floor);
 }
 
-void callElevator(struct elevator elevator,node * root,struct call call,int i){
+void callElevator(elevator elevator,node * root, call call,int i){
     printf("\nCall number %d \n",call.number);
     printf("Please enter the floor the elevator is being called from.\n");
     int  floor;
@@ -117,7 +118,7 @@ void callElevator(struct elevator elevator,node * root,struct call call,int i){
 
 }
 
-void editCall(node * root,struct call call){
+void editCall(node * root, call call){
     node *tmp;
     tmp = search(&root, call);
     if (tmp)

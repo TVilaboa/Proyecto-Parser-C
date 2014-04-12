@@ -1,28 +1,28 @@
 #ifndef _LIST_H
 #define _LIST_H
-struct listitem {
-struct lightbulb data;
-struct listitem *next;
-};
-typedef struct listitem Listitem;
-struct list {
+typedef struct  {
+ lightbulb data;
+struct Listitem *next;
+}Listitem;
+
+typedef struct  {
 Listitem *head;
-};
-typedef struct list List;
+}List;
+
 void initlist (List *); /* initialize an empty list */
-void insertfront(List * , struct lightbulb val); /* insert val at front */
-void insertback(List *, struct lightbulb val); /* insert val at back */
+void insertfront(List * ,  lightbulb val); /* insert val at front */
+void insertback(List *,  lightbulb val); /* insert val at back */
 int length(List); /* returns list length */
 void destroy(List *); /* deletes list */
-void setitem(List *, int n, struct lightbulb val);/* modifies item at n to val*/
-struct lightbulb getitem(List, int n); /* returns value at n*/
+void setitem(List *, int n,  lightbulb val);/* modifies item at n to val*/
+ lightbulb getitem(List, int n); /* returns value at n*/
 #endif /* _LIST_H */
 
 void initlist(List *ilist) {
 ilist->head = 0;
 }
 
-void insertfront(List *ilist, struct lightbulb val) {
+void insertfront(List *ilist,  lightbulb val) {
 Listitem *newitem;
 newitem = (Listitem *)malloc(sizeof(Listitem));
 newitem->next = ilist->head;
@@ -30,7 +30,7 @@ newitem->data = val;
 ilist->head = newitem;
 }
 
-void insertback(List *ilist, struct lightbulb val) {
+void insertback(List *ilist,  lightbulb val) {
 Listitem *ptr;
 Listitem *newitem;
 newitem = (Listitem *)malloc(sizeof(Listitem));
@@ -74,7 +74,7 @@ free(ptr2);
 ilist->head = 0;
 }
 
-void setitem(List *ilist, int n, struct lightbulb val){
+void setitem(List *ilist, int n,  lightbulb val){
 /* modifies a value*/
 /* assume length is at least n long */
 Listitem *ptr;
@@ -90,7 +90,7 @@ if (ptr)
 ptr->data = val;
 }
 
-struct lightbulb getitem(List ilist, int n) {
+ lightbulb getitem(List ilist, int n) {
 /* returns a list value,
 * assume length is at least n long */
 Listitem *ptr;

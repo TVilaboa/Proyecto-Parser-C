@@ -18,3 +18,4 @@ GlobalConstants with names that includes previous GlobalConstants as "TAM","TAM2
 used since parser recognizes TAM, replaces for its value and then the 2.
 GlobalConstans should be defined only once in project scope.
 Can process function with arrays as arguments.
+Self-refence structs must follow typedef struct{} name; format.

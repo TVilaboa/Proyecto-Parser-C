@@ -33,6 +33,7 @@ public class MainFunction extends Function {
         Iterator<Token> tokenIterator = bodyTokenList.iterator();
         while (tokenIterator.hasNext()) {
             Token token = tokenIterator.next();
+
             switch (token.getType()) {
                 case IDENTIFIER:
                     processIdentifier(token, tokenIterator, fileAdt, fileAttributes, internalAttributes,
@@ -106,7 +107,7 @@ public class MainFunction extends Function {
             readReturn(tokenIterator, sentenceTokens);
             sentence = new Sentence(SentenceType.RETURN, sentenceTokens);
         } else {
-            throw new NoSupportedInstructionException();
+            throw new NoSupportedInstructionException(token.toString());
         }
         return sentence;
     }
@@ -133,7 +134,7 @@ public class MainFunction extends Function {
             if (token.getType() == TokenType.BLOCK) {
                 sentenceTokens.add(token);
             } else {
-                throw new NoSupportedInstructionException();
+                throw new NoSupportedInstructionException(token.toString());
             }
         } else {
             throw new InvalidExpressionException(token.toString());
@@ -152,8 +153,14 @@ public class MainFunction extends Function {
             sentenceTokens.add(token);
             token = tokenIterator.next();
             if (token.getType() == TokenType.SQUARE_BRACKET_BLOCK) {
-                internalAttributes.add(new Attribute(sentenceTokens.get(0).getValue(), sentenceTokens.get(1).getValue(), true,
-                        Integer.parseInt(token.getValue().substring(1, token.getValue().length() - 1))));
+                try {
+                    internalAttributes.add(new Attribute(sentenceTokens.get(0).getValue(), sentenceTokens.get(1).getValue(), true,
+                            Integer.parseInt(token.getValue().substring(1, token.getValue().length() - 1))));
+                } catch (NumberFormatException e) {
+                    internalAttributes.add(new Attribute(sentenceTokens.get(0).getValue(), sentenceTokens.get(1).getValue(), true,
+                            -1));   //This is the way to deal with global variables that are changed through the execution, since
+                    //i cant replace every ocurrence with a value, and i dont want to keep the value trought the program, i use -1
+                }
                 sentenceTokens.add(token);
                 token = tokenIterator.next();
             } else
@@ -177,7 +184,7 @@ public class MainFunction extends Function {
                             } else if (token.getType() == TokenType.COMMA_OPERATOR) {
                                 sentence = new Sentence(SentenceType.ATTRIBUTE_DECLARATION_FROM_ATTRIBUTE, sentenceTokens);
                             } else {
-                                throw new NoSupportedInstructionException();
+                                throw new NoSupportedInstructionException(token.toString());
                             }
                         }
                     }
@@ -191,7 +198,7 @@ public class MainFunction extends Function {
                             } else if (token.getType() == TokenType.COMMA_OPERATOR) {
                                 sentence = new Sentence(SentenceType.ATTRIBUTE_DECLARATION_FROM_ATTRIBUTE, sentenceTokens);
                             } else {
-                                throw new NoSupportedInstructionException();
+                                throw new NoSupportedInstructionException(token.toString());
                             }
                         }
                     }
@@ -207,6 +214,7 @@ public class MainFunction extends Function {
                                     token = tokenIterator.next();
                                 }
                                 sentenceTokens.add(token);
+                                token = tokenIterator.next();
                                 if (token.getType() == TokenType.SENTENCE_END) {
                                     sentenceTokens.add(token);
                                     sentence = new Sentence(SentenceType.ATTRIBUTE_DECLARATION_FROM_FUNCTION, sentenceTokens);
@@ -214,7 +222,7 @@ public class MainFunction extends Function {
                                     sentenceTokens.add(new Token(";", TokenType.SENTENCE_END));
                                     sentence = new Sentence(SentenceType.ATTRIBUTE_DECLARATION_FROM_FUNCTION, sentenceTokens);
                                 } else {
-                                    throw new NoSupportedInstructionException();
+                                    throw new NoSupportedInstructionException(token.toString());
                                 }
                             } else {
                                 throw new InvalidExpressionException(token.toString());
@@ -222,7 +230,7 @@ public class MainFunction extends Function {
                         }
                     }
                     if (sentence == null) {
-                        throw new NoSupportedInstructionException();
+                        throw new NoSupportedInstructionException(token.toString());
                     }
                 } else if (token.getType() == TokenType.NUMERICAL_CONSTANT) {
                     token = readValueFromConstant(token, tokenIterator, fileAttributes, internalAttributes,
@@ -230,7 +238,7 @@ public class MainFunction extends Function {
                     sentence = new Sentence(SentenceType.ATTRIBUTE_VALUE_FROM_CONSTANT, sentenceTokens);
 
                 } else {
-                    throw new NoSupportedInstructionException(); //TODO prepare to support other sentence types
+                    throw new NoSupportedInstructionException(token.toString()); //TODO prepare to support other sentence types
                 }
             } else {
                 throw new InvalidExpressionException(token.toString());
@@ -254,7 +262,7 @@ public class MainFunction extends Function {
 
     private void processIdentifier(Token token, Iterator<Token> tokenIterator, List<Adt> fileAdt, List<Attribute> fileAttributes,
                                    List<Attribute> internalAttributes, Set<Function> fileDeclaredFunctions, List<Sentence> sentenceList) throws NoSupportedInstructionException, InvalidExpressionException {
-        if (!token.getValue().equals("printf")) {
+        if (!token.getValue().equals("printf") && !token.getValue().equals("scanf")) {
             Sentence sentence = null;
             for (Adt adt : fileAdt) {
             if (adt.getName().equals(token.getValue())) {
@@ -315,7 +323,7 @@ public class MainFunction extends Function {
                             sentenceTokens.add(token);
                             sentence = new Sentence(SentenceType.ATTRIBUTE_DECLARATION_FROM_ATTRIBUTE, sentenceTokens);
                         } else {
-                            throw new NoSupportedInstructionException();
+                            throw new NoSupportedInstructionException(token.toString());
                         }
                     }
                 }
@@ -327,7 +335,7 @@ public class MainFunction extends Function {
                             sentenceTokens.add(token);
                             sentence = new Sentence(SentenceType.ATTRIBUTE_DECLARATION_FROM_ATTRIBUTE, sentenceTokens);
                         } else {
-                            throw new NoSupportedInstructionException();
+                            throw new NoSupportedInstructionException(token.toString());
                         }
                     }
                 }
@@ -339,15 +347,15 @@ public class MainFunction extends Function {
                             sentenceTokens.add(token);
                             sentence = new Sentence(SentenceType.ATTRIBUTE_DECLARATION_FROM_FUNCTION, sentenceTokens);
                         } else {
-                            throw new NoSupportedInstructionException();
+                            throw new NoSupportedInstructionException(token.toString());
                         }
                     }
                 }
                 if (sentence == null) {
-                    throw new NoSupportedInstructionException();
+                    throw new NoSupportedInstructionException(token.toString());
                 }
             }
-            throw new NoSupportedInstructionException(); //TODO prepare to support other sentence types
+            throw new NoSupportedInstructionException(token.toString()); //TODO prepare to support other sentence types
         }
         return sentence;
     }

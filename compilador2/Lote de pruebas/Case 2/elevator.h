@@ -1,5 +1,5 @@
-struct elevator {
-    int busy; //=0
+typedef struct  {
+    int busy;
     int floor;
 
-};
+}elevator;

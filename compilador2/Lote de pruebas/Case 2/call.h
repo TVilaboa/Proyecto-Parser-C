@@ -1,16 +1,16 @@
-struct call{
+typedef struct {
     int floor;
-    int delay;//=0
+    int delay;
     int elevatorCalled;
-    int active;//=0
+    int active;
     int floorDest;
     int goingToDest;
     int number;
 
 
-};
+}call;
 
-void createCall(struct call *call,int floor,int elevatorCalled,int floorDest,int number){
+void createCall( call *call,int floor,int elevatorCalled,int floorDest,int number){
     call->active=1;
     call->floor=floor;
     call->delay=0;

@@ -13,35 +13,35 @@
 #define ARRIVE 0
 #define DEPART 1
 
-struct plane
+typedef struct
 {
 	int id ;
 	int tm ;
-} ;
+} plane;
 
-struct queue
+typedef struct
 {
 	int count ;
 	int front ;
 	int rear ;
-   	struct plane p[MAX] ;
-} ;
+   	plane p[MAX] ;
+} queue;
 
-void initqueue ( struct queue * ) ;
-void addqueue ( struct queue *, struct plane ) ;
-struct plane delqueue ( struct queue * ) ;
-int size ( struct queue ) ;
-int empty ( struct queue ) ;
-int full ( struct queue ) ;
+void initqueue (  queue * ) ;
+void addqueue (  queue *,  plane ) ;
+plane delqueue (  queue * ) ;
+int size (  queue ) ;
+int empty (  queue ) ;
+int full (  queue ) ;
 
-void initqueue ( struct queue *pq )
+void initqueue (  queue *pq )
 {
 	pq -> count = 0 ;
 	pq -> front = 0 ;
 	pq -> rear = -1 ;
 }
 
-void addqueue ( struct queue *pq, struct plane item )
+void addqueue (  queue *pq,  plane item )
 {
 	if ( pq -> count >= MAX )
 	{
@@ -54,9 +54,9 @@ void addqueue ( struct queue *pq, struct plane item )
 	pq -> p[pq -> rear] = item ;
 }
 
-struct plane delqueue ( struct queue *pq )
+plane delqueue (  queue *pq )
 {
-	struct plane p1 ;
+	 plane p1 ;
 
 	if ( pq -> count <= 0 )
 	{
@@ -73,50 +73,50 @@ struct plane delqueue ( struct queue *pq )
 	return p1 ;
 }
 
-int size ( struct queue q )
+int size (  queue q )
 {
 	return q.count ;
 }
 
-int empty ( struct queue q )
+int empty (  queue q )
 {
 	return ( q.count <= 0 ) ;
 }
 
-int full ( struct queue q )
+int full (  queue q )
 {
 	return ( q.count >= MAX ) ;
 }
 
-struct airport
+typedef struct
 {
-	struct queue landing ;
-	struct queue takeoff ;
-	struct queue *pl ;
-	struct queue *pt ;
+	 queue landing ;
+	 queue takeoff ;
+	 queue *pl ;
+	 queue *pt ;
 	int idletime ;
 	int landwait, takeoffwait ;
 	int nland, nplanes, nrefuse, ntakeoff ;
-	struct plane pln ;
-} ;
+	 plane pln ;
+} airport ;
 
-void initairport ( struct airport * ) ;
+void initairport (  airport * ) ;
 void start ( int *, double *, double * ) ;
-void newplane ( struct airport *, int, int ) ;
-void refuse ( struct airport *, int ) ;
-void land ( struct airport *, struct plane, int ) ;
-void fly ( struct airport *, struct plane, int ) ;
-void idle ( struct airport *, int ) ;
-void conclude ( struct airport *, int ) ;
+void newplane (  airport *, int, int ) ;
+void refuse (  airport *, int ) ;
+void land (  airport *,  plane, int ) ;
+void fly (  airport *,  plane, int ) ;
+void idle (  airport *, int ) ;
+void conclude (  airport *, int ) ;
 int randomnumber ( double ) ;
-void apaddqueue ( struct airport *, char ) ;
-struct plane apdelqueue ( struct airport *, char ) ;
-int apsize ( struct airport, char ) ;
-int apfull ( struct airport, char ) ;
-int apempty ( struct airport, char ) ;
+void apaddqueue (  airport *, char ) ;
+ plane apdelqueue (  airport *, char ) ;
+int apsize (  airport, char ) ;
+int apfull (  airport, char ) ;
+int apempty (  airport, char ) ;
 void myrandomize ( ) ;
 
-void initairport ( struct airport *ap )
+void initairport (  airport *ap )
 {
     initqueue ( &( ap-> landing ) ) ;
     initqueue ( &( ap -> takeoff ) ) ;
@@ -168,7 +168,7 @@ void start ( int *endtime, double *expectarrive, double *expectdepart )
 	} while ( flag == 0 ) ;
 }
 
-void newplane ( struct airport *ap, int curtime, int action )
+void newplane (  airport *ap, int curtime, int action )
 {
 	( ap -> nplanes )++ ;
 	ap -> pln.id = ap -> nplanes ;
@@ -187,7 +187,7 @@ void newplane ( struct airport *ap, int curtime, int action )
 	}
 }
 
-void refuse ( struct airport *ap, int action )
+void refuse (  airport *ap, int action )
 {
 	switch ( action )
 	{
@@ -204,7 +204,7 @@ void refuse ( struct airport *ap, int action )
 	( ap -> nrefuse )++ ;
 }
 
-void land ( struct airport *ap, struct plane pl, int curtime )
+void land (  airport *ap,  plane pl, int curtime )
 {
 	int wait ;
 
@@ -215,7 +215,7 @@ void land ( struct airport *ap, struct plane pl, int curtime )
 	( ap -> landwait ) += wait ;
 }
 
-void fly ( struct airport *ap, struct plane pl, int curtime )
+void fly (  airport *ap,  plane pl, int curtime )
 {
 	int wait ;
 
@@ -226,13 +226,13 @@ void fly ( struct airport *ap, struct plane pl, int curtime )
 	( ap -> takeoffwait ) += wait ;
 }
 
-void idle ( struct airport *ap, int curtime )
+void idle (  airport *ap, int curtime )
 {
 	printf ( "%d: Runway is idle.\n", curtime ) ;
 	ap -> idletime++ ;
 }
 
-void conclude ( struct airport *ap, int endtime )
+void conclude (  airport *ap, int endtime )
 {
 	printf ( "\tSimulation has concluded after %d units.\n", endtime ) ;
 	printf ( "\tTotal number of planes processed: %d\n", ap -> nplanes ) ;
@@ -243,7 +243,7 @@ void conclude ( struct airport *ap, int endtime )
 	printf ( "\tNumber left ready to take off: %d\n", apsize ( *ap, 't' ) ) ;
 
 	if ( endtime > 0 )
-		printf ( "\tPercentage of time runway idle: %lf \n", ( ( double ) ap -> idletime / endtime ) * 100.0 ) ;
+		printf ( "\tPercentage of time runway idle: %lf \n", ( ( double ) ap -> idletime / endtime ) * 100 ) ;
 
 	if ( ap -> nland > 0 )
 		printf ( "\tAverage wait time to land: %lf \n", ( ( double ) ap -> landwait / ap -> nland ) ) ;
@@ -270,7 +270,7 @@ int randomnumber ( double expectedvalue )
 	return n ;
 }
 
-void apaddqueue ( struct airport *ap, char type )
+void apaddqueue (  airport *ap, char type )
 {
 	switch ( tolower( type ) )
 	{
@@ -284,9 +284,9 @@ void apaddqueue ( struct airport *ap, char type )
 	}
 }
 
-struct plane apdelqueue ( struct airport *ap, char type )
+ plane apdelqueue (  airport *ap, char type )
 {
-	struct plane p1 ;
+	 plane p1 ;
 
 	switch ( tolower ( type ) )
 	{
@@ -302,7 +302,7 @@ struct plane apdelqueue ( struct airport *ap, char type )
 	return p1 ;
 }
 
-int apsize ( struct airport ap, char type )
+int apsize (  airport ap, char type )
 {
 	switch ( tolower ( type ) )
 	{
@@ -316,7 +316,7 @@ int apsize ( struct airport ap, char type )
 	return 0 ;
 }
 
-int apfull ( struct airport ap, char type )
+int apfull (  airport ap, char type )
 {
 	switch ( tolower ( type ) )
 	{
@@ -330,7 +330,7 @@ int apfull ( struct airport ap, char type )
 	return 0 ;
 }
 
-int apempty ( struct airport ap, char type )
+int apempty (  airport ap, char type )
 {
 	switch ( tolower ( type ) )
 	{
@@ -351,12 +351,11 @@ void myrandomize( )
 
 int main( )
 {
-	struct airport a ;
+	 airport a ;
 	int i, pri, curtime, endtime ;
 	double expectarrive, expectdepart ;
-	struct plane temp ;
+	 plane temp ;
 
-  system ( "cls" ) ;
 
     initairport ( &a );
 

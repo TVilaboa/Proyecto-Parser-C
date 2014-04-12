@@ -1,10 +1,14 @@
 #include<stdlib.h>
 #include<stdio.h>
-#include "lightbulb.h"
-#include "List.h"
-#include "tree.h"
 
-//loads a list ,to load the list u want,code must be modified to create o import that list here
+#include "C:\Users\Toto\Projects\Proyecto Nacho Cassol\Proyecto-Parser-C\compilador2\Lote de pruebas\Case 4\list.h"
+#include "C:\Users\Toto\Projects\Proyecto Nacho Cassol\Proyecto-Parser-C\compilador2\Lote de pruebas\Case 4\tree.h"
+#include "C:\Users\Toto\Projects\Proyecto Nacho Cassol\Proyecto-Parser-C\compilador2\Lote de pruebas\Case 4\lightbulb.h"
+
+
+
+
+
 void main()
 {
     node *root;
@@ -30,14 +34,14 @@ void main()
 }
 
 void addbulb(node ** root){
-    struct lightbulb bulb;
+     lightbulb bulb;
     createBulb(&bulb);
     insert(root, bulb);
 
 }
 
 void deletebulb(node * root){
-    struct lightbulb find;
+     lightbulb find;
     createBulb(&find);
     node *tmp;
     tmp = search(&root, find);
@@ -54,7 +58,7 @@ void deletebulb(node * root){
 }
 
 void editbulb(node * root){
-    struct lightbulb find;
+     lightbulb find;
     createBulb(&find);
     node *tmp;
     tmp = search(&root, find);
@@ -83,7 +87,7 @@ void printtree(node *root){
 }
 
 
-//compress tree,deletion is implemented in logical way, so tree must be compressed in order to really free the memory
+
 void compresstree(node *root){
         node *newroot;
         newroot=NULL;

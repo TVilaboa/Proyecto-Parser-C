@@ -1,10 +1,15 @@
-struct bin_tree {
-struct call data;
-struct bin_tree * right, * left;
-};
-typedef struct bin_tree node;
 
-void insert(node ** tree, struct call val)
+
+typedef struct  {
+ call data;
+ struct node * right, * left;
+}node;
+
+
+
+
+
+void insert(node ** tree, call val)
 {
     node *temp = NULL;
     if(!(*tree))
@@ -76,7 +81,7 @@ void deltree(node * tree)
 }
 
 //search and return a call
-node* search(node ** tree, struct call val)
+node* search(node ** tree,  call val)
 {
     if(!(*tree))
     {

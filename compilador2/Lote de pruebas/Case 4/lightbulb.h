@@ -1,12 +1,12 @@
-struct lightbulb{
+typedef struct {
 char code[5];
 int watts;
 int type;
 int cant;
-int active; //deletion is implemented in logical way
-} ;
+int active;
+}lightbulb ;
 
-void createBulb(struct lightbulb *bulb){
+void createBulb( lightbulb *bulb){
      printf("Enter lightbulb code (max 5 chars). \n");
      scanf("%s",bulb->code);
      printf("Enter lightbulb watts.\n");

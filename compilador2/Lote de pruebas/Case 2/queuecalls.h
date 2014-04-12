@@ -2,20 +2,23 @@
  #include<conio.h>
  #include<stdlib.h>
 
- struct Node
+
+typedef struct
  {
-        struct call Data;
+         call Data;
         struct Node* next;
- }*rear, *front;
+ }Node;
 
  int siz=0;
+ Node* rear;
+ Node* front;
 
 //equals to pop, delete first value from queue and returns it
 //active=2 means its not an actual Call, but in order to avoid a bug and don’t let the queue empty I
 //need to simulate a call
-struct Node* delQueue()
+ Node* delQueue()
 {
-       struct Node *temp, *var=rear;
+       Node *temp, *var=rear;
       if(siz >1)
       {
              rear = rear->next;
@@ -23,7 +26,7 @@ struct Node* delQueue()
              return var;
       }
       else if(siz== 1){
-          struct call call;
+           call call;
          call.active=2;
             push(call);
             siz-=1;
@@ -37,10 +40,10 @@ struct Node* delQueue()
 
 }
 
-void push(struct call value)
+void push( call value)
 {
-     struct Node *temp;
-     temp=(struct Node *)malloc(sizeof(struct Node));
+     Node *temp;
+     temp=( Node *)malloc(sizeof( Node));
      temp->Data=value;
      if (front == NULL)
      {
@@ -59,7 +62,7 @@ void push(struct call value)
 
 void display()
 {
-     struct Node *var=rear;
+      Node *var=rear;
      if(var!=NULL)
      {
            printf("\nElements are as:  ");

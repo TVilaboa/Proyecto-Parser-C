@@ -25,6 +25,11 @@ public class Adt {
         this.globalAttributes = globalAttributes;
     }
 
+
+    public void setAttributes(List<Attribute> attributes) {
+        this.attributes = attributes;
+    }
+
     public String getName() {
         return name;
     }
@@ -55,6 +60,8 @@ public class Adt {
 
         while (tokenIterator.hasNext()) {
             token = tokenIterator.next();
+            if (token.getValue().equals("struct")) //cuando es autoreferenciado hay q sacar el "struct"
+                token = tokenIterator.next();
             for (Attribute attribute : readAttribute(token, tokenIterator, adts)) {
                 attributeList.add(attribute);
             }

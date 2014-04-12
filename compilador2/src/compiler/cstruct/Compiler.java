@@ -174,7 +174,7 @@ public class Compiler {
                 processStruct(tokenIterator);
             }
         } else {
-            throw new NoSupportedInstructionException();
+            throw new NoSupportedInstructionException(token.toString());
         }
     }
 
@@ -185,18 +185,31 @@ public class Compiler {
             String name = token.getValue();
             token = tokenIterator.next();
             if (token.getType() == TokenType.BLOCK) {
+                Adt adt = new Adt(name, null, globalAttributes);
+
+
+                adts.add(adt);   //posible solucion para cuando no pueda guardar un atributo xq exister si es autoreferencial
                 List<Attribute> adtAttributes = Adt.readAttributesFromBlock(token, adts, globalAttributes);
-                adts.add(new Adt(name, adtAttributes, globalAttributes));
+                adt.setAttributes(adtAttributes);
+//                List<Attribute> adtAttributes = Adt.readAttributesFromBlock(token, adts, globalAttributes);
+//                adts.add(new Adt(name, adtAttributes, globalAttributes));
+
             }
         } else if (token.getType() == TokenType.BLOCK) {
             Token block = token;
             token = tokenIterator.next();
             if (token.getType() == TokenType.IDENTIFIER) {
+//                List<Attribute> adtAttributes = Adt.readAttributesFromBlock(block, adts, globalAttributes);
+//                adts.add(new Adt(token.getValue(), adtAttributes, globalAttributes));
+                Adt adt = new Adt(token.getValue(), null, globalAttributes);
+
+
+                adts.add(adt);   //posible solucion para cuando no pueda guardar un atributo xq exister si es autoreferencial
                 List<Attribute> adtAttributes = Adt.readAttributesFromBlock(block, adts, globalAttributes);
-                adts.add(new Adt(token.getValue(), adtAttributes, globalAttributes));
+                adt.setAttributes(adtAttributes);
             }
         } else {
-            throw new NoSupportedInstructionException();
+            throw new NoSupportedInstructionException(token.toString());
         }
     }
 
@@ -237,6 +250,15 @@ public class Compiler {
                 }
             } else if (token.getType() == TokenType.SENTENCE_END) {
                 attributes.add(new Attribute(type, name, false, 0));
+            } else if (token.getType() == TokenType.ASSIGNATION_OPERATOR) {
+                token = tokenIterator.next();
+                if (token.getType() != TokenType.NUMERICAL_CONSTANT && token.getType() != TokenType.IDENTIFIER)
+                    throw new InvalidExpressionException(token.toString());
+                token = tokenIterator.next();
+                if (token.getType() != TokenType.SENTENCE_END)
+                    throw new InvalidExpressionException(token.toString());
+                else
+                    attributes.add(new Attribute(type, name, false, 0));
             } else {
                 throw new InvalidExpressionException(token.toString());
             }
@@ -256,7 +278,7 @@ public class Compiler {
         for (int i = 0; i < tokenList.size(); i++) {
             if (tokenList.get(i).getType() == TokenType.PRE_PROCESSOR_INSTRUCTION) {
                 if (tokenList.get(i).getValue().equals("#include")) {
-                    i = processInclude(tokenList, i, myFile) - 1;
+                    i = processInclude(tokenList, i, myFile) - 1; //podria cambiar estoy y hacerlo devolver una lista con los modulos del file actual
                 } else if (tokenList.get(i).getValue().equals("#define")) {
                     i = processDefine(tokenList, i) - 1;
                 } else if (tokenList.get(i).getValue().equals("#ifndef")) {
@@ -419,7 +441,7 @@ public class Compiler {
 
     private void printSimple(Collection list, String nonEmptyListMessage, String emptyListMessage) {
         if (!list.isEmpty()) {
-            output.append(nonEmptyListMessage + "\n");
+            output.append(nonEmptyListMessage + "(" + list.size() + ")" + "\n");
             output.append("" + "\n");
             for (Object o : list) {
                 output.append(o.toString() + "\n");

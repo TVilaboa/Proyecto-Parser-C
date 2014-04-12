@@ -1,10 +1,12 @@
-struct bin_tree {
-struct lightbulb data;
-struct bin_tree * right, * left;
-};
-typedef struct bin_tree node;
+typedef struct {
+ lightbulb data;
+struct node * right, * left;
+}node;
 
-void insert(node ** tree, struct lightbulb val)
+
+
+
+void insert(node ** tree,  lightbulb val)
 {
     node *temp = NULL;
     if(!(*tree))
@@ -76,8 +78,8 @@ void deltree(node * tree)
         free(tree);
     }
 }
-//search and return a lightbulb
-node* search(node ** tree, struct lightbulb val)
+
+node* search(node ** tree,  lightbulb val)
 {
     if(!(*tree))
     {
