@@ -35,3 +35,21 @@
 1386883730 c:\documents and settings\administrador\escritorio\investigation project\programmed\airport\flight.h
 	<time.h>
 
+1397434872 source:c:\users\toto\projects\proyecto nacho cassol\proyecto-parser-c\compilador2\lote de pruebas\case 8\airport.c
+	<stdio.h>
+	<stdlib.h>
+	"C:\Users\Toto\Projects\Proyecto Nacho Cassol\Proyecto-Parser-C\compilador2\Lote de pruebas\Case 8\queue.h"
+	"C:\Users\Toto\Projects\Proyecto Nacho Cassol\Proyecto-Parser-C\compilador2\Lote de pruebas\Case 8\flight.h"
+
+1397434943 c:\users\toto\projects\proyecto nacho cassol\proyecto-parser-c\compilador2\lote de pruebas\case 8\queue.h
+	<stdio.h>
+	<conio.h>
+	<stdlib.h>
+	"C:\Users\Toto\Projects\Proyecto Nacho Cassol\Proyecto-Parser-C\compilador2\Lote de pruebas\Case 8\plane.h"
+
+1397434872 c:\users\toto\projects\proyecto nacho cassol\proyecto-parser-c\compilador2\lote de pruebas\case 8\plane.h
+	<time.h>
+
+1386883730 c:\users\toto\projects\proyecto nacho cassol\proyecto-parser-c\compilador2\lote de pruebas\case 8\flight.h
+	<time.h>
+

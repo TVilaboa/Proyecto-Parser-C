@@ -1,16 +1,16 @@
 #include <time.h>
 
-struct car
+typedef struct
 {
     time_t start;
     time_t completion;
-}c;
+}car;
 
 /**
 Initialises a car and it pushes into a queue that represents the assembly line
 */
 void create_car(){
-    struct car car;
+    car car;
     time(&car.start);
 
     push(car);
@@ -19,6 +19,6 @@ void create_car(){
 /**
 Set the completion time for a car when it is poped from the assembly line
 */
-void set_completion_time(struct car *car ){
+void set_completion_time( car *car ){
     car->completion = time(&car->completion);
 }

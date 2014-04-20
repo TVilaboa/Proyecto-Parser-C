@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "queue.h"
+#include "C:\Users\Toto\Projects\Proyecto Nacho Cassol\Proyecto-Parser-C\compilador2\Lote de pruebas\Case 7\queue.h"
 
 
 int main()
@@ -19,8 +19,8 @@ int main()
 
             double time_elapsed;
 
-            struct car assembled;
-            struct Node *node = delQueue();
+            car assembled;
+          Node *node = delQueue();
             assembled = node->data;
             set_completion_time(&assembled);
 

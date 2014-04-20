@@ -1,12 +1,12 @@
-struct bin_tree
+typedef struct
 {
-    struct school data;
-    struct bin_tree * right, * left;
-};
-typedef struct bin_tree node;
+     school data;
+    struct node * right, * left;
+}node ;
+
 
 //insert
-void insert(node ** tree, struct school val)
+void insert(node ** tree,  school val)
 {
     node *temp = NULL;
     if(!(*tree))
@@ -81,7 +81,7 @@ void deltree(node * tree)
 }
 
 //search a school and returns it
-node* search(node ** tree, struct school val)
+node* search(node ** tree,  school val)
 {
     if(!(*tree))
     {

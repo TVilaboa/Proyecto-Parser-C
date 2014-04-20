@@ -1,8 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "School.h"
-#include "tree.h"
-#include "queue.h"
+#include "C:\Users\Toto\Projects\Proyecto Nacho Cassol\Proyecto-Parser-C\compilador2\Lote de pruebas\Case 5\queue.h"
+#include "C:\Users\Toto\Projects\Proyecto Nacho Cassol\Proyecto-Parser-C\compilador2\Lote de pruebas\Case 5\Tree.h"
+
+
+
 
 
 int counter=0;
@@ -42,8 +44,8 @@ void addTruck(){
 
 //process the first truck stored in queue and adds the schools from that truck to a tree in order to print them ordenated
 void process(node **root){
-    struct truck truck;
-    struct Node *node=delQueue();
+    truck truck;
+    Node *node=delQueue();
     truck=node->Data;
     printf("Truck %d waited %d hours\n",counter/3,counter - truck.hours);
     int i=0;
@@ -51,9 +53,9 @@ void process(node **root){
     for(i;i<500;i++){
 
 
-     struct school school=truck.schools[i];
+     school school=truck.schools[i];
 
-        struct  node *tmp;
+         Node *tmp;
     tmp = search(root, school);
     if (tmp)
     {

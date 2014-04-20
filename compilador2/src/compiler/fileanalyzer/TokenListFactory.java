@@ -15,15 +15,11 @@ import java.util.Stack;
  * Time: 11:27 AM
  */
 public class TokenListFactory {
-    private List<Token> tokensList;
-    private int readCharacter;
-
     private static final String[] KEY_WORDS = {"auto", "break", "case", "const", "continue", "default", "do",
             "else", "enum", "extern", "for", "goto", "if", "register", "return", "signed", "static", "struct",
             "switch", "typedef", "union", "unsigned", "volatile", "while"};
-    private static final String[] BASIC_TYPES = {"char", "double", "float", "for", "int", "long", "short", "void", "FILE"};
+    private static final String[] BASIC_TYPES = {"char", "double", "float", "for", "int", "long", "short", "void", "FILE", "time_t"};
     private static final String SIZE_OF_OPERATOR = "sizeof";
-
     private static final String[] ARITHMETIC_OPERATORS = {"+", "-", "*", "/", "%"};
     private static final String[] ASSIGNATION_OPERATORS = {"=", "+=", "-=", "*=", "/="};
     private static final String[] INCREMENTAL_OPERATORS = {"++", "--"};
@@ -31,10 +27,11 @@ public class TokenListFactory {
     private static final String[] LOGIC_OPERATORS = {"||", "&&"};
     private static final String LOGIC_NEG_OPERATOR = "!";
     private static final String COMMA_OPERATOR = ",";
-    private Map<String, Integer> globalAttributes;
-
     private static final String[] PRE_PROCESSOR_INSTRUCTION = {"#define", "#undef", "#if", "#ifdef", "#ifndef", "#endif",
             "#else", "#elif", "#include", "#pragma", "#error"};
+    private List<Token> tokensList;
+    private int readCharacter;
+    private Map<String, Integer> globalAttributes;
 
     public TokenListFactory(Map<String, Integer> globalAttributes) {
         this.globalAttributes = globalAttributes;

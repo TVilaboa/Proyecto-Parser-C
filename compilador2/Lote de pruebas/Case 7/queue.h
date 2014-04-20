@@ -1,23 +1,25 @@
 #include<stdio.h>
 #include<conio.h>
 #include<stdlib.h>
-#include "car.h"
+#include "C:\Users\Toto\Projects\Proyecto Nacho Cassol\Proyecto-Parser-C\compilador2\Lote de pruebas\Case 7\car.h"
 
 
- struct Node
+typedef struct
  {
-        struct car data;
+         car data;
         struct Node* next;
- }*rear, *front;
+ }Node;
 
 int siz=0;
+Node *rear;
+Node *front;
 
 /**
 Pops from queue the first element
 */
-struct Node* delQueue()
+ Node* delQueue()
 {
-       struct Node *temp, *var=rear;
+        Node *temp, *var=rear;
       if(var!=NULL)
       {
              rear = rear->next;
@@ -31,10 +33,10 @@ struct Node* delQueue()
 /**
 Pushes the element on the back of the queue
 */
-void push(struct car value)
+void push(car value)
 {
-     struct Node *temp;
-     temp=(struct Node *)malloc(sizeof(struct Node));
+      Node *temp;
+     temp=( Node *)malloc(sizeof( Node));
      temp->data=value;
      if (front == NULL)
      {
@@ -61,7 +63,7 @@ Prints how the queue is at the time
 */
 void display()
 {
-     struct Node *var=rear;
+     Node *var=rear;
      if(var!=NULL)
      {
            printf("\nElements are as: \n ");

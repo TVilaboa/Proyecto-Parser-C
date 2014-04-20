@@ -173,6 +173,17 @@ public class MainFunction extends Function {
             } else if (token.getType() == TokenType.ASSIGNATION_OPERATOR) {
                 sentenceTokens.add(token);
                 token = tokenIterator.next();
+                if (token.getValue().equalsIgnoreCase("length")) {
+                    do {
+                        sentenceTokens.add(token);
+                        token = tokenIterator.next();
+                    }
+                    while (token.getType() != TokenType.SENTENCE_END);
+                    sentence = new Sentence(SentenceType.ATTRIBUTE_DECLARATION_FROM_FUNCTION, sentenceTokens);
+                    sentences.add(sentence);
+                    return;
+                }
+
                 if (token.getType() == TokenType.IDENTIFIER) {
                     for (Attribute fileAttribute : fileAttributes) {
                         if (token.getValue().equals(fileAttribute.getName())) {
@@ -286,7 +297,11 @@ public class MainFunction extends Function {
             }
             sentenceTokens.add(token);
             return;
-        }
+            } else {
+                while (token.getType() != TokenType.SENTENCE_END) {
+                    token = tokenIterator.next();
+                }
+            }
         } else {
             while (token.getType() != TokenType.SENTENCE_END) {
                 token = tokenIterator.next();

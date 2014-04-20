@@ -1,10 +1,10 @@
-struct school
+typedef struct
 {
     int code;
     int cantboxes;
-}s;
+}school;
 
-void createSchool(struct school *school,int code,int cant)
+void createSchool( school *school,int code,int cant)
 {
     school->cantboxes=cant;
     school->code=code;

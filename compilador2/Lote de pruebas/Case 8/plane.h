@@ -1,12 +1,12 @@
 #include <time.h>
 
-struct plane
+typedef struct
 {
     time_t request;
     char company;
     int number;
     time_t landed;
-}c;
+}plane;
 
 char randomize_company();
 int set_number();
@@ -36,7 +36,7 @@ int set_number(){
 Initialises a plane and it pushes into an overflight circuit of 5
 */
 void create_plane(){
-    struct plane plane;
+    plane plane;
     time(&plane.request);
     plane.company = randomize_company();
     plane.number = set_number();
@@ -46,6 +46,6 @@ void create_plane(){
 
 /**
 Set the landing time for a plane*/
-void set_landing_time(struct plane *plane ){
+void set_landing_time( plane *plane ){
     plane->landed = time(&plane->landed);
 }

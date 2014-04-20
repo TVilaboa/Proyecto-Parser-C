@@ -1,8 +1,7 @@
 package compiler.cstruct;
 
 import java.io.File;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * User: Javier Isoldi
@@ -11,13 +10,22 @@ import java.util.List;
  */
 public class Module {
 
-    private File file; // name of the module
-    private List<Module> modulesIncluded; //list of includes defined in the header
-    private List<Function> functions; //list of functions defined and implemented
-
     // list of modules that must not be considered as part of the project (or the particular system).
     // This list contain modules that are part of the language (e.g. stdio.h)
     private static final String[] MODULE_LIST;
+    private File file; // name of the module
+    private List<Module> modulesIncluded; //list of includes defined in the header
+    private List<Function> functions; //list of functions defined and implemented
+    private List<Attribute> atributes;
+    private Map<String, Integer> defines;
+
+    public Module(File moduleFile) {
+        file = moduleFile;
+        functions = new LinkedList<Function>();
+        modulesIncluded = new LinkedList<Module>();
+        atributes = new ArrayList<>();
+        defines = new TreeMap<String, Integer>();
+    }
 
     public void addFunction(Function function) {
         functions.add(function);
@@ -26,7 +34,6 @@ public class Module {
     public void addModule(Module module) {
         modulesIncluded.add(module);
     }
-
     static {
         MODULE_LIST = new String[]{"assert.h", "complex.h", "ctype.h",
                 "errno.h", "fenv.h", "float.h",
@@ -35,16 +42,32 @@ public class Module {
                 "signal.h", "stdarg.h", "stdbool.h",
                 "stdint.h", "stddef.h", "stdio.h",
                 "stdlib.h", "string.h", "tgmath.h",
-                "time.h", "wchar.h", "wctype.h", "windows.h"};
+                "time.h", "wchar.h", "wctype.h", "windows.h", "conio.h"};
     }
 
-
-    public Module(File moduleFile){
-        file = moduleFile;
-        functions = new LinkedList<Function>();
-        modulesIncluded = new LinkedList<Module>();
+    public List<Attribute> getAtributes() {
+        return atributes;
     }
 
+    public void setAtributes(List<Attribute> atributes) {
+        this.atributes = atributes;
+    }
+
+    public void addAttribute(Attribute attribute) {
+        atributes.add(attribute);
+    }
+
+    public void addDefine(Map.Entry<String, Integer> entry) {
+        defines.put(entry.getKey(), entry.getValue());
+    }
+
+    public Map<String, Integer> getDefines() {
+        return defines;
+    }
+
+    public void setDefines(Map<String, Integer> defines) {
+        this.defines = defines;
+    }
 
     public boolean isBasicModule() {
         boolean aux = false;
@@ -96,6 +119,16 @@ public class Module {
                     modulePrint += intro + printList(modulesIncluded);
                 } else {
                     String intro = "\tThis module has no modules \n";
+                    modulePrint += intro;
+                }
+
+            }
+            if (atributes != null) {
+                if (!atributes.isEmpty()) {
+                    String intro = "\tThe attributes of this module are: \n";
+                    modulePrint += intro + printList(atributes);
+                } else {
+                    String intro = "\tThis module has no attributes \n";
                     modulePrint += intro;
                 }
 

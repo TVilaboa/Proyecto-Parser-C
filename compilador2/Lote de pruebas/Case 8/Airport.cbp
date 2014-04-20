@@ -31,10 +31,10 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="flight.h" />
-		<Unit filename="main.c">
+		<Unit filename="airport.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="flight.h" />
 		<Unit filename="plane.h" />
 		<Unit filename="queue.h" />
 		<Extensions>

@@ -22,7 +22,7 @@ public class Compiler {
     private List<Module> modules;
     private List<Attribute> attributes;
     private Map<String, CandidateClass> candidates;
-    private Map<String, Integer> globalAttributes;
+    private Map<String, Integer> defines;
     private List<File> alreadyProcessed;
     private StringBuilder output;
     private File myFile;
@@ -36,7 +36,7 @@ public class Compiler {
         modules = new ArrayList<Module>();
         attributes = new ArrayList<Attribute>();
         candidates = new TreeMap<String, CandidateClass>();
-        globalAttributes = new TreeMap<String, Integer>();
+        defines = new TreeMap<String, Integer>();
         alreadyProcessed = new ArrayList<>();
         output = new StringBuilder();
     }
@@ -64,7 +64,7 @@ public class Compiler {
 
     private void subrun(File myFile) throws IOException, InvalidExpressionException, NoSupportedInstructionException {
         alreadyProcessed.add(myFile);
-        TokenListFactory tokenListFactory = new TokenListFactory(globalAttributes);
+        TokenListFactory tokenListFactory = new TokenListFactory(defines);
         List<Token> tokenList = tokenListFactory.getTokenFileFromCFile(new BufferedReader(new FileReader(myFile)));
         for (int i = 0; i < tokenList.size(); i++) {
             Token token = tokenList.get(i);
@@ -73,6 +73,8 @@ public class Compiler {
             }
         }
         preProcess(tokenList, myFile);
+        //aca sucede lo mismo con los includes q con los define, como primero los proceso y despues voy a los modulos,quedan cargados
+        //como si fueran del siguiente modulo y no propios.
         uploadModules(); //take all the information of each modules (listed in the header the main file). The names of all modules are stored in ListD modules
         //first upload modules so that module´s functions and structs can be recognised later
         Iterator<Token> tokenIterator = tokenList.iterator();
@@ -146,7 +148,21 @@ public class Compiler {
                 for (Iterator<Function> iterator = functions.iterator(); iterator.hasNext(); ) {
                     Function function = iterator.next();
                     module.addFunction(function);
+                    iterator.remove();
                 }
+                for (Iterator<Attribute> iterator = attributes.iterator(); iterator.hasNext(); ) {
+                    Attribute attribute = iterator.next();
+                    module.addAttribute(attribute);
+                    iterator.remove();
+                }
+                if (!defines.isEmpty()) {
+                    for (Iterator<Map.Entry<String, Integer>> iterator = defines.entrySet().iterator(); iterator.hasNext(); ) {
+                        Map.Entry<String, Integer> entry = iterator.next();
+                        module.addDefine(entry);
+                        iterator.remove();
+                    }
+                }
+
 
             }
         }
@@ -185,27 +201,27 @@ public class Compiler {
             String name = token.getValue();
             token = tokenIterator.next();
             if (token.getType() == TokenType.BLOCK) {
-                Adt adt = new Adt(name, null, globalAttributes);
+                Adt adt = new Adt(name, null, defines);
 
 
                 adts.add(adt);   //posible solucion para cuando no pueda guardar un atributo xq exister si es autoreferencial
-                List<Attribute> adtAttributes = Adt.readAttributesFromBlock(token, adts, globalAttributes);
+                List<Attribute> adtAttributes = Adt.readAttributesFromBlock(token, adts, defines);
                 adt.setAttributes(adtAttributes);
-//                List<Attribute> adtAttributes = Adt.readAttributesFromBlock(token, adts, globalAttributes);
-//                adts.add(new Adt(name, adtAttributes, globalAttributes));
+//                List<Attribute> adtAttributes = Adt.readAttributesFromBlock(token, adts, defines);
+//                adts.add(new Adt(name, adtAttributes, defines));
 
             }
         } else if (token.getType() == TokenType.BLOCK) {
             Token block = token;
             token = tokenIterator.next();
             if (token.getType() == TokenType.IDENTIFIER) {
-//                List<Attribute> adtAttributes = Adt.readAttributesFromBlock(block, adts, globalAttributes);
-//                adts.add(new Adt(token.getValue(), adtAttributes, globalAttributes));
-                Adt adt = new Adt(token.getValue(), null, globalAttributes);
+//                List<Attribute> adtAttributes = Adt.readAttributesFromBlock(block, adts, defines);
+//                adts.add(new Adt(token.getValue(), adtAttributes, defines));
+                Adt adt = new Adt(token.getValue(), null, defines);
 
 
                 adts.add(adt);   //posible solucion para cuando no pueda guardar un atributo xq exister si es autoreferencial
-                List<Attribute> adtAttributes = Adt.readAttributesFromBlock(block, adts, globalAttributes);
+                List<Attribute> adtAttributes = Adt.readAttributesFromBlock(block, adts, defines);
                 adt.setAttributes(adtAttributes);
             }
         } else {
@@ -224,19 +240,19 @@ public class Compiler {
                 List<Attribute> arguments = Function.getArguments(token, tokenIterator, adts);
                 token = tokenIterator.next();
                 if (token.getType() == TokenType.SENTENCE_END) {
-                    // addFunction(new Function(type, name, arguments, globalAttributes,attributes));  añade prototipos, no tiene sentido ya que se va a añadir luego la funcion real
+                    // addFunction(new Function(type, name, arguments, defines,attributes));  añade prototipos, no tiene sentido ya que se va a añadir luego la funcion real
                 } else if (token.getType() == TokenType.BLOCK) {
                     if (!name.equals("main")) {
-                        addFunction(new Function(type, name, arguments, token.getValue(), globalAttributes, attributes, functions));
+                        addFunction(new Function(type, name, arguments, token.getValue(), defines, attributes, functions));
                     } else {
-                        mainFunction = new MainFunction(type, arguments, token.getValue(), globalAttributes, attributes, functions);
+                        mainFunction = new MainFunction(type, arguments, token.getValue(), defines, attributes, functions);
                     }
                 } else {
                     throw new InvalidExpressionException(token.toString());
                 }
             } else if (token.getType() == TokenType.SQUARE_BRACKET_BLOCK) {
-                if (!globalAttributes.isEmpty()) {
-                    for (Map.Entry<String, Integer> entry : globalAttributes.entrySet()) {
+                if (!defines.isEmpty()) {
+                    for (Map.Entry<String, Integer> entry : defines.entrySet()) {
                         token.setType(TokenType.NUMERICAL_CONSTANT);
                         token.setValue(token.getValue().replaceAll(entry.getKey(), entry.getValue() + ""));  //replaces each globalAttribute ocurrence for its actual valor
                     }
@@ -302,16 +318,16 @@ public class Compiler {
         tokenList.remove(i);
         Token token = tokenList.get(i);
         if (token.getType() == TokenType.IDENTIFIER) {
-            if (!globalAttributes.isEmpty()) {
+            if (!defines.isEmpty()) {
                 for (Token token1 : tokenList) {
-                    for (Map.Entry<String, Integer> entry : globalAttributes.entrySet())
+                    for (Map.Entry<String, Integer> entry : defines.entrySet())
                         if (token1.getValue().equals(entry.getKey())) {
                             token1.setType(TokenType.NUMERICAL_CONSTANT);
                             token1.setValue(token1.getValue().replaceAll(entry.getKey(), entry.getValue() + ""));
                         }
                 }
             }
-            globalAttributes.put(token.getValue(), Integer.parseInt(tokenList.get(i + 1).getValue()));
+            defines.put(token.getValue(), Integer.parseInt(tokenList.get(i + 1).getValue()));
             tokenList.remove(i);
             tokenList.remove(i);
             return i;
@@ -418,12 +434,20 @@ public class Compiler {
 
 
     private void printLists() {
+        List<Module> basic = new ArrayList<>();
+        List<Module> created = new ArrayList<>();
+        for (Module module : modules) {
+            if (module.isBasicModule())
+                basic.add(module);
+            else created.add(module);
+        }
 
-        printSimple(modules, "Modules are: ", "It has no modules");
+        printSimple(basic, "Basic Modules are: ", "It has no modules");
+        printSimple(created, "Created Modules are: ", "It has no modules");
         printSimple(functions, "Functions are: ", "It has no functions");
         printSimple(adts, "ADTs are: ", "It has no ADTs");
         printSimple(attributes, "Variables are: ", "It has no attributes");
-        printSimple(globalAttributes.entrySet(), "GlobalVariables are: ", "It has no GlobalVariables");
+        printSimple(defines.entrySet(), "GlobalVariables are: ", "It has no GlobalVariables");
         printSimple(candidates.values(), "Candidate classes are:", "No candidates are suggested");
 
        /* if (mainFunction != null) {

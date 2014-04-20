@@ -1,19 +1,22 @@
 #include<stdio.h>
  #include<conio.h>
  #include<stdlib.h>
-#include "truck.h"
- struct Node
+#include "C:\Users\Toto\Projects\Proyecto Nacho Cassol\Proyecto-Parser-C\compilador2\Lote de pruebas\Case 5\truck.h"
+
+ typedef struct
  {
-        struct truck Data;
+         truck Data;
         struct Node* next;
- }*rear, *front;
+ }Node;
 
 int siz=0;
+ Node* rear;
+ Node* front;
 
 //equals to pop, delete first value from queue and returns it
-struct Node* delQueue()
+ Node* delQueue()
 {
-       struct Node *temp, *var=rear;
+        Node *temp, *var=rear;
       if(var!=NULL)
       {
              rear = rear->next;
@@ -24,10 +27,10 @@ struct Node* delQueue()
       printf("\nQueue Empty");
 }
 
-void push(struct truck value)
+void push( truck value)
 {
-     struct Node *temp;
-     temp=(struct Node *)malloc(sizeof(struct Node));
+      Node *temp;
+     temp=(Node *)malloc(sizeof( Node));
      temp->Data=value;
      if (front == NULL)
      {
@@ -46,7 +49,7 @@ void push(struct truck value)
 
 void display()
 {
-     struct Node *var=rear;
+     Node *var=rear;
      if(var!=NULL)
      {
            printf("\nElements are as:  ");
