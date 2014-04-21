@@ -32,7 +32,7 @@ public class Module {
     }
 
     public void addModule(Module module) {
-        modulesIncluded.add(module);
+        modulesIncluded.add(0, module);
     }
     static {
         MODULE_LIST = new String[]{"assert.h", "complex.h", "ctype.h",

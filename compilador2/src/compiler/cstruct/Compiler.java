@@ -26,6 +26,7 @@ public class Compiler {
     private List<File> alreadyProcessed;
     private StringBuilder output;
     private File myFile;
+    private Map<String, String> definesProcedency;
 
     //private List<Token> tokenList;
 
@@ -37,6 +38,7 @@ public class Compiler {
         attributes = new ArrayList<Attribute>();
         candidates = new TreeMap<String, CandidateClass>();
         defines = new TreeMap<String, Integer>();
+        definesProcedency = new TreeMap<>();
         alreadyProcessed = new ArrayList<>();
         output = new StringBuilder();
     }
@@ -158,8 +160,10 @@ public class Compiler {
                 if (!defines.isEmpty()) {
                     for (Iterator<Map.Entry<String, Integer>> iterator = defines.entrySet().iterator(); iterator.hasNext(); ) {
                         Map.Entry<String, Integer> entry = iterator.next();
-                        module.addDefine(entry);
-                        iterator.remove();
+                        if (definesProcedency.get(entry.getKey()).equalsIgnoreCase(myFile.getAbsolutePath())) {
+                            module.addDefine(entry);
+                            iterator.remove();
+                        }
                     }
                 }
 
@@ -296,7 +300,7 @@ public class Compiler {
                 if (tokenList.get(i).getValue().equals("#include")) {
                     i = processInclude(tokenList, i, myFile) - 1; //podria cambiar estoy y hacerlo devolver una lista con los modulos del file actual
                 } else if (tokenList.get(i).getValue().equals("#define")) {
-                    i = processDefine(tokenList, i) - 1;
+                    i = processDefine(tokenList, i, myFile) - 1;
                 } else if (tokenList.get(i).getValue().equals("#ifndef")) {
                     i = processIfndef(tokenList, i) - 1; //tiene q omitir los proximos 3 tokens
                 }
@@ -314,7 +318,7 @@ public class Compiler {
     }
 
 
-    private int processDefine(List<Token> tokenList, int i) throws InvalidExpressionException {
+    private int processDefine(List<Token> tokenList, int i, File myFile) throws InvalidExpressionException {
         tokenList.remove(i);
         Token token = tokenList.get(i);
         if (token.getType() == TokenType.IDENTIFIER) {
@@ -328,6 +332,7 @@ public class Compiler {
                 }
             }
             defines.put(token.getValue(), Integer.parseInt(tokenList.get(i + 1).getValue()));
+            definesProcedency.put(token.getValue(), myFile.getAbsolutePath());
             tokenList.remove(i);
             tokenList.remove(i);
             return i;
@@ -348,7 +353,7 @@ public class Compiler {
 
                 }
             }
-            modules.add(module);
+            modules.add(0, module);
             for (Module module1 : modules) {
                 if (myFile.equals(module1.getFile())) {  //submodules loading. Module is the new module and module1 is the module in which the parser is working
                     module1.addModule(module);
