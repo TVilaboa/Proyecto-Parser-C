@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1397326762 source:c:\users\toto\projects\proyecto nacho cassol\proyecto-parser-c\compilador2\lote de pruebas\case 4\main.c
+	<stdlib.h>
+	<stdio.h>
+	"C:\Users\Toto\Projects\Proyecto Nacho Cassol\Proyecto-Parser-C\compilador2\Lote de pruebas\Case 4\lightbulb.h"
+	"C:\Users\Toto\Projects\Proyecto Nacho Cassol\Proyecto-Parser-C\compilador2\Lote de pruebas\Case 4\list.h"
+	"C:\Users\Toto\Projects\Proyecto Nacho Cassol\Proyecto-Parser-C\compilador2\Lote de pruebas\Case 4\tree.h"
+
+1397154930 c:\users\toto\projects\proyecto nacho cassol\proyecto-parser-c\compilador2\lote de pruebas\case 4\lightbulb.h
+
+1397154794 c:\users\toto\projects\proyecto nacho cassol\proyecto-parser-c\compilador2\lote de pruebas\case 4\list.h
+
+1397326797 c:\users\toto\projects\proyecto nacho cassol\proyecto-parser-c\compilador2\lote de pruebas\case 4\tree.h
+

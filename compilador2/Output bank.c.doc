@@ -1,0 +1,127 @@
+Analisys for : C:\Users\Toto\Projects\Proyecto Nacho Cassol\Proyecto-Parser-C\compilador2\Lote de pruebas\Case 9\bank.c
+
+Basic Modules are: (4)
+
+	"stdlib.h"
+
+This is a basic module.
+
+	"string.h"
+
+This is a basic module.
+
+	"conio.h"
+
+This is a basic module.
+
+	"stdio.h"
+
+This is a basic module.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+It has no modules
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Functions are: (6)
+
+	Function name: Account_information
+	Returns: void
+	The arguments are:
+
+	Function name: Cash_Deposit
+	Returns: void
+	The arguments are:
+
+	Function name: Cash_withdrawl
+	Returns: void
+	The arguments are:
+
+	Function name: Create_new_account
+	Returns: void
+	The arguments are:
+
+	Function name: display_options
+	Returns: void
+	The arguments are:
+
+MainFunction
+	Global Sentences are :
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ADTs are: (1)
+
+	The name is : acc_type
+	The variables are: 
+		char bank_name[20]
+
+		char bank_branch[20]
+
+		char acc_holder_name[30]
+
+		int acc_number
+		char acc_holder_address[100]
+
+		float available_balance
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Variables are: (1)
+
+	int num_acc
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+GlobalVariables are: (1)
+
+ACCOUNTS=20
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Candidate classes are:(7)
+
+CandidateClass: Account_information
+	Attributes are: 
+			int num_acc
+	Methods are: 
+			Method name: Account_information
+	Returns: void
+	The arguments are:
+CandidateClass: Cash_Deposit
+	Attributes are: 
+	Methods are: 
+			Method name: Cash_Deposit
+	Returns: void
+	The arguments are:
+CandidateClass: Cash_withdrawl
+	Attributes are: 
+	Methods are: 
+			Method name: Cash_withdrawl
+	Returns: void
+	The arguments are:
+CandidateClass: Create_new_account
+	Attributes are: 
+	Methods are: 
+			Method name: Create_new_account
+	Returns: void
+	The arguments are:
+CandidateClass: acc_type
+	Attributes are: 
+			char bank_name[20]
+
+			char bank_branch[20]
+
+			char acc_holder_name[30]
+
+			int acc_number
+			char acc_holder_address[100]
+
+			float available_balance
+	Methods are: 
+CandidateClass: display_options
+	Attributes are: 
+	Methods are: 
+			Method name: display_options
+	Returns: void
+	The arguments are:
+CandidateClass: main
+	Attributes are: 
+			int num_acc
+			int return
+	Methods are: 
+			Method name: main
+	Returns: int
+	The arguments are:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

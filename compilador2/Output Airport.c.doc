@@ -1,0 +1,371 @@
+Analisys for : C:\Users\Toto\Projects\Proyecto Nacho Cassol\Proyecto-Parser-C\compilador2\Lote de pruebas\Case 8\airport.c
+
+Basic Modules are: (4)
+
+	"conio.h"
+
+This is a basic module.
+
+	"time.h"
+
+This is a basic module.
+
+	"stdlib.h"
+
+This is a basic module.
+
+	"stdio.h"
+
+This is a basic module.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Created Modules are: (3)
+
+	"plane.h"
+
+	The functions in this module are: 
+
+	Function name: create_plane
+	Returns: void
+	The arguments are:
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: randomize_company
+	Returns: char
+	The arguments are:
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: set_landing_time
+	Returns: void
+	The arguments are:
+		plane plane
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: set_number
+	Returns: int
+	The arguments are:
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	This module has no modules 
+	This module has no attributes 
+
+	"flight.h"
+
+	The functions in this module are: 
+
+	Function name: BubbleSort_company
+	Returns: void
+	The arguments are:
+		FLIGHT information[0]
+
+		int array_size
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: BubbleSort_number
+	Returns: void
+	The arguments are:
+		FLIGHT information[0]
+
+		int from
+		int to
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: print_information
+	Returns: void
+	The arguments are:
+		FLIGHT information[0]
+
+		int counter
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	The modules of this module are: 
+
+	"time.h"
+
+This is a basic module.
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	This module has no attributes 
+
+	"queue.h"
+
+	The functions in this module are: 
+
+	Function name: delQueue
+	Returns: Node
+	The arguments are:
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: display
+	Returns: void
+	The arguments are:
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: push
+	Returns: void
+	The arguments are:
+		plane value
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: sizeofqueue
+	Returns: int
+	The arguments are:
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	The modules of this module are: 
+
+	"plane.h"
+
+	The functions in this module are: 
+
+	Function name: create_plane
+	Returns: void
+	The arguments are:
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: randomize_company
+	Returns: char
+	The arguments are:
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: set_landing_time
+	Returns: void
+	The arguments are:
+		plane plane
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: set_number
+	Returns: int
+	The arguments are:
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	This module has no modules 
+	This module has no attributes 
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	"conio.h"
+
+This is a basic module.
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	The attributes of this module are: 
+
+	Node rear
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Node front
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	int siz
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Functions are: (3)
+
+	Function name: addplane
+	Returns: void
+	The arguments are:
+
+	Function name: get_average
+	Returns: double
+	The arguments are:
+		double time
+		int counter
+
+MainFunction
+	Global Sentences are :
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ADTs are: (3)
+
+	The name is : plane
+	The variables are: 
+		time_t request
+		char company
+		int number
+		time_t landed
+	The name is : Node
+	The variables are: 
+		plane data
+		Node next
+	The name is : FLIGHT
+	The variables are: 
+		char company
+		int number
+		time_t arrival
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+It has no attributes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+GlobalVariables are: (1)
+
+SIZE=100
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Candidate classes are:(17)
+
+CandidateClass: BubbleSort_company
+	Attributes are: 
+			FLIGHT information[0]
+
+			int array_size
+	Methods are: 
+			Method name: BubbleSort_company
+	Returns: void
+	The arguments are:
+		FLIGHT information[0]
+
+		int array_size
+CandidateClass: BubbleSort_number
+	Attributes are: 
+			FLIGHT information[0]
+
+			int from
+			int to
+	Methods are: 
+			Method name: BubbleSort_number
+	Returns: void
+	The arguments are:
+		FLIGHT information[0]
+
+		int from
+		int to
+CandidateClass: FLIGHT
+	Attributes are: 
+			char company
+			int number
+			time_t arrival
+	Methods are: 
+CandidateClass: Node
+	Attributes are: 
+			plane data
+			Node next
+	Methods are: 
+CandidateClass: addplane
+	Attributes are: 
+	Methods are: 
+			Method name: addplane
+	Returns: void
+	The arguments are:
+CandidateClass: create_plane
+	Attributes are: 
+	Methods are: 
+			Method name: create_plane
+	Returns: void
+	The arguments are:
+			Method name: randomize_company
+	Returns: char
+	The arguments are:
+			Method name: set_number
+	Returns: int
+	The arguments are:
+CandidateClass: delQueue
+	Attributes are: 
+			Node rear
+			Node return
+	Methods are: 
+			Method name: delQueue
+	Returns: Node
+	The arguments are:
+CandidateClass: display
+	Attributes are: 
+			Node rear
+	Methods are: 
+			Method name: display
+	Returns: void
+	The arguments are:
+CandidateClass: get_average
+	Attributes are: 
+			double time
+			int counter
+			double return
+	Methods are: 
+			Method name: get_average
+	Returns: double
+	The arguments are:
+		double time
+		int counter
+CandidateClass: main
+	Attributes are: 
+			int return
+	Methods are: 
+			Method name: main
+	Returns: int
+	The arguments are:
+CandidateClass: plane
+	Attributes are: 
+			time_t request
+			char company
+			int number
+			time_t landed
+	Methods are: 
+CandidateClass: print_information
+	Attributes are: 
+			FLIGHT information[0]
+
+			int counter
+	Methods are: 
+			Method name: print_information
+	Returns: void
+	The arguments are:
+		FLIGHT information[0]
+
+		int counter
+CandidateClass: push
+	Attributes are: 
+			plane value
+			Node front
+			int siz
+	Methods are: 
+			Method name: push
+	Returns: void
+	The arguments are:
+		plane value
+CandidateClass: randomize_company
+	Attributes are: 
+			char return
+	Methods are: 
+			Method name: randomize_company
+	Returns: char
+	The arguments are:
+CandidateClass: set_landing_time
+	Attributes are: 
+			plane plane
+	Methods are: 
+			Method name: set_landing_time
+	Returns: void
+	The arguments are:
+		plane plane
+CandidateClass: set_number
+	Attributes are: 
+			int return
+	Methods are: 
+			Method name: set_number
+	Returns: int
+	The arguments are:
+CandidateClass: sizeofqueue
+	Attributes are: 
+			int siz
+			int return
+	Methods are: 
+			Method name: sizeofqueue
+	Returns: int
+	The arguments are:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -1,0 +1,21 @@
+# depslib dependency file v1.0
+1397432914 source:c:\users\toto\projects\proyecto nacho cassol\proyecto-parser-c\compilador2\lote de pruebas\case 5\main.c
+	<stdio.h>
+	<stdlib.h>
+	"C:\Users\Toto\Projects\Proyecto Nacho Cassol\Proyecto-Parser-C\compilador2\Lote de pruebas\Case 5\school.h"
+	"C:\Users\Toto\Projects\Proyecto Nacho Cassol\Proyecto-Parser-C\compilador2\Lote de pruebas\Case 5\Tree.h"
+	"C:\Users\Toto\Projects\Proyecto Nacho Cassol\Proyecto-Parser-C\compilador2\Lote de pruebas\Case 5\queue.h"
+
+1397432664 c:\users\toto\projects\proyecto nacho cassol\proyecto-parser-c\compilador2\lote de pruebas\case 5\school.h
+
+1397432612 c:\users\toto\projects\proyecto nacho cassol\proyecto-parser-c\compilador2\lote de pruebas\case 5\tree.h
+
+1397432938 c:\users\toto\projects\proyecto nacho cassol\proyecto-parser-c\compilador2\lote de pruebas\case 5\queue.h
+	<stdio.h>
+	<conio.h>
+	<stdlib.h>
+	"C:\Users\Toto\Projects\Proyecto Nacho Cassol\Proyecto-Parser-C\compilador2\Lote de pruebas\Case 5\truck.h"
+
+1397432752 c:\users\toto\projects\proyecto nacho cassol\proyecto-parser-c\compilador2\lote de pruebas\case 5\truck.h
+	<time.h>
+

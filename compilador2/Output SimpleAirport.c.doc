@@ -1,0 +1,574 @@
+Analisys for : C:\Users\Toto\Projects\Proyecto Nacho Cassol\Proyecto-Parser-C\compilador2\Lote de pruebas\Case 1\SimpleAirport.c
+
+Basic Modules are: (8)
+
+	"windows.h"
+
+This is a basic module.
+
+	"limits.h"
+
+This is a basic module.
+
+	"time.h"
+
+This is a basic module.
+
+	"math.h"
+
+This is a basic module.
+
+	"ctype.h"
+
+This is a basic module.
+
+	"stdlib.h"
+
+This is a basic module.
+
+	"conio.h"
+
+This is a basic module.
+
+	"stdio.h"
+
+This is a basic module.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+It has no modules
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Functions are: (22)
+
+	Function name: addqueue
+	Returns: void
+	The arguments are:
+		queue pq
+		plane item
+
+	Function name: apaddqueue
+	Returns: void
+	The arguments are:
+		airport ap
+		char type
+
+	Function name: apdelqueue
+	Returns: plane
+	The arguments are:
+		airport ap
+		char type
+
+	Function name: apempty
+	Returns: int
+	The arguments are:
+		airport ap
+		char type
+
+	Function name: apfull
+	Returns: int
+	The arguments are:
+		airport ap
+		char type
+
+	Function name: apsize
+	Returns: int
+	The arguments are:
+		airport ap
+		char type
+
+	Function name: conclude
+	Returns: void
+	The arguments are:
+		airport ap
+		int endtime
+
+	Function name: delqueue
+	Returns: plane
+	The arguments are:
+		queue pq
+
+	Function name: empty
+	Returns: int
+	The arguments are:
+		queue q
+
+	Function name: fly
+	Returns: void
+	The arguments are:
+		airport ap
+		plane pl
+		int curtime
+
+	Function name: full
+	Returns: int
+	The arguments are:
+		queue q
+
+	Function name: idle
+	Returns: void
+	The arguments are:
+		airport ap
+		int curtime
+
+	Function name: initairport
+	Returns: void
+	The arguments are:
+		airport ap
+
+	Function name: initqueue
+	Returns: void
+	The arguments are:
+		queue pq
+
+	Function name: land
+	Returns: void
+	The arguments are:
+		airport ap
+		plane pl
+		int curtime
+
+MainFunction
+	Global Sentences are :
+	Function name: myrandomize
+	Returns: void
+	The arguments are:
+
+	Function name: newplane
+	Returns: void
+	The arguments are:
+		airport ap
+		int curtime
+		int action
+
+	Function name: randomnumber
+	Returns: int
+	The arguments are:
+		double expectedvalue
+
+	Function name: refuse
+	Returns: void
+	The arguments are:
+		airport ap
+		int action
+
+	Function name: size
+	Returns: int
+	The arguments are:
+		queue q
+
+	Function name: start
+	Returns: void
+	The arguments are:
+		int endtime
+		double expectarrive
+		double expectdepart
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ADTs are: (3)
+
+	The name is : plane
+	The variables are: 
+		int id
+		int tm
+	The name is : queue
+	The variables are: 
+		int count
+		int front
+		int rear
+		plane p[3]
+
+	The name is : airport
+	The variables are: 
+		queue landing
+		queue takeoff
+		queue pl
+		queue pt
+		int idletime
+		int takeoffwait
+		int ntakeoff
+		plane pln
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+It has no attributes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+GlobalVariables are: (3)
+
+ARRIVE=0
+DEPART=1
+MAX=3
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Candidate classes are:(25)
+
+CandidateClass: addqueue
+	Attributes are: 
+			queue pq
+			plane item
+	Methods are: 
+			Method name: addqueue
+	Returns: void
+	The arguments are:
+		queue pq
+		plane item
+CandidateClass: airport
+	Attributes are: 
+			queue landing
+			queue takeoff
+			queue pl
+			queue pt
+			int idletime
+			int takeoffwait
+			int ntakeoff
+			plane pln
+	Methods are: 
+			Method name: apaddqueue
+	Returns: void
+	The arguments are:
+		airport ap
+		char type
+			Method name: apdelqueue
+	Returns: plane
+	The arguments are:
+		airport ap
+		char type
+			Method name: apempty
+	Returns: int
+	The arguments are:
+		airport ap
+		char type
+			Method name: apfull
+	Returns: int
+	The arguments are:
+		airport ap
+		char type
+			Method name: apsize
+	Returns: int
+	The arguments are:
+		airport ap
+		char type
+			Method name: conclude
+	Returns: void
+	The arguments are:
+		airport ap
+		int endtime
+			Method name: fly
+	Returns: void
+	The arguments are:
+		airport ap
+		plane pl
+		int curtime
+			Method name: idle
+	Returns: void
+	The arguments are:
+		airport ap
+		int curtime
+			Method name: initairport
+	Returns: void
+	The arguments are:
+		airport ap
+			Method name: land
+	Returns: void
+	The arguments are:
+		airport ap
+		plane pl
+		int curtime
+			Method name: newplane
+	Returns: void
+	The arguments are:
+		airport ap
+		int curtime
+		int action
+			Method name: refuse
+	Returns: void
+	The arguments are:
+		airport ap
+		int action
+CandidateClass: apaddqueue
+	Attributes are: 
+			airport ap
+			char type
+	Methods are: 
+			Method name: apaddqueue
+	Returns: void
+	The arguments are:
+		airport ap
+		char type
+CandidateClass: apdelqueue
+	Attributes are: 
+			airport ap
+			char type
+			plane return
+	Methods are: 
+			Method name: apdelqueue
+	Returns: plane
+	The arguments are:
+		airport ap
+		char type
+CandidateClass: apempty
+	Attributes are: 
+			airport ap
+			char type
+			int return
+	Methods are: 
+			Method name: apempty
+	Returns: int
+	The arguments are:
+		airport ap
+		char type
+CandidateClass: apfull
+	Attributes are: 
+			airport ap
+			char type
+			int return
+	Methods are: 
+			Method name: apfull
+	Returns: int
+	The arguments are:
+		airport ap
+		char type
+CandidateClass: apsize
+	Attributes are: 
+			airport ap
+			char type
+			int return
+	Methods are: 
+			Method name: apsize
+	Returns: int
+	The arguments are:
+		airport ap
+		char type
+CandidateClass: conclude
+	Attributes are: 
+			airport ap
+			int endtime
+	Methods are: 
+			Method name: conclude
+	Returns: void
+	The arguments are:
+		airport ap
+		int endtime
+CandidateClass: delqueue
+	Attributes are: 
+			queue pq
+			plane return
+	Methods are: 
+			Method name: delqueue
+	Returns: plane
+	The arguments are:
+		queue pq
+CandidateClass: empty
+	Attributes are: 
+			queue q
+			int return
+	Methods are: 
+			Method name: empty
+	Returns: int
+	The arguments are:
+		queue q
+CandidateClass: fly
+	Attributes are: 
+			airport ap
+			plane pl
+			int curtime
+	Methods are: 
+			Method name: fly
+	Returns: void
+	The arguments are:
+		airport ap
+		plane pl
+		int curtime
+CandidateClass: full
+	Attributes are: 
+			queue q
+			int return
+	Methods are: 
+			Method name: full
+	Returns: int
+	The arguments are:
+		queue q
+CandidateClass: idle
+	Attributes are: 
+			airport ap
+			int curtime
+	Methods are: 
+			Method name: idle
+	Returns: void
+	The arguments are:
+		airport ap
+		int curtime
+CandidateClass: initairport
+	Attributes are: 
+			airport ap
+	Methods are: 
+			Method name: initairport
+	Returns: void
+	The arguments are:
+		airport ap
+			Method name: initqueue
+	Returns: void
+	The arguments are:
+		queue pq
+CandidateClass: initqueue
+	Attributes are: 
+			queue pq
+	Methods are: 
+			Method name: initqueue
+	Returns: void
+	The arguments are:
+		queue pq
+CandidateClass: land
+	Attributes are: 
+			airport ap
+			plane pl
+			int curtime
+	Methods are: 
+			Method name: land
+	Returns: void
+	The arguments are:
+		airport ap
+		plane pl
+		int curtime
+CandidateClass: main
+	Attributes are: 
+			int return
+	Methods are: 
+			Method name: main
+	Returns: int
+	The arguments are:
+			Method name: initairport
+	Returns: void
+	The arguments are:
+		airport ap
+			Method name: start
+	Returns: void
+	The arguments are:
+		int endtime
+		double expectarrive
+		double expectdepart
+			Method name: conclude
+	Returns: void
+	The arguments are:
+		airport ap
+		int endtime
+CandidateClass: myrandomize
+	Attributes are: 
+	Methods are: 
+			Method name: myrandomize
+	Returns: void
+	The arguments are:
+CandidateClass: newplane
+	Attributes are: 
+			airport ap
+			int curtime
+			int action
+	Methods are: 
+			Method name: newplane
+	Returns: void
+	The arguments are:
+		airport ap
+		int curtime
+		int action
+CandidateClass: plane
+	Attributes are: 
+			int id
+			int tm
+	Methods are: 
+			Method name: addqueue
+	Returns: void
+	The arguments are:
+		queue pq
+		plane item
+			Method name: apdelqueue
+	Returns: plane
+	The arguments are:
+		airport ap
+		char type
+			Method name: delqueue
+	Returns: plane
+	The arguments are:
+		queue pq
+			Method name: fly
+	Returns: void
+	The arguments are:
+		airport ap
+		plane pl
+		int curtime
+			Method name: land
+	Returns: void
+	The arguments are:
+		airport ap
+		plane pl
+		int curtime
+CandidateClass: queue
+	Attributes are: 
+			int count
+			int front
+			int rear
+			plane p[3]
+
+	Methods are: 
+			Method name: addqueue
+	Returns: void
+	The arguments are:
+		queue pq
+		plane item
+			Method name: delqueue
+	Returns: plane
+	The arguments are:
+		queue pq
+			Method name: empty
+	Returns: int
+	The arguments are:
+		queue q
+			Method name: full
+	Returns: int
+	The arguments are:
+		queue q
+			Method name: initqueue
+	Returns: void
+	The arguments are:
+		queue pq
+			Method name: size
+	Returns: int
+	The arguments are:
+		queue q
+CandidateClass: randomnumber
+	Attributes are: 
+			double expectedvalue
+			int return
+	Methods are: 
+			Method name: randomnumber
+	Returns: int
+	The arguments are:
+		double expectedvalue
+CandidateClass: refuse
+	Attributes are: 
+			airport ap
+			int action
+	Methods are: 
+			Method name: refuse
+	Returns: void
+	The arguments are:
+		airport ap
+		int action
+CandidateClass: size
+	Attributes are: 
+			queue q
+			int return
+	Methods are: 
+			Method name: size
+	Returns: int
+	The arguments are:
+		queue q
+CandidateClass: start
+	Attributes are: 
+			int endtime
+			double expectarrive
+			double expectdepart
+	Methods are: 
+			Method name: start
+	Returns: void
+	The arguments are:
+		int endtime
+		double expectarrive
+		double expectdepart
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

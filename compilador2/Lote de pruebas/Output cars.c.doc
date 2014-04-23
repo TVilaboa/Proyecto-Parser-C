@@ -1,0 +1,299 @@
+Analisys for : C:\Users\Toto\Projects\Proyecto Nacho Cassol\Proyecto-Parser-C\compilador2\Lote de pruebas\Case 7\cars.c
+
+Modules are: (6)
+
+	"stdio.h"
+
+This is a basic module.
+
+	"stdlib.h"
+
+This is a basic module.
+
+	"queue.h"
+
+	The functions in this module are: 
+
+	Function name: create_car
+	Returns: void
+	The arguments are:
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: delQueue
+	Returns: Node
+	The arguments are:
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: display
+	Returns: void
+	The arguments are:
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: push
+	Returns: void
+	The arguments are:
+		car value
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: set_completion_time
+	Returns: void
+	The arguments are:
+		car car
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: sizeofqueue
+	Returns: int
+	The arguments are:
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	The modules of this module are: 
+
+	"conio.h"
+
+	The functions in this module are: 
+
+	Function name: create_car
+	Returns: void
+	The arguments are:
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: set_completion_time
+	Returns: void
+	The arguments are:
+		car car
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	This module has no modules 
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	"car.h"
+
+	The functions in this module are: 
+
+	Function name: create_car
+	Returns: void
+	The arguments are:
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: set_completion_time
+	Returns: void
+	The arguments are:
+		car car
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	The modules of this module are: 
+
+	"time.h"
+
+This is a basic module.
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+
+	"conio.h"
+
+	The functions in this module are: 
+
+	Function name: create_car
+	Returns: void
+	The arguments are:
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: set_completion_time
+	Returns: void
+	The arguments are:
+		car car
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	This module has no modules 
+
+	"car.h"
+
+	The functions in this module are: 
+
+	Function name: create_car
+	Returns: void
+	The arguments are:
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: set_completion_time
+	Returns: void
+	The arguments are:
+		car car
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	The modules of this module are: 
+
+	"time.h"
+
+This is a basic module.
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+
+	"time.h"
+
+This is a basic module.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Functions are: (8)
+
+	Function name: addCar
+	Returns: void
+	The arguments are:
+
+	Function name: create_car
+	Returns: void
+	The arguments are:
+
+	Function name: delQueue
+	Returns: Node
+	The arguments are:
+
+	Function name: display
+	Returns: void
+	The arguments are:
+
+MainFunction
+	Global Sentences are :
+	Function name: push
+	Returns: void
+	The arguments are:
+		car value
+
+	Function name: set_completion_time
+	Returns: void
+	The arguments are:
+		car car
+
+	Function name: sizeofqueue
+	Returns: int
+	The arguments are:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ADTs are: (2)
+
+	The name is : car
+	The variables are: 
+		time_t start
+		time_t completion
+	The name is : Node
+	The variables are: 
+		car data
+		Node next
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Variables are: (3)
+
+	int siz
+	Node rear
+	Node front
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+It has no GlobalVariables
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Candidate classes are:(10)
+
+CandidateClass: Node
+	Attributes are: 
+			car data
+			Node next
+	Methods are: 
+			Method name: delQueue
+	Returns: Node
+	The arguments are:
+CandidateClass: addCar
+	Attributes are: 
+	Methods are: 
+			Method name: addCar
+	Returns: void
+	The arguments are:
+			Method name: create_car
+	Returns: void
+	The arguments are:
+CandidateClass: car
+	Attributes are: 
+			time_t start
+			time_t completion
+	Methods are: 
+			Method name: push
+	Returns: void
+	The arguments are:
+		car value
+			Method name: set_completion_time
+	Returns: void
+	The arguments are:
+		car car
+CandidateClass: create_car
+	Attributes are: 
+	Methods are: 
+			Method name: create_car
+	Returns: void
+	The arguments are:
+CandidateClass: delQueue
+	Attributes are: 
+			Node rear
+			Node return
+	Methods are: 
+			Method name: delQueue
+	Returns: Node
+	The arguments are:
+CandidateClass: display
+	Attributes are: 
+			Node rear
+	Methods are: 
+			Method name: display
+	Returns: void
+	The arguments are:
+CandidateClass: main
+	Attributes are: 
+			Node front
+			int return
+	Methods are: 
+			Method name: main
+	Returns: int
+	The arguments are:
+CandidateClass: push
+	Attributes are: 
+			car value
+			Node front
+			int siz
+	Methods are: 
+			Method name: push
+	Returns: void
+	The arguments are:
+		car value
+CandidateClass: set_completion_time
+	Attributes are: 
+			car car
+	Methods are: 
+			Method name: set_completion_time
+	Returns: void
+	The arguments are:
+		car car
+CandidateClass: sizeofqueue
+	Attributes are: 
+			int siz
+			int return
+	Methods are: 
+			Method name: sizeofqueue
+	Returns: int
+	The arguments are:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

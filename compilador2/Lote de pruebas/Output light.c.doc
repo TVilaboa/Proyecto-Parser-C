@@ -1,0 +1,743 @@
+Analisys for : C:\Users\Toto\Projects\Proyecto Nacho Cassol\Proyecto-Parser-C\compilador2\Lote de pruebas\Case 4\light.c
+
+Modules are: (5)
+
+	"stdlib.h"
+
+This is a basic module.
+
+	"stdio.h"
+
+This is a basic module.
+
+	"list.h"
+
+	The functions in this module are: 
+
+	Function name: createBulb
+	Returns: void
+	The arguments are:
+		lightbulb bulb
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: deltree
+	Returns: void
+	The arguments are:
+		node tree
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: destroy
+	Returns: void
+	The arguments are:
+		List ilist
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: getitem
+	Returns: lightbulb
+	The arguments are:
+		List ilist
+		int n
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: initlist
+	Returns: void
+	The arguments are:
+		List ilist
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: insert
+	Returns: void
+	The arguments are:
+		node tree
+		lightbulb val
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: insertback
+	Returns: void
+	The arguments are:
+		List ilist
+		lightbulb val
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: insertfront
+	Returns: void
+	The arguments are:
+		List ilist
+		lightbulb val
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: length
+	Returns: int
+	The arguments are:
+		List ilist
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: print_inorder
+	Returns: void
+	The arguments are:
+		node tree
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: print_postorder
+	Returns: void
+	The arguments are:
+		node tree
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: print_preorder
+	Returns: void
+	The arguments are:
+		node tree
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: printlightBulb
+	Returns: void
+	The arguments are:
+		node tree
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: search
+	Returns: node
+	The arguments are:
+		node tree
+		lightbulb val
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: setitem
+	Returns: void
+	The arguments are:
+		List ilist
+		int n
+		lightbulb val
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	This module has no modules 
+
+	"tree.h"
+
+	The functions in this module are: 
+
+	Function name: createBulb
+	Returns: void
+	The arguments are:
+		lightbulb bulb
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: deltree
+	Returns: void
+	The arguments are:
+		node tree
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: insert
+	Returns: void
+	The arguments are:
+		node tree
+		lightbulb val
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: print_inorder
+	Returns: void
+	The arguments are:
+		node tree
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: print_postorder
+	Returns: void
+	The arguments are:
+		node tree
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: print_preorder
+	Returns: void
+	The arguments are:
+		node tree
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: printlightBulb
+	Returns: void
+	The arguments are:
+		node tree
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: search
+	Returns: node
+	The arguments are:
+		node tree
+		lightbulb val
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	This module has no modules 
+
+	"lightbulb.h"
+
+	The functions in this module are: 
+
+	Function name: createBulb
+	Returns: void
+	The arguments are:
+		lightbulb bulb
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	This module has no modules 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Functions are: (22)
+
+	Function name: addbulb
+	Returns: void
+	The arguments are:
+		node root
+
+	Function name: compress
+	Returns: void
+	The arguments are:
+		node tree
+		node newroot
+
+	Function name: compresstree
+	Returns: void
+	The arguments are:
+		node root
+
+	Function name: createBulb
+	Returns: void
+	The arguments are:
+		lightbulb bulb
+
+	Function name: deletebulb
+	Returns: void
+	The arguments are:
+		node root
+
+	Function name: deltree
+	Returns: void
+	The arguments are:
+		node tree
+
+	Function name: destroy
+	Returns: void
+	The arguments are:
+		List ilist
+
+	Function name: editbulb
+	Returns: void
+	The arguments are:
+		node root
+
+	Function name: getitem
+	Returns: lightbulb
+	The arguments are:
+		List ilist
+		int n
+
+	Function name: initlist
+	Returns: void
+	The arguments are:
+		List ilist
+
+	Function name: insert
+	Returns: void
+	The arguments are:
+		node tree
+		lightbulb val
+
+	Function name: insertback
+	Returns: void
+	The arguments are:
+		List ilist
+		lightbulb val
+
+	Function name: insertfront
+	Returns: void
+	The arguments are:
+		List ilist
+		lightbulb val
+
+	Function name: length
+	Returns: int
+	The arguments are:
+		List ilist
+
+MainFunction
+	Global Sentences are :int n = length ( mylist ) ; 
+	Function name: print_inorder
+	Returns: void
+	The arguments are:
+		node tree
+
+	Function name: print_postorder
+	Returns: void
+	The arguments are:
+		node tree
+
+	Function name: print_preorder
+	Returns: void
+	The arguments are:
+		node tree
+
+	Function name: printlightBulb
+	Returns: void
+	The arguments are:
+		node tree
+
+	Function name: printtree
+	Returns: void
+	The arguments are:
+		node root
+
+	Function name: search
+	Returns: node
+	The arguments are:
+		node tree
+		lightbulb val
+
+	Function name: setitem
+	Returns: void
+	The arguments are:
+		List ilist
+		int n
+		lightbulb val
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ADTs are: (4)
+
+	The name is : lightbulb
+	The variables are: 
+		char code[5]
+
+		int watts
+		int type
+		int cant
+		int active
+	The name is : node
+	The variables are: 
+		lightbulb data
+		node left
+	The name is : Listitem
+	The variables are: 
+		lightbulb data
+		Listitem next
+	The name is : List
+	The variables are: 
+		Listitem head
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+It has no attributes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+It has no GlobalVariables
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Candidate classes are:(26)
+
+CandidateClass: List
+	Attributes are: 
+			Listitem head
+	Methods are: 
+			Method name: destroy
+	Returns: void
+	The arguments are:
+		List ilist
+			Method name: getitem
+	Returns: lightbulb
+	The arguments are:
+		List ilist
+		int n
+			Method name: initlist
+	Returns: void
+	The arguments are:
+		List ilist
+			Method name: insertback
+	Returns: void
+	The arguments are:
+		List ilist
+		lightbulb val
+			Method name: insertfront
+	Returns: void
+	The arguments are:
+		List ilist
+		lightbulb val
+			Method name: length
+	Returns: int
+	The arguments are:
+		List ilist
+			Method name: setitem
+	Returns: void
+	The arguments are:
+		List ilist
+		int n
+		lightbulb val
+CandidateClass: Listitem
+	Attributes are: 
+			lightbulb data
+			Listitem next
+	Methods are: 
+CandidateClass: addbulb
+	Attributes are: 
+			node root
+	Methods are: 
+			Method name: addbulb
+	Returns: void
+	The arguments are:
+		node root
+			Method name: createBulb
+	Returns: void
+	The arguments are:
+		lightbulb bulb
+			Method name: insert
+	Returns: void
+	The arguments are:
+		node tree
+		lightbulb val
+CandidateClass: compress
+	Attributes are: 
+			node tree
+			node newroot
+	Methods are: 
+			Method name: compress
+	Returns: void
+	The arguments are:
+		node tree
+		node newroot
+CandidateClass: compresstree
+	Attributes are: 
+			node root
+	Methods are: 
+			Method name: compresstree
+	Returns: void
+	The arguments are:
+		node root
+CandidateClass: createBulb
+	Attributes are: 
+			lightbulb bulb
+	Methods are: 
+			Method name: createBulb
+	Returns: void
+	The arguments are:
+		lightbulb bulb
+CandidateClass: deletebulb
+	Attributes are: 
+			node root
+	Methods are: 
+			Method name: deletebulb
+	Returns: void
+	The arguments are:
+		node root
+			Method name: createBulb
+	Returns: void
+	The arguments are:
+		lightbulb bulb
+			Method name: search
+	Returns: node
+	The arguments are:
+		node tree
+		lightbulb val
+CandidateClass: deltree
+	Attributes are: 
+			node tree
+	Methods are: 
+			Method name: deltree
+	Returns: void
+	The arguments are:
+		node tree
+CandidateClass: destroy
+	Attributes are: 
+			List ilist
+	Methods are: 
+			Method name: destroy
+	Returns: void
+	The arguments are:
+		List ilist
+CandidateClass: editbulb
+	Attributes are: 
+			node root
+	Methods are: 
+			Method name: editbulb
+	Returns: void
+	The arguments are:
+		node root
+			Method name: createBulb
+	Returns: void
+	The arguments are:
+		lightbulb bulb
+			Method name: search
+	Returns: node
+	The arguments are:
+		node tree
+		lightbulb val
+CandidateClass: getitem
+	Attributes are: 
+			List ilist
+			int n
+			lightbulb return
+	Methods are: 
+			Method name: getitem
+	Returns: lightbulb
+	The arguments are:
+		List ilist
+		int n
+CandidateClass: initlist
+	Attributes are: 
+			List ilist
+	Methods are: 
+			Method name: initlist
+	Returns: void
+	The arguments are:
+		List ilist
+CandidateClass: insert
+	Attributes are: 
+			node tree
+			lightbulb val
+	Methods are: 
+			Method name: insert
+	Returns: void
+	The arguments are:
+		node tree
+		lightbulb val
+CandidateClass: insertback
+	Attributes are: 
+			List ilist
+			lightbulb val
+	Methods are: 
+			Method name: insertback
+	Returns: void
+	The arguments are:
+		List ilist
+		lightbulb val
+CandidateClass: insertfront
+	Attributes are: 
+			List ilist
+			lightbulb val
+	Methods are: 
+			Method name: insertfront
+	Returns: void
+	The arguments are:
+		List ilist
+		lightbulb val
+CandidateClass: length
+	Attributes are: 
+			List ilist
+			int return
+	Methods are: 
+			Method name: length
+	Returns: int
+	The arguments are:
+		List ilist
+CandidateClass: lightbulb
+	Attributes are: 
+			char code[5]
+
+			int watts
+			int type
+			int cant
+			int active
+	Methods are: 
+			Method name: createBulb
+	Returns: void
+	The arguments are:
+		lightbulb bulb
+			Method name: getitem
+	Returns: lightbulb
+	The arguments are:
+		List ilist
+		int n
+			Method name: insert
+	Returns: void
+	The arguments are:
+		node tree
+		lightbulb val
+			Method name: insertback
+	Returns: void
+	The arguments are:
+		List ilist
+		lightbulb val
+			Method name: insertfront
+	Returns: void
+	The arguments are:
+		List ilist
+		lightbulb val
+			Method name: search
+	Returns: node
+	The arguments are:
+		node tree
+		lightbulb val
+			Method name: setitem
+	Returns: void
+	The arguments are:
+		List ilist
+		int n
+		lightbulb val
+CandidateClass: main
+	Attributes are: 
+	Methods are: 
+			Method name: main
+	Returns: void
+	The arguments are:
+			Method name: initlist
+	Returns: void
+	The arguments are:
+		List ilist
+			Method name: length
+	Returns: int
+	The arguments are:
+		List ilist
+CandidateClass: node
+	Attributes are: 
+			lightbulb data
+			node left
+	Methods are: 
+			Method name: addbulb
+	Returns: void
+	The arguments are:
+		node root
+			Method name: compress
+	Returns: void
+	The arguments are:
+		node tree
+		node newroot
+			Method name: compresstree
+	Returns: void
+	The arguments are:
+		node root
+			Method name: deletebulb
+	Returns: void
+	The arguments are:
+		node root
+			Method name: deltree
+	Returns: void
+	The arguments are:
+		node tree
+			Method name: editbulb
+	Returns: void
+	The arguments are:
+		node root
+			Method name: insert
+	Returns: void
+	The arguments are:
+		node tree
+		lightbulb val
+			Method name: print_inorder
+	Returns: void
+	The arguments are:
+		node tree
+			Method name: print_postorder
+	Returns: void
+	The arguments are:
+		node tree
+			Method name: print_preorder
+	Returns: void
+	The arguments are:
+		node tree
+			Method name: printlightBulb
+	Returns: void
+	The arguments are:
+		node tree
+			Method name: printtree
+	Returns: void
+	The arguments are:
+		node root
+			Method name: search
+	Returns: node
+	The arguments are:
+		node tree
+		lightbulb val
+CandidateClass: print_inorder
+	Attributes are: 
+			node tree
+	Methods are: 
+			Method name: print_inorder
+	Returns: void
+	The arguments are:
+		node tree
+CandidateClass: print_postorder
+	Attributes are: 
+			node tree
+	Methods are: 
+			Method name: print_postorder
+	Returns: void
+	The arguments are:
+		node tree
+CandidateClass: print_preorder
+	Attributes are: 
+			node tree
+	Methods are: 
+			Method name: print_preorder
+	Returns: void
+	The arguments are:
+		node tree
+CandidateClass: printlightBulb
+	Attributes are: 
+			node tree
+	Methods are: 
+			Method name: printlightBulb
+	Returns: void
+	The arguments are:
+		node tree
+CandidateClass: printtree
+	Attributes are: 
+			node root
+	Methods are: 
+			Method name: printtree
+	Returns: void
+	The arguments are:
+		node root
+			Method name: print_preorder
+	Returns: void
+	The arguments are:
+		node tree
+			Method name: print_inorder
+	Returns: void
+	The arguments are:
+		node tree
+			Method name: print_postorder
+	Returns: void
+	The arguments are:
+		node tree
+CandidateClass: search
+	Attributes are: 
+			node tree
+			lightbulb val
+			node return
+	Methods are: 
+			Method name: search
+	Returns: node
+	The arguments are:
+		node tree
+		lightbulb val
+CandidateClass: setitem
+	Attributes are: 
+			List ilist
+			int n
+			lightbulb val
+	Methods are: 
+			Method name: setitem
+	Returns: void
+	The arguments are:
+		List ilist
+		int n
+		lightbulb val
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
