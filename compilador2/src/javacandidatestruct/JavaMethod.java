@@ -3,6 +3,7 @@ package javacandidatestruct;
 import compiler.cstruct.Attribute;
 import compiler.cstruct.Function;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -10,7 +11,7 @@ import java.util.List;
  * Date: 3/7/13
  * Time: 6:43 PM
  */
-public class JavaMethod {
+public class JavaMethod implements Serializable {
 
     private String returnType;
     private String name;

@@ -4,10 +4,7 @@ import compiler.InvalidExpressionException;
 
 import java.io.IOException;
 import java.io.Reader;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Stack;
+import java.util.*;
 
 /**
  * User: Javier Isoldi
@@ -156,6 +153,13 @@ public class TokenListFactory {
                         throw new InvalidExpressionException(readToken.toString());
                 }
             }
+        }
+        Token token = null;
+        for (Iterator<Token> iterator = tokensList.iterator(); iterator.hasNext(); ) {
+            token = iterator.next();
+            if (token.getType() == TokenType.COMMENT) //delets comments
+                iterator.remove();
+
         }
 
         return tokensList;

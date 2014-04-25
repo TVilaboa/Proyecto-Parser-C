@@ -1,11 +1,13 @@
 package compiler.cstruct;
 
+import java.io.Serializable;
+
 /**
  * User: Javier Isoldi
  * Date: 4/29/13
  * Time: 12:55 PM
  */
-public class Attribute implements Comparable<Attribute>{
+public class Attribute implements Comparable<Attribute>, Serializable {
     private String type; // type of variable
     private String name; // name of the variable
     private boolean isArray;

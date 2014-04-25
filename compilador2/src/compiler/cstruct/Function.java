@@ -16,11 +16,11 @@ import java.util.*;
  */
 public class Function implements Comparable<Function> {
 
+    protected String body;
+    protected List<Token> bodyTokenList;
     private String returns;
     private String name;
     private List<Attribute> arguments;
-    protected String body;
-    protected List<Token> bodyTokenList;
     private Map<String, Integer> globalAttributes;
     private List<Attribute> globalVariablesUsed = new ArrayList<>();
     private List<Function> usedFunctions = new ArrayList<>();
@@ -59,16 +59,12 @@ public class Function implements Comparable<Function> {
 
     }
 
-    public List<Function> getUsedFunctions() {
-        return usedFunctions;
-    }
-
     // args : token = initial bracket, tokenIterator = iterator of the following tokens
     public static List<Attribute> getArguments(Token token, Iterator<Token> tokenIterator, List<Adt> adts) throws InvalidExpressionException {
         List<Attribute> arguments = new ArrayList<Attribute>();
         token = tokenIterator.next();
 
-        while (token.getType() != TokenType.CLOSING_BRACKET) {
+        while (token.getType() != TokenType.CLOSING_BRACKET && token.getType() != TokenType.SENTENCE_END) {
             if (token.getType() == TokenType.BASIC_TYPE) {
                 String type = token.getValue();
                 token = tokenIterator.next();
@@ -114,6 +110,13 @@ public class Function implements Comparable<Function> {
             attribute = new Attribute(type, "", true, 0);
             token = tokenIterator.next();
         } else if (token.getType() == TokenType.COMMA_OPERATOR || token.getType() == TokenType.CLOSING_BRACKET) {
+
+            attribute = new Attribute(type, "", false, 0);
+        } else if (type.equals("void")) {
+            while (token.getType() == TokenType.CLOSING_BRACKET || token.getType() == TokenType.OPENING_BRACKET
+                    || token.getValue().equals("void")) {
+                token = tokenIterator.next();
+            }
             attribute = new Attribute(type, "", false, 0);
         } else {
             throw new InvalidExpressionException(token.toString());
@@ -124,6 +127,10 @@ public class Function implements Comparable<Function> {
         }
 
         return token;
+    }
+
+    public List<Function> getUsedFunctions() {
+        return usedFunctions;
     }
 
     public boolean hasBody() {

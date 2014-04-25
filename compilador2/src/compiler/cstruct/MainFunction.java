@@ -17,13 +17,13 @@ import java.util.*;
  */
 public class MainFunction extends Function {
 
-    private List<Sentence> oldGlobalAttributes;
+    private List<Sentence> insideMainAttributes;
     private List<Sentence> sentenceList;
 
     public MainFunction(String returns, List<Attribute> arguments, String body, Map<String, Integer> globalAttributes,
                         List<Attribute> variables, Set<Function> functions) throws IOException, InvalidExpressionException {
         super(returns, "main", arguments, body, globalAttributes, variables, functions);
-        oldGlobalAttributes = new ArrayList<Sentence>();
+        insideMainAttributes = new ArrayList<Sentence>();
     }
 
     public List<Sentence> generateSentenceList(List<Adt> fileAdt, List<Attribute> fileAttributes,
@@ -58,11 +58,28 @@ public class MainFunction extends Function {
 
         this.sentenceList = sentenceList;
         for (Sentence sentence : sentenceList) {
-            if (sentence.getType() == SentenceType.ATTRIBUTE_DECLARATION_FROM_FUNCTION) {
-                oldGlobalAttributes.add(sentence);
+            if (sentence.getType() == SentenceType.ATTRIBUTE_DECLARATION_FROM_FUNCTION || sentence.getType() == SentenceType.ATTRIBUTE_DECLARATION ||
+                    sentence.getType() == SentenceType.ATTRIBUTE_DECLARATION_FROM_ATTRIBUTE) {
+                insideMainAttributes.add(sentence);
             }
         }
         return sentenceList;
+    }
+
+    public List<Sentence> getInsideMainAttributes() {
+        return insideMainAttributes;
+    }
+
+    public void setInsideMainAttributes(List<Sentence> insideMainAttributes) {
+        this.insideMainAttributes = insideMainAttributes;
+    }
+
+    public List<Sentence> getSentenceList() {
+        return sentenceList;
+    }
+
+    public void setSentenceList(List<Sentence> sentenceList) {
+        this.sentenceList = sentenceList;
     }
 
     private Sentence processKeyWord(Token token, Iterator<Token> tokenIterator, List<Attribute> fileAttributes,
@@ -255,7 +272,8 @@ public class MainFunction extends Function {
                 throw new InvalidExpressionException(token.toString());
             }
         }
-        sentences.add(sentence);
+        if (sentence != null)                    //happens when an attribute from an adt is modified from the main
+            sentences.add(sentence);
         if (token.getType() == TokenType.COMMA_OPERATOR) {
             processBasicType(firstToken, tokenIterator, fileAttributes, internalAttributes, fileDeclaredFunctions, sentences);
         }
@@ -379,7 +397,7 @@ public class MainFunction extends Function {
     public String toString() {
         String result = "MainFunction" +
                 "\n\tGlobal Sentences are :";
-        for (Sentence globalAttribute : oldGlobalAttributes) {
+        for (Sentence globalAttribute : insideMainAttributes) {
             result += globalAttribute.toString();
         }
 

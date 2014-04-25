@@ -3,13 +3,15 @@ package javacandidatestruct;
 
 import compiler.cstruct.Attribute;
 
+import java.io.Serializable;
+
 /**
  * User: Javier Isoldi
  * Date: 3/7/13
  * Time: 6:43 PM
  */
 
-public class JavaAttribute {
+public class JavaAttribute implements Serializable {
 
     private String type; // attribute type
     private String name; // attribute name

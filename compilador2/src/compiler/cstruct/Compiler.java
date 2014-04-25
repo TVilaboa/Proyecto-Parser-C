@@ -61,6 +61,12 @@ public class Compiler {
             mainFunction.generateSentenceList(adts, attributes, functions);
         }
         printLists();
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("elem.tmp"))) {
+            oos.writeObject(candidates.values().toArray()[0]);
+        } catch (IOException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "IOException" + e.getMessage());
+        }
     }
 
 
@@ -138,9 +144,7 @@ public class Compiler {
                     break;
             }
         }
-        if (mainFunction != null) {
-            functions.add(mainFunction);
-        }
+
         createCandidatesFromADTs();  //start merging the 4 independent lists (functions, modules, vars and ADT)
         //createCandidatesFromAttributes();
         createCandidatesFromFunction();
@@ -454,18 +458,18 @@ public class Compiler {
         printSimple(attributes, "Variables are: ", "It has no attributes");
         printSimple(defines.entrySet(), "GlobalVariables are: ", "It has no GlobalVariables");
         printSimple(candidates.values(), "Candidate classes are:", "No candidates are suggested");
-
+        printSimple(mainFunction.getInsideMainAttributes(), "InsideMainAttributes are:", "Main doesnt have inside attributes");
        /* if (mainFunction != null) {
             System.out.println("+------------------------------------+");
             System.out.println(mainFunction);
         }*/
         System.out.println(output.toString());
-        File f = new File("Output " + myFile.getName() + ".doc");
-        try (PrintWriter pr = new PrintWriter(new BufferedWriter(new FileWriter(f)))) {
-            pr.write(output.toString());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        File f = new File("Output " + myFile.getName() + ".doc");
+//        try (PrintWriter pr = new PrintWriter(new BufferedWriter(new FileWriter(f)))) {
+//            pr.write(output.toString());
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
     private void printSimple(Collection list, String nonEmptyListMessage, String emptyListMessage) {

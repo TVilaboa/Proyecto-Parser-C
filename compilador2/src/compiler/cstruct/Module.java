@@ -42,7 +42,8 @@ public class Module {
                 "signal.h", "stdarg.h", "stdbool.h",
                 "stdint.h", "stddef.h", "stdio.h",
                 "stdlib.h", "string.h", "tgmath.h",
-                "time.h", "wchar.h", "wctype.h", "windows.h", "conio.h"};
+                "time.h", "wchar.h", "wctype.h",
+                "windows.h", "conio.h", "fcntl.h", "unistd.h"};
     }
 
     public List<Attribute> getAtributes() {

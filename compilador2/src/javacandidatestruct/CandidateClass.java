@@ -2,6 +2,7 @@ package javacandidatestruct;
 
 import compiler.cstruct.Attribute;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.List;
  * Time: 17:02
  * To change this template use File | Settings | File Templates.
  */
-public class CandidateClass {
+public class CandidateClass implements Serializable {
     private List<JavaAttribute> attributes;
     private List<JavaMethod> methods;
     private String name;
