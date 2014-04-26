@@ -29,6 +29,38 @@ public class JavaAttribute implements Serializable {
         return new JavaAttribute(attribute.getType(), attribute.getName(), attribute.isArray(), attribute.getArrayCapax());
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Boolean getIsArray() {
+        return isArray;
+    }
+
+    public void setIsArray(Boolean isArray) {
+        this.isArray = isArray;
+    }
+
+    public int getArrayCapacity() {
+        return arrayCapacity;
+    }
+
+    public void setArrayCapacity(int arrayCapacity) {
+        this.arrayCapacity = arrayCapacity;
+    }
+
     public String toString() {
         if (!isArray) {
             return "\t" + (type + " " + name);

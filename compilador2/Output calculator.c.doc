@@ -22,7 +22,7 @@ This is a basic module.
 It has no modules
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Functions are: (9)
+Functions are: (8)
 
 	Function name: addition
 	Returns: void
@@ -40,8 +40,6 @@ Functions are: (9)
 	Returns: int
 	The arguments are:
 
-MainFunction
-	Global Sentences are :
 	Function name: modulus
 	Returns: void
 	The arguments are:
@@ -68,7 +66,7 @@ It has no attributes
 It has no GlobalVariables
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Candidate classes are:(9)
+Candidate classes are:(8)
 
 CandidateClass: addition
 	Attributes are: 
@@ -95,13 +93,6 @@ CandidateClass: factorial
 			Method name: factorial
 	Returns: int
 	The arguments are:
-CandidateClass: main
-	Attributes are: 
-			int return
-	Methods are: 
-			Method name: main
-	Returns: int
-	The arguments are:
 CandidateClass: modulus
 	Attributes are: 
 	Methods are: 
@@ -126,4 +117,8 @@ CandidateClass: subtraction
 			Method name: subtraction
 	Returns: void
 	The arguments are:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+InsideMainAttributes are:(1)
+
+char Calc_oprn ; 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -60,12 +60,16 @@ public class Compiler {
         if (mainFunction != null) {
             mainFunction.generateSentenceList(adts, attributes, functions);
         }
+        createCandidatesFromModules();
         printLists();
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("elem.tmp"))) {
-            oos.writeObject(candidates.values().toArray()[0]);
-        } catch (IOException e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "IOException" + e.getMessage());
+
+    }
+
+    private void createCandidatesFromModules() {
+        for (Module module : modules) {
+            if (!module.isBasicModule()) {
+                candidates.put(module.getFile().getName(), new CandidateClass(module));
+            }
         }
     }
 
@@ -253,7 +257,7 @@ public class Compiler {
                     if (!name.equals("main")) {
                         addFunction(new Function(type, name, arguments, token.getValue(), defines, attributes, functions));
                     } else {
-                        mainFunction = new MainFunction(type, arguments, token.getValue(), defines, attributes, functions);
+                        mainFunction = new MainFunction(type, arguments, token.getValue(), defines, attributes, functions, candidates);
                     }
                 } else {
                     throw new InvalidExpressionException(token.toString());
@@ -464,12 +468,12 @@ public class Compiler {
             System.out.println(mainFunction);
         }*/
         System.out.println(output.toString());
-//        File f = new File("Output " + myFile.getName() + ".doc");
-//        try (PrintWriter pr = new PrintWriter(new BufferedWriter(new FileWriter(f)))) {
-//            pr.write(output.toString());
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        File f = new File("Output " + myFile.getName() + ".doc");
+        try (PrintWriter pr = new PrintWriter(new BufferedWriter(new FileWriter(f)))) {
+            pr.write(output.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void printSimple(Collection list, String nonEmptyListMessage, String emptyListMessage) {

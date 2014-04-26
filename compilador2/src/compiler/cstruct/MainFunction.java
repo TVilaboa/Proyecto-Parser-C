@@ -4,6 +4,8 @@ import compiler.InvalidExpressionException;
 import compiler.NoSupportedInstructionException;
 import compiler.fileanalyzer.Token;
 import compiler.fileanalyzer.TokenType;
+import javacandidatestruct.CandidateClass;
+import javacandidatestruct.JavaAttribute;
 
 import java.io.IOException;
 import java.util.*;
@@ -19,11 +21,21 @@ public class MainFunction extends Function {
 
     private List<Sentence> insideMainAttributes;
     private List<Sentence> sentenceList;
+    private Map<String, CandidateClass> candidates;
 
     public MainFunction(String returns, List<Attribute> arguments, String body, Map<String, Integer> globalAttributes,
-                        List<Attribute> variables, Set<Function> functions) throws IOException, InvalidExpressionException {
+                        List<Attribute> variables, Set<Function> functions, Map<String, CandidateClass> candidates) throws IOException, InvalidExpressionException {
         super(returns, "main", arguments, body, globalAttributes, variables, functions);
         insideMainAttributes = new ArrayList<Sentence>();
+        this.candidates = candidates;
+    }
+
+    public Map<String, CandidateClass> getCandidates() {
+        return candidates;
+    }
+
+    public void setCandidates(Map<String, CandidateClass> candidates) {
+        this.candidates = candidates;
     }
 
     public List<Sentence> generateSentenceList(List<Adt> fileAdt, List<Attribute> fileAttributes,
@@ -291,6 +303,11 @@ public class MainFunction extends Function {
 
     private void processIdentifier(Token token, Iterator<Token> tokenIterator, List<Adt> fileAdt, List<Attribute> fileAttributes,
                                    List<Attribute> internalAttributes, Set<Function> fileDeclaredFunctions, List<Sentence> sentenceList) throws NoSupportedInstructionException, InvalidExpressionException {
+        if (token.getValue().equals("fprintf")) {
+            processFprintF(tokenIterator);
+            return;
+        }
+
         if (!token.getValue().equals("printf") && !token.getValue().equals("scanf")) {
             Sentence sentence = null;
             for (Adt adt : fileAdt) {
@@ -403,5 +420,68 @@ public class MainFunction extends Function {
 
         return result;
 
+    }
+
+
+    //creates CCD from fprintf, using file name as name, and variables as attributes
+    private void processFprintF(Iterator<Token> tokenIterator) throws InvalidExpressionException {
+        Token token = tokenIterator.next();
+        CandidateClass clazz = null;
+        if (token.getType() == TokenType.OPENING_BRACKET) {
+            token = tokenIterator.next();
+            if (token.getType() == TokenType.IDENTIFIER) {
+                clazz = new CandidateClass(token.getValue());
+                if (candidates.containsKey(clazz.getName())) {
+                    clazz = candidates.get(clazz.getName());
+                } else {
+                    token = tokenIterator.next();
+                    if (token.getType() == TokenType.COMMA_OPERATOR) {
+                        token = tokenIterator.next();
+                        if (token.getType() == TokenType.CHAR_CHAIN) {
+                            token = tokenIterator.next();
+                            if (token.getType() == TokenType.COMMA_OPERATOR) {
+                                do {
+                                    token = tokenIterator.next();
+                                    if (token.getType() == TokenType.IDENTIFIER) {
+                                        for (Sentence sentence : insideMainAttributes) {
+                                            for (JavaAttribute attribute : clazz.getAttributes()) {
+                                                if (sentence.getSentenceComponents().get(1).getValue() != attribute.getName() &&
+                                                        sentence.getSentenceComponents().get(1).getValue().equals(token.getValue())) {                  //adds attributes that are defined outside any flow control
+                                                    if (sentence.getSentenceComponents().size() > 3) {
+                                                        String array = sentence.getSentenceComponents().get(2).getValue();
+                                                        clazz.addAttribute(new JavaAttribute(sentence.getSentenceComponents().get(0).getValue(),
+                                                                sentence.getSentenceComponents().get(1).getValue(), true,
+                                                                Integer.parseInt(array.substring(1, array.length() - 1))));
+                                                    } else
+                                                        clazz.addAttribute(new JavaAttribute(sentence.getSentenceComponents().get(0).getValue(),
+                                                                sentence.getSentenceComponents().get(1).getValue(), false, 0));
+                                                }
+                                            }
+
+                                        }
+                                    }
+                                }
+                                while (token.getType() != TokenType.CLOSING_BRACKET);
+                                token = tokenIterator.next();
+                                token = tokenIterator.next();
+                                candidates.put(clazz.getName(), clazz);
+                                return;
+
+                            } else {
+                                throw new InvalidExpressionException(token.toString());
+                            }
+                        } else {
+                            throw new InvalidExpressionException(token.toString());
+                        }
+                    } else {
+                        throw new InvalidExpressionException(token.toString());
+                    }
+                }
+            } else {
+                throw new InvalidExpressionException(token.toString());
+            }
+        } else {
+            throw new InvalidExpressionException(token.toString());
+        }
     }
 }

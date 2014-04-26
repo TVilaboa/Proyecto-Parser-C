@@ -22,7 +22,7 @@ This is a basic module.
 It has no modules
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Functions are: (6)
+Functions are: (5)
 
 	Function name: Account_information
 	Returns: void
@@ -44,8 +44,6 @@ Functions are: (6)
 	Returns: void
 	The arguments are:
 
-MainFunction
-	Global Sentences are :
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ADTs are: (1)
 
@@ -70,7 +68,7 @@ GlobalVariables are: (1)
 
 ACCOUNTS=20
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Candidate classes are:(7)
+Candidate classes are:(6)
 
 CandidateClass: Account_information
 	Attributes are: 
@@ -116,12 +114,8 @@ CandidateClass: display_options
 			Method name: display_options
 	Returns: void
 	The arguments are:
-CandidateClass: main
-	Attributes are: 
-			int num_acc
-			int return
-	Methods are: 
-			Method name: main
-	Returns: int
-	The arguments are:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+InsideMainAttributes are:(1)
+
+char option ; 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

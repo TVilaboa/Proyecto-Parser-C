@@ -1,11 +1,12 @@
 package javacandidatestruct;
 
+
 import compiler.cstruct.Attribute;
+import compiler.cstruct.Function;
+import compiler.cstruct.Module;
 
 import java.io.Serializable;
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by IntelliJ IDEA.
@@ -23,6 +24,31 @@ public class CandidateClass implements Serializable {
         this.name = name;
         attributes = new LinkedList<JavaAttribute>();
         methods = new LinkedList<JavaMethod>();
+    }
+
+    public CandidateClass(Module module) {
+        name = module.getFile().getName();
+        attributes = new LinkedList<JavaAttribute>();
+        methods = new LinkedList<JavaMethod>();
+        parseModule(module);
+        for (Module module1 : module.getModulesIncluded()) {
+            parseModule(module1);
+        }
+    }
+
+    private void parseModule(Module module) {
+        for (Function function : module.getFunctions()) {
+            addMethod(new JavaMethod(function.getReturns(), function.getName(),
+                    function.getArguments(), function.getBody()));
+        }
+        for (Attribute attribute : module.getAtributes()) {
+            addAttribute(new JavaAttribute(attribute.getType(), attribute.getName(),
+                    attribute.isArray(), attribute.getArrayCapax()));
+        }
+        for (Iterator<Map.Entry<String, Integer>> iterator = module.getDefines().entrySet().iterator(); iterator.hasNext(); ) {
+            Map.Entry<String, Integer> entry = iterator.next();
+            addAttribute(new JavaAttribute("Constant : ->" + entry.getValue(), entry.getKey(), false, 0));
+        }  //they are constants
     }
 
     public void addAttribute(JavaAttribute attribute) {
@@ -48,6 +74,14 @@ public class CandidateClass implements Serializable {
         }
         return result.toString();
 
+    }
+
+    public List<JavaAttribute> getAttributes() {
+        return attributes;
+    }
+
+    public void setAttributes(List<JavaAttribute> attributes) {
+        this.attributes = attributes;
     }
 
     public String generateName(Collection<Attribute> attributes){

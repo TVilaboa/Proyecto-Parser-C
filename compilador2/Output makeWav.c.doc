@@ -60,11 +60,9 @@ This is a basic module.
 	This module has no attributes 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Functions are: (1)
-
-MainFunction
-	Global Sentences are :
+It has no functions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 It has no ADTs
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -78,21 +76,26 @@ GlobalVariables are: (2)
 BUF_SIZE=88200
 S_RATE=44100
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Candidate classes are:(3)
+Candidate classes are:(4)
 
-CandidateClass: main
+CandidateClass: make_wav.c
 	Attributes are: 
-			int argc
-			char argv
-			int buffer[88200]
-
-			int return
 	Methods are: 
-			Method name: main
-	Returns: int
+			Method name: write_little_endian
+	Returns: void
 	The arguments are:
-		int argc
-		char argv
+		int word
+		int num_bytes
+		FILE wav_file
+			Method name: write_wav
+	Returns: void
+	The arguments are:
+		long num_samples
+		int data
+		int s_rate
+CandidateClass: make_wav.h
+	Attributes are: 
+	Methods are: 
 CandidateClass: write_little_endian
 	Attributes are: 
 			int word
@@ -123,4 +126,9 @@ CandidateClass: write_wav
 		int word
 		int num_bytes
 		FILE wav_file
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+InsideMainAttributes are:(2)
+
+int i ; 
+float t ; 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

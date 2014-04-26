@@ -225,14 +225,12 @@ This is a basic module.
 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Functions are: (4)
+Functions are: (3)
 
 	Function name: addTruck
 	Returns: void
 	The arguments are:
 
-MainFunction
-	Global Sentences are :
 	Function name: process
 	Returns: void
 	The arguments are:
@@ -271,13 +269,46 @@ Variables are: (1)
 It has no GlobalVariables
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Candidate classes are:(21)
+Candidate classes are:(24)
 
 CandidateClass: Node
 	Attributes are: 
 			truck Data
 			Node next
 	Methods are: 
+CandidateClass: Tree.h
+	Attributes are: 
+	Methods are: 
+			Method name: deltree
+	Returns: void
+	The arguments are:
+		node tree
+			Method name: insert
+	Returns: void
+	The arguments are:
+		node tree
+		school val
+			Method name: print_inorder
+	Returns: void
+	The arguments are:
+		node tree
+			Method name: print_postorder
+	Returns: void
+	The arguments are:
+		node tree
+			Method name: print_preorder
+	Returns: void
+	The arguments are:
+		node tree
+			Method name: printschool
+	Returns: void
+	The arguments are:
+		node tree
+			Method name: search
+	Returns: node
+	The arguments are:
+		node tree
+		school val
 CandidateClass: addTruck
 	Attributes are: 
 	Methods are: 
@@ -337,13 +368,6 @@ CandidateClass: insert
 	The arguments are:
 		node tree
 		school val
-CandidateClass: main
-	Attributes are: 
-			int return
-	Methods are: 
-			Method name: main
-	Returns: int
-	The arguments are:
 CandidateClass: node
 	Attributes are: 
 			school data
@@ -409,6 +433,29 @@ CandidateClass: push
 	Returns: void
 	The arguments are:
 		truck value
+CandidateClass: queue.h
+	Attributes are: 
+			int siz
+			Node rear
+			Node front
+	Methods are: 
+			Method name: delQueue
+	Returns: Node
+	The arguments are:
+			Method name: display
+	Returns: void
+	The arguments are:
+			Method name: push
+	Returns: void
+	The arguments are:
+		truck value
+			Method name: sizeofqueue
+	Returns: int
+	The arguments are:
+			Method name: createTruck
+	Returns: void
+	The arguments are:
+		int hour
 CandidateClass: report
 	Attributes are: 
 			node root
@@ -422,6 +469,15 @@ CandidateClass: school
 			int code
 			int cantboxes
 	Methods are: 
+CandidateClass: school.h
+	Attributes are: 
+	Methods are: 
+			Method name: createSchool
+	Returns: void
+	The arguments are:
+		school school
+		int code
+		int cant
 CandidateClass: search
 	Attributes are: 
 			node tree
@@ -447,4 +503,21 @@ CandidateClass: truck
 
 			int hours
 	Methods are: 
+CandidateClass: truck.h
+	Attributes are: 
+	Methods are: 
+			Method name: createTruck
+	Returns: void
+	The arguments are:
+		int hour
+			Method name: createSchool
+	Returns: void
+	The arguments are:
+		school school
+		int code
+		int cant
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+InsideMainAttributes are:(1)
+
+node root ; 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

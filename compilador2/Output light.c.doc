@@ -147,7 +147,7 @@ Created Modules are: (3)
 	This module has no attributes 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Functions are: (7)
+Functions are: (6)
 
 	Function name: addbulb
 	Returns: void
@@ -175,8 +175,6 @@ Functions are: (7)
 	The arguments are:
 		node root
 
-MainFunction
-	Global Sentences are :int n = length ( mylist ) 
 	Function name: printtree
 	Returns: void
 	The arguments are:
@@ -211,7 +209,7 @@ It has no attributes
 It has no GlobalVariables
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Candidate classes are:(26)
+Candidate classes are:(28)
 
 CandidateClass: List
 	Attributes are: 
@@ -355,12 +353,49 @@ CandidateClass: lightbulb
 			int cant
 			int active
 	Methods are: 
-CandidateClass: main
+CandidateClass: lightbulb.h
 	Attributes are: 
 	Methods are: 
-			Method name: main
+			Method name: createBulb
 	Returns: void
 	The arguments are:
+		lightbulb bulb
+CandidateClass: list.h
+	Attributes are: 
+	Methods are: 
+			Method name: destroy
+	Returns: void
+	The arguments are:
+		List ilist
+			Method name: getitem
+	Returns: lightbulb
+	The arguments are:
+		List ilist
+		int n
+			Method name: initlist
+	Returns: void
+	The arguments are:
+		List ilist
+			Method name: insertback
+	Returns: void
+	The arguments are:
+		List ilist
+		lightbulb val
+			Method name: insertfront
+	Returns: void
+	The arguments are:
+		List ilist
+		lightbulb val
+			Method name: length
+	Returns: int
+	The arguments are:
+		List ilist
+			Method name: setitem
+	Returns: void
+	The arguments are:
+		List ilist
+		int n
+		lightbulb val
 CandidateClass: node
 	Attributes are: 
 			lightbulb data
@@ -454,4 +489,44 @@ CandidateClass: setitem
 		List ilist
 		int n
 		lightbulb val
+CandidateClass: tree.h
+	Attributes are: 
+	Methods are: 
+			Method name: deltree
+	Returns: void
+	The arguments are:
+		node tree
+			Method name: insert
+	Returns: void
+	The arguments are:
+		node tree
+		lightbulb val
+			Method name: print_inorder
+	Returns: void
+	The arguments are:
+		node tree
+			Method name: print_postorder
+	Returns: void
+	The arguments are:
+		node tree
+			Method name: print_preorder
+	Returns: void
+	The arguments are:
+		node tree
+			Method name: printlightBulb
+	Returns: void
+	The arguments are:
+		node tree
+			Method name: search
+	Returns: node
+	The arguments are:
+		node tree
+		lightbulb val
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+InsideMainAttributes are:(4)
+
+node root ; 
+List mylist ; 
+int n = length ( mylist ) 
+int menu ; 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -101,11 +101,9 @@ This is a basic module.
 	This module has no attributes 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Functions are: (1)
-
-MainFunction
-	Global Sentences are :
+It has no functions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 ADTs are: (1)
 
 	The name is : STUDENT_FINAL
@@ -183,13 +181,6 @@ CandidateClass: init_finals
 	The arguments are:
 		STUDENT_FINAL finals[0]
 
-CandidateClass: main
-	Attributes are: 
-			int return
-	Methods are: 
-			Method name: main
-	Returns: int
-	The arguments are:
 CandidateClass: print_average_per_student
 	Attributes are: 
 			STUDENT_FINAL finals[0]
@@ -233,4 +224,58 @@ CandidateClass: search_exams_per_student
 		int code
 		STUDENT_FINAL finals[0]
 
+CandidateClass: student.h
+	Attributes are: 
+			Constant : ->10 GRADES
+	Methods are: 
+			Method name: BubbleSort
+	Returns: void
+	The arguments are:
+		STUDENT_FINAL average[0]
+
+		int array_size
+			Method name: average_per_student
+	Returns: int
+	The arguments are:
+		int code
+		STUDENT_FINAL finals[0]
+
+			Method name: averages
+	Returns: void
+	The arguments are:
+		STUDENT_FINAL finals[0]
+
+		STUDENT_FINAL averages[0]
+
+			Method name: init_finals
+	Returns: void
+	The arguments are:
+		STUDENT_FINAL finals[0]
+
+			Method name: print_average_per_student
+	Returns: void
+	The arguments are:
+		STUDENT_FINAL finals[0]
+
+			Method name: print_best_10_averages
+	Returns: void
+	The arguments are:
+		STUDENT_FINAL average[0]
+
+			Method name: print_exams_per_student
+	Returns: void
+	The arguments are:
+		STUDENT_FINAL finals[0]
+
+			Method name: search_exams_per_student
+	Returns: int
+	The arguments are:
+		int code
+		STUDENT_FINAL finals[0]
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+InsideMainAttributes are:(2)
+
+STUDENT_FINAL final_exams [200] ; 
+STUDENT_FINAL average [50] ; 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

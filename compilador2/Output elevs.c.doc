@@ -149,7 +149,7 @@ This is a basic module.
 	This module has no attributes 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Functions are: (7)
+Functions are: (6)
 
 	Function name: callElevator
 	Returns: void
@@ -165,8 +165,6 @@ Functions are: (7)
 		node root
 		call call
 
-MainFunction
-	Global Sentences are :
 	Function name: seeElevator
 	Returns: void
 	The arguments are:
@@ -224,7 +222,7 @@ Variables are: (1)
 It has no GlobalVariables
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Candidate classes are:(23)
+Candidate classes are:(26)
 
 CandidateClass: Node
 	Attributes are: 
@@ -253,6 +251,17 @@ CandidateClass: call
 	The arguments are:
 		node root
 		call call
+CandidateClass: call.h
+	Attributes are: 
+	Methods are: 
+			Method name: createCall
+	Returns: void
+	The arguments are:
+		call call
+		int floor
+		int elevatorCalled
+		int floorDest
+		int number
 CandidateClass: callElevator
 	Attributes are: 
 			elevator elevator
@@ -347,6 +356,9 @@ CandidateClass: elevator
 		node tree
 		elevator elevators[0]
 
+CandidateClass: elevator.h
+	Attributes are: 
+	Methods are: 
 CandidateClass: insert
 	Attributes are: 
 			node tree
@@ -357,15 +369,6 @@ CandidateClass: insert
 	The arguments are:
 		node tree
 		call val
-CandidateClass: main
-	Attributes are: 
-			int cantElevators
-			int cantElevators
-			int return
-	Methods are: 
-			Method name: main
-	Returns: int
-	The arguments are:
 CandidateClass: node
 	Attributes are: 
 			call data
@@ -437,6 +440,25 @@ CandidateClass: push
 	Returns: void
 	The arguments are:
 		call value
+CandidateClass: queuecalls.h
+	Attributes are: 
+			int siz
+			Node rear
+			Node front
+	Methods are: 
+			Method name: delQueue
+	Returns: Node
+	The arguments are:
+			Method name: display
+	Returns: void
+	The arguments are:
+			Method name: push
+	Returns: void
+	The arguments are:
+		call value
+			Method name: sizeofqueue
+	Returns: int
+	The arguments are:
 CandidateClass: search
 	Attributes are: 
 			node tree
@@ -499,4 +521,43 @@ CandidateClass: traverseTree
 		node tree
 		elevator elevators[0]
 
+CandidateClass: treeElevators.h
+	Attributes are: 
+	Methods are: 
+			Method name: deltree
+	Returns: void
+	The arguments are:
+		node tree
+			Method name: insert
+	Returns: void
+	The arguments are:
+		node tree
+		call val
+			Method name: print_inorder
+	Returns: void
+	The arguments are:
+		node tree
+			Method name: print_postorder
+	Returns: void
+	The arguments are:
+		node tree
+			Method name: print_preorder
+	Returns: void
+	The arguments are:
+		node tree
+			Method name: printcall
+	Returns: void
+	The arguments are:
+		node tree
+			Method name: search
+	Returns: node
+	The arguments are:
+		node tree
+		call val
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+InsideMainAttributes are:(3)
+
+node root ; 
+elevator elevators [cantElevators] ; 
+int menu ; 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

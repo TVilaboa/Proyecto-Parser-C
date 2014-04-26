@@ -27,6 +27,10 @@ public class Module {
         defines = new TreeMap<String, Integer>();
     }
 
+    public static String[] getModuleList() {
+        return MODULE_LIST;
+    }
+
     public void addFunction(Function function) {
         functions.add(function);
     }
@@ -89,8 +93,16 @@ public class Module {
         return modulesIncluded;
     }
 
+    public void setModulesIncluded(List<Module> modulesIncluded) {
+        this.modulesIncluded = modulesIncluded;
+    }
+
     public List<Function> getFunctions() {
         return functions;
+    }
+
+    public void setFunctions(List<Function> functions) {
+        this.functions = functions;
     }
 
     private boolean endOfDefinition(String lineFile) {
@@ -154,6 +166,10 @@ public class Module {
 
     public File getFile() {
         return file;
+    }
+
+    public void setFile(File file) {
+        this.file = file;
     }
 }
 

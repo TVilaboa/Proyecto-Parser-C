@@ -38,7 +38,7 @@ This is a basic module.
 It has no modules
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Functions are: (22)
+Functions are: (21)
 
 	Function name: addqueue
 	Returns: void
@@ -127,8 +127,6 @@ Functions are: (22)
 		plane pl
 		int curtime
 
-MainFunction
-	Global Sentences are :
 	Function name: myrandomize
 	Returns: void
 	The arguments are:
@@ -197,7 +195,7 @@ ARRIVE=0
 DEPART=1
 MAX=3
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Candidate classes are:(25)
+Candidate classes are:(24)
 
 CandidateClass: addqueue
 	Attributes are: 
@@ -427,28 +425,6 @@ CandidateClass: land
 		airport ap
 		plane pl
 		int curtime
-CandidateClass: main
-	Attributes are: 
-			int return
-	Methods are: 
-			Method name: main
-	Returns: int
-	The arguments are:
-			Method name: initairport
-	Returns: void
-	The arguments are:
-		airport ap
-			Method name: start
-	Returns: void
-	The arguments are:
-		int endtime
-		double expectarrive
-		double expectdepart
-			Method name: conclude
-	Returns: void
-	The arguments are:
-		airport ap
-		int endtime
 CandidateClass: myrandomize
 	Attributes are: 
 	Methods are: 
@@ -571,4 +547,15 @@ CandidateClass: start
 		int endtime
 		double expectarrive
 		double expectdepart
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+InsideMainAttributes are:(8)
+
+airport a ; 
+int i 
+int pri 
+int curtime 
+int endtime ; 
+double expectarrive 
+double expectdepart ; 
+plane temp ; 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
