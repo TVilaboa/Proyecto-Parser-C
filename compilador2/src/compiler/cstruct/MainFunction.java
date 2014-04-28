@@ -270,7 +270,13 @@ public class MainFunction extends Function {
                         }
                     }
                     if (sentence == null) {
-                        throw new NoSupportedInstructionException(token.toString());
+                        //throw new NoSupportedInstructionException(token.toString());
+                        while (token.getType() != TokenType.SENTENCE_END) {
+                            sentenceTokens.add(token);
+                            token = tokenIterator.next();
+                        }
+                        sentenceTokens.add(token);
+                        sentence = new Sentence(SentenceType.ATTRIBUTE_DECLARATION, sentenceTokens);
                     }
                 } else if (token.getType() == TokenType.NUMERICAL_CONSTANT) {
                     token = readValueFromConstant(token, tokenIterator, fileAttributes, internalAttributes,
@@ -304,7 +310,11 @@ public class MainFunction extends Function {
     private void processIdentifier(Token token, Iterator<Token> tokenIterator, List<Adt> fileAdt, List<Attribute> fileAttributes,
                                    List<Attribute> internalAttributes, Set<Function> fileDeclaredFunctions, List<Sentence> sentenceList) throws NoSupportedInstructionException, InvalidExpressionException {
         if (token.getValue().equals("fprintf")) {
-            processFprintF(tokenIterator);
+            processFprintF(tokenIterator, sentenceList);
+            return;
+        }
+        if (token.getValue().equals("fwrite")) {
+            processFwrite(tokenIterator, sentenceList);
             return;
         }
 
@@ -423,8 +433,36 @@ public class MainFunction extends Function {
     }
 
 
-    //creates CCD from fprintf, using file name as name, and variables as attributes
-    private void processFprintF(Iterator<Token> tokenIterator) throws InvalidExpressionException {
+    //create CCD from fwrite using file name as name and first parameter as attribute
+
+    private void processFwrite(Iterator<Token> tokenIterator, List<Sentence> sentenceList) throws InvalidExpressionException {
+        Token token = tokenIterator.next();
+
+        if (token.getType() == TokenType.OPENING_BRACKET) {
+            token = tokenIterator.next();
+            String attributeName = token.getValue();
+            if (token.getType() == TokenType.IDENTIFIER) {
+                for (int i = 0; i < 6; i++) {
+                    token = tokenIterator.next();
+                }
+                if (token.getType() == TokenType.IDENTIFIER) {
+                    CandidateClass clazz = new CandidateClass(token.getValue());
+                    if (candidates.containsKey(clazz.getName())) {
+                        clazz = candidates.get(clazz.getName());
+                    }
+                    clazz.addAttribute(new JavaAttribute("Unknown", attributeName, false, 0));
+                    candidates.put(clazz.getName(), clazz);
+                    while (token.getType() != TokenType.SENTENCE_END) {
+                        token = tokenIterator.next();
+                    }
+                    return;
+                } else throw new InvalidExpressionException(token.toString());
+            } else throw new InvalidExpressionException(token.toString());
+        } else throw new InvalidExpressionException(token.toString());
+    }
+
+    //creates CCD from fprintf, using file name as name, and variables as attributes. Only if used outside control flow ,same with attributes
+    private void processFprintF(Iterator<Token> tokenIterator, List<Sentence> sentenceList) throws InvalidExpressionException {
         Token token = tokenIterator.next();
         CandidateClass clazz = null;
         if (token.getType() == TokenType.OPENING_BRACKET) {
@@ -443,11 +481,21 @@ public class MainFunction extends Function {
                                 do {
                                     token = tokenIterator.next();
                                     if (token.getType() == TokenType.IDENTIFIER) {
-                                        for (Sentence sentence : insideMainAttributes) {
-                                            for (JavaAttribute attribute : clazz.getAttributes()) {
-                                                if (sentence.getSentenceComponents().get(1).getValue() != attribute.getName() &&
-                                                        sentence.getSentenceComponents().get(1).getValue().equals(token.getValue())) {                  //adds attributes that are defined outside any flow control
-                                                    if (sentence.getSentenceComponents().size() > 3) {
+                                        boolean insideControlFlowAttribute = true;
+                                        for (Sentence sentence : sentenceList) {
+                                            if (sentence.getSentenceComponents().get(1).getValue().equals(token.getValue())) {
+                                                boolean exist = false;
+                                                insideControlFlowAttribute = false;
+                                                for (Iterator<JavaAttribute> iterator = clazz.getAttributes().iterator(); iterator.hasNext(); ) {
+                                                    JavaAttribute attribute = iterator.next();
+                                                    if (attribute.getName().equals(sentence.getSentenceComponents().get(0))) {
+                                                        exist = true;
+                                                        break;
+                                                    }
+                                                }
+                                                //adds attributes that are defined outside any flow control
+                                                if (!exist) {
+                                                    if (sentence.getSentenceComponents().get(2).getType() == TokenType.SQUARE_BRACKET_BLOCK) {
                                                         String array = sentence.getSentenceComponents().get(2).getValue();
                                                         clazz.addAttribute(new JavaAttribute(sentence.getSentenceComponents().get(0).getValue(),
                                                                 sentence.getSentenceComponents().get(1).getValue(), true,
@@ -458,11 +506,15 @@ public class MainFunction extends Function {
                                                 }
                                             }
 
+
                                         }
+                                        if (insideControlFlowAttribute) {
+                                            clazz.addAttribute(new JavaAttribute("Unknown", token.getValue(), false, 0));
+                                        }
+
                                     }
                                 }
                                 while (token.getType() != TokenType.CLOSING_BRACKET);
-                                token = tokenIterator.next();
                                 token = tokenIterator.next();
                                 candidates.put(clazz.getName(), clazz);
                                 return;
