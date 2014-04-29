@@ -20,7 +20,7 @@ import java.util.*;
 public class MainFunction extends Function {
 
     private List<Sentence> insideMainAttributes;
-    private List<Sentence> sentenceList;
+    private List<Sentence> sentenceList = new ArrayList<>();
     private Map<String, CandidateClass> candidates;
 
     public MainFunction(String returns, List<Attribute> arguments, String body, Map<String, Integer> globalAttributes,
@@ -41,7 +41,6 @@ public class MainFunction extends Function {
     public List<Sentence> generateSentenceList(List<Adt> fileAdt, List<Attribute> fileAttributes,
                                                Set<Function> fileDeclaredFunctions) throws InvalidExpressionException, NoSupportedInstructionException {
         List<Attribute> internalAttributes = new ArrayList<Attribute>();
-        List<Sentence> sentenceList = new ArrayList<Sentence>();
         Iterator<Token> tokenIterator = bodyTokenList.iterator();
         while (tokenIterator.hasNext()) {
             Token token = tokenIterator.next();
@@ -49,7 +48,7 @@ public class MainFunction extends Function {
             switch (token.getType()) {
                 case IDENTIFIER:
                     processIdentifier(token, tokenIterator, fileAdt, fileAttributes, internalAttributes,
-                            fileDeclaredFunctions, sentenceList);
+                            fileDeclaredFunctions);
                     break;
                 case COMMENT:
                     break;
@@ -58,8 +57,8 @@ public class MainFunction extends Function {
                             fileDeclaredFunctions));
                     break;
                 case BASIC_TYPE:
-                    processBasicType(token, tokenIterator, fileAttributes, internalAttributes, fileDeclaredFunctions,
-                            sentenceList);
+                    processBasicType(token, tokenIterator, fileAttributes, internalAttributes, fileDeclaredFunctions
+                    );
                     break;
                 case SENTENCE_END:
                     break;
@@ -68,7 +67,6 @@ public class MainFunction extends Function {
             }
         }
 
-        this.sentenceList = sentenceList;
         for (Sentence sentence : sentenceList) {
             if (sentence.getType() == SentenceType.ATTRIBUTE_DECLARATION_FROM_FUNCTION || sentence.getType() == SentenceType.ATTRIBUTE_DECLARATION ||
                     sentence.getType() == SentenceType.ATTRIBUTE_DECLARATION_FROM_ATTRIBUTE) {
@@ -171,7 +169,7 @@ public class MainFunction extends Function {
     }
 
     private void processBasicType(Token token, Iterator<Token> tokenIterator, List<Attribute> fileAttributes,
-                                  List<Attribute> internalAttributes, Set<Function> fileDeclaredFunctions, List<Sentence> sentences)
+                                  List<Attribute> internalAttributes, Set<Function> fileDeclaredFunctions)
             throws NoSupportedInstructionException, InvalidExpressionException {
         Sentence sentence = null;
         List<Token> sentenceTokens = new LinkedList<Token>();
@@ -209,7 +207,7 @@ public class MainFunction extends Function {
                     }
                     while (token.getType() != TokenType.SENTENCE_END);
                     sentence = new Sentence(SentenceType.ATTRIBUTE_DECLARATION_FROM_FUNCTION, sentenceTokens);
-                    sentences.add(sentence);
+                    sentenceList.add(sentence);
                     return;
                 }
 
@@ -291,9 +289,9 @@ public class MainFunction extends Function {
             }
         }
         if (sentence != null)                    //happens when an attribute from an adt is modified from the main
-            sentences.add(sentence);
+            sentenceList.add(sentence);
         if (token.getType() == TokenType.COMMA_OPERATOR) {
-            processBasicType(firstToken, tokenIterator, fileAttributes, internalAttributes, fileDeclaredFunctions, sentences);
+            processBasicType(firstToken, tokenIterator, fileAttributes, internalAttributes, fileDeclaredFunctions);
         }
     }
 
@@ -308,7 +306,7 @@ public class MainFunction extends Function {
     }
 
     private void processIdentifier(Token token, Iterator<Token> tokenIterator, List<Adt> fileAdt, List<Attribute> fileAttributes,
-                                   List<Attribute> internalAttributes, Set<Function> fileDeclaredFunctions, List<Sentence> sentenceList) throws NoSupportedInstructionException, InvalidExpressionException {
+                                   List<Attribute> internalAttributes, Set<Function> fileDeclaredFunctions) throws NoSupportedInstructionException, InvalidExpressionException {
         if (token.getValue().equals("fprintf")) {
             processFprintF(tokenIterator, sentenceList);
             return;
@@ -322,7 +320,7 @@ public class MainFunction extends Function {
             Sentence sentence = null;
             for (Adt adt : fileAdt) {
             if (adt.getName().equals(token.getValue())) {
-                processBasicType(token, tokenIterator, fileAttributes, internalAttributes, fileDeclaredFunctions, sentenceList);
+                processBasicType(token, tokenIterator, fileAttributes, internalAttributes, fileDeclaredFunctions);
                 return;
             }
         }

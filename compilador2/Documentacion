@@ -19,3 +19,6 @@ used since parser recognizes TAM, replaces for its value and then the 2.
 GlobalConstans should be defined only once in project scope.
 Can process function with arrays as arguments.
 Self-refence structs must follow typedef struct{} name; format.
+Parsing approach changed. Now, it allows parsing, not only from a file but also from any Iterator<Character>,
+in this way, parser scope is broadened and its logic can be used also to parse blocks inside the original parsing.
+
