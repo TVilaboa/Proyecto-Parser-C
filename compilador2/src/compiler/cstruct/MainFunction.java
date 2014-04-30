@@ -3,6 +3,7 @@ package compiler.cstruct;
 import compiler.InvalidExpressionException;
 import compiler.NoSupportedInstructionException;
 import compiler.fileanalyzer.Token;
+import compiler.fileanalyzer.TokenListFactory;
 import compiler.fileanalyzer.TokenType;
 import javacandidatestruct.CandidateClass;
 import javacandidatestruct.JavaAttribute;
@@ -29,6 +30,7 @@ public class MainFunction extends Function {
         insideMainAttributes = new ArrayList<Sentence>();
         this.candidates = candidates;
     }
+
 
     public Map<String, CandidateClass> getCandidates() {
         return candidates;
@@ -71,9 +73,46 @@ public class MainFunction extends Function {
             if (sentence.getType() == SentenceType.ATTRIBUTE_DECLARATION_FROM_FUNCTION || sentence.getType() == SentenceType.ATTRIBUTE_DECLARATION ||
                     sentence.getType() == SentenceType.ATTRIBUTE_DECLARATION_FROM_ATTRIBUTE) {
                 insideMainAttributes.add(sentence);
+            } //analyse inside flow control
+            else if (sentence.getType() == SentenceType.FOR || sentence.getType() == SentenceType.WHILE ||
+                    sentence.getType() == SentenceType.IF) {
+                processBlock(sentence.getSentenceComponents().get(sentence.getSentenceComponents().size() - 1));
+            } else if (sentence.getType() == SentenceType.DO_WHILE) {
+                processBlock(sentence.getSentenceComponents().get(1));
             }
         }
+
+
         return sentenceList;
+    }
+
+    private void processBlock(Token block) throws InvalidExpressionException {
+
+        if (block.getType() == TokenType.BLOCK) {
+            TokenListFactory tokenListFactory = new TokenListFactory(getGlobalAttributes());
+            char[] chars = block.getValue().toCharArray();
+            List<Character> characters = new ArrayList<>();
+            for (Character c : chars) {
+                characters.add(c);
+            }
+            characters.remove(0);
+            characters.remove(characters.size() - 1);
+            Token token;
+            List<Token> tokens = tokenListFactory.getTokenFileFromCFile(characters.iterator());
+            Iterator<Token> iterator = tokens.iterator();
+            while (iterator.hasNext()) {
+                token = iterator.next();
+                if (token.getType() == TokenType.BLOCK) {
+                    processBlock(token);
+                } else if (token.getValue().equals("fprintf")) {
+                    processFprintF(iterator);
+                    return;
+                } else if (token.getValue().equals("fwrite")) {
+                    processFwrite(iterator);
+                    return;
+                }
+            }
+        } else throw new InvalidExpressionException(block.toString());
     }
 
     public List<Sentence> getInsideMainAttributes() {
@@ -308,11 +347,11 @@ public class MainFunction extends Function {
     private void processIdentifier(Token token, Iterator<Token> tokenIterator, List<Adt> fileAdt, List<Attribute> fileAttributes,
                                    List<Attribute> internalAttributes, Set<Function> fileDeclaredFunctions) throws NoSupportedInstructionException, InvalidExpressionException {
         if (token.getValue().equals("fprintf")) {
-            processFprintF(tokenIterator, sentenceList);
+            processFprintF(tokenIterator);
             return;
         }
         if (token.getValue().equals("fwrite")) {
-            processFwrite(tokenIterator, sentenceList);
+            processFwrite(tokenIterator);
             return;
         }
 
@@ -433,7 +472,7 @@ public class MainFunction extends Function {
 
     //create CCD from fwrite using file name as name and first parameter as attribute
 
-    private void processFwrite(Iterator<Token> tokenIterator, List<Sentence> sentenceList) throws InvalidExpressionException {
+    private void processFwrite(Iterator<Token> tokenIterator) throws InvalidExpressionException {
         Token token = tokenIterator.next();
 
         if (token.getType() == TokenType.OPENING_BRACKET) {
@@ -460,7 +499,7 @@ public class MainFunction extends Function {
     }
 
     //creates CCD from fprintf, using file name as name, and variables as attributes. Only if used outside control flow ,same with attributes
-    private void processFprintF(Iterator<Token> tokenIterator, List<Sentence> sentenceList) throws InvalidExpressionException {
+    private void processFprintF(Iterator<Token> tokenIterator) throws InvalidExpressionException {
         Token token = tokenIterator.next();
         CandidateClass clazz = null;
         if (token.getType() == TokenType.OPENING_BRACKET) {

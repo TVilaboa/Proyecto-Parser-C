@@ -129,8 +129,28 @@ public class Function implements Comparable<Function> {
         return token;
     }
 
+    public List<Token> getBodyTokenList() {
+        return bodyTokenList;
+    }
+
+    public void setBodyTokenList(List<Token> bodyTokenList) {
+        this.bodyTokenList = bodyTokenList;
+    }
+
+    public Map<String, Integer> getGlobalAttributes() {
+        return globalAttributes;
+    }
+
+    public void setGlobalAttributes(Map<String, Integer> globalAttributes) {
+        this.globalAttributes = globalAttributes;
+    }
+
     public List<Function> getUsedFunctions() {
         return usedFunctions;
+    }
+
+    public void setUsedFunctions(List<Function> usedFunctions) {
+        this.usedFunctions = usedFunctions;
     }
 
     public boolean hasBody() {
@@ -141,12 +161,24 @@ public class Function implements Comparable<Function> {
         return returns;
     }
 
+    public void setReturns(String returns) {
+        this.returns = returns;
+    }
+
     public String getName() {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public List<Attribute> getArguments() {
         return arguments;
+    }
+
+    public void setArguments(List<Attribute> arguments) {
+        this.arguments = arguments;
     }
 
     public String toString() {
@@ -162,6 +194,10 @@ public class Function implements Comparable<Function> {
 
     public String getBody() {
         return body;
+    }
+
+    public void setBody(String body) {
+        this.body = body;
     }
 
     @Override
@@ -203,5 +239,9 @@ public class Function implements Comparable<Function> {
 
     public List<Attribute> getGlobalVariablesUsed() {
         return globalVariablesUsed;
+    }
+
+    public void setGlobalVariablesUsed(List<Attribute> globalVariablesUsed) {
+        this.globalVariablesUsed = globalVariablesUsed;
     }
 }

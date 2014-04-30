@@ -38,6 +38,8 @@ public class Implement {
             myCompiler.run(new File("C:\\Users\\Toto\\Projects\\Proyecto Nacho Cassol\\Proyecto-Parser-C\\compilador2\\Lote de pruebas\\Case 9\\bank.c"));
             myCompiler = new Compiler();
             myCompiler.run(new File("C:\\Users\\Toto\\Projects\\Proyecto Nacho Cassol\\Proyecto-Parser-C\\compilador2\\Lote de pruebas\\Case 10\\calculator.c"));
+            myCompiler = new Compiler();
+            myCompiler.run(new File("C:\\Users\\Toto\\Projects\\Proyecto Nacho Cassol\\Proyecto-Parser-C\\compilador2\\Lote de pruebas\\Case 11\\MovieClub\\movieClub.c"));
 
         } catch (IOException | NoSupportedInstructionException | InvalidExpressionException e) {
             e.printStackTrace();

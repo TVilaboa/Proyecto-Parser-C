@@ -34,7 +34,7 @@ public class TokenListFactory {
         this.globalAttributes = globalAttributes;
     }
 
-    public List<Token> getTokenFileFromCFile(Iterator<Character> cFile) throws IOException, InvalidExpressionException {
+    public List<Token> getTokenFileFromCFile(Iterator<Character> cFile) throws InvalidExpressionException {
         tokensList = new ArrayList<Token>();
         readCharacter = cFile.next();
         StringBuilder readToken = new StringBuilder();
@@ -165,6 +165,7 @@ public class TokenListFactory {
     }
 
     public List<Token> getTokenFileFromCFile(Reader cFile) throws IOException, InvalidExpressionException {
+
         int readCharacter = cFile.read();
         StringBuilder readToken = new StringBuilder();
         while (readCharacter != -1) {
@@ -177,13 +178,14 @@ public class TokenListFactory {
             characters.add(c);
         }
         return getTokenFileFromCFile(characters.iterator());
+
     }
 
-    private Token readLowerChar(StringBuilder readToken, Iterator<Character> cFile) throws IOException, InvalidExpressionException {
+    private Token readLowerChar(StringBuilder readToken, Iterator<Character> cFile) throws InvalidExpressionException {
 
         if (tokensList.get(tokensList.size() - 1).getValue().equals("#include")) {
             readCharacter = cFile.next();
-            while (readCharacter != -1 && readCharacter != '\n') {
+            while (cFile.hasNext() && readCharacter != '\n') {
                 readToken.append((char) readCharacter);
                 if (readCharacter == '>') {
 
@@ -199,11 +201,11 @@ public class TokenListFactory {
         }
     }
 
-    private Token readCharChain(StringBuilder readToken, Iterator<Character> cFile) throws IOException, InvalidExpressionException {
+    private Token readCharChain(StringBuilder readToken, Iterator<Character> cFile) throws InvalidExpressionException {
         readCharacter = cFile.next();
 
         if (tokensList.get(tokensList.size() - 1).getValue().equals("#include")) {
-            while (readCharacter != -1 && readCharacter != '\n') {
+            while (cFile.hasNext() && readCharacter != '\n') {
                 readToken.append((char) readCharacter);
                 if (readCharacter == '>' || readCharacter == '"') {
 
@@ -215,7 +217,7 @@ public class TokenListFactory {
             }
             throw new InvalidExpressionException(readToken.toString());
         } else {
-            while (readCharacter != -1 && readCharacter != '\n') {
+            while (cFile.hasNext() && readCharacter != '\n') {
                 readToken.append((char) readCharacter);
                 if (readCharacter == '"') {
                     if (readToken.charAt(readToken.length() - 2) != '\\') {
@@ -230,7 +232,7 @@ public class TokenListFactory {
 
     }
 
-    private Token readAddressChar(StringBuilder readToken, Iterator<Character> cFile) throws IOException {
+    private Token readAddressChar(StringBuilder readToken, Iterator<Character> cFile) {
         readCharacter = cFile.next();
         if (readCharacter == '&') {
             readToken.append((char) readCharacter);
@@ -241,7 +243,7 @@ public class TokenListFactory {
         }
     }
 
-    private Token readConstant(StringBuilder readToken, Iterator<Character> cFile) throws IOException, InvalidExpressionException {
+    private Token readConstant(StringBuilder readToken, Iterator<Character> cFile) throws InvalidExpressionException {
         boolean hasDecimalPart = false;
         readCharacter = cFile.next();
         while (('0' <= readCharacter && readCharacter <= '9') || readCharacter == '.') {
@@ -262,10 +264,10 @@ public class TokenListFactory {
         return new Token(readToken.toString(), TokenType.NUMERICAL_CONSTANT);
     }
 
-    private Token readSquareBracketBlock(StringBuilder readToken, Iterator<Character> cFile) throws IOException, InvalidExpressionException {
+    private Token readSquareBracketBlock(StringBuilder readToken, Iterator<Character> cFile) throws InvalidExpressionException {
         Stack<Character> bracketStack = new Stack<Character>();
         readCharacter = cFile.next();
-        while (readCharacter != -1) {
+        while (cFile.hasNext()) {
             readToken.append((char) readCharacter);
             if (readCharacter == '[') {
                 bracketStack.push((char) readCharacter);
@@ -290,7 +292,7 @@ public class TokenListFactory {
         throw new InvalidExpressionException(readToken.toString());
     }
 
-    private Token readAsterisk(StringBuilder readToken, Iterator<Character> cFile) throws IOException, InvalidExpressionException {
+    private Token readAsterisk(StringBuilder readToken, Iterator<Character> cFile) throws InvalidExpressionException {
         readCharacter = cFile.next();
         if (readCharacter == -1) {
             throw new InvalidExpressionException(readToken.toString());
@@ -303,7 +305,7 @@ public class TokenListFactory {
 
     }
 
-    private Token readNumericalAsterisk(Iterator<Character> cFile, int operand, StringBuilder readToken) throws IOException, InvalidExpressionException {
+    private Token readNumericalAsterisk(Iterator<Character> cFile, int operand, StringBuilder readToken) throws InvalidExpressionException {
         readCharacter = cFile.next();
         if ('0' <= readCharacter && readCharacter <= '9') {
             return new Token(operand * Character.getNumericValue(readCharacter) + "", TokenType.NUMERICAL_CONSTANT);
@@ -318,20 +320,21 @@ public class TokenListFactory {
 
     }
 
-    private Token readBlock(StringBuilder readToken, Iterator<Character> cFile) throws IOException, InvalidExpressionException {
+    private Token readBlock(StringBuilder readToken, Iterator<Character> cFile) throws InvalidExpressionException {
         Stack<Character> bracketStack = new Stack<Character>();
-        readCharacter = cFile.next();
-        while (readCharacter != -1) {
+        //readCharacter = cFile.next();
+        while (cFile.hasNext()) {
             readToken.append((char) readCharacter);
             if (readCharacter == '{') {
                 bracketStack.push((char) readCharacter);
             } else if (readCharacter == '}') {
-                if (bracketStack.isEmpty()) {
-                    readCharacter = cFile.next();
-                    return new Token(readToken.toString(), TokenType.BLOCK);
-                } else {
-                    bracketStack.pop();
-                }
+
+                bracketStack.pop();
+
+            }
+            if (bracketStack.isEmpty()) {
+                readCharacter = cFile.next();
+                return new Token(readToken.toString(), TokenType.BLOCK);
             }
             readCharacter = cFile.next();
         }
@@ -339,9 +342,9 @@ public class TokenListFactory {
         throw new InvalidExpressionException(readToken.toString());
     }
 
-    private Token readPreProcessorInstruction(StringBuilder readToken, Iterator<Character> cFile) throws IOException, InvalidExpressionException {
+    private Token readPreProcessorInstruction(StringBuilder readToken, Iterator<Character> cFile) throws InvalidExpressionException {
         readCharacter = cFile.next();
-        while (readCharacter != -1 && (('a' <= readCharacter && readCharacter <= 'z') ||
+        while (cFile.hasNext() && (('a' <= readCharacter && readCharacter <= 'z') ||
                 ('A' <= readCharacter && readCharacter <= 'Z') ||
                 ('0' <= readCharacter && readCharacter <= '9'))) {
             readToken.append((char) readCharacter);
@@ -357,7 +360,7 @@ public class TokenListFactory {
         throw new InvalidExpressionException(readToken.toString());
     }
 
-    private Token readDivisionOrComment(StringBuilder readToken, Iterator<Character> cFile) throws IOException {
+    private Token readDivisionOrComment(StringBuilder readToken, Iterator<Character> cFile) {
         readCharacter = cFile.next();
         if (readCharacter != '*' && readCharacter != '/') {
             return new Token(readToken.toString(), TokenType.ARITHMETIC_OPERATOR);
@@ -365,7 +368,7 @@ public class TokenListFactory {
         if (readCharacter == '*') {
             readToken.append(readCharacter);
             readCharacter = cFile.next();
-            while (readCharacter != -1) {
+            while (cFile.hasNext()) {
                 readToken.append((char) readCharacter);
                 if (readCharacter == '*') {
                     readCharacter = cFile.next();
@@ -379,7 +382,7 @@ public class TokenListFactory {
         } else {
             readToken.append(readCharacter);
             readCharacter = cFile.next();
-            while (readCharacter != -1) {
+            while (cFile.hasNext()) {
                 readToken.append((char) readCharacter);
                 if (readCharacter == '\n') {
                     break;
@@ -391,9 +394,9 @@ public class TokenListFactory {
 
     }
 
-    private Token readOperator(StringBuilder readToken, Iterator<Character> cFile) throws IOException, InvalidExpressionException {
+    private Token readOperator(StringBuilder readToken, Iterator<Character> cFile) throws InvalidExpressionException {
         readCharacter = cFile.next();
-        while (readCharacter != -1 && (readCharacter == '!' || readCharacter == '%' || readCharacter == '+' ||
+        while (cFile.hasNext() && (readCharacter == '!' || readCharacter == '%' || readCharacter == '+' ||
                 readCharacter == '|' || readCharacter == '-' || readCharacter == '<' || readCharacter == '=' ||
                 readCharacter == '>')) {
             readToken.append((char) readCharacter);
@@ -438,9 +441,9 @@ public class TokenListFactory {
         throw new InvalidExpressionException(readOperator);
     }
 
-    private Token readIdentifierOrKeyWord(StringBuilder readToken, Iterator<Character> cFile) throws IOException {
+    private Token readIdentifierOrKeyWord(StringBuilder readToken, Iterator<Character> cFile) {
         readCharacter = cFile.next();
-        while (readCharacter != -1 && (('a' <= readCharacter && readCharacter <= 'z') ||
+        while (cFile.hasNext() && (('a' <= readCharacter && readCharacter <= 'z') ||
                 ('A' <= readCharacter && readCharacter <= 'Z') ||
                 ('0' <= readCharacter && readCharacter <= '9') ||
                 readCharacter == '_')) {
