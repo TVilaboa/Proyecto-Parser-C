@@ -37,9 +37,9 @@ int main()
     scanf("%d",&menu);
     switch(menu){
     case 1: seeElevator(elevators); break;
-    case 2: {storeCall(cantCalls); cantCalls=cantCalls+1; break;}
-    case 3: simulate(root,elevators);break;
-    }}
+    case 2: storeCall(cantCalls); cantCalls=cantCalls+1; break;
+    case 3: simulate(root,elevators);break;}
+    }
      while(menu<4);
      print_inorder(root);
     return 0;

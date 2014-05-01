@@ -1,127 +1,345 @@
-Analisys for : C:\Users\Toto\Projects\Proyecto Nacho Cassol\Proyecto-Parser-C\compilador2\Lote de pruebas\Case 10\main.c
+Analisys for : C:\Users\Toto\Dropbox\test cases\3 test case\Library\main.c
 
-Modules are: (4)
-
-	"stdio.h"
-
-This is a basic module.
-
-	"conio.h"
-
-	This module has no functions 
-	This module has no modules 
-
-	"math.h"
-
-This is a basic module.
+Basic Modules are: (2)
 
 	"stdlib.h"
 
 This is a basic module.
 
+	"stdio.h"
+
+This is a basic module.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Created Modules are: (2)
+
+	"List.h"
+
+	The functions in this module are: 
+
+	Function name: destroy
+	Returns: void
+	The arguments are:
+		List ilist
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: getitem
+	Returns: void
+	The arguments are:
+		List ilist
+		int n
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: initlist
+	Returns: void
+	The arguments are:
+		List ilist
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: insertback
+	Returns: void
+	The arguments are:
+		List ilist
+		void val
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: insertfront
+	Returns: void
+	The arguments are:
+		List ilist
+		void val
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: length
+	Returns: int
+	The arguments are:
+		List ilist
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: setitem
+	Returns: void
+	The arguments are:
+		List ilist
+		int n
+		void val
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	This module has no modules 
+	This module has no attributes 
+
+	"books.h"
+
+	The functions in this module are: 
+
+	Function name: createBook
+	Returns: void
+	The arguments are:
+		book_structure book
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	This module has no modules 
+	This module has no attributes 
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Functions are: (9)
 
-	Function name: addition
+	Function name: Listbooks
 	Returns: void
 	The arguments are:
 
-	Function name: calculator_operations
+	Function name: Listloan
 	Returns: void
 	The arguments are:
 
-	Function name: division
+	Function name: addBook
 	Returns: void
 	The arguments are:
 
-	Function name: factorial
-	Returns: int
-	The arguments are:
-
-MainFunction
-	Global Sentences are :
-	Function name: modulus
+	Function name: deletebook
 	Returns: void
 	The arguments are:
 
-	Function name: multiplication
+	Function name: devolverbook
 	Returns: void
 	The arguments are:
 
-	Function name: power
+	Function name: editbook
 	Returns: void
 	The arguments are:
 
-	Function name: subtraction
+	Function name: historialloan
+	Returns: void
+	The arguments are:
+
+	Function name: loadListbooks
+	Returns: void
+	The arguments are:
+
+	Function name: prestarbook
 	Returns: void
 	The arguments are:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-It has no ADTs
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ADTs are: (5)
 
-It has no attributes
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	The name is : author_structure
+	The variables are: 
+		char name[40]
 
+		char lastname[40]
+
+	The name is : book_structure
+	The variables are: 
+		char name[40]
+
+		int code
+		author_structure author
+		char category[40]
+
+		int taken
+	The name is : loan_structure
+	The variables are: 
+		char student[40]
+
+		book_structure book
+	The name is : Listitem
+	The variables are: 
+		void data
+		Listitem next
+	The name is : List
+	The variables are: 
+		Listitem head
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Variables are: (1)
+
+	List mylist
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 It has no GlobalVariables
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Candidate classes are:(9)
+Candidate classes are:(22)
 
-CandidateClass: addition
+CandidateClass: List
+	Attributes are: 
+			Listitem head
+	Methods are: 
+CandidateClass: Listbooks
 	Attributes are: 
 	Methods are: 
-			Method name: addition
+			Method name: Listbooks
 	Returns: void
 	The arguments are:
-CandidateClass: calculator_operations
+CandidateClass: Listitem
+	Attributes are: 
+			void data
+			Listitem next
+	Methods are: 
+CandidateClass: Listloan
+	Attributes are: 
+			List mylist
+	Methods are: 
+			Method name: Listloan
+	Returns: void
+	The arguments are:
+CandidateClass: addBook
+	Attributes are: 
+			List mylist
+	Methods are: 
+			Method name: addBook
+	Returns: void
+	The arguments are:
+CandidateClass: author_structure
+	Attributes are: 
+			char name[40]
+
+			char lastname[40]
+
+	Methods are: 
+CandidateClass: book_structure
+	Attributes are: 
+			char name[40]
+
+			int code
+			author_structure author
+			char category[40]
+
+			int taken
+	Methods are: 
+CandidateClass: createBook
+	Attributes are: 
+			book_structure book
+	Methods are: 
+			Method name: createBook
+	Returns: void
+	The arguments are:
+		book_structure book
+CandidateClass: deletebook
+	Attributes are: 
+			List mylist
+			List mylist
+	Methods are: 
+			Method name: deletebook
+	Returns: void
+	The arguments are:
+CandidateClass: destroy
+	Attributes are: 
+			List ilist
+	Methods are: 
+			Method name: destroy
+	Returns: void
+	The arguments are:
+		List ilist
+CandidateClass: devolverbook
+	Attributes are: 
+			List mylist
+			List mylist
+	Methods are: 
+			Method name: devolverbook
+	Returns: void
+	The arguments are:
+CandidateClass: editbook
+	Attributes are: 
+			List mylist
+			List mylist
+	Methods are: 
+			Method name: editbook
+	Returns: void
+	The arguments are:
+CandidateClass: getitem
+	Attributes are: 
+			List ilist
+			int n
+	Methods are: 
+			Method name: getitem
+	Returns: void
+	The arguments are:
+		List ilist
+		int n
+CandidateClass: historialloan
 	Attributes are: 
 	Methods are: 
-			Method name: calculator_operations
+			Method name: historialloan
 	Returns: void
 	The arguments are:
-CandidateClass: division
+CandidateClass: initlist
 	Attributes are: 
+			List ilist
 	Methods are: 
-			Method name: division
+			Method name: initlist
 	Returns: void
 	The arguments are:
-CandidateClass: factorial
+		List ilist
+CandidateClass: insertback
 	Attributes are: 
+			List ilist
+			void val
+	Methods are: 
+			Method name: insertback
+	Returns: void
+	The arguments are:
+		List ilist
+		void val
+CandidateClass: insertfront
+	Attributes are: 
+			List ilist
+			void val
+	Methods are: 
+			Method name: insertfront
+	Returns: void
+	The arguments are:
+		List ilist
+		void val
+CandidateClass: length
+	Attributes are: 
+			List ilist
 			int return
 	Methods are: 
-			Method name: factorial
+			Method name: length
 	Returns: int
 	The arguments are:
-CandidateClass: main
-	Attributes are: 
-			int return
-	Methods are: 
-			Method name: main
-	Returns: int
-	The arguments are:
-CandidateClass: modulus
+		List ilist
+CandidateClass: loadListbooks
 	Attributes are: 
 	Methods are: 
-			Method name: modulus
+			Method name: loadListbooks
 	Returns: void
 	The arguments are:
-CandidateClass: multiplication
+CandidateClass: loan_structure
 	Attributes are: 
+			char student[40]
+
+			book_structure book
 	Methods are: 
-			Method name: multiplication
+CandidateClass: prestarbook
+	Attributes are: 
+			List mylist
+			List mylist
+	Methods are: 
+			Method name: prestarbook
 	Returns: void
 	The arguments are:
-CandidateClass: power
+CandidateClass: setitem
 	Attributes are: 
+			List ilist
+			int n
+			void val
 	Methods are: 
-			Method name: power
+			Method name: setitem
 	Returns: void
 	The arguments are:
-CandidateClass: subtraction
-	Attributes are: 
-	Methods are: 
-			Method name: subtraction
-	Returns: void
-	The arguments are:
+		List ilist
+		int n
+		void val
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+InsideMainAttributes are:(1)
+
+int menu ; 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

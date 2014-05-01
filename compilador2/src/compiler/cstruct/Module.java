@@ -119,7 +119,7 @@ public class Module {
             modulePrint = "\t\"" + file.getName() + "\"\n\n";
             if (functions != null) {
                 if (!functions.isEmpty()) {
-                    String intro = "\tThe functions in this module are: \n";
+                    String intro = "\tThe functions in this module are (" + functions.size() + ") : \n";
                     modulePrint += intro + printList(functions);
                 } else {
                     String intro = "\tThis module has no functions \n";
@@ -128,7 +128,7 @@ public class Module {
             }
             if (modulesIncluded != null) {
                 if (!modulesIncluded.isEmpty()) {
-                    String intro = "\tThe modules of this module are: \n";
+                    String intro = "\tThe modules of this module are (" + modulesIncluded.size() + ") : \n";
                     modulePrint += intro + printList(modulesIncluded);
                 } else {
                     String intro = "\tThis module has no modules \n";
@@ -138,7 +138,7 @@ public class Module {
             }
             if (atributes != null) {
                 if (!atributes.isEmpty()) {
-                    String intro = "\tThe attributes of this module are: \n";
+                    String intro = "\tThe attributes of this module are (" + atributes.size() + ") : \n";
                     modulePrint += intro + printList(atributes);
                 } else {
                     String intro = "\tThis module has no attributes \n";

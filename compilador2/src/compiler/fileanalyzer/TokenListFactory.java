@@ -137,6 +137,8 @@ public class TokenListFactory {
 
 
                     case '\'':
+                        readCharacter = cFile.next(); //The idea is to omit the char used in a switch
+                        readCharacter = cFile.next();
                         readCharacter = cFile.next();
                         break;
 
@@ -148,6 +150,13 @@ public class TokenListFactory {
                         tokensList.add(readIdentifierOrKeyWord(readToken, cFile));
                         readToken = new StringBuilder();
                         break;
+                    case ':':
+                        readToken.append((char) readCharacter);
+                        tokensList.add(new Token(":", TokenType.CASE_OPERATOR));
+                        readToken = new StringBuilder();
+                        readCharacter = cFile.next();
+                        break;
+
                     default:
                         throw new InvalidExpressionException(readToken.toString());
                 }
@@ -322,23 +331,29 @@ public class TokenListFactory {
 
     private Token readBlock(StringBuilder readToken, Iterator<Character> cFile) throws InvalidExpressionException {
         Stack<Character> bracketStack = new Stack<Character>();
-        //readCharacter = cFile.next();
+        readCharacter = cFile.next();
         while (cFile.hasNext()) {
             readToken.append((char) readCharacter);
             if (readCharacter == '{') {
                 bracketStack.push((char) readCharacter);
             } else if (readCharacter == '}') {
+                if (bracketStack.isEmpty()) {
+                    readCharacter = cFile.next();
+                    return new Token(readToken.toString(), TokenType.BLOCK);
+                } else {
+                    bracketStack.pop();
+                }
 
-                bracketStack.pop();
 
-            }
-            if (bracketStack.isEmpty()) {
-                readCharacter = cFile.next();
-                return new Token(readToken.toString(), TokenType.BLOCK);
             }
             readCharacter = cFile.next();
         }
 
+        if (readCharacter == '}') {
+            if (bracketStack.isEmpty()) {
+                return new Token(readToken.toString(), TokenType.BLOCK);
+            }
+        }
         throw new InvalidExpressionException(readToken.toString());
     }
 

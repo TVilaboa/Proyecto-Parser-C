@@ -460,7 +460,7 @@ public class Compiler {
         printSimple(functions, "Functions are: ", "It has no functions");
         printSimple(adts, "ADTs are: ", "It has no ADTs");
         printSimple(attributes, "Variables are: ", "It has no attributes");
-        printSimple(defines.entrySet(), "GlobalVariables are: ", "It has no GlobalVariables");
+        printSimple(defines.entrySet(), "Defines are: ", "It has no GlobalVariables");
         printSimple(candidates.values(), "Candidate classes are:", "No candidates are suggested");
         printSimple(mainFunction.getInsideMainAttributes(), "InsideMainAttributes are:", "Main doesnt have inside attributes");
        /* if (mainFunction != null) {

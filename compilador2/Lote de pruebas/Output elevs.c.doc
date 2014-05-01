@@ -1,8 +1,8 @@
 Analisys for : C:\Users\Toto\Projects\Proyecto Nacho Cassol\Proyecto-Parser-C\compilador2\Lote de pruebas\Case 2\elevs.c
 
-Modules are: (7)
+Basic Modules are: (3)
 
-	"stdio.h"
+	"conio.h"
 
 This is a basic module.
 
@@ -10,113 +10,16 @@ This is a basic module.
 
 This is a basic module.
 
-	"treeElevators.h"
+	"stdio.h"
 
-	The functions in this module are: 
+This is a basic module.
 
-	Function name: createCall
-	Returns: void
-	The arguments are:
-		call call
-		int floor
-		int elevatorCalled
-		int floorDest
-		int number
-
-	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
-
-	Function name: delQueue
-	Returns: Node
-	The arguments are:
-
-	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
-
-	Function name: deltree
-	Returns: void
-	The arguments are:
-		node tree
-
-	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
-
-	Function name: display
-	Returns: void
-	The arguments are:
-
-	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
-
-	Function name: insert
-	Returns: void
-	The arguments are:
-		node tree
-		call val
-
-	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
-
-	Function name: print_inorder
-	Returns: void
-	The arguments are:
-		node tree
-
-	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
-
-	Function name: print_postorder
-	Returns: void
-	The arguments are:
-		node tree
-
-	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
-
-	Function name: print_preorder
-	Returns: void
-	The arguments are:
-		node tree
-
-	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
-
-	Function name: printcall
-	Returns: void
-	The arguments are:
-		node tree
-
-	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
-
-	Function name: push
-	Returns: void
-	The arguments are:
-		call value
-
-	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
-
-	Function name: search
-	Returns: node
-	The arguments are:
-		node tree
-		call val
-
-	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
-
-	Function name: sizeofqueue
-	Returns: int
-	The arguments are:
-
-	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
-
-	This module has no modules 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Created Modules are: (4)
 
 	"queuecalls.h"
 
 	The functions in this module are: 
-
-	Function name: createCall
-	Returns: void
-	The arguments are:
-		call call
-		int floor
-		int elevatorCalled
-		int floorDest
-		int number
-
-	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
 
 	Function name: delQueue
 	Returns: Node
@@ -147,28 +50,79 @@ This is a basic module.
 
 	"conio.h"
 
-	This module has no functions 
-	This module has no modules 
+This is a basic module.
 
 	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
 
+	The attributes of this module are: 
 
-	"elevator.h"
+	int siz
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Node rear
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Node front
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+
+	"treeElevators.h"
 
 	The functions in this module are: 
 
-	Function name: createCall
+	Function name: deltree
 	Returns: void
 	The arguments are:
-		call call
-		int floor
-		int elevatorCalled
-		int floorDest
-		int number
+		node tree
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: insert
+	Returns: void
+	The arguments are:
+		node tree
+		call val
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: print_inorder
+	Returns: void
+	The arguments are:
+		node tree
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: print_postorder
+	Returns: void
+	The arguments are:
+		node tree
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: print_preorder
+	Returns: void
+	The arguments are:
+		node tree
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: printcall
+	Returns: void
+	The arguments are:
+		node tree
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: search
+	Returns: node
+	The arguments are:
+		node tree
+		call val
 
 	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
 
 	This module has no modules 
+	This module has no attributes 
 
 	"call.h"
 
@@ -186,14 +140,16 @@ This is a basic module.
 	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
 
 	This module has no modules 
+	This module has no attributes 
 
-	"conio.h"
+	"elevator.h"
 
 	This module has no functions 
 	This module has no modules 
+	This module has no attributes 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Functions are: (19)
+Functions are: (6)
 
 	Function name: callElevator
 	Returns: void
@@ -203,72 +159,11 @@ Functions are: (19)
 		call call
 		int i
 
-	Function name: createCall
-	Returns: void
-	The arguments are:
-		call call
-		int floor
-		int elevatorCalled
-		int floorDest
-		int number
-
-	Function name: delQueue
-	Returns: Node
-	The arguments are:
-
-	Function name: deltree
-	Returns: void
-	The arguments are:
-		node tree
-
-	Function name: display
-	Returns: void
-	The arguments are:
-
 	Function name: editCall
 	Returns: void
 	The arguments are:
 		node root
 		call call
-
-	Function name: insert
-	Returns: void
-	The arguments are:
-		node tree
-		call val
-
-MainFunction
-	Global Sentences are :
-	Function name: print_inorder
-	Returns: void
-	The arguments are:
-		node tree
-
-	Function name: print_postorder
-	Returns: void
-	The arguments are:
-		node tree
-
-	Function name: print_preorder
-	Returns: void
-	The arguments are:
-		node tree
-
-	Function name: printcall
-	Returns: void
-	The arguments are:
-		node tree
-
-	Function name: push
-	Returns: void
-	The arguments are:
-		call value
-
-	Function name: search
-	Returns: node
-	The arguments are:
-		node tree
-		call val
 
 	Function name: seeElevator
 	Returns: void
@@ -282,10 +177,6 @@ MainFunction
 		node tree
 		elevator elevators[0]
 
-
-	Function name: sizeofqueue
-	Returns: int
-	The arguments are:
 
 	Function name: storeCall
 	Returns: void
@@ -302,6 +193,10 @@ MainFunction
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ADTs are: (4)
 
+	The name is : elevator
+	The variables are: 
+		int busy
+		int floor
 	The name is : call
 	The variables are: 
 		int floor
@@ -311,39 +206,29 @@ ADTs are: (4)
 		int floorDest
 		int goingToDest
 		int number
-	The name is : elevator
-	The variables are: 
-		int busy
-		int floor
-	The name is : Node
-	The variables are: 
-		call Data
-		Node next
 	The name is : node
 	The variables are: 
 		call data
 		node left
+	The name is : Node
+	The variables are: 
+		call Data
+		Node next
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Variables are: (4)
+Variables are: (1)
 
-	int siz
-	Node rear
-	Node front
 	int cantElevators
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 It has no GlobalVariables
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Candidate classes are:(23)
+Candidate classes are:(26)
 
 CandidateClass: Node
 	Attributes are: 
 			call Data
 			Node next
 	Methods are: 
-			Method name: delQueue
-	Returns: Node
-	The arguments are:
 CandidateClass: call
 	Attributes are: 
 			int floor
@@ -361,6 +246,14 @@ CandidateClass: call
 		node root
 		call call
 		int i
+			Method name: editCall
+	Returns: void
+	The arguments are:
+		node root
+		call call
+CandidateClass: call.h
+	Attributes are: 
+	Methods are: 
 			Method name: createCall
 	Returns: void
 	The arguments are:
@@ -369,25 +262,6 @@ CandidateClass: call
 		int elevatorCalled
 		int floorDest
 		int number
-			Method name: editCall
-	Returns: void
-	The arguments are:
-		node root
-		call call
-			Method name: insert
-	Returns: void
-	The arguments are:
-		node tree
-		call val
-			Method name: push
-	Returns: void
-	The arguments are:
-		call value
-			Method name: search
-	Returns: node
-	The arguments are:
-		node tree
-		call val
 CandidateClass: callElevator
 	Attributes are: 
 			elevator elevator
@@ -402,14 +276,6 @@ CandidateClass: callElevator
 		node root
 		call call
 		int i
-			Method name: createCall
-	Returns: void
-	The arguments are:
-		call call
-		int floor
-		int elevatorCalled
-		int floorDest
-		int number
 CandidateClass: createCall
 	Attributes are: 
 			call call
@@ -461,11 +327,6 @@ CandidateClass: editCall
 	The arguments are:
 		node root
 		call call
-			Method name: search
-	Returns: node
-	The arguments are:
-		node tree
-		call val
 CandidateClass: elevator
 	Attributes are: 
 			int busy
@@ -495,6 +356,9 @@ CandidateClass: elevator
 		node tree
 		elevator elevators[0]
 
+CandidateClass: elevator.h
+	Attributes are: 
+	Methods are: 
 CandidateClass: insert
 	Attributes are: 
 			node tree
@@ -505,19 +369,6 @@ CandidateClass: insert
 	The arguments are:
 		node tree
 		call val
-CandidateClass: main
-	Attributes are: 
-			int cantElevators
-			int cantElevators
-			int return
-	Methods are: 
-			Method name: main
-	Returns: int
-	The arguments are:
-			Method name: print_inorder
-	Returns: void
-	The arguments are:
-		node tree
 CandidateClass: node
 	Attributes are: 
 			call data
@@ -530,41 +381,11 @@ CandidateClass: node
 		node root
 		call call
 		int i
-			Method name: deltree
-	Returns: void
-	The arguments are:
-		node tree
 			Method name: editCall
 	Returns: void
 	The arguments are:
 		node root
 		call call
-			Method name: insert
-	Returns: void
-	The arguments are:
-		node tree
-		call val
-			Method name: print_inorder
-	Returns: void
-	The arguments are:
-		node tree
-			Method name: print_postorder
-	Returns: void
-	The arguments are:
-		node tree
-			Method name: print_preorder
-	Returns: void
-	The arguments are:
-		node tree
-			Method name: printcall
-	Returns: void
-	The arguments are:
-		node tree
-			Method name: search
-	Returns: node
-	The arguments are:
-		node tree
-		call val
 			Method name: simulate
 	Returns: void
 	The arguments are:
@@ -619,6 +440,25 @@ CandidateClass: push
 	Returns: void
 	The arguments are:
 		call value
+CandidateClass: queuecalls.h
+	Attributes are: 
+			int siz
+			Node rear
+			Node front
+	Methods are: 
+			Method name: delQueue
+	Returns: Node
+	The arguments are:
+			Method name: display
+	Returns: void
+	The arguments are:
+			Method name: push
+	Returns: void
+	The arguments are:
+		call value
+			Method name: sizeofqueue
+	Returns: int
+	The arguments are:
 CandidateClass: search
 	Attributes are: 
 			node tree
@@ -669,10 +509,6 @@ CandidateClass: storeCall
 	Returns: void
 	The arguments are:
 		int number
-			Method name: push
-	Returns: void
-	The arguments are:
-		call value
 CandidateClass: traverseTree
 	Attributes are: 
 			node tree
@@ -685,4 +521,43 @@ CandidateClass: traverseTree
 		node tree
 		elevator elevators[0]
 
+CandidateClass: treeElevators.h
+	Attributes are: 
+	Methods are: 
+			Method name: deltree
+	Returns: void
+	The arguments are:
+		node tree
+			Method name: insert
+	Returns: void
+	The arguments are:
+		node tree
+		call val
+			Method name: print_inorder
+	Returns: void
+	The arguments are:
+		node tree
+			Method name: print_postorder
+	Returns: void
+	The arguments are:
+		node tree
+			Method name: print_preorder
+	Returns: void
+	The arguments are:
+		node tree
+			Method name: printcall
+	Returns: void
+	The arguments are:
+		node tree
+			Method name: search
+	Returns: node
+	The arguments are:
+		node tree
+		call val
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+InsideMainAttributes are:(3)
+
+node root ; 
+elevator elevators [cantElevators] ; 
+int menu ; 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

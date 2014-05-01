@@ -1,29 +1,8 @@
 Analisys for : C:\Users\Toto\Projects\Proyecto Nacho Cassol\Proyecto-Parser-C\compilador2\Lote de pruebas\Case 1\SimpleAirport.c
 
-Modules are: (8)
+Basic Modules are: (8)
 
-	"stdio.h"
-
-This is a basic module.
-
-	"conio.h"
-
-	This module has no functions 
-	This module has no modules 
-
-	"stdlib.h"
-
-This is a basic module.
-
-	"ctype.h"
-
-This is a basic module.
-
-	"math.h"
-
-This is a basic module.
-
-	"time.h"
+	"windows.h"
 
 This is a basic module.
 
@@ -31,12 +10,35 @@ This is a basic module.
 
 This is a basic module.
 
-	"windows.h"
+	"time.h"
+
+This is a basic module.
+
+	"math.h"
+
+This is a basic module.
+
+	"ctype.h"
+
+This is a basic module.
+
+	"stdlib.h"
+
+This is a basic module.
+
+	"conio.h"
+
+This is a basic module.
+
+	"stdio.h"
 
 This is a basic module.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Functions are: (22)
+It has no modules
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Functions are: (21)
 
 	Function name: addqueue
 	Returns: void
@@ -125,8 +127,6 @@ Functions are: (22)
 		plane pl
 		int curtime
 
-MainFunction
-	Global Sentences are :
 	Function name: myrandomize
 	Returns: void
 	The arguments are:
@@ -195,7 +195,7 @@ ARRIVE=0
 DEPART=1
 MAX=3
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Candidate classes are:(25)
+Candidate classes are:(24)
 
 CandidateClass: addqueue
 	Attributes are: 
@@ -425,28 +425,6 @@ CandidateClass: land
 		airport ap
 		plane pl
 		int curtime
-CandidateClass: main
-	Attributes are: 
-			int return
-	Methods are: 
-			Method name: main
-	Returns: int
-	The arguments are:
-			Method name: initairport
-	Returns: void
-	The arguments are:
-		airport ap
-			Method name: start
-	Returns: void
-	The arguments are:
-		int endtime
-		double expectarrive
-		double expectdepart
-			Method name: conclude
-	Returns: void
-	The arguments are:
-		airport ap
-		int endtime
 CandidateClass: myrandomize
 	Attributes are: 
 	Methods are: 
@@ -569,4 +547,15 @@ CandidateClass: start
 		int endtime
 		double expectarrive
 		double expectdepart
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+InsideMainAttributes are:(8)
+
+airport a ; 
+int i 
+int pri 
+int curtime 
+int endtime ; 
+double expectarrive 
+double expectdepart ; 
+plane temp ; 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

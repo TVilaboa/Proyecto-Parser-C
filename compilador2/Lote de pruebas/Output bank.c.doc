@@ -1,26 +1,28 @@
 Analisys for : C:\Users\Toto\Projects\Proyecto Nacho Cassol\Proyecto-Parser-C\compilador2\Lote de pruebas\Case 9\bank.c
 
-Modules are: (4)
-
-	"stdio.h"
-
-This is a basic module.
-
-	"conio.h"
-
-	This module has no functions 
-	This module has no modules 
-
-	"string.h"
-
-This is a basic module.
+Basic Modules are: (4)
 
 	"stdlib.h"
 
 This is a basic module.
 
+	"string.h"
+
+This is a basic module.
+
+	"conio.h"
+
+This is a basic module.
+
+	"stdio.h"
+
+This is a basic module.
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Functions are: (6)
+It has no modules
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Functions are: (5)
 
 	Function name: Account_information
 	Returns: void
@@ -42,8 +44,6 @@ Functions are: (6)
 	Returns: void
 	The arguments are:
 
-MainFunction
-	Global Sentences are :
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ADTs are: (1)
 
@@ -68,7 +68,7 @@ GlobalVariables are: (1)
 
 ACCOUNTS=20
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Candidate classes are:(7)
+Candidate classes are:(6)
 
 CandidateClass: Account_information
 	Attributes are: 
@@ -114,12 +114,8 @@ CandidateClass: display_options
 			Method name: display_options
 	Returns: void
 	The arguments are:
-CandidateClass: main
-	Attributes are: 
-			int num_acc
-			int return
-	Methods are: 
-			Method name: main
-	Returns: int
-	The arguments are:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+InsideMainAttributes are:(1)
+
+char option ; 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
