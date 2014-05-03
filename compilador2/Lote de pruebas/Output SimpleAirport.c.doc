@@ -189,7 +189,7 @@ ADTs are: (3)
 It has no attributes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-GlobalVariables are: (3)
+Defines are: (3)
 
 ARRIVE=0
 DEPART=1

@@ -19,7 +19,7 @@ Created Modules are: (4)
 
 	"queuecalls.h"
 
-	The functions in this module are: 
+	The functions in this module are (4) : 
 
 	Function name: delQueue
 	Returns: Node
@@ -46,7 +46,7 @@ Created Modules are: (4)
 
 	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
 
-	The modules of this module are: 
+	The modules of this module are (1) : 
 
 	"conio.h"
 
@@ -54,7 +54,7 @@ This is a basic module.
 
 	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
 
-	The attributes of this module are: 
+	The attributes of this module are (3) : 
 
 	int siz
 	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
@@ -68,7 +68,7 @@ This is a basic module.
 
 	"treeElevators.h"
 
-	The functions in this module are: 
+	The functions in this module are (7) : 
 
 	Function name: deltree
 	Returns: void
@@ -126,7 +126,7 @@ This is a basic module.
 
 	"call.h"
 
-	The functions in this module are: 
+	The functions in this module are (1) : 
 
 	Function name: createCall
 	Returns: void

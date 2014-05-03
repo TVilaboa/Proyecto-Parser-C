@@ -1,5 +1,18 @@
 Analisys for : C:\Users\Toto\Projects\Proyecto Nacho Cassol\Proyecto-Parser-C\compilador2\Lote de pruebas\Case 5\ballotBox.c
 
+Quantities are : 
+
+Basic Modules : 4
+Created Modules : 4
+Functions : 3
+Adts : 4
+Attributes : 1
+Defines : 0
+Candidates : 24
+InsideMainAttributes : 1
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Basic Modules are: (4)
 
 	"time.h"
@@ -23,7 +36,7 @@ Created Modules are: (4)
 
 	"school.h"
 
-	The functions in this module are: 
+	The functions in this module are (1) : 
 
 	Function name: createSchool
 	Returns: void
@@ -39,7 +52,7 @@ Created Modules are: (4)
 
 	"truck.h"
 
-	The functions in this module are: 
+	The functions in this module are (1) : 
 
 	Function name: createTruck
 	Returns: void
@@ -48,11 +61,11 @@ Created Modules are: (4)
 
 	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
 
-	The modules of this module are: 
+	The modules of this module are (2) : 
 
 	"school.h"
 
-	The functions in this module are: 
+	The functions in this module are (1) : 
 
 	Function name: createSchool
 	Returns: void
@@ -78,7 +91,7 @@ This is a basic module.
 
 	"Tree.h"
 
-	The functions in this module are: 
+	The functions in this module are (7) : 
 
 	Function name: deltree
 	Returns: void
@@ -136,7 +149,7 @@ This is a basic module.
 
 	"queue.h"
 
-	The functions in this module are: 
+	The functions in this module are (4) : 
 
 	Function name: delQueue
 	Returns: Node
@@ -163,11 +176,11 @@ This is a basic module.
 
 	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
 
-	The modules of this module are: 
+	The modules of this module are (2) : 
 
 	"truck.h"
 
-	The functions in this module are: 
+	The functions in this module are (1) : 
 
 	Function name: createTruck
 	Returns: void
@@ -176,11 +189,11 @@ This is a basic module.
 
 	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
 
-	The modules of this module are: 
+	The modules of this module are (2) : 
 
 	"school.h"
 
-	The functions in this module are: 
+	The functions in this module are (1) : 
 
 	Function name: createSchool
 	Returns: void
@@ -212,7 +225,7 @@ This is a basic module.
 
 	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
 
-	The attributes of this module are: 
+	The attributes of this module are (3) : 
 
 	int siz
 	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 

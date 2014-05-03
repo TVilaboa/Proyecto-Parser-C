@@ -60,9 +60,9 @@ public class Function implements Comparable<Function> {
     }
 
     // args : token = initial bracket, tokenIterator = iterator of the following tokens
-    public static List<Attribute> getArguments(Token token, Iterator<Token> tokenIterator, List<Adt> adts) throws InvalidExpressionException {
-        List<Attribute> arguments = new ArrayList<Attribute>();
-        token = tokenIterator.next();
+    public static List<Attribute> getArguments(Iterator<Token> tokenIterator, List<Adt> adts) throws InvalidExpressionException {
+        List<Attribute> arguments = new ArrayList<>();
+        Token token = tokenIterator.next();
 
         while (token.getType() != TokenType.CLOSING_BRACKET && token.getType() != TokenType.SENTENCE_END) {
             if (token.getType() == TokenType.BASIC_TYPE) {
@@ -94,7 +94,7 @@ public class Function implements Comparable<Function> {
     }
 
     private static Token readAttributeWithType(String type, Token token, Iterator<Token> tokenIterator, List<Attribute> attributes) throws InvalidExpressionException {
-        Attribute attribute = null;
+        Attribute attribute;
         if (token.getType() == TokenType.IDENTIFIER) {
             String name = token.getValue();
             token = tokenIterator.next();

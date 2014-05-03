@@ -1,5 +1,18 @@
 Analisys for : C:\Users\Toto\Projects\Proyecto Nacho Cassol\Proyecto-Parser-C\compilador2\Lote de pruebas\Case 9\bank.c
 
+Quantities are : 
+
+Basic Modules : 4
+Created Modules : 0
+Functions : 5
+Adts : 1
+Attributes : 1
+Defines : 1
+Candidates : 6
+InsideMainAttributes : 1
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Basic Modules are: (4)
 
 	"stdlib.h"
@@ -64,7 +77,7 @@ Variables are: (1)
 
 	int num_acc
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-GlobalVariables are: (1)
+Defines are: (1)
 
 ACCOUNTS=20
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

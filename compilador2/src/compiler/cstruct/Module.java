@@ -21,10 +21,10 @@ public class Module {
 
     public Module(File moduleFile) {
         file = moduleFile;
-        functions = new LinkedList<Function>();
-        modulesIncluded = new LinkedList<Module>();
+        functions = new LinkedList<>();
+        modulesIncluded = new LinkedList<>();
         atributes = new ArrayList<>();
-        defines = new TreeMap<String, Integer>();
+        defines = new TreeMap<>();
     }
 
     public static String[] getModuleList() {
@@ -42,7 +42,7 @@ public class Module {
         MODULE_LIST = new String[]{"assert.h", "complex.h", "ctype.h",
                 "errno.h", "fenv.h", "float.h",
                 "inttypes.h", "iso646.h", "limits.h",
-                "locale.h", "math.h", "setjmp.h",
+                "locale.h", "math.h", "setjmp.h",                           //BasicsModules, dont want to analyse these
                 "signal.h", "stdarg.h", "stdbool.h",
                 "stdint.h", "stddef.h", "stdio.h",
                 "stdlib.h", "string.h", "tgmath.h",
@@ -85,9 +85,6 @@ public class Module {
         return aux;
     }
 
-    //get the name of the module, open the file and store the information (functions) in the object
-    public void uploadDataofModule() {
-    }
 
     public List<Module> getModulesIncluded() {
         return modulesIncluded;
@@ -105,16 +102,9 @@ public class Module {
         this.functions = functions;
     }
 
-    private boolean endOfDefinition(String lineFile) {
-        if (lineFile.contains("{")) {
-//            System.out.println("encontre el comienzo de la implementacion");
-            return true;
-        } else
-            return false;
-    }
 
     public String toString() {
-        String modulePrint = null;
+        String modulePrint;
         if (!isBasicModule()) {
             modulePrint = "\t\"" + file.getName() + "\"\n\n";
             if (functions != null) {

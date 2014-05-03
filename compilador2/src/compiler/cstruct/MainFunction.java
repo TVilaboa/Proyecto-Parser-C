@@ -27,7 +27,7 @@ public class MainFunction extends Function {
     public MainFunction(String returns, List<Attribute> arguments, String body, Map<String, Integer> globalAttributes,
                         List<Attribute> variables, Set<Function> functions, Map<String, CandidateClass> candidates) throws IOException, InvalidExpressionException {
         super(returns, "main", arguments, body, globalAttributes, variables, functions);
-        insideMainAttributes = new ArrayList<Sentence>();
+        insideMainAttributes = new ArrayList<>();
         this.candidates = candidates;
     }
 
@@ -42,7 +42,7 @@ public class MainFunction extends Function {
 
     public List<Sentence> generateSentenceList(List<Adt> fileAdt, List<Attribute> fileAttributes,
                                                Set<Function> fileDeclaredFunctions) throws InvalidExpressionException, NoSupportedInstructionException {
-        List<Attribute> internalAttributes = new ArrayList<Attribute>();
+        List<Attribute> internalAttributes = new ArrayList<>();
         Iterator<Token> tokenIterator = bodyTokenList.iterator();
         while (tokenIterator.hasNext()) {
             Token token = tokenIterator.next();
@@ -95,7 +95,7 @@ public class MainFunction extends Function {
             for (Character c : chars) {
                 characters.add(c);
             }
-            characters.remove(0);
+            characters.remove(0);         //remove brackets
             characters.remove(characters.size() - 1);
             Token token;
             List<Token> tokens = tokenListFactory.getTokenFileFromCFile(characters.iterator());
@@ -133,7 +133,7 @@ public class MainFunction extends Function {
 
     private Sentence processKeyWord(Token token, Iterator<Token> tokenIterator, List<Attribute> fileAttributes,
                                     List<Attribute> internalAttributes, Set<Function> fileDeclaredFunctions) throws NoSupportedInstructionException, InvalidExpressionException {
-        List<Token> sentenceTokens = new LinkedList<Token>();
+        List<Token> sentenceTokens = new LinkedList<>();
         Sentence sentence;
         sentenceTokens.add(token);
         if (token.getValue().equals("if")) {
@@ -211,7 +211,7 @@ public class MainFunction extends Function {
                                   List<Attribute> internalAttributes, Set<Function> fileDeclaredFunctions)
             throws NoSupportedInstructionException, InvalidExpressionException {
         Sentence sentence = null;
-        List<Token> sentenceTokens = new LinkedList<Token>();
+        List<Token> sentenceTokens = new LinkedList<>();
         sentenceTokens.add(token);
         Token firstToken = token;
         token = tokenIterator.next();
@@ -321,7 +321,7 @@ public class MainFunction extends Function {
                     sentence = new Sentence(SentenceType.ATTRIBUTE_VALUE_FROM_CONSTANT, sentenceTokens);
 
                 } else {
-                    throw new NoSupportedInstructionException(token.toString()); //TODO prepare to support other sentence types
+                    throw new NoSupportedInstructionException(token.toString());
                 }
             } else {
                 throw new InvalidExpressionException(token.toString());
@@ -356,7 +356,6 @@ public class MainFunction extends Function {
         }
 
         if (!token.getValue().equals("printf") && !token.getValue().equals("scanf")) {
-            Sentence sentence = null;
             for (Adt adt : fileAdt) {
             if (adt.getName().equals(token.getValue())) {
                 processBasicType(token, tokenIterator, fileAttributes, internalAttributes, fileDeclaredFunctions);
@@ -365,11 +364,7 @@ public class MainFunction extends Function {
         }
 
 
-//        for (Attribute fileAttribute : fileAttributes) {
-//            //TODO seguir comparando nombres de indentificadores con los que se tiene previos
-//        }
-
-        List<Token> sentenceTokens = new ArrayList<Token>();
+            List<Token> sentenceTokens = new ArrayList<>();
         sentenceTokens.add(token);
         token = tokenIterator.next();
             if (token.getType() == TokenType.POINT_OPERATOR || token.getType() == TokenType.ASSIGNATION_OPERATOR) {
@@ -392,7 +387,6 @@ public class MainFunction extends Function {
     }
 
     /**
-     * @param token
      * @param tokenIterator
      * @param sentenceTokens        : sentence first tokens, type and identifier;
      * @param fileAttributes
@@ -403,11 +397,12 @@ public class MainFunction extends Function {
      *
      * @throws InvalidExpressionException
      */
-    private Sentence readAttributeValueSentence(Token token, Iterator<Token> tokenIterator, List<Token> sentenceTokens, List<Attribute> fileAttributes,
+    private Sentence readAttributeValueSentence(Iterator<Token> tokenIterator, List<Token> sentenceTokens, List<Attribute> fileAttributes,
                                                 List<Attribute> internalAttributes, List<Function> fileDeclaredFunctions)
-            throws NoSupportedInstructionException, InvalidExpressionException {
+            throws NoSupportedInstructionException {
         Sentence sentence = null;
-        token = tokenIterator.next();
+
+        Token token = tokenIterator.next();
         if (token.getType() == TokenType.ASSIGNATION_OPERATOR) {
             sentenceTokens.add(token);
             token = tokenIterator.next();
@@ -455,6 +450,7 @@ public class MainFunction extends Function {
             throw new NoSupportedInstructionException(token.toString()); //TODO prepare to support other sentence types
         }
         return sentence;
+
     }
 
     @Override
@@ -501,7 +497,7 @@ public class MainFunction extends Function {
     //creates CCD from fprintf, using file name as name, and variables as attributes. Only if used outside control flow ,same with attributes
     private void processFprintF(Iterator<Token> tokenIterator) throws InvalidExpressionException {
         Token token = tokenIterator.next();
-        CandidateClass clazz = null;
+        CandidateClass clazz;
         if (token.getType() == TokenType.OPENING_BRACKET) {
             token = tokenIterator.next();
             if (token.getType() == TokenType.IDENTIFIER) {
@@ -523,9 +519,8 @@ public class MainFunction extends Function {
                                             if (sentence.getSentenceComponents().get(1).getValue().equals(token.getValue())) {
                                                 boolean exist = false;
                                                 insideControlFlowAttribute = false;
-                                                for (Iterator<JavaAttribute> iterator = clazz.getAttributes().iterator(); iterator.hasNext(); ) {
-                                                    JavaAttribute attribute = iterator.next();
-                                                    if (attribute.getName().equals(sentence.getSentenceComponents().get(0))) {
+                                                for (JavaAttribute attribute : clazz.getAttributes()) {
+                                                    if (attribute.getName().equals(sentence.getSentenceComponents().get(0).getValue())) {
                                                         exist = true;
                                                         break;
                                                     }

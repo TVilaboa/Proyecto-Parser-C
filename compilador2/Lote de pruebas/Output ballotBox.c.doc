@@ -23,7 +23,7 @@ Created Modules are: (4)
 
 	"school.h"
 
-	The functions in this module are: 
+	The functions in this module are (1) : 
 
 	Function name: createSchool
 	Returns: void
@@ -39,7 +39,7 @@ Created Modules are: (4)
 
 	"truck.h"
 
-	The functions in this module are: 
+	The functions in this module are (1) : 
 
 	Function name: createTruck
 	Returns: void
@@ -48,11 +48,11 @@ Created Modules are: (4)
 
 	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
 
-	The modules of this module are: 
+	The modules of this module are (2) : 
 
 	"school.h"
 
-	The functions in this module are: 
+	The functions in this module are (1) : 
 
 	Function name: createSchool
 	Returns: void
@@ -78,7 +78,7 @@ This is a basic module.
 
 	"Tree.h"
 
-	The functions in this module are: 
+	The functions in this module are (7) : 
 
 	Function name: deltree
 	Returns: void
@@ -136,7 +136,7 @@ This is a basic module.
 
 	"queue.h"
 
-	The functions in this module are: 
+	The functions in this module are (4) : 
 
 	Function name: delQueue
 	Returns: Node
@@ -163,11 +163,11 @@ This is a basic module.
 
 	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
 
-	The modules of this module are: 
+	The modules of this module are (2) : 
 
 	"truck.h"
 
-	The functions in this module are: 
+	The functions in this module are (1) : 
 
 	Function name: createTruck
 	Returns: void
@@ -176,11 +176,11 @@ This is a basic module.
 
 	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
 
-	The modules of this module are: 
+	The modules of this module are (2) : 
 
 	"school.h"
 
-	The functions in this module are: 
+	The functions in this module are (1) : 
 
 	Function name: createSchool
 	Returns: void
@@ -212,7 +212,7 @@ This is a basic module.
 
 	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
 
-	The attributes of this module are: 
+	The attributes of this module are (3) : 
 
 	int siz
 	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 

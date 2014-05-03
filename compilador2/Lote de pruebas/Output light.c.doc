@@ -15,7 +15,7 @@ Created Modules are: (3)
 
 	"tree.h"
 
-	The functions in this module are: 
+	The functions in this module are (7) : 
 
 	Function name: deltree
 	Returns: void
@@ -73,7 +73,7 @@ Created Modules are: (3)
 
 	"list.h"
 
-	The functions in this module are: 
+	The functions in this module are (7) : 
 
 	Function name: destroy
 	Returns: void
@@ -134,7 +134,7 @@ Created Modules are: (3)
 
 	"lightbulb.h"
 
-	The functions in this module are: 
+	The functions in this module are (1) : 
 
 	Function name: createBulb
 	Returns: void

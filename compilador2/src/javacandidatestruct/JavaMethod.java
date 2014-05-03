@@ -16,18 +16,16 @@ public class JavaMethod implements Serializable {
     private String returnType;
     private String name;
     private List<Attribute> arguments;
-    private String body;
 
     public JavaMethod(String returnType, String name, List<Attribute> arguments1, String body) {
         this.returnType = returnType;
         this.name = name;
         this.arguments = arguments1;
-        this.body = body;
+        String body1 = body;
     }
 
 
-
-    public static JavaMethod getJavaMethodFromCFunction(Function function){
+    public static JavaMethod getJavaMethodFromCFunction(Function function) {
         return new JavaMethod(function.getReturns(), function.getName(), function.getArguments(), function.getBody());
     }
 

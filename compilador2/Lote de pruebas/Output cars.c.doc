@@ -23,7 +23,7 @@ Created Modules are: (2)
 
 	"car.h"
 
-	The functions in this module are: 
+	The functions in this module are (2) : 
 
 	Function name: create_car
 	Returns: void
@@ -38,7 +38,7 @@ Created Modules are: (2)
 
 	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
 
-	The modules of this module are: 
+	The modules of this module are (1) : 
 
 	"time.h"
 
@@ -50,7 +50,7 @@ This is a basic module.
 
 	"queue.h"
 
-	The functions in this module are: 
+	The functions in this module are (4) : 
 
 	Function name: delQueue
 	Returns: Node
@@ -77,11 +77,11 @@ This is a basic module.
 
 	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
 
-	The modules of this module are: 
+	The modules of this module are (2) : 
 
 	"car.h"
 
-	The functions in this module are: 
+	The functions in this module are (2) : 
 
 	Function name: create_car
 	Returns: void
@@ -96,7 +96,7 @@ This is a basic module.
 
 	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
 
-	The modules of this module are: 
+	The modules of this module are (1) : 
 
 	"time.h"
 
@@ -114,7 +114,7 @@ This is a basic module.
 
 	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
 
-	The attributes of this module are: 
+	The attributes of this module are (3) : 
 
 	int siz
 	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 

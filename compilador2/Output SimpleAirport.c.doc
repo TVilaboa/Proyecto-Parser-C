@@ -1,5 +1,18 @@
 Analisys for : C:\Users\Toto\Projects\Proyecto Nacho Cassol\Proyecto-Parser-C\compilador2\Lote de pruebas\Case 1\SimpleAirport.c
 
+Quantities are : 
+
+Basic Modules : 8
+Created Modules : 0
+Functions : 21
+Adts : 3
+Attributes : 0
+Defines : 3
+Candidates : 24
+InsideMainAttributes : 8
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Basic Modules are: (8)
 
 	"windows.h"
@@ -189,7 +202,7 @@ ADTs are: (3)
 It has no attributes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-GlobalVariables are: (3)
+Defines are: (3)
 
 ARRIVE=0
 DEPART=1

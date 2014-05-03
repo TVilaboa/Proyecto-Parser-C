@@ -31,13 +31,12 @@ public class Compiler {
     //private List<Token> tokenList;
 
     public Compiler() {
-        // myFile = new File(fileName);
-        adts = new ArrayList<Adt>();
-        functions = new TreeSet<Function>();
-        modules = new ArrayList<Module>();
-        attributes = new ArrayList<Attribute>();
-        candidates = new TreeMap<String, CandidateClass>();
-        defines = new TreeMap<String, Integer>();
+        adts = new ArrayList<>();
+        functions = new TreeSet<>();
+        modules = new ArrayList<>();
+        attributes = new ArrayList<>();
+        candidates = new TreeMap<>();
+        defines = new TreeMap<>();
         definesProcedency = new TreeMap<>();
         alreadyProcessed = new ArrayList<>();
         output = new StringBuilder();
@@ -45,7 +44,7 @@ public class Compiler {
 
     public void run() throws IOException, InvalidExpressionException, NoSupportedInstructionException {
         myFile = loadFile();
-        output.append("Analisys for : " + myFile + "\n\n");
+        output.append("Analisys for : ").append(myFile).append("\n\n");
         subrun(myFile);
         if (mainFunction != null) {
             mainFunction.generateSentenceList(adts, attributes, functions);
@@ -55,7 +54,7 @@ public class Compiler {
 
     public void run(File myFile) throws IOException, InvalidExpressionException, NoSupportedInstructionException {
         this.myFile = myFile;
-        output.append("Analisys for : " + myFile + "\n\n");
+        output.append("Analisys for : ").append(myFile).append("\n\n");
         subrun(myFile);
         if (mainFunction != null) {
             mainFunction.generateSentenceList(adts, attributes, functions);
@@ -85,8 +84,6 @@ public class Compiler {
             }
         }
         preProcess(tokenList, myFile);
-        //aca sucede lo mismo con los includes q con los define, como primero los proceso y despues voy a los modulos,quedan cargados
-        //como si fueran del siguiente modulo y no propios.
         uploadModules(); //take all the information of each modules (listed in the header the main file). The names of all modules are stored in ListD modules
         //first upload modules so that module´s functions and structs can be recognised later
         Iterator<Token> tokenIterator = tokenList.iterator();
@@ -152,8 +149,7 @@ public class Compiler {
         createCandidatesFromADTs();  //start merging the 4 independent lists (functions, modules, vars and ADT)
         //createCandidatesFromAttributes();
         createCandidatesFromFunction();
-        for (int i = 0; i < modules.size(); i++) {
-            Module module = modules.get(i);
+        for (Module module : modules) {
             if (myFile.equals(module.getFile())) {
                 for (Iterator<Function> iterator = functions.iterator(); iterator.hasNext(); ) {
                     Function function = iterator.next();
@@ -249,7 +245,7 @@ public class Compiler {
             String name = token.getValue();
             token = tokenIterator.next();
             if (token.getType() == TokenType.OPENING_BRACKET) {
-                List<Attribute> arguments = Function.getArguments(token, tokenIterator, adts);
+                List<Attribute> arguments = Function.getArguments(tokenIterator, adts);
                 token = tokenIterator.next();
                 if (token.getType() == TokenType.SENTENCE_END) {
                     // addFunction(new Function(type, name, arguments, defines,attributes));  añade prototipos, no tiene sentido ya que se va a añadir luego la funcion real
@@ -316,7 +312,7 @@ public class Compiler {
         }
     }
 
-    private int processIfndef(List<Token> tokenList, int i) throws InvalidExpressionException {
+    private int processIfndef(List<Token> tokenList, int i) {
         tokenList.remove(i);  //#ifndef
         tokenList.remove(i);  // identifier
         tokenList.remove(i);  //#define
@@ -398,19 +394,6 @@ public class Compiler {
         }
     }
 
-    private void createCandidatesFromAttributes() {
-        for (Function function : functions) {
-            final Set<Attribute> attributeSet = new TreeSet<Attribute>();
-            for (Attribute attribute : attributes) {
-                if (function.hasArgument(attribute)){
-                    attributeSet.add(attribute);
-                }
-            }
-            if (!attributeSet.isEmpty()){
-               // candidates.containsKey();
-            }
-        }
-    }
 
     private void createCandidatesFromFunction() {
         for (Function function : functions) {
@@ -437,7 +420,7 @@ public class Compiler {
     // each file to each object of the list.
     private void uploadModules() throws InvalidExpressionException, NoSupportedInstructionException, IOException {
 
-        for (int i = 0; i < modules.size(); i++) {
+        for (int i = 0, modulesSize = modules.size(); i < modulesSize; i++) {
             Module module = modules.get(i);
             if (!module.isBasicModule() && !alreadyProcessed.contains(module.getFile()))
                 this.subrun(module.getFile());
@@ -454,7 +437,17 @@ public class Compiler {
                 basic.add(module);
             else created.add(module);
         }
-
+        output.append("Quantities are : \n\n");
+        output.append("Basic Modules : " + basic.size() + "\n");
+        output.append("Created Modules : " + created.size() + "\n");
+        output.append("Functions : " + functions.size() + "\n");
+        output.append("Adts : " + adts.size() + "\n");
+        output.append("Attributes : " + attributes.size() + "\n");
+        output.append("Defines : " + defines.entrySet().size() + "\n");
+        output.append("Candidates : " + candidates.values().size() + "\n");
+        output.append("InsideMainAttributes : " + mainFunction.getInsideMainAttributes().size() + "\n" + "\n");
+        //TODO automatic summary update
+        output.append("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" + "\n\n");
         printSimple(basic, "Basic Modules are: ", "It has no modules");
         printSimple(created, "Created Modules are: ", "It has no modules");
         printSimple(functions, "Functions are: ", "It has no functions");
@@ -463,10 +456,6 @@ public class Compiler {
         printSimple(defines.entrySet(), "Defines are: ", "It has no GlobalVariables");
         printSimple(candidates.values(), "Candidate classes are:", "No candidates are suggested");
         printSimple(mainFunction.getInsideMainAttributes(), "InsideMainAttributes are:", "Main doesnt have inside attributes");
-       /* if (mainFunction != null) {
-            System.out.println("+------------------------------------+");
-            System.out.println(mainFunction);
-        }*/
         System.out.println(output.toString());
         File f = new File("Output " + myFile.getName() + ".doc");
         try (PrintWriter pr = new PrintWriter(new BufferedWriter(new FileWriter(f)))) {
@@ -474,18 +463,20 @@ public class Compiler {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
+
 
     private void printSimple(Collection list, String nonEmptyListMessage, String emptyListMessage) {
         if (!list.isEmpty()) {
-            output.append(nonEmptyListMessage + "(" + list.size() + ")" + "\n");
+            output.append(nonEmptyListMessage).append("(").append(list.size()).append(")").append("\n");
             output.append("" + "\n");
             for (Object o : list) {
-                output.append(o.toString() + "\n");
+                output.append(o.toString()).append("\n");
             }
             output.append("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" + "\n");
         } else {
-            output.append(emptyListMessage + "\n");
+            output.append(emptyListMessage).append("\n");
             output.append("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" + "\n\n");
         }
     }

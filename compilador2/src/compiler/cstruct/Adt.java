@@ -17,36 +17,11 @@ import java.util.*;
 public class Adt {
     private String name; // name of the Adt
     private List<Attribute> attributes; // attributes of the Adt
-    private static Map<String, Integer> globalAttributes;
 
     public Adt(String name, List<Attribute> attributes, Map<String, Integer> globalAttributes) {
         this.name = name;
         this.attributes = attributes;
-        this.globalAttributes = globalAttributes;
-    }
-
-
-    public void setAttributes(List<Attribute> attributes) {
-        this.attributes = attributes;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public List<Attribute> getAttributes() {
-        return attributes;
-    }
-
-    public String toString() {
-        String result = ("\tThe name is : " + name);
-        if (attributes != null) {
-            result += ("\n\tThe variables are: ");
-            for (Attribute attribute : attributes) {
-                result += "\n\t" + (attribute.toString());
-            }
-        }
-        return result;
+        Map<String, Integer> globalAttributes1 = globalAttributes;
     }
 
     public static List<Attribute> readAttributesFromBlock(Token token, List<Adt> adts, Map<String, Integer> globalAttributes) throws IOException, InvalidExpressionException {
@@ -56,7 +31,7 @@ public class Adt {
         Iterator<Token> tokenIterator;
         tokenIterator = tokenListFactory.getTokenFileFromCFile(new StringReader(adtBodyWithoutBrackets)).iterator();
 
-        List<Attribute> attributeList = new LinkedList<Attribute>();
+        List<Attribute> attributeList = new LinkedList<>();
 
         while (tokenIterator.hasNext()) {
             token = tokenIterator.next();
@@ -122,6 +97,29 @@ public class Adt {
     private static int parseInt(String arraycap) {
         arraycap = arraycap.substring(1, arraycap.length() - 1);
         return Integer.parseInt(arraycap);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public List<Attribute> getAttributes() {
+        return attributes;
+    }
+
+    public void setAttributes(List<Attribute> attributes) {
+        this.attributes = attributes;
+    }
+
+    public String toString() {
+        String result = ("\tThe name is : " + name);
+        if (attributes != null) {
+            result += ("\n\tThe variables are: ");
+            for (Attribute attribute : attributes) {
+                result += "\n\t" + (attribute.toString());
+            }
+        }
+        return result;
     }
 
 }

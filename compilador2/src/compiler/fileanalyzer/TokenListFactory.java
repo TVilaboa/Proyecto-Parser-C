@@ -35,7 +35,7 @@ public class TokenListFactory {
     }
 
     public List<Token> getTokenFileFromCFile(Iterator<Character> cFile) throws InvalidExpressionException {
-        tokensList = new ArrayList<Token>();
+        tokensList = new ArrayList<>();
         readCharacter = cFile.next();
         StringBuilder readToken = new StringBuilder();
         while (cFile.hasNext()) {
@@ -274,7 +274,7 @@ public class TokenListFactory {
     }
 
     private Token readSquareBracketBlock(StringBuilder readToken, Iterator<Character> cFile) throws InvalidExpressionException {
-        Stack<Character> bracketStack = new Stack<Character>();
+        Stack<Character> bracketStack = new Stack<>();
         readCharacter = cFile.next();
         while (cFile.hasNext()) {
             readToken.append((char) readCharacter);
@@ -330,7 +330,7 @@ public class TokenListFactory {
     }
 
     private Token readBlock(StringBuilder readToken, Iterator<Character> cFile) throws InvalidExpressionException {
-        Stack<Character> bracketStack = new Stack<Character>();
+        Stack<Character> bracketStack = new Stack<>();
         readCharacter = cFile.next();
         while (cFile.hasNext()) {
             readToken.append((char) readCharacter);

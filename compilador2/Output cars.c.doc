@@ -1,5 +1,18 @@
 Analisys for : C:\Users\Toto\Projects\Proyecto Nacho Cassol\Proyecto-Parser-C\compilador2\Lote de pruebas\Case 7\cars.c
 
+Quantities are : 
+
+Basic Modules : 4
+Created Modules : 2
+Functions : 1
+Adts : 2
+Attributes : 0
+Defines : 0
+Candidates : 11
+InsideMainAttributes : 2
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Basic Modules are: (4)
 
 	"time.h"
@@ -23,7 +36,7 @@ Created Modules are: (2)
 
 	"car.h"
 
-	The functions in this module are: 
+	The functions in this module are (2) : 
 
 	Function name: create_car
 	Returns: void
@@ -38,7 +51,7 @@ Created Modules are: (2)
 
 	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
 
-	The modules of this module are: 
+	The modules of this module are (1) : 
 
 	"time.h"
 
@@ -50,7 +63,7 @@ This is a basic module.
 
 	"queue.h"
 
-	The functions in this module are: 
+	The functions in this module are (4) : 
 
 	Function name: delQueue
 	Returns: Node
@@ -77,11 +90,11 @@ This is a basic module.
 
 	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
 
-	The modules of this module are: 
+	The modules of this module are (2) : 
 
 	"car.h"
 
-	The functions in this module are: 
+	The functions in this module are (2) : 
 
 	Function name: create_car
 	Returns: void
@@ -96,7 +109,7 @@ This is a basic module.
 
 	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
 
-	The modules of this module are: 
+	The modules of this module are (1) : 
 
 	"time.h"
 
@@ -114,7 +127,7 @@ This is a basic module.
 
 	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
 
-	The attributes of this module are: 
+	The attributes of this module are (3) : 
 
 	int siz
 	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 

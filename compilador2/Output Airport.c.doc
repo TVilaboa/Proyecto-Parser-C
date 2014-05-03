@@ -1,5 +1,18 @@
 Analisys for : C:\Users\Toto\Projects\Proyecto Nacho Cassol\Proyecto-Parser-C\compilador2\Lote de pruebas\Case 8\airport.c
 
+Quantities are : 
+
+Basic Modules : 4
+Created Modules : 3
+Functions : 2
+Adts : 3
+Attributes : 0
+Defines : 1
+Candidates : 19
+InsideMainAttributes : 2
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Basic Modules are: (4)
 
 	"conio.h"
@@ -23,7 +36,7 @@ Created Modules are: (3)
 
 	"plane.h"
 
-	The functions in this module are: 
+	The functions in this module are (4) : 
 
 	Function name: create_plane
 	Returns: void
@@ -55,7 +68,7 @@ Created Modules are: (3)
 
 	"flight.h"
 
-	The functions in this module are: 
+	The functions in this module are (3) : 
 
 	Function name: BubbleSort_company
 	Returns: void
@@ -85,7 +98,7 @@ Created Modules are: (3)
 
 	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
 
-	The modules of this module are: 
+	The modules of this module are (1) : 
 
 	"time.h"
 
@@ -97,7 +110,7 @@ This is a basic module.
 
 	"queue.h"
 
-	The functions in this module are: 
+	The functions in this module are (4) : 
 
 	Function name: delQueue
 	Returns: Node
@@ -124,11 +137,11 @@ This is a basic module.
 
 	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
 
-	The modules of this module are: 
+	The modules of this module are (2) : 
 
 	"plane.h"
 
-	The functions in this module are: 
+	The functions in this module are (4) : 
 
 	Function name: create_plane
 	Returns: void
@@ -166,7 +179,7 @@ This is a basic module.
 
 	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
 
-	The attributes of this module are: 
+	The attributes of this module are (3) : 
 
 	Node rear
 	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
@@ -213,7 +226,7 @@ ADTs are: (3)
 It has no attributes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-GlobalVariables are: (1)
+Defines are: (1)
 
 SIZE=100
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

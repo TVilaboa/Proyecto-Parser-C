@@ -6,7 +6,10 @@ import compiler.cstruct.Function;
 import compiler.cstruct.Module;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by IntelliJ IDEA.
@@ -22,14 +25,14 @@ public class CandidateClass implements Serializable {
 
     public CandidateClass(String name) {
         this.name = name;
-        attributes = new LinkedList<JavaAttribute>();
-        methods = new LinkedList<JavaMethod>();
+        attributes = new LinkedList<>();
+        methods = new LinkedList<>();
     }
 
     public CandidateClass(Module module) {
         name = module.getFile().getName();
-        attributes = new LinkedList<JavaAttribute>();
-        methods = new LinkedList<JavaMethod>();
+        attributes = new LinkedList<>();
+        methods = new LinkedList<>();
         parseModule(module);
         for (Module module1 : module.getModulesIncluded()) {
             parseModule(module1);
@@ -45,8 +48,7 @@ public class CandidateClass implements Serializable {
             addAttribute(new JavaAttribute(attribute.getType(), attribute.getName(),
                     attribute.isArray(), attribute.getArrayCapax()));
         }
-        for (Iterator<Map.Entry<String, Integer>> iterator = module.getDefines().entrySet().iterator(); iterator.hasNext(); ) {
-            Map.Entry<String, Integer> entry = iterator.next();
+        for (Map.Entry<String, Integer> entry : module.getDefines().entrySet()) {
             addAttribute(new JavaAttribute("Constant : ->" + entry.getValue(), entry.getKey(), false, 0));
         }  //they are constants
     }

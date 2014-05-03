@@ -64,7 +64,7 @@ Variables are: (1)
 
 	int num_acc
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-GlobalVariables are: (1)
+Defines are: (1)
 
 ACCOUNTS=20
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -19,7 +19,7 @@ Created Modules are: (1)
 
 	"student.h"
 
-	The functions in this module are: 
+	The functions in this module are (8) : 
 
 	Function name: BubbleSort
 	Returns: void
@@ -90,7 +90,7 @@ Created Modules are: (1)
 
 	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
 
-	The modules of this module are: 
+	The modules of this module are (1) : 
 
 	"time.h"
 
@@ -114,7 +114,7 @@ ADTs are: (1)
 It has no attributes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-GlobalVariables are: (2)
+Defines are: (2)
 
 ELEMENTS=200
 STUDENTS=50
