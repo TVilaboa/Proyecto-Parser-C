@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1398445120 source:c:\users\toto\dropbox\test cases\3 test case\movieclub\movieclub.c
+	<unistd.h>
+	<fcntl.h>
+	<stdio.h>
+	"C:\Users\Toto\Dropbox\test cases\3 test case\MovieClub\list.h"
+
+1398445474 c:\users\toto\dropbox\test cases\3 test case\movieclub\list.h
+	<stdio.h>
+	<stdlib.h>
+

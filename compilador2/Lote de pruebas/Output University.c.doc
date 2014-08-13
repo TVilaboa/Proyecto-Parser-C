@@ -1,5 +1,18 @@
 Analisys for : C:\Users\Toto\Projects\Proyecto Nacho Cassol\Proyecto-Parser-C\compilador2\Lote de pruebas\Case 6\University.c
 
+Quantities are : 
+
+Basic Modules : 3
+Created Modules : 1
+Functions : 0
+Adts : 1
+Attributes : 0
+Defines : 2
+Candidates : 10
+InsideMainAttributes : 2
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Basic Modules are: (3)
 
 	"time.h"

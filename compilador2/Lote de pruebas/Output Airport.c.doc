@@ -1,5 +1,18 @@
 Analisys for : C:\Users\Toto\Projects\Proyecto Nacho Cassol\Proyecto-Parser-C\compilador2\Lote de pruebas\Case 8\airport.c
 
+Quantities are : 
+
+Basic Modules : 4
+Created Modules : 3
+Functions : 2
+Adts : 3
+Attributes : 0
+Defines : 1
+Candidates : 19
+InsideMainAttributes : 2
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Basic Modules are: (4)
 
 	"conio.h"

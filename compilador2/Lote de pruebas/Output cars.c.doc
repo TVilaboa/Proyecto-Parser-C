@@ -1,5 +1,18 @@
 Analisys for : C:\Users\Toto\Projects\Proyecto Nacho Cassol\Proyecto-Parser-C\compilador2\Lote de pruebas\Case 7\cars.c
 
+Quantities are : 
+
+Basic Modules : 4
+Created Modules : 2
+Functions : 1
+Adts : 2
+Attributes : 0
+Defines : 0
+Candidates : 11
+InsideMainAttributes : 2
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Basic Modules are: (4)
 
 	"time.h"

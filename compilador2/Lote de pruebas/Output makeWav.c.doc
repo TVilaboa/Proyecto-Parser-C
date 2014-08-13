@@ -1,5 +1,18 @@
 Analisys for : C:\Users\Toto\Projects\Proyecto Nacho Cassol\Proyecto-Parser-C\compilador2\Lote de pruebas\Case 3\WAV\makeWav.c
 
+Quantities are : 
+
+Basic Modules : 4
+Created Modules : 2
+Functions : 0
+Adts : 0
+Attributes : 1
+Defines : 2
+Candidates : 4
+InsideMainAttributes : 2
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Basic Modules are: (4)
 
 	"assert.h"
