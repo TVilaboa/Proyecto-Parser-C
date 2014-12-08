@@ -1,5 +1,21 @@
 Analisys for : C:\Users\Toto\Projects\Proyecto Nacho Cassol\Proyecto-Parser-C\compilador2\Lote de pruebas\Case 12\Library\LibraryAYED.c
 
+<<<<<<< HEAD
+=======
+Quantities are : 
+
+Basic Modules : 2
+Created Modules : 2
+Functions : 9
+Adts : 5
+Attributes : 1
+Defines : 0
+Candidates : 24
+InsideMainAttributes : 1
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+>>>>>>> c8302aeb447a84a9d03681adecf04ccd1c12bf87
 Basic Modules are: (2)
 
 	"stdlib.h"

@@ -1,5 +1,18 @@
 Analisys for : C:\Users\Toto\Projects\Proyecto Nacho Cassol\Proyecto-Parser-C\compilador2\Lote de pruebas\Case 10\calculator.c
 
+Quantities are : 
+
+Basic Modules : 4
+Created Modules : 0
+Functions : 8
+Adts : 0
+Attributes : 0
+Defines : 0
+Candidates : 8
+InsideMainAttributes : 1
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Basic Modules are: (4)
 
 	"stdlib.h"

@@ -1,5 +1,18 @@
 Analisys for : C:\Users\Toto\Projects\Proyecto Nacho Cassol\Proyecto-Parser-C\compilador2\Lote de pruebas\Case 5\ballotBox.c
 
+Quantities are : 
+
+Basic Modules : 4
+Created Modules : 4
+Functions : 3
+Adts : 4
+Attributes : 1
+Defines : 0
+Candidates : 24
+InsideMainAttributes : 1
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Basic Modules are: (4)
 
 	"time.h"

@@ -6,9 +6,15 @@
 			<Cursor1 position="628" topLine="0" />
 		</Cursor>
 	</File>
+<<<<<<< HEAD
 	<File name="..\movieClub.c" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="1573" topLine="41" />
+=======
+	<File name="..\movieClub.c" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1468" topLine="61" />
+>>>>>>> c8302aeb447a84a9d03681adecf04ccd1c12bf87
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

@@ -1,5 +1,18 @@
 Analisys for : C:\Users\Toto\Projects\Proyecto Nacho Cassol\Proyecto-Parser-C\compilador2\Lote de pruebas\Case 4\light.c
 
+Quantities are : 
+
+Basic Modules : 2
+Created Modules : 3
+Functions : 6
+Adts : 4
+Attributes : 0
+Defines : 0
+Candidates : 28
+InsideMainAttributes : 4
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Basic Modules are: (2)
 
 	"stdio.h"

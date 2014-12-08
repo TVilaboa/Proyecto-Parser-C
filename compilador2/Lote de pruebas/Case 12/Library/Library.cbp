@@ -31,10 +31,18 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+<<<<<<< HEAD
 		<Unit filename="List.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+=======
+		<Unit filename="LibraryAYED.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="List.h" />
+		<Unit filename="books.h" />
+>>>>>>> c8302aeb447a84a9d03681adecf04ccd1c12bf87
 		<Extensions>
 			<code_completion />
 			<envvars />

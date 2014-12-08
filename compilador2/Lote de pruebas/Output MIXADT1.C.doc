@@ -1,5 +1,21 @@
 Analisys for : C:\Users\Toto\Projects\Proyecto Nacho Cassol\Proyecto-Parser-C\compilador2\Lote de pruebas\Case 13\MIXADT1.C
 
+<<<<<<< HEAD
+=======
+Quantities are : 
+
+Basic Modules : 3
+Created Modules : 0
+Functions : 8
+Adts : 2
+Attributes : 0
+Defines : 4
+Candidates : 10
+InsideMainAttributes : 4
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+>>>>>>> c8302aeb447a84a9d03681adecf04ccd1c12bf87
 Basic Modules are: (3)
 
 	"conio.h"

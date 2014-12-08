@@ -1,5 +1,21 @@
 Analisys for : C:\Users\Toto\Projects\Proyecto Nacho Cassol\Proyecto-Parser-C\compilador2\Lote de pruebas\Case 11\MovieClub\movieClub.c
 
+<<<<<<< HEAD
+=======
+Quantities are : 
+
+Basic Modules : 4
+Created Modules : 1
+Functions : 3
+Adts : 3
+Attributes : 0
+Defines : 0
+Candidates : 10
+InsideMainAttributes : 4
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+>>>>>>> c8302aeb447a84a9d03681adecf04ccd1c12bf87
 Basic Modules are: (4)
 
 	"stdlib.h"

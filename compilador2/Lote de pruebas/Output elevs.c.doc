@@ -1,5 +1,18 @@
 Analisys for : C:\Users\Toto\Projects\Proyecto Nacho Cassol\Proyecto-Parser-C\compilador2\Lote de pruebas\Case 2\elevs.c
 
+Quantities are : 
+
+Basic Modules : 3
+Created Modules : 4
+Functions : 6
+Adts : 4
+Attributes : 1
+Defines : 0
+Candidates : 26
+InsideMainAttributes : 3
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Basic Modules are: (3)
 
 	"conio.h"
