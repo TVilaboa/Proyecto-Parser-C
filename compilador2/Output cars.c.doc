@@ -8,7 +8,7 @@ Functions : 1
 Adts : 2
 Attributes : 0
 Defines : 0
-Candidates : 11
+Candidates : 4
 InsideMainAttributes : 2
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -59,7 +59,11 @@ This is a basic module.
 
 	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
 
-	This module has no attributes 
+	The attributes of this module are (1) : 
+
+	car car
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
 
 	"queue.h"
 
@@ -117,7 +121,11 @@ This is a basic module.
 
 	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
 
-	This module has no attributes 
+	The attributes of this module are (1) : 
+
+	car car
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
 
 	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
 
@@ -127,7 +135,10 @@ This is a basic module.
 
 	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
 
-	The attributes of this module are (3) : 
+	The attributes of this module are (4) : 
+
+	Node Node
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
 
 	int siz
 	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
@@ -164,19 +175,13 @@ It has no attributes
 It has no GlobalVariables
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Candidate classes are:(11)
+Candidate classes are:(4)
 
 CandidateClass: Node
 	Attributes are: 
 			car data
 			Node next
 	Methods are: 
-CandidateClass: addCar
-	Attributes are: 
-	Methods are: 
-			Method name: addCar
-	Returns: void
-	The arguments are:
 CandidateClass: car
 	Attributes are: 
 			time_t start
@@ -184,84 +189,32 @@ CandidateClass: car
 	Methods are: 
 CandidateClass: car.h
 	Attributes are: 
-	Methods are: 
-			Method name: create_car
-	Returns: void
-	The arguments are:
-			Method name: set_completion_time
-	Returns: void
-	The arguments are:
-		car car
-CandidateClass: create_car
-	Attributes are: 
-	Methods are: 
-			Method name: create_car
-	Returns: void
-	The arguments are:
-CandidateClass: delQueue
-	Attributes are: 
-			Node rear
-			Node return
-	Methods are: 
-			Method name: delQueue
-	Returns: Node
-	The arguments are:
-CandidateClass: display
-	Attributes are: 
-			Node rear
-	Methods are: 
-			Method name: display
-	Returns: void
-	The arguments are:
-CandidateClass: push
-	Attributes are: 
-			car value
-			Node front
-			int siz
-	Methods are: 
-			Method name: push
-	Returns: void
-	The arguments are:
-		car value
-CandidateClass: queue.h
-	Attributes are: 
-			int siz
-			Node rear
-			Node front
-	Methods are: 
-			Method name: delQueue
-	Returns: Node
-	The arguments are:
-			Method name: display
-	Returns: void
-	The arguments are:
-			Method name: push
-	Returns: void
-	The arguments are:
-		car value
-			Method name: sizeofqueue
-	Returns: int
-	The arguments are:
-			Method name: create_car
-	Returns: void
-	The arguments are:
-			Method name: set_completion_time
-	Returns: void
-	The arguments are:
-		car car
-CandidateClass: set_completion_time
-	Attributes are: 
 			car car
 	Methods are: 
+			Method name: create_car
+	Returns: void
+	The arguments are:
 			Method name: set_completion_time
 	Returns: void
 	The arguments are:
 		car car
-CandidateClass: sizeofqueue
+CandidateClass: queue.h
 	Attributes are: 
+			Node Node
 			int siz
-			int return
+			Node rear
+			Node front
 	Methods are: 
+			Method name: delQueue
+	Returns: Node
+	The arguments are:
+			Method name: display
+	Returns: void
+	The arguments are:
+			Method name: push
+	Returns: void
+	The arguments are:
+		car value
 			Method name: sizeofqueue
 	Returns: int
 	The arguments are:

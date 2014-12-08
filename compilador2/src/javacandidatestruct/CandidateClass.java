@@ -34,9 +34,9 @@ public class CandidateClass implements Serializable {
         attributes = new LinkedList<>();
         methods = new LinkedList<>();
         parseModule(module);
-        for (Module module1 : module.getModulesIncluded()) {
-            parseModule(module1);
-        }
+//        for (Module module1 : module.getModulesIncluded()) {
+//            parseModule(module1);
+//        }
     }
 
     private void parseModule(Module module) {

@@ -66,12 +66,26 @@ public class Compiler {
 
     private void createCandidatesFromModules() {
         for (Module module : modules) {
-            if (!module.isBasicModule()) {
-                candidates.put(module.getFile().getName(), new CandidateClass(module));
+            if (!module.isBasicModule() && !(dontHaveAdt(module.getFunctions()).isEmpty())) {
+                candidates.put(module.getFile().getName(), new CandidateClass(module));  //TODO punto1
             }
         }
     }
 
+    private List<Function> dontHaveAdt(List<Function> functions) {
+        List<Function> lst = new ArrayList<Function>();
+        for (Function fun : functions) {
+            boolean funHasAdtParameter = false;
+            for (Attribute attribute : fun.getArguments())
+                for (Adt adt : adts) {
+                    if (adt.getName().equalsIgnoreCase(attribute.getType()))
+                        funHasAdtParameter = true;
+                }
+            if (!funHasAdtParameter)
+                lst.add(fun);
+        }
+        return lst;
+    }
 
     private void subrun(File myFile) throws IOException, InvalidExpressionException, NoSupportedInstructionException {
         alreadyProcessed.add(myFile);
@@ -148,7 +162,7 @@ public class Compiler {
 
         createCandidatesFromADTs();  //start merging the 4 independent lists (functions, modules, vars and ADT)
         //createCandidatesFromAttributes();
-        createCandidatesFromFunction();
+        // createCandidatesFromFunction();
         for (Module module : modules) {
             if (myFile.equals(module.getFile())) {
                 for (Iterator<Function> iterator = functions.iterator(); iterator.hasNext(); ) {
@@ -217,7 +231,7 @@ public class Compiler {
                 adt.setAttributes(adtAttributes);
 //                List<Attribute> adtAttributes = Adt.readAttributesFromBlock(token, adts, defines);
 //                adts.add(new Adt(name, adtAttributes, defines));
-
+                attributes.add(new Attribute(adt.getName(), adt.getName(), false, 0));
             }
         } else if (token.getType() == TokenType.BLOCK) {
             Token block = token;
@@ -231,6 +245,7 @@ public class Compiler {
                 adts.add(adt);   //posible solucion para cuando no pueda guardar un atributo xq exister si es autoreferencial
                 List<Attribute> adtAttributes = Adt.readAttributesFromBlock(block, adts, defines);
                 adt.setAttributes(adtAttributes);
+                attributes.add(new Attribute(adt.getName(), adt.getName(), false, 0));
             }
         } else {
             throw new NoSupportedInstructionException(token.toString());
@@ -398,7 +413,7 @@ public class Compiler {
     private void createCandidatesFromFunction() {
         for (Function function : functions) {
             CandidateClass candidateClass = new CandidateClass(function.getName());
-            candidateClass.addMethod(JavaMethod.getJavaMethodFromCFunction(function));
+            candidateClass.addMethod(JavaMethod.getJavaMethodFromCFunction(function));                //TODO punto2
             for (Attribute attribute : function.getArguments()) {
                 candidateClass.addAttribute(JavaAttribute.getJavaAttributeFromCVariable(attribute));
             }

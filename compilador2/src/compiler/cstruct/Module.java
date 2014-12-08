@@ -27,9 +27,6 @@ public class Module {
         defines = new TreeMap<>();
     }
 
-    public static String[] getModuleList() {
-        return MODULE_LIST;
-    }
 
     public void addFunction(Function function) {
         functions.add(function);

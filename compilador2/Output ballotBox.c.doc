@@ -8,7 +8,7 @@ Functions : 3
 Adts : 4
 Attributes : 1
 Defines : 0
-Candidates : 24
+Candidates : 22
 InsideMainAttributes : 1
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -282,46 +282,13 @@ Variables are: (1)
 It has no GlobalVariables
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Candidate classes are:(24)
+Candidate classes are:(22)
 
 CandidateClass: Node
 	Attributes are: 
 			truck Data
 			Node next
 	Methods are: 
-CandidateClass: Tree.h
-	Attributes are: 
-	Methods are: 
-			Method name: deltree
-	Returns: void
-	The arguments are:
-		node tree
-			Method name: insert
-	Returns: void
-	The arguments are:
-		node tree
-		school val
-			Method name: print_inorder
-	Returns: void
-	The arguments are:
-		node tree
-			Method name: print_postorder
-	Returns: void
-	The arguments are:
-		node tree
-			Method name: print_preorder
-	Returns: void
-	The arguments are:
-		node tree
-			Method name: printschool
-	Returns: void
-	The arguments are:
-		node tree
-			Method name: search
-	Returns: node
-	The arguments are:
-		node tree
-		school val
 CandidateClass: addTruck
 	Attributes are: 
 	Methods are: 
@@ -482,15 +449,6 @@ CandidateClass: school
 			int code
 			int cantboxes
 	Methods are: 
-CandidateClass: school.h
-	Attributes are: 
-	Methods are: 
-			Method name: createSchool
-	Returns: void
-	The arguments are:
-		school school
-		int code
-		int cant
 CandidateClass: search
 	Attributes are: 
 			node tree

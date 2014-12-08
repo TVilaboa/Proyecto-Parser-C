@@ -8,7 +8,7 @@ Functions : 0
 Adts : 0
 Attributes : 1
 Defines : 2
-Candidates : 4
+Candidates : 3
 InsideMainAttributes : 2
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -89,7 +89,7 @@ Defines are: (2)
 BUF_SIZE=88200
 S_RATE=44100
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Candidate classes are:(4)
+Candidate classes are:(3)
 
 CandidateClass: make_wav.c
 	Attributes are: 
@@ -106,9 +106,6 @@ CandidateClass: make_wav.c
 		long num_samples
 		int data
 		int s_rate
-CandidateClass: make_wav.h
-	Attributes are: 
-	Methods are: 
 CandidateClass: write_little_endian
 	Attributes are: 
 			int word
