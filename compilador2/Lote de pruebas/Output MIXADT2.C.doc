@@ -1,0 +1,272 @@
+Analisys for : C:\Users\Toto\Projects\Proyecto Nacho Cassol\Proyecto-Parser-C\compilador2\Lote de pruebas\Case 14\MIXADT2.C
+
+Basic Modules are: (3)
+
+	"conio.h"
+
+This is a basic module.
+
+	"stdlib.h"
+
+This is a basic module.
+
+	"stdio.h"
+
+This is a basic module.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+It has no modules
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Functions are: (8)
+
+	Function name: dequeue
+	Returns: void
+	The arguments are:
+		int front
+		int rear
+		int lenght
+		int item2[0]
+
+		int cant
+		int x
+
+	Function name: empty
+	Returns: int
+	The arguments are:
+		int top
+		int item[0]
+
+
+	Function name: enqueue
+	Returns: void
+	The arguments are:
+		int front
+		int rear
+		int lenght
+		int item2[0]
+
+		int cant
+		int x
+
+	Function name: full
+	Returns: int
+	The arguments are:
+		int top
+		int item[0]
+
+
+	Function name: isEmpty
+	Returns: int
+	The arguments are:
+		int front
+		int rear
+		int lenght
+		int item2[0]
+
+		int cant
+
+	Function name: isFull
+	Returns: int
+	The arguments are:
+		int front
+		int rear
+		int lenght
+		int item2[0]
+
+		int cant
+
+	Function name: pop
+	Returns: void
+	The arguments are:
+		int top
+		int item[0]
+
+		int dato
+
+	Function name: push
+	Returns: void
+	The arguments are:
+		int top
+		int item[0]
+
+		int dato
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+It has no ADTs
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+It has no attributes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Defines are: (4)
+
+MAXQUEUE=6
+MAXSTACK=6
+TAMQUEUE=6
+TAMSTACK=6
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Candidate classes are:(8)
+
+CandidateClass: dequeue
+	Attributes are: 
+			int front
+			int rear
+			int lenght
+			int item2[0]
+
+			int cant
+			int x
+	Methods are: 
+			Method name: dequeue
+	Returns: void
+	The arguments are:
+		int front
+		int rear
+		int lenght
+		int item2[0]
+
+		int cant
+		int x
+CandidateClass: empty
+	Attributes are: 
+			int top
+			int item[0]
+
+			int return
+	Methods are: 
+			Method name: empty
+	Returns: int
+	The arguments are:
+		int top
+		int item[0]
+
+CandidateClass: enqueue
+	Attributes are: 
+			int front
+			int rear
+			int lenght
+			int item2[0]
+
+			int cant
+			int x
+	Methods are: 
+			Method name: enqueue
+	Returns: void
+	The arguments are:
+		int front
+		int rear
+		int lenght
+		int item2[0]
+
+		int cant
+		int x
+CandidateClass: full
+	Attributes are: 
+			int top
+			int item[0]
+
+			int return
+	Methods are: 
+			Method name: full
+	Returns: int
+	The arguments are:
+		int top
+		int item[0]
+
+CandidateClass: isEmpty
+	Attributes are: 
+			int front
+			int rear
+			int lenght
+			int item2[0]
+
+			int cant
+			int return
+	Methods are: 
+			Method name: isEmpty
+	Returns: int
+	The arguments are:
+		int front
+		int rear
+		int lenght
+		int item2[0]
+
+		int cant
+CandidateClass: isFull
+	Attributes are: 
+			int front
+			int rear
+			int lenght
+			int item2[0]
+
+			int cant
+			int return
+	Methods are: 
+			Method name: isFull
+	Returns: int
+	The arguments are:
+		int front
+		int rear
+		int lenght
+		int item2[0]
+
+		int cant
+CandidateClass: pop
+	Attributes are: 
+			int top
+			int item[0]
+
+			int dato
+	Methods are: 
+			Method name: pop
+	Returns: void
+	The arguments are:
+		int top
+		int item[0]
+
+		int dato
+			Method name: empty
+	Returns: int
+	The arguments are:
+		int top
+		int item[0]
+
+CandidateClass: push
+	Attributes are: 
+			int top
+			int item[0]
+
+			int dato
+	Methods are: 
+			Method name: push
+	Returns: void
+	The arguments are:
+		int top
+		int item[0]
+
+		int dato
+			Method name: full
+	Returns: int
+	The arguments are:
+		int top
+		int item[0]
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+InsideMainAttributes are:(14)
+
+int topp 
+int topq ; 
+int itemp [6] 
+int itemq [6] ; 
+int frontc 
+int frontd 
+int rearc 
+int reard 
+int lenghtc 
+int lenghtd 
+int cantc 
+int cantd ; 
+int itemc [6] 
+int itemd [6] ; 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -1,0 +1,238 @@
+Analisys for : C:\Users\Toto\Projects\Proyecto Nacho Cassol\Proyecto-Parser-C\compilador2\Lote de pruebas\Case 13\MIXADT1.C
+
+Basic Modules are: (3)
+
+	"conio.h"
+
+This is a basic module.
+
+	"stdlib.h"
+
+This is a basic module.
+
+	"stdio.h"
+
+This is a basic module.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+It has no modules
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Functions are: (8)
+
+	Function name: dequeue
+	Returns: void
+	The arguments are:
+		queue c
+		int x
+
+	Function name: empty
+	Returns: int
+	The arguments are:
+		stack p
+
+	Function name: enqueue
+	Returns: void
+	The arguments are:
+		queue c
+		int x
+
+	Function name: full
+	Returns: int
+	The arguments are:
+		stack p
+
+	Function name: isEmpty
+	Returns: int
+	The arguments are:
+		queue c
+
+	Function name: isFull
+	Returns: int
+	The arguments are:
+		queue c
+
+	Function name: pop
+	Returns: void
+	The arguments are:
+		stack p
+		int dato
+
+	Function name: push
+	Returns: void
+	The arguments are:
+		stack p
+		int dato
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ADTs are: (2)
+
+	The name is : stack
+	The variables are: 
+		int top
+		int item[6]
+
+	The name is : queue
+	The variables are: 
+		int front
+		int rear
+		int lenght
+		int item2[62]
+
+		int cant
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+It has no attributes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Defines are: (4)
+
+MAX=6
+MAX2=6
+TAM=6
+TAM2=6
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Candidate classes are:(10)
+
+CandidateClass: dequeue
+	Attributes are: 
+			queue c
+			int x
+	Methods are: 
+			Method name: dequeue
+	Returns: void
+	The arguments are:
+		queue c
+		int x
+CandidateClass: empty
+	Attributes are: 
+			stack p
+			int return
+	Methods are: 
+			Method name: empty
+	Returns: int
+	The arguments are:
+		stack p
+CandidateClass: enqueue
+	Attributes are: 
+			queue c
+			int x
+	Methods are: 
+			Method name: enqueue
+	Returns: void
+	The arguments are:
+		queue c
+		int x
+CandidateClass: full
+	Attributes are: 
+			stack p
+			int return
+	Methods are: 
+			Method name: full
+	Returns: int
+	The arguments are:
+		stack p
+CandidateClass: isEmpty
+	Attributes are: 
+			queue c
+			int return
+	Methods are: 
+			Method name: isEmpty
+	Returns: int
+	The arguments are:
+		queue c
+CandidateClass: isFull
+	Attributes are: 
+			queue c
+			int return
+	Methods are: 
+			Method name: isFull
+	Returns: int
+	The arguments are:
+		queue c
+CandidateClass: pop
+	Attributes are: 
+			stack p
+			int dato
+	Methods are: 
+			Method name: pop
+	Returns: void
+	The arguments are:
+		stack p
+		int dato
+			Method name: empty
+	Returns: int
+	The arguments are:
+		stack p
+CandidateClass: push
+	Attributes are: 
+			stack p
+			int dato
+	Methods are: 
+			Method name: push
+	Returns: void
+	The arguments are:
+		stack p
+		int dato
+			Method name: full
+	Returns: int
+	The arguments are:
+		stack p
+CandidateClass: queue
+	Attributes are: 
+			int front
+			int rear
+			int lenght
+			int item2[62]
+
+			int cant
+	Methods are: 
+			Method name: dequeue
+	Returns: void
+	The arguments are:
+		queue c
+		int x
+			Method name: enqueue
+	Returns: void
+	The arguments are:
+		queue c
+		int x
+			Method name: isEmpty
+	Returns: int
+	The arguments are:
+		queue c
+			Method name: isFull
+	Returns: int
+	The arguments are:
+		queue c
+CandidateClass: stack
+	Attributes are: 
+			int top
+			int item[6]
+
+	Methods are: 
+			Method name: empty
+	Returns: int
+	The arguments are:
+		stack p
+			Method name: full
+	Returns: int
+	The arguments are:
+		stack p
+			Method name: pop
+	Returns: void
+	The arguments are:
+		stack p
+		int dato
+			Method name: push
+	Returns: void
+	The arguments are:
+		stack p
+		int dato
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+InsideMainAttributes are:(4)
+
+stack p 
+stack t ; 
+queue c 
+queue d ; 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

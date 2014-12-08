@@ -1,0 +1,177 @@
+Analisys for : C:\Users\Toto\Projects\Proyecto Nacho Cassol\Proyecto-Parser-C\compilador2\Lote de pruebas\Case 11\MovieClub\movieClub.c
+
+Basic Modules are: (4)
+
+	"stdlib.h"
+
+This is a basic module.
+
+	"stdio.h"
+
+This is a basic module.
+
+	"fcntl.h"
+
+This is a basic module.
+
+	"unistd.h"
+
+This is a basic module.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Created Modules are: (1)
+
+	"list.h"
+
+	The functions in this module are (2) : 
+
+	Function name: insert
+	Returns: void
+	The arguments are:
+		List p
+		void data
+		int n
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: print
+	Returns: void
+	The arguments are:
+		List p
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	The modules of this module are (1) : 
+
+	"stdlib.h"
+
+This is a basic module.
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	This module has no attributes 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Functions are: (3)
+
+	Function name: insertCashier
+	Returns: Cashier
+	The arguments are:
+
+	Function name: insertMovie
+	Returns: Movie
+	The arguments are:
+
+	Function name: showMenu
+	Returns: int
+	The arguments are:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ADTs are: (3)
+
+	The name is : List
+	The variables are: 
+		void data
+		List next
+	The name is : Cashier
+	The variables are: 
+		char name
+		int cashierInCome
+	The name is : Movie
+	The variables are: 
+		char name
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+It has no attributes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+It has no GlobalVariables
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Candidate classes are:(10)
+
+CandidateClass: Cashier
+	Attributes are: 
+			char name
+			int cashierInCome
+	Methods are: 
+			Method name: insertCashier
+	Returns: Cashier
+	The arguments are:
+CandidateClass: List
+	Attributes are: 
+			void data
+			List next
+	Methods are: 
+CandidateClass: Movie
+	Attributes are: 
+			char name
+	Methods are: 
+			Method name: insertMovie
+	Returns: Movie
+	The arguments are:
+CandidateClass: f1
+	Attributes are: 
+			int n
+	Methods are: 
+CandidateClass: insert
+	Attributes are: 
+			List p
+			void data
+			int n
+	Methods are: 
+			Method name: insert
+	Returns: void
+	The arguments are:
+		List p
+		void data
+		int n
+CandidateClass: insertCashier
+	Attributes are: 
+			Cashier return
+	Methods are: 
+			Method name: insertCashier
+	Returns: Cashier
+	The arguments are:
+CandidateClass: insertMovie
+	Attributes are: 
+			Movie return
+	Methods are: 
+			Method name: insertMovie
+	Returns: Movie
+	The arguments are:
+CandidateClass: list.h
+	Attributes are: 
+	Methods are: 
+			Method name: insert
+	Returns: void
+	The arguments are:
+		List p
+		void data
+		int n
+			Method name: print
+	Returns: void
+	The arguments are:
+		List p
+CandidateClass: print
+	Attributes are: 
+			List p
+	Methods are: 
+			Method name: print
+	Returns: void
+	The arguments are:
+		List p
+CandidateClass: showMenu
+	Attributes are: 
+			int return
+	Methods are: 
+			Method name: showMenu
+	Returns: int
+	The arguments are:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+InsideMainAttributes are:(4)
+
+Cashier Cashier = insertCashier ( ) ; 
+List lista ; 
+int n = Cashier . cashierInCome ; 
+int opcion = showMenu ( ) ; 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1398915576 source:c:\users\toto\dropbox\algoritmos y estructuras de datos\c\library\library\main.c
+	<stdio.h>
+	<stdlib.h>
+	"books.h"
+	"list.h"
+
+1398915187 c:\users\toto\dropbox\algoritmos y estructuras de datos\c\library\library\books.h
+
+1373301392 source:c:\users\toto\dropbox\algoritmos y estructuras de datos\c\library\library\list.c
+	<stdio.h>
+	<stdlib.h>
+	<stdbool.h>
+
+1398915196 c:\users\toto\dropbox\algoritmos y estructuras de datos\c\library\library\list.h
+
