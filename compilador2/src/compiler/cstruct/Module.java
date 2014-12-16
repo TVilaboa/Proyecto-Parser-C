@@ -17,7 +17,7 @@ public class Module {
     private List<Module> modulesIncluded; //list of includes defined in the header
     private List<Function> functions; //list of functions defined and implemented
     private List<Attribute> atributes;
-    private Map<String, Integer> defines;
+    private Map<String, Number> defines;
 
     public Module(File moduleFile) {
         file = moduleFile;
@@ -44,7 +44,7 @@ public class Module {
                 "stdint.h", "stddef.h", "stdio.h",
                 "stdlib.h", "string.h", "tgmath.h",
                 "time.h", "wchar.h", "wctype.h",
-                "windows.h", "conio.h", "fcntl.h", "unistd.h"};
+                "windows.h", "conio.h", "fcntl.h", "unistd.h", "gdk/gdk.h", "gdk.h", "gtk.h", "glib.h"};
     }
 
     public List<Attribute> getAtributes() {
@@ -59,15 +59,15 @@ public class Module {
         atributes.add(attribute);
     }
 
-    public void addDefine(Map.Entry<String, Integer> entry) {
+    public void addDefine(Map.Entry<String, Number> entry) {
         defines.put(entry.getKey(), entry.getValue());
     }
 
-    public Map<String, Integer> getDefines() {
+    public Map<String, Number> getDefines() {
         return defines;
     }
 
-    public void setDefines(Map<String, Integer> defines) {
+    public void setDefines(Map<String, Number> defines) {
         this.defines = defines;
     }
 

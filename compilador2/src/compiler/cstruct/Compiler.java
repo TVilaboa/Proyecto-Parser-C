@@ -22,7 +22,7 @@ public class Compiler {
     private List<Module> modules;
     private List<Attribute> attributes;
     private Map<String, CandidateClass> candidates;
-    private Map<String, Integer> defines;
+    private Map<String, Number> defines;
     private List<File> alreadyProcessed;
     private StringBuilder output;
     private File myFile;
@@ -90,7 +90,16 @@ public class Compiler {
     private void subrun(File myFile) throws IOException, InvalidExpressionException, NoSupportedInstructionException {
         alreadyProcessed.add(myFile);
         TokenListFactory tokenListFactory = new TokenListFactory(defines);
-        List<Token> tokenList = tokenListFactory.getTokenFileFromCFile(new BufferedReader(new FileReader(myFile)));
+        List<Token> tokenList = null;
+        try {
+            tokenList = tokenListFactory.getTokenFileFromCFile(new BufferedReader(new FileReader(myFile)));
+        } catch (IOException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e);
+        } catch (InvalidExpressionException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e);
+        }
         for (int i = 0; i < tokenList.size(); i++) {
             Token token = tokenList.get(i);
             if (token.getValue().equals("short") || token.getValue().equals("unsigned")) {
@@ -176,8 +185,8 @@ public class Compiler {
                     iterator.remove();
                 }
                 if (!defines.isEmpty()) {
-                    for (Iterator<Map.Entry<String, Integer>> iterator = defines.entrySet().iterator(); iterator.hasNext(); ) {
-                        Map.Entry<String, Integer> entry = iterator.next();
+                    for (Iterator<Map.Entry<String, Number>> iterator = defines.entrySet().iterator(); iterator.hasNext(); ) {
+                        Map.Entry<String, Number> entry = iterator.next();
                         if (definesProcedency.get(entry.getKey()).equalsIgnoreCase(myFile.getAbsolutePath())) {
                             module.addDefine(entry);
                             iterator.remove();
@@ -275,7 +284,7 @@ public class Compiler {
                 }
             } else if (token.getType() == TokenType.SQUARE_BRACKET_BLOCK) {
                 if (!defines.isEmpty()) {
-                    for (Map.Entry<String, Integer> entry : defines.entrySet()) {
+                    for (Map.Entry<String, Number> entry : defines.entrySet()) {
                         token.setType(TokenType.NUMERICAL_CONSTANT);
                         token.setValue(token.getValue().replaceAll(entry.getKey(), entry.getValue() + ""));  //replaces each globalAttribute ocurrence for its actual valor
                     }
@@ -343,14 +352,20 @@ public class Compiler {
         if (token.getType() == TokenType.IDENTIFIER) {
             if (!defines.isEmpty()) {
                 for (Token token1 : tokenList) {
-                    for (Map.Entry<String, Integer> entry : defines.entrySet())
+                    for (Map.Entry<String, Number> entry : defines.entrySet())
                         if (token1.getValue().equals(entry.getKey())) {
                             token1.setType(TokenType.NUMERICAL_CONSTANT);
                             token1.setValue(token1.getValue().replaceAll(entry.getKey(), entry.getValue() + ""));
                         }
                 }
             }
-            defines.put(token.getValue(), Integer.parseInt(tokenList.get(i + 1).getValue()));
+            try {
+                defines.put(token.getValue(), Integer.parseInt(tokenList.get(i + 1).getValue()));
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, e);
+                defines.put(token.getValue(), Double.parseDouble(tokenList.get(i + 1).getValue()));
+            }
             definesProcedency.put(token.getValue(), myFile.getAbsolutePath());
             tokenList.remove(i);
             tokenList.remove(i);
@@ -364,7 +379,8 @@ public class Compiler {
         tokenList.remove(i);
         Token token = tokenList.get(i);
         if (token.getType() == TokenType.FILE_TO_INCLUDE) {
-            Module module = new Module(new File(token.getValue().substring(1, token.getValue().length() - 1)));
+            Module module = new Module(new File(token.getValue().substring(1, token.getValue().length() - 1)));      //aca cambia si es relativo o no
+//            Module module = new Module(new File(myFile.getParent() + "\\" + token.getValue().substring(1, token.getValue().length() - 1)));
             for (Module addedModule : modules) {
                 if (addedModule.getFile().getName().equals(module.getFile().getName())) {
                     tokenList.remove(i);

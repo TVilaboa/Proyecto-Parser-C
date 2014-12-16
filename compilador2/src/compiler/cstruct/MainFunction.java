@@ -24,7 +24,7 @@ public class MainFunction extends Function {
     private List<Sentence> sentenceList = new ArrayList<>();
     private Map<String, CandidateClass> candidates;
 
-    public MainFunction(String returns, List<Attribute> arguments, String body, Map<String, Integer> globalAttributes,
+    public MainFunction(String returns, List<Attribute> arguments, String body, Map<String, Number> globalAttributes,
                         List<Attribute> variables, Set<Function> functions, Map<String, CandidateClass> candidates) throws IOException, InvalidExpressionException {
         super(returns, "main", arguments, body, globalAttributes, variables, functions);
         insideMainAttributes = new ArrayList<>();

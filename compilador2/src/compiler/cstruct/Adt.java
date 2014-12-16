@@ -18,13 +18,13 @@ public class Adt {
     private String name; // name of the Adt
     private List<Attribute> attributes; // attributes of the Adt
 
-    public Adt(String name, List<Attribute> attributes, Map<String, Integer> globalAttributes) {
+    public Adt(String name, List<Attribute> attributes, Map<String, Number> globalAttributes) {
         this.name = name;
         this.attributes = attributes;
-        Map<String, Integer> globalAttributes1 = globalAttributes;
+        Map<String, Number> globalAttributes1 = globalAttributes;
     }
 
-    public static List<Attribute> readAttributesFromBlock(Token token, List<Adt> adts, Map<String, Integer> globalAttributes) throws IOException, InvalidExpressionException {
+    public static List<Attribute> readAttributesFromBlock(Token token, List<Adt> adts, Map<String, Number> globalAttributes) throws IOException, InvalidExpressionException {
         String adtBody = token.getValue();
         String adtBodyWithoutBrackets = adtBody.substring(1, adtBody.length() - 1);
         TokenListFactory tokenListFactory = new TokenListFactory(globalAttributes);
@@ -94,8 +94,10 @@ public class Adt {
         }
     }
 
-    private static int parseInt(String arraycap) {
+    public static int parseInt(String arraycap) {
         arraycap = arraycap.substring(1, arraycap.length() - 1);
+        if (arraycap.contains("."))
+            arraycap = arraycap.substring(0, arraycap.length() - 2);
         return Integer.parseInt(arraycap);
     }
 

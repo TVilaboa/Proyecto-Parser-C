@@ -21,11 +21,11 @@ public class Function implements Comparable<Function> {
     private String returns;
     private String name;
     private List<Attribute> arguments;
-    private Map<String, Integer> globalAttributes;
+    private Map<String, Number> globalAttributes;
     private List<Attribute> globalVariablesUsed = new ArrayList<>();
     private List<Function> usedFunctions = new ArrayList<>();
 
-    public Function(String returns, String name, List<Attribute> arguments, Map<String, Integer> globalAttributes, List<Attribute> variables
+    public Function(String returns, String name, List<Attribute> arguments, Map<String, Number> globalAttributes, List<Attribute> variables
     ) {
         this.returns = returns;
         this.name = name;
@@ -35,7 +35,7 @@ public class Function implements Comparable<Function> {
     }
 
     public Function(String returns, String name, List<Attribute> arguments, String body,
-                    Map<String, Integer> globalAttributes, List<Attribute> variables, Set<Function> functions) throws IOException, InvalidExpressionException {
+                    Map<String, Number> globalAttributes, List<Attribute> variables, Set<Function> functions) throws IOException, InvalidExpressionException {
         this.returns = returns;
         this.name = name;
         this.arguments = arguments;
@@ -137,11 +137,11 @@ public class Function implements Comparable<Function> {
         this.bodyTokenList = bodyTokenList;
     }
 
-    public Map<String, Integer> getGlobalAttributes() {
+    public Map<String, Number> getGlobalAttributes() {
         return globalAttributes;
     }
 
-    public void setGlobalAttributes(Map<String, Integer> globalAttributes) {
+    public void setGlobalAttributes(Map<String, Number> globalAttributes) {
         this.globalAttributes = globalAttributes;
     }
 

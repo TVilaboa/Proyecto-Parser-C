@@ -48,7 +48,7 @@ public class CandidateClass implements Serializable {
             addAttribute(new JavaAttribute(attribute.getType(), attribute.getName(),
                     attribute.isArray(), attribute.getArrayCapax()));
         }
-        for (Map.Entry<String, Integer> entry : module.getDefines().entrySet()) {
+        for (Map.Entry<String, Number> entry : module.getDefines().entrySet()) {
             addAttribute(new JavaAttribute("Constant : ->" + entry.getValue(), entry.getKey(), false, 0));
         }  //they are constants
     }

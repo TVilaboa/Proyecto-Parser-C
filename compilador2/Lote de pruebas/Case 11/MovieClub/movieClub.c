@@ -53,7 +53,6 @@ int main()
     //system("cls");
     printf("\tOperando con el cajero: %s\n\n",&Cashier.name);
     Cashier.cashierInCome = 0;
-    int n = Cashier.cashierInCome;
     int opcion = showMenu();
     while(opcion != 0){
     if(opcion == 1){

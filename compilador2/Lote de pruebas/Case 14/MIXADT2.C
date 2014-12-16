@@ -189,15 +189,10 @@ int main()
 
 /*implementation of the stack functions*/
 int full(int top,int item[])
-<<<<<<< HEAD
 {
    return(top==MAXSTACK);
 }
-=======
- {
-    return(top==MAXSTACK);
- }
->>>>>>> c8302aeb447a84a9d03681adecf04ccd1c12bf87
+
 
 int empty(int top,int item[])
 {

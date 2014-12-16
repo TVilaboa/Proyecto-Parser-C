@@ -28,9 +28,9 @@ public class TokenListFactory {
             "#else", "#elif", "#include", "#pragma", "#error"};
     private List<Token> tokensList;
     private char readCharacter;
-    private Map<String, Integer> globalAttributes;
+    private Map<String, Number> globalAttributes;
 
-    public TokenListFactory(Map<String, Integer> globalAttributes) {
+    public TokenListFactory(Map<String, Number> globalAttributes) {
         this.globalAttributes = globalAttributes;
     }
 
@@ -263,7 +263,7 @@ public class TokenListFactory {
                     hasDecimalPart = true;
                     readToken.append((char) readCharacter);
                 }
-                readToken.append((char) readCharacter);
+                readCharacter = cFile.next();
             } else {
                 readToken.append((char) readCharacter);
                 readCharacter = cFile.next();
@@ -285,7 +285,7 @@ public class TokenListFactory {
                     readCharacter = cFile.next();
                     String tokenStr = readToken.toString();
                     if (!globalAttributes.isEmpty()) {
-                        for (Map.Entry<String, Integer> entry : globalAttributes.entrySet()) {
+                        for (Map.Entry<String, Number> entry : globalAttributes.entrySet()) {
                             tokenStr = tokenStr.replaceAll(entry.getKey(), entry.getValue() + ""); //replaces each globalAttribute ocurrence for its actual valor
                         }
                     }
