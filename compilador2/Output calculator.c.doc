@@ -1,0 +1,88 @@
+Analisys for : C:\Users\Toto\Projects\Proyecto Nacho Cassol\Proyecto-Parser-C\compilador2\Lote de pruebas\Case 10\calculator.c
+
+Quantities are : 
+
+Basic Modules : 4
+Created Modules : 0
+Functions : 8
+Adts : 0
+Attributes : 0
+Defines : 0
+Candidates : 0
+InsideMainAttributes : 1
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Basic Modules are: (4)
+
+	"stdlib.h"
+
+This is a basic module.
+
+	"math.h"
+
+This is a basic module.
+
+	"conio.h"
+
+This is a basic module.
+
+	"stdio.h"
+
+This is a basic module.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+It has no modules
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Functions are: (8)
+
+	Function name: addition
+	Returns: void
+	The arguments are:
+
+	Function name: calculator_operations
+	Returns: void
+	The arguments are:
+
+	Function name: division
+	Returns: void
+	The arguments are:
+
+	Function name: factorial
+	Returns: int
+	The arguments are:
+
+	Function name: modulus
+	Returns: void
+	The arguments are:
+
+	Function name: multiplication
+	Returns: void
+	The arguments are:
+
+	Function name: power
+	Returns: void
+	The arguments are:
+
+	Function name: subtraction
+	Returns: void
+	The arguments are:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+It has no ADTs
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+It has no attributes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+It has no GlobalVariables
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+No candidates are suggested
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+InsideMainAttributes are:(1)
+
+char Calc_oprn ; 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

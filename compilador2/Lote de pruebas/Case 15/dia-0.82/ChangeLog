@@ -1,0 +1,3972 @@
+1999-12-12  James Henstridge  <james@daa.com.au>
+
+	* configure.in (GNOME_LIBS): updated version number to 0.82.  0.82
+	has not been released yet though.
+
+	* Makefile.am (EXTRA_DIST): distribute diagram.dtd.
+
+	
+	The following based on a patch from Lars Clausen:
+	
+	* objects/standard/bezier.c (bezierline_move_handle): when performing
+	the initial drag of the bezierline, move the control points to keep
+	the line straight.
+
+	* lib/bezier_conn.c (bezierconn_add_segment): when adding a segment,
+	make the new control points a bit closer to the major point.
+
+	* app/create_object.c (create_object_motion): use HANDLE_MOVE_CREATE
+	as the reason for the move.
+	(create_object_button_release): use HANDLE_MOVE_CREATE_FINAL as the
+	move reason.
+
+	* lib/handle.h: new handle move reasons.
+
+1999-12-09  James Henstridge  <james@daa.com.au>
+
+	* dia.spec: include the new files in RPMs.
+
+	* Makefile.am: install these new files.
+
+	* dia.keys.in: file describing actions and icon for dia diagrams for
+	use in the gnome file manager.
+	
+	* dia.mime: a file defining the application/x-dia-diagram mime type.
+	
+	* dia-diagram.png: an icon for dia diagrams.
+
+1999-12-08  James Henstridge  <james@daa.com.au>
+
+	* plug-ins/python/pydia-diagram.c: added heaps of new methods.
+
+	* plug-ins/python/pydia-display.[ch]: wrapper for display.
+
+	* objects/standard/ellipse.c: applied Lars's patch to optionally not
+	draw the background of the ellipse.
+
+	* app/load_save.c (read_connections): do some sanity checking on the
+	handle and connection point numbers before performing the object
+	connection.
+
+	* lib/bezier_conn.c (bezierconn_load): give the correct number of
+	handles when loading a BezierConn.
+
+1999-12-07  Kjartan Maraas  <kmaraas@online.no>
+
+	* sheets/*.sheet: Finished Norwegian translations.
+	
+1999-12-07  James Henstridge  <james@daa.com.au>
+
+	* plug-ins/python/diamodule.c (PyDia_Load): load diagram function.
+	(PyDia_GetObjectType): find object type function.
+
+	* plug-ins/python/pydia-diagram.c (PyDiaDiagram_Save): added a save
+	method for diagrams.
+
+	* plug-ins/python/pydia-object.c: added methods for DiaObject and
+	DiaObjectType.
+
+	* AUTHORS: added Lars and Cyrille to the authors file.
+
+	* objects/standard/bezier.c (bezierline_add_segment_callback): place
+	new point correctly.
+
+	* lib/bezier_conn.h (bezierconn_closest_segment): fixed prototype.
+
+	* lib/bezier_conn.c: applied Lars's patch for placement of the new
+	point when adding a segment to a BezierConn.
+
+1999-12-06  James Henstridge  <james@daa.com.au>
+
+	* plug-ins/python/test.py: test script for the python plug-in.
+
+	* plug-ins/python/python.c: this file contains the plug-in startup
+	code for the python plugin.  Right now, it just initialises the
+	dia module and executes a script.
+
+	* objects/standard/polyline.c (polyline_draw): fix start arrow size.
+
+	* objects/standard/bezier.c (bezierline_draw): draw control lines for
+	bezier curve if we are using an interactive renderer (ie. only if
+	displaying to the screen).
+
+	* lib/bezier_conn.[ch] (bezierconn_draw_control_lines): function
+	to draw control lines on to a bezier curve.  Based on implementation
+	from Lars.
+
+	* objects/standard/bezier.c (bezierline_delete_segment_callback):
+	calculate segment number using closest_segment rather than
+	closest_handle.  Sometimes the closest handle is part of a different
+	segment.
+	(bezierline_draw): use correct size for start arrow.
+
+	The next few entries are from Peter Moulder <reiter@netspace.net.au>:
+	* lib/geometry.c (distance_line_point): added notes to documentation
+	in comment.
+	* app/object_ops.c (object_list_align_v): 
+	(object_list_align_h): fix of by one error when calculating free space
+	for equal distance alignment.
+	* app/menus.c (objects_align_h, objects_align_v): include align
+	adjacent menu items in the gnome version of the menus.
+	* app/diagram.c (diagram_update_menu_sensitivity): set sensitivity on
+	align adjacent menu items correctly.
+
+
+	* lib/dummy_dep.h (dummy_dep): added bezierconn to dummy dependency
+	table.
+
+	* objects/standard/bezier.c: converted bezierline to use BezierConn.
+	Still a few bugs.  It crashes on deleting line segments.
+
+	* lib/Makefile.am (libdia_a_SOURCES): added BezierConn to libdia.
+
+1999-12-05  James Henstridge  <james@daa.com.au>
+
+	* lib/bezier_conn.[ch]: start of BezierConn object
+
+	* app/interface.c: add bezierline to toolbox.
+
+	* objects/standard/standard.c: initialise bezierline.
+
+	* objects/standard/bezier.c: new object from Lars R. Clausen.  I have
+	made a few modifications to get it working nicely.  It still needs
+	a bit of work though.  Maybe create a BezierConn object in lib.
+
+1999-12-02  James Henstridge  <james@daa.com.au>
+
+	* plug-ins/python/pydia-*.c: fixed compile errors in these files.
+	
+	* plug-ins/python/Makefile.am: tried building everything.  It is
+	building as a library at the moment.  I will have to convert it
+	to a libtool library and add some initialisation code.
+	
+	* plug-ins/python/diamodule.c: start of the dia module, using the
+	other object wrappers.  Not complete.
+
+1999-12-01  James Henstridge  <james@daa.com.au>
+
+	* plug-ins/python/pydia-object.c (PyDiaObject_GetAttr): implement
+	the handles and connections attributes.
+
+	* plug-ins/python/pydia-layer.c: added functions that use
+	ConnectionPoint's.
+
+	* plug-ins/python/pydia-handle.[ch]: wrapper for Handle's.
+
+	* plug-ins/python/pydia-cpoint.[ch]: wrapper for ConnectionPoint's.
+
+	* plug-ins/python/pydia-*.[ch]: starts of python scripting plug-in.
+	I am currently wrapping the basic elements in the diagram in python
+	objects -- nothing to see or play with yet.
+
+1999-11-30  Alexander Larsson  <alla@lysator.liu.se>
+
+	* AUTHORS:
+	* HACKING:
+	James Henstridge <james@daa.com.au> is now the maintainer of Dia.
+
+1999-11-29  Alexander Larsson  <alla@lysator.liu.se>
+
+	* configure.in:
+	* po/ru.po:
+	Added russian translation from Valek Filippov <frob@df.ru>
+
+1999-11-24  James Henstridge  <james@daa.com.au>
+
+	* sheets/UML/*: 
+	* sheet/ER/*: moved extra sheet pixmaps back to separate dirs as
+	discussed with Alex.  Also added extra makefiles so that make install
+	works correctly.
+
+1999-11-23  Alexander Larsson  <alla@lysator.liu.se>
+
+	* app/preferences.[ch]:
+	* app/display.c:
+	Added snap to grid preference.
+	Patch from Michael Leslie <mles@springboardwireless.com>
+
+1999-11-21  Alexander Larsson  <alla@lysator.liu.se>
+
+	* app/load_save.c:
+	* lib/dia_xml.c:
+	* lib/sheet.c:
+	* lib/text.c:
+	* objects/custom/shape_info.c:
+	All strings returned by libxml must be freed with free, not
+	g_free, or there will be problems if you use memory debugging
+	in glib.
+	
+1999-11-21  Alexander Larsson  <alla@lysator.liu.se>
+
+	* app/create_object.[ch]:
+	* app/menus.c:
+	* app/tool.[ch]:
+	* app/commands.[ch]:
+	* app/pixmaps.h:
+	* app/interface.[ch]:
+	Reverted the tool menu patch. It has some 'issues'.
+	I liked it though, so it'll probably return.
+
+1999-11-21  Alexander Larsson  <alla@lysator.liu.se>
+
+        Fixed a lot of memory leaks. Thanks to Bruce Mitchener
+	<bruce@cybersight.com> for some purify runs and analysis.
+	Also a great thank you to Owen Taylor for creating MemProf, a
+	free memory leak detector that was used to find and verify a
+	lot of these fixes.
+	
+	* app/diagram.c:
+	* app/paginate_psprint.c:
+	* app/render_eps.[ch]:
+	* app/render_svg.[ch]:
+	Free renderers.
+
+	* app/interface.c:
+	Don't add a reference to ddisp->shell. Why was this done in
+	the first place?
+
+	* app/load_save.c:
+	* lib/dia_xml.c:
+	* lib/sheet.c:
+	* lib/text.c:
+	Free all strings returned from xmlGetProp
+
+	* app/modify_tool.c:
+	Plug leak.
+
+	* objects/custom/custom.c:
+	Use closedir() after opendir().
+
+	* objects/custom/shape_info.c:
+	User g_free() instead of "if (tmp) free(tmp)".
+
+	* sheets/ER.sheet:
+	Add newline at end of file.
+	
+
+1999-11-20  Alexander Larsson  <alla@lysator.liu.se>
+
+        Based on patch from Patrick Reynolds <reynolds@cs.duke.edu>
+	Adds tool menu and keyboard shortcuts.
+
+	* app/create_object.[ch]:
+	Use tool_set() instead of tool_reset().
+	create_create_object_tool() takes extra type argument
+
+	* menus.c:
+	Add tools menu.
+	
+	* tool.[ch]:
+	Moved tool_data here, export it.
+	Add separate tool type for all create objects tools.
+	new functions tool_set().
+
+	* commands.[ch]:
+	New callback tool_set_callback.
+
+	* pixmaps.h:
+	Moved some pixmaps to interface.c.
+	
+	* interface.[ch]:
+	Remove tool_data array (moved to tool.c).
+	Use the tool_data from tool.c.
+	Remove modify_tool_button global var.
+	
+1999-11-20  Alexander Larsson  <alla@lysator.liu.se>
+
+        Patch from Patrick Reynolds <reynolds@cs.duke.edu>
+	
+	* app/app_procs.c:
+	Interprets command-line arguments as files to open even when
+	HAVE_POPT is not defined.
+
+	* app/magnify.c:	
+	Shift-clicking when zooming zooms out, like the Gimp.
+
+	* app/menus.c:
+	Has hotkeys for zoom-100% and snap-to-grid.
+
+1999-11-17  James Henstridge  <james@daa.com.au>
+
+	* app/scroll_tool.c (scroll_motion): fixed shift style scrolling so
+	that it is not jumpy.
+
+	* app/Makefile.am (EXTRA_DIST): added extra files to extra dist list.
+
+	* app/scroll_tool.c (scroll_motion): added `grabbing hand' type
+	scrolling by pressing the shift key when using the scroll tool.
+
+	* sheets/Makefile.am: fixed makefile so that install actually works
+	if the directories $(pkgdatadir)/sheets/UML and $(pkgdatadir)/sheets/ER
+	don't exist.
+	(SHEETS): install Circuit.sheet
+
+1999-11-15  Alexander Larsson  <alla@lysator.liu.se>
+	Patch from Cyrille Chepelov <chepelov@rmcnet.fr>
+
+	* sheets/Circuit.sheet:
+	* sheets/ER.sheet:
+	* sheets/FS.sheet:
+	* sheets/Flowchart.sheet:
+	* sheets/UML.sheet:
+	* sheets/network.sheet:
+	* sheets/sybase.sheet:
+	Changed name space
+
+	* sheets/Circuit.sheet:
+	added some missing French translations
+
+	* lib/sheet.c:
+	killed the temporary sheet namespace
+
+	* objects/custom/custom.c:
+	obsolete comment cleaned up
+
+1999-11-12  Alexander Larsson  <alla@lysator.liu.se>
+
+	* configure.in:
+	* po/pt.po:
+	Added portugese translation from Pedro Morais
+	<pmmm@rnl.ist.utl.pt>
+
+1999-11-11  Alexander Larsson  <alla@lysator.liu.se>
+
+        Changed all sheets to be specified in xml.
+	All sheet objects removed from the C code.
+	Patch from Cyrille Chepelov <chepelov@rmcnet.fr>
+	
+        * Makefile.am:
+        * configure.in:
+	Adding shapes dir.
+	Updated version to 0.81cvs.
+	
+        * app/Makefile.am:
+	Update run_dia.sh with sheet-dir.
+	
+	* app/app_procs.c:
+	Load all sheets on startup.
+	Create sheet directory first time.
+	Don't call custom_register_sheets().
+
+	* lib/Makefile.am:
+	Add sheetdir define
+
+	* lib/custom.h:
+	Remove custom_register_sheets().
+
+	* lib/sheet.[ch]:
+	Add sheet loading code.
+
+	* sheet/Circuit.sheet:
+	* sheet/ER.sheet:
+	* sheet/FS.sheet:
+	* sheet/Flowchart.sheet:
+	* sheet/UML.sheet:
+	* sheet/network.sheet:
+	* sheet/sybase.sheet:
+	Added sheet files.
+
+	* sheet/ER/weakentity.xpm:
+	* sheet/UML/aggregation.xpm
+	* sheet/UML/umlclass_template.xpm
+	Added sheet pixmaps.
+	These are moved from their old places.
+
+	* sheet/.cvsignore:
+	Shut up cvs.
+
+	* objects/*/*.c:
+	Removed sheet objects and sheet registration.
+	
+	* objects/ER/Makefile.am:
+	* objects/ER/pixmaps/weakentity.xpm:
+	* objects/UML/Makefile.am:
+	* objects/UML/pixmaps/aggregation.xpm:
+	* objects/UML/pixmaps/umlclass_template.xpm:
+	Removed alternative pixmaps. (Moved to sheet).
+
+	* objects/custom/Makefile.am:
+	* objects/custom/load_sheet.[ch]:
+	Removed old sheet loading code.
+	
+	* objects/custom/custom.c:
+	Load all shapes instead of sheets.
+	Removed custom_register_sheets().
+
+	* objects/custom/custom_object.c:
+	Added debug code.
+
+	* objects/custom/shape_info.[ch]:
+	Added shape_info_getbyname().
+
+	* objects/flowchart/Makefile.am:
+	* objects/flowchart/collate.shape            
+	* objects/flowchart/delay.shape              
+	* objects/flowchart/display.shape            
+	* objects/flowchart/document.shape           
+	* objects/flowchart/extract.shape            
+	* objects/flowchart/flowchart.c              
+	* objects/flowchart/intstorage.shape         
+	* objects/flowchart/magdisk.shape            
+	* objects/flowchart/magdrum.shape            
+	* objects/flowchart/magtape.shape            
+	* objects/flowchart/manualinput.shape        
+	* objects/flowchart/manualop.shape           
+	* objects/flowchart/merge.shape              
+	* objects/flowchart/offlinestore.shape       
+	* objects/flowchart/offpageconn.shape        
+	* objects/flowchart/or.shape                 
+	* objects/flowchart/predefdproc.shape        
+	* objects/flowchart/preparation.shape        
+	* objects/flowchart/punchedcard.shape        
+	* objects/flowchart/punchedtape.shape        
+	* objects/flowchart/sort.shape               
+	* objects/flowchart/sumjunction.shape        
+	* objects/flowchart/terminal.shape           
+	* objects/flowchart/transaction.shape        
+	* objects/flowchart/transmittape.shape       
+	* objects/flowchart/pixmaps/collate.xpm      
+	* objects/flowchart/pixmaps/delay.xpm        
+	* objects/flowchart/pixmaps/display.xpm      
+	* objects/flowchart/pixmaps/document.xpm     
+	* objects/flowchart/pixmaps/extract.xpm      
+	* objects/flowchart/pixmaps/intstorage.xpm   
+	* objects/flowchart/pixmaps/magdisk.xpm      
+	* objects/flowchart/pixmaps/magdrum.xpm      
+	* objects/flowchart/pixmaps/magtape.xpm      
+	* objects/flowchart/pixmaps/manualinput.xpm  
+	* objects/flowchart/pixmaps/manualop.xpm     
+	* objects/flowchart/pixmaps/merge.xpm        
+	* objects/flowchart/pixmaps/offlinestore.xpm 
+	* objects/flowchart/pixmaps/offpageconn.xpm  
+	* objects/flowchart/pixmaps/or.xpm           
+	* objects/flowchart/pixmaps/predefdproc.xpm  
+	* objects/flowchart/pixmaps/preparation.xpm  
+	* objects/flowchart/pixmaps/punchedcard.xpm  
+	* objects/flowchart/pixmaps/punchedtape.xpm  
+	* objects/flowchart/pixmaps/sort.xpm         
+	* objects/flowchart/pixmaps/sumjunction.xpm  
+	* objects/flowchart/pixmaps/terminal.xpm     
+	* objects/flowchart/pixmaps/transaction.xpm  
+	* objects/flowchart/pixmaps/transmittape.xpm 
+	Moved shapes and their pixmaps to shapes/flowchart
+
+	* shapes/Circuit/Makefile.am:
+	* shapes/Circuit/index.sheet:
+	Removed index.sheet.
+	
+	* shapes/Makefile.am:
+	* shapes/flowchart/Makefile.am:
+	* shapes/flowchart/*.shape:
+	* shapes/flowchart/*.xpm:
+	Added flowchart shapes. (Moved from objects/flowchart)
+	
+
+1999-11-07  Fredrik Hallenberg  <hallon@lysator.liu.se>
+
+	* app/app_procs.c: Fixed popt stuff.
+
+1999-11-01  James Henstridge  <james@daa.com.au>
+
+	* shapes/Circuit/[hv]led_de.{shape,xpm}: new circuit shapes from
+	Andreas Scherf.
+
+1999-10-31  Alexander Larsson  <alla@lysator.liu.se>
+
+        * dia.spec:
+	* configure.in:
+	Update version to 0.81.
+	
+	* NEWS:
+	Update with news for 0.81.
+	
+	* shapes/Circuit/*:
+	* shapes/Circuit_eu/*:
+	Moved european circuit objects to Circuit sheet.
+
+1999-10-31  Alexander Larsson  <alla@lysator.liu.se>
+	
+        * lib/diagramdata.[ch]:
+	Added layer_set_object_list() function.
+
+	* app/undo.[ch]:
+	Added support for undo of reordered objects.
+	Fix the undo of delete to keep the right order on undo.
+	
+	* app/diagram.c:
+	changed loop to object_add_updates_list() calls.
+	Added undo support to bring to front/back.
+
+	* app/disp_callbacks.c:
+	* app/paginate_psprint.c:
+	Remove warnings.
+
+1999-10-30  Alexander Larsson  <alla@lysator.liu.se>
+
+	This plugs some leaks. Thanks to
+	Bruce Mitchener <bruce@cybersight.com> for running
+	Dia through purify for me.
+	
+        * app/app_procs.c:
+	Free displays and diagrams on exit.
+
+	* app/modify_tool.c:
+	Free gc when freeing tool.
+
+	* lib/diagramdata.c:
+	Free layer name.
+	
+	* app/display.c:
+	Free update and display lists when destroying display.
+	
+	* lib/diagramdata.c:
+	Don't leak layer name.
+
+	* objects/custom/load_sheet.c: 
+	* objects/custom/shape_info.c:
+	Free loaded xml documents.
+
+1999-10-28  Alexander Larsson  <alla@lysator.liu.se>
+
+	* app/commands.c:
+	* app/object_ops.[ch]:
+	Add undo handling to alignment ops.
+	Based partially on patch by Dan Cohn <dan@internap.com>.
+
+	* objects/standard/image.c (image_move_handle):
+	Don't divide by zero for small images.
+	Patch by Dan Cohn <dan@internap.com>.
+
+	* objects/UML/class.c (umlclass_destroy): 
+	* objects/custom/custom_object.c (custom_destroy):
+	Don't free connectionpoints before calling element_destroy
+	which unconnects them.
+
+1999-10-26  Alexander Larsson  <alla@lysator.liu.se>
+
+	* objects/custom/custom_object.c: 
+	Load and save padding too. Fixes strange load crashes.
+
+	* app/group.c (group_destroy):
+	Don't unconnect already freed connectionpoints when
+	destroying group. Probably fixes bug reported by
+	Elliot Lee <sopwith@redhat.com>.
+
+	* app/render_gdk.c:
+	Don't crash on zero-size (broken) bezier curves.
+	Different sort of fix. This should work on closed bezier curves
+	too.
+
+	* objects/standard/textobj.c:
+	Activate default properties dialog for Text objects.
+
+	* app/render_eps.c: 
+	* app/load_save.c:
+	* app/preferences.c:
+	* app/render_svg.c:
+	fopen files in binary or text mode.
+
+1999-10-26  Alexander Larsson  <alex@cendio.se>
+
+	* app/render_gdk.c (bezier_add_lines):
+	Don't crash on zero-size (broken) bezier curves.
+	Fixes a crashing bug.
+
+1999-10-25  James Henstridge  <james@daa.com.au>
+
+	* app/Makefile.am (run_dia.sh): allow dia to find internal shape files
+	before it is installed.
+
+	* objects/flowchart/flowchart.c: use relative paths to find shapes.
+
+	* objects/custom/custom.c (custom_object_load): take file names
+	relative to $(pkgdatadir)/shape-internal, and check an environment
+	variable for an alternative directory.
+
+	* app/...: added copyright messages to the top of my new code.
+
+	* app/paginate_psprint.c: some general clean ups.  Also, give an error
+	dialog if we can't open the command or output file for writing.
+
+	* app/diapagelayout.c (dia_page_layout_set_orientation): fixed
+	function so it would set orientation to landscape correctly.
+
+	* app/paginate_psprint.c: use the paper settings that come with
+	the diagram.  Also implemented landscape printing.
+
+	* app/render_eps.c (new_psprint_renderer): use diagram paper metrics
+	in PS header.
+
+	* app/commands.[ch] (file_pagesetup_callback): added callback for
+	the page setup dialog.
+
+	* app/menus.c: added page setup menu item.
+
+	* app/pagesetup.[ch]: implementation of the page setup dialog.
+
+	* app/diapagelayout.[ch]: added accessors for the scaling factor.
+	
+	* app/load_save.c (diagram_load): load paper information from save
+	file.
+	(diagram_save): save the paper info.
+
+	* lib/diagramdata.c (new_diagram_data): initialise paper info section
+	of DiagramData structure.
+	(diagram_data_destroy): free the paper name.
+
+	* lib/diagramdata.h: added a paper member to the DiagramData structure
+	that holds the page layout info for a diagram.
+
+1999-10-21  Alexander Larsson  <alla@lysator.liu.se>
+
+	* objects/flowchart/box.c:
+	* objects/flowchart/ellipse.c:
+	* objects/flowchart/diamond.c:
+	* objects/flowchart/parallelogram.c:
+	Load and save padding too. Fixes strange load crashes.
+
+1999-10-21  Alexander Larsson  <alla@lysator.liu.se>
+
+	* app/app_procs.c (name_is_lib):
+	.dll, .sl and .so.0.0.0 are also libraries.
+
+1999-10-20  James Henstridge  <james@daa.com.au>
+
+	* configure.in: added extra makefile.
+	
+	* shapes/Circuit_eu/*: a new set of european circuit shapes from
+	Andreas Scherf <scherfa@fh-trier.de>.  Made a few small modifications
+	(added fuses to makefile, fill the area of some of the components).
+
+1999-10-19  Alexander Larsson  <alla@lysator.liu.se>
+
+	* lib/Makefile.am:
+	* app/Makefile.am: 
+	Add GDK_IMLIB_CFLAGS to includes.
+	Changed --export-dynamic to -export-dynamic
+
+	* lib/widgets.c:
+	* objects/UML/message.c:
+	Removed c++ comment.
+
+	* lib/render_store.[ch]:
+	Don't use empty structure. That is not Ansi C.
+
+1999-10-19  James Henstridge  <james@daa.com.au>
+
+	* app/diapagelayout.c (dia_page_layout_init): use DiaUnitSpinner's for
+	the margin entries, as they allow interpretation of units.
+	(paper_size_change): display the current page dimensions.
+
+	* app/diaunitspinner.[ch]: a widget derived from the standard
+	GtkSpinButton that tries to take units into account.  So if you enter
+	"1in" into the entry, it will convert it to 2.54cm.
+
+1999-10-18  Alexander Larsson  <alla@lysator.liu.se>
+
+	* app/app_procs.c:
+	Removed include of dlfcn.h
+
+1999-10-18  James Henstridge  <james@daa.com.au>
+
+	* app/diapagelayout.c (paper_size_change, orient_changed): set upper
+	bound on margin widths.  It is set to the paper width/height.
+
+	* objects/flowchart/diamond.c (diamond_distance_from): fixed distance
+	routine for the diamond.  This bug was found and fixed by Daniel Wang
+	<danwang@CS.Princeton.EDU>
+
+Sun Oct 17 19:46:36 1999  ape@gandalf.spacetec.no  (Asbjorn Pettersen)
+
+	* app/commands.c: Add <sys/types.h> before <sys/stat.h> to
+	remove warning (OS/2 version).
+
+1999-10-17  Alexander Larsson  <alla@lysator.liu.se>
+
+	* README:
+	Put a pointer to objects/custom/README.
+	
+1999-10-17  Alexander Larsson  <alla@lysator.liu.se>
+
+	* dia.spec:
+	Updated version to 0.80
+
+	* configure.in:
+	Updated version to 0.80cvs
+
+1999-04-08  Alexander Larsson  <alla@lysator.liu.se>
+
+	* Released Dia 0.80
+	Tag called DIA_0_80
+	
+1999-10-17  Fredrik Hallenberg  <hallon@lysator.liu.se>
+
+	* app/Makefile.am
+	* lib/Makefile.am
+	* objects/UML/Makefile.am
+	* objects/ER/Makefile.am
+	* objects/network/Makefile.am
+	* objects/standard/Makefile.am
+	* objects/FS/Makefile.am
+	* objects/sybase/Makefile.am
+	* objects/flowchart/Makefile.am
+	* objects/custom/Makefile.am
+	Added -I$(top_srcdir)/intl which is needed for
+	--with-included-gettext.
+
+	* POTFILES.in
+	Updated.
+	
+	* po/sv.po
+	Updated swedish translation.
+
+1999-10-16  Alexander Larsson  <alla@lysator.liu.se>
+
+	* configure.in:
+	Updated version number to 0.80.
+
+	* KNOWN_BUGS:
+	New file.
+
+	* TODO:
+	Updated. Moved bugs to KNOWN_BUGS.
+
+	* NEWS:
+	Updated with 0.80 release notes.
+	
+1999-10-16  Alexander Larsson  <alla@lysator.liu.se>
+	
+	* lib/orth_conn.c:
+	For backwards compatibility, make sure handle 0 and 1 are the
+	first and last handle. Fixes compatibility with 0.41, breaks
+	compatibility with cvs version.
+	Fixed bug in undo/redo of adding deleting endpoint segments
+	when the endpoint was connected.
+	Start OrthConn objects with three segments.
+
+1999-10-16  James Henstridge  <james@daa.com.au>
+
+	* objects/custom/custom_object.c (custom_update_data): changed
+	resizing behaviour a bit so that shapes don't grow huge when you try
+	to resize them to smaller than the size required by the text box.
+	Also, now shapes will not grow with fixed aspect ratio when you enter
+	text into them unless the shape has the fixed aspect ratio flag set.
+
+1999-10-15  James Henstridge  <james@daa.com.au>
+
+	* objects/flowchart/flowchart.c: add new shapes to flowchart sheet.
+
+	* object/flowchart/pixmaps/...: corresponding pixmaps for new shapes.
+
+	* objects/flowchart/magdrum.shape: 
+	* objects/flowchart/offlinestore.shape: 
+	* objects/flowchart/punchedtape.shape: 
+	* objects/flowchart/transmittape.shape: 
+	* objects/flowchart/punchedcard.shape: new shapes.
+
+	* objects/flowchart/flowchart.c: add new shapes to flowchart sheet.
+
+	* object/flowchart/pixmaps/...: corresponding pixmaps for new shapes.
+
+	* objects/flowchart/collate.shape:
+	* objects/flowchart/delay.shape:
+	* objects/flowchart/extract.shape:
+	* objects/flowchart/intstorage.shape:
+	* objects/flowchart/magdisk.shape:
+	* objects/flowchart/magtape.shape:
+	* objects/flowchart/merge.shape:
+	* objects/flowchart/or.shape:
+	* objects/flowchart/sort.shape:
+	* objects/flowchart/sumjunction.shape: new shapes.
+
+1999-10-15  Alexander Larsson  <alla@lysator.liu.se>
+
+	* TODO (BUGS):
+	Added bug:
+	Entering an erronous command as print command
+	crashes dia.
+
+	* app/paginate_psprint.c:
+	Save all print dialog values for next time.
+	
+	* app/Makefile.am:
+	Remove custom lib from DIA_LIB_PATH.
+
+1999-10-14  James Henstridge  <james@daa.com.au>
+
+	* objects/flowchart/flowchart.c: add new shapes to flowchart sheet.
+
+	* object/flowchart/pixmaps/...: corresponding pixmaps for new shapes.
+	
+	* objects/flowchart/offpageconn.shape: 
+	* objects/flowchart/manualop.shape: 
+	* objects/flowchart/preparation.shape: 
+	* objects/flowchart/manualinput.shape: 
+	* objects/flowchart/predefdproc.shape: 
+	* objects/flowchart/terminal.shape: new shapes in the flowchart sheet.
+
+1999-10-13  James Henstridge  <james@daa.com.au>
+
+	* app/diapagelayout.[ch]: added accessors to paper information.  The
+	widget should be just about complete now.
+
+	* app/diapagelayout.[ch]: fleshed out the page setup widget a bit more.
+	It actually does something now.
+
+1999-10-12  James Henstridge  <james@daa.com.au>
+
+	* app/pixmaps/portrait.xpm, app/pixmaps/landscape.xpm: support pixmaps
+	for the page layout widget.
+
+	* app/diapagelayout.[ch]: start of page layout widget.  Not actually
+	built yet as it is not complete.
+
+	* objects/flowchart/flowchart.c: added new shapes to sheet.
+
+	* objects/flowchart/display.shape:
+	* objects/flowchart/transaction.shape: new shapes.
+
+	* AUTHORS: added my name to the spec file.
+
+	* dia.spec: include the dia desktop entry to the spec file.
+
+	* Makefile.am: install the dia.desktop file.
+
+	* dia.desktop: added a gnome desktop entry so you can start dia
+	from the gnome panel menu.
+
+1999-10-11  James Henstridge  <james@daa.com.au>
+
+	* objects/custom/custom_object.c:
+	* objects/custom/shape_info.c: warning fixes.
+
+	* objects/flowchart/document.shape: a shape file for the `document'
+	flowchart shape.
+
+	* lib/custom.h: new header with the custom shape prototypes.
+
+	* app/app_procs.c: register custom objects as well.
+	(register_objects_in): close shared libraries if they don't load
+	correctly, and call g_module_make_resident on libraries that load
+	correctly.
+
+	* app/Makefile.am (dia_LDADD): added libcustom_objects.a to link list.
+
+	* objects/custom/custom.c: removed get_version, added custom_ prefix
+	to register_objects and register_sheets.
+
+	* objects/custom/Makefile.am: converted to a normal library.
+
+1999-10-10  Alexander Larsson  <alla@lysator.liu.se>
+
+	* app/lineprops_area.c:
+	* app/render_svg.c:
+	* lib/objchange.c:
+	* objects/custom/shape_info.c:
+	* objects/flowchart/box.c:
+	* objects/flowchart/diamond.c:
+	* objects/flowchart/ellipse.c:
+	* objects/flowchart/parallelogram.c:
+	* objects/network/flash.c:
+	* objects/network/scead-plug.c:
+	* objects/sybase/client.c:
+	Removed -Wall warnings.
+	
+	* objects/network/bus.c:
+	Removed unused functions.
+
+	* objects/FS/flow-ortho.c:
+	* objects/FS/flow-poly.c:
+	* objects/FS/flow.c:
+	* objects/FS/function.c:
+	
+	Implemented "non-implemented" undo for FS objects.
+	Now at least it won't crash.
+	
+1999-10-10  Alexander Larsson  <alla@lysator.liu.se>
+
+	* objects/network/bus.c:
+	Implemented undo.
+	Handles are now added and removed using the object menu.
+	Default to 6 handles instead of 10.
+	Changed name from "Standard - Bus" to "Network - Bus". Kept old
+	name for backwards compatibility.
+
+	* objects/network/network.c:
+	Changed name from "Standard - Bus" to "Network - Bus". Kept old
+	name for backwards compatibility.
+
+	* app/properties.[ch]:
+	* app/undo.c:
+	Update properties in properties dialog if the shown object
+	is part of and ObjectChange (undo or redo).
+
+	* lib/poly_conn.c:
+	Remove old known bugs list.
+
+	* objects/UML/class_dialog.c:
+	Removed debug printf's.
+
+1999-10-10  James Henstridge  <james@daa.com.au>
+
+	* objects/custom/custom.c (custom_object_load): new function that
+	provides a nice entry point to the custom shape code for when it
+	gets used by other libraries.
+
+	* configure.in: removed 11 makefiles from AC_OUTPUT list.  This
+	speeds builds up a bit.
+
+	* */Makefile.am (EXTRA_DIST): include pixmaps in distribution.
+	(SUBDIRS): do not descend into pixmaps subdirs.
+
+	* */pixmaps/Makefile.am: removed -- incorporate into parent makefiles.
+	This speeds up build process.
+
+	* objects/custom/custom.c (sheets): made variable static.
+
+	* objects/custom/custom_util.[ch] (custom_get_relative_filename):
+	renamed function.
+
+	* objects/custom/load_sheet.[ch] (custom_sheet_load): renamed function.
+
+	* objects/custom/custom.c: look in ~/.dia/shapes instead of
+	~/.dia_shapes as the per-user shapes directory.
+
+	* app/preferences.c (prefs_save): save config to ~/.dia/diarc.
+	(prefs_load): load configuration from ~/.dia/diarc.  If the file
+	does not exist, fallback on the old ~/.diarc location.
+
+	* app/app_procs.c (create_user_dirs): create the ~/.dia directory
+	on startup.
+	(register_all_objects): look for user specific objects in
+	~/.dia/objects rather than ~/.dia_libs.
+
+1999-10-10  Fredrik Hallenberg  <hallon@lysator.liu.se>
+
+	* configure.in:
+	* app_procs.c:
+	* objects/flowchart/box.c
+	* objects/flowchart/ellipse.c
+	* objects/flowchart/flowchart.c	
+	Use gmodule for dynamic linking. As gmodule is using
+	RTLD_GLOBAL i had to change flowchart box and ellipse
+	so the typenames doesn't conflict with the standard
+	box and ellipse.
+
+	* message.c
+	* commands.c
+	Use button box to make dialogs look better.
+
+1999-10-09  Alexander Larsson  <alla@lysator.liu.se>
+
+	* objects/UML/class_dialog.c:
+	* objects/UML/class.h:
+	Implemented undo for "UML - Class" objects.
+	Not 100% tested yet.
+
+	* objects/UML/classicon.c:
+	* objects/UML/constraint.c:
+	* objects/UML/dependency.c:
+	* objects/UML/generalization.c:
+	* objects/UML/implements.c:
+	* objects/UML/large_package.c:
+	* objects/UML/lifeline.c:
+	* objects/UML/message.c:
+	* objects/UML/object.c:
+	* objects/UML/realizes.c:
+	* objects/UML/state.c:
+	* objects/UML/usecase.c:
+	Removed warnings.
+	
+	* lib/connectionpoint.h:
+	Fixed typo.
+	
+1999-10-09  James Henstridge  <james@daa.com.au>
+
+	* objects/custom/*.[ch]: added copyright notices to custom object
+	files.
+
+	* shapes/Circuit/hdiode.shape:
+	* shapes/Circuit/hzener.shape: 
+	* shapes/Circuit/opamp.shape:
+	* shapes/Circuit/vdiode.shape:
+	* shapes/Circuit/vzener.shape: made adjustments to make the circuit
+	shapes look nice after the custom shape code changes.
+
+	* objects/custom/README: updated docs to cover changes to drawing
+	code.
+
+	* objects/custom/custom_object.c (custom_draw): honour the line
+	properties when drawing the shape.
+
+	* objects/custom/shape_info.[ch]: added support for setting line
+	properties for individual drawing elements in a custom shape.  You
+	can set the dash style, dash length, cap style and join style.
+
+1999-10-07  James Henstridge  <james@daa.com.au>
+
+	* objects/custom/shape_info.c (parse_style): added a few extra synonyms
+	for foreground and background.
+
+	* objects/custom/custom_object.c (custom_draw): use the new style
+	information when drawing the object.
+
+	* objects/custom/shape_info.[ch]: store all shape style info in the
+	GraphicStyle structure.  This makes adding support for extra CSS
+	attributes easier -- we don't have to keep adding extra arguments to
+	a lot of functions.
+
+1999-10-05  James Henstridge  <james@daa.com.au>
+
+	* lib/intl.c (unalias_lang): merged in changes from the i18n code
+	swiped from gnome-libs.
+
+1999-10-03  Alexander Larsson  <alla@lysator.liu.se>
+
+	* objects/standard/image.c (get_directory):
+	Fix memleak. Found by Kjartan Maraas <kmaraas@online.no>
+
+1999-09-28  Alexander Larsson  <alla@lysator.liu.se>
+
+	* lib/poly_conn.c (polyconn_destroy):
+	Fix bug. Access of freed memory.
+	Rememeber, you can't free the handles of an object
+	before calling object_destroy(), as it unconnects the handles
+	therefore referencing them.
+
+1999-09-28  Alexander Larsson  <alla@lysator.liu.se>
+
+	* app/undo.c:
+	undo_clear() didn't set stack->depth to zero.
+	This made other undo functions crash after this had been called
+	on a "full" stack.
+	
+	* dia.xpm:
+	Slightly modified by Chris Love <clove@exactis.com>
+
+1999-09-19  Alexander Larsson  <alla@lysator.liu.se>
+
+	* objects/UML/class.h: 
+	* objects/UML/class_dialog.c:
+	Retrun NULL ObjectChange on class property change.
+	This means no crashes, but "UML - Class" doesn't support undo yet.
+	
+1999-09-19  Alexander Larsson  <alla@lysator.liu.se>
+	
+	* lib/text.c:
+	Indentation fix.
+
+	* objects/UML/classicon.c:
+	* objects/UML/dependency.c:
+	* objects/UML/generalization.c:
+	* objects/UML/implements.c:
+	* objects/UML/large_package.c:
+	* objects/UML/lifeline.c:
+	* objects/UML/message.c:
+	* objects/UML/object.c:
+	* objects/UML/realizes.c:
+	* objects/UML/state.c:
+	* objects/UML/usecase.c:
+	Update to new undo (w. get/set_state).
+	Add object menu to add/delete segments.
+
+1999-09-17  Alexander Larsson  <alla@lysator.liu.se>
+
+	* app/menus.c:
+ 	Add equal distance alignment.
+
+	* app/object_ops.c:
+	Add equal distance alignment.
+	Fix bug in adjacent alignment.
+
+1999-09-16  Alexander Larsson  <alla@lysator.liu.se>
+
+	* objects/UML/constraint.c: 
+	Update to new undo (w. get/set_state).
+
+1999-09-15  Alexander Larsson  <alla@lysator.liu.se>
+
+	* app/paginate_psprint.c:
+	Save (parts, more todo) of the info in the print dialog to the
+	next time it's opened.
+	Patch from Yo Ric Dude <ricdude@toad.net>
+
+1999-09-14  Alexander Larsson  <alla@lysator.liu.se>
+
+	* configure.in:
+	Updated version string to 0.41cvs.
+
+	* objects/UML/assocition.c:
+	Update to new undo (w. get/set_state).
+	Add object menu to add/delete segments.
+
+	* app/app_procs.c:
+	Added function debug_break() and called it after all
+	objects and sheets are loaded. Place a breakpoint here if you
+	want to debug objects. All symbols should be loaded.
+
+1999-09-12  James Henstridge  <james@daa.com.au>
+
+	* app/menus.c (display_menu_items): added print menu item.
+	(filemenu): always add print menu item -- even if gnome-print is
+	not installed.
+
+	* app/commands.h, app/commands.c (file_print_callback): the print
+	menu item is now available for both gnome-print and non gnome-print
+	setups.
+
+	* app/paginate_psprint.c (diagram_print_ps): show a dialog to let you
+	print with the non gnome-print driver.
+
+1999-09-11  James Henstridge  <james@daa.com.au>
+
+	* app/paginate_gnomeprint.c (diagram_print_gnome): moved the gnome
+	printer dialog code out of commands.c.
+
+	* app/paginate_psprint.c: new file containing the pagination code for
+	psprint.
+
+	* app/render_eps.c: made a few modifications so as well as producing
+	EPS files, this renderer can be set up to do postscript printing.
+	This basically entailed adding an extra function to create a RenderEPS
+	renderer which did not bother setting the viewport for the document.
+	That was left for the pagination code.
+
+1999-09-10  James Henstridge  <james@daa.com.au>
+
+	* app/render_gnomeprint.c (draw_ellipse, fill_ellipse): since
+	gnome-print does not support elliptic arcs at the moment, approximate
+	the ellipse with eight bezier curves.  This gives a pretty good
+	match to a true ellipse.
+
+1999-09-09  James Henstridge  <james@daa.com.au>
+
+	* app/commands.c (file_gnome_print_callback): added support for
+	scaling the diagram.  Also fixed a few other bugs.
+
+	* app/paginate_gnomeprint.c (print_page): added ability to scale
+	document.  Fixed up test to see if the page has no objects on it.
+	This should prevent some blank pages being printed.  Non square
+	objects such as lines could still cause problems.
+
+1999-09-08  James Henstridge  <james@daa.com.au>
+
+	* app/commands.c (file_gnome_print_callback): changed from using the
+	standard printer selection dialog to one that also has a paper size
+	selector as well.
+
+	* commands.[ch]: added callbacks for the print menu item.  Currently
+	it only does A4 output.  I will make it configurable soon.
+	
+	* app/menus.c: add a print diagram menu item if gnome-print support
+	is enabled.
+	
+	* app/paginate_gnomeprint.c, app/paginate_gnomeprint.h: this is a
+	bit higher level than the gnome-print renderer.  It splits the
+	diagram into page size chunks and then renders them.  For each
+	page, it only renders the objects whose bounding box intersects
+	the page, and it sets the clip mask so that the diagram does not
+	overlap the margins.
+	
+	* app/render_gnomeprint.c, app/render_gnomeprint.h: added a renderer
+	that uses gnome-print as its back end.
+	
+	* configure.in: added a check for gnome-print.  It is disabled by
+	default because the code is not really working correctly yet.
+
+	* app/menus.c: the delete object menu item was missing from the
+	GnomeUIInfo style menus.
+
+1999-09-07  Fredrik Hallenberg  <hallon@lysator.liu.se>
+
+	* configure.in
+	Added japanese to ALL_LINGUAS.
+	Fix for Linux on Alpha.
+
+1999-09-07  Alexander Larsson  <alla@lysator.liu.se>
+
+	* app/create_object.c (create_object_button_press):
+	Always initialize tool->obj. Otherwise we store a null
+	in the undo Change.
+
+	* lib/text.c:
+	Set linestyle before drawing cursor.
+	Fix undo of backwards delete.
+
+1999-09-05  James Henstridge  <james@daa.com.au>
+
+	* dia.spec: updated spec file to distribute $(prefix)/share/dia.
+
+	* app/render_svg.c (draw_image): some fixes so that the appropriate
+	style attributes are set.  Before it was setting line styles on
+	fill_* functions.  Now it only does this for the draw_* variants.
+
+	* app/Makefile.am (run_dia.sh): set the DIA_SHAPE_PATH environment
+	variable so that custom shapes can be loaded.
+
+	* shapes/: new directory for custom shapes.  The Circuit sheet has
+	been moved here.
+
+1999-09-02  James Henstridge  <james@daa.com.au>
+
+	* TODO: removed a few todo items that have been implemented.
+
+	* app/interface.c (create_sheets): enabled the popup page menu to the
+	notebook.  This can make it easier to select different sheets.
+
+	* object/custom/Circuit/: added diode, zener diode, ground point and
+	operational amplifier shapes.
+	
+	* objects/custom/Makefile.am: added a note about adding DEBUG_CUSTOM
+	if you want the output.
+
+	* objects/custom/shape_info.c (parse_path): same here.
+
+	* objects/custom/load_sheet.c (load_with_readdir): don't print so
+	much debugging output.  To get the previous level of output, define
+	DEBUG_CUSTOM.
+
+	* objects/custom/shape_info.c (parse_svg_node): polygons were being
+	recorded as polylines in the ShapeInfo structure.
+
+	* objects/custom/README: some notes on writing new custom shapes.
+	
+1999-09-01  James Henstridge  <james@daa.com.au>
+
+	* objects/custom/Circuit/hinductor.*:
+	* objects/custom/Circuit/vinductor.*: added inductor shapes that
+	also test out the bezier curve and SVG path support.
+	
+	* objects/custom/custom_object.c (custom_draw): added support for
+	drawing bezier paths and filled shapes.
+
+	* objects/custom/shape_info.c (parse_path): new function to parse
+	SVG path elements.  It does not do quadratic beziers or elliptic
+	arcs though.  Only moves, lines and cubic beziers.
+	(*): added support for paths.
+
+1999-08-31  James Henstridge  <james@daa.com.au>
+
+	* objects/sybase/ltm.c (render_to_store): use the newer bezier API.
+
+	* app/render_svg.c (draw_bezier, fill_bezier): updated renderer
+	interface
+
+	* app/render_eps.c (draw_bezier, fill_bezier): updated renderer
+	interface
+
+	* app/render_gdk.c (draw_bezier, fill_bezier): updated renderer
+	interface.
+
+	* lib/render_store.[ch]: use newer bezier functions.
+
+	* lib/render.h: changed the bezier drawing functions to use an array
+	of BezPoint structures instead of normal Point structures to allow
+	lineto's mixed in with the curveto's.
+	
+	* objects/custom/Circuit/pnp.*: added pnp transistor shape.
+	
+	* objects/custom/Circuit/Makefile.am (SHAPES): added index.sheet and
+	xpm images for different shapes to Makefile.
+
+	* objects/custom/custom_object.c (custom_object_new): set the icon
+	for the sheet button if there is one.  Otherwise fall back on the
+	default custom object icon.
+
+	* objects/custom/shape_info.c (load_shape_info): read the sheet
+	icon name from the shape file.
+
+	* app/interface.c (create_sheet_page): if sheet_obj->pixmap == NULL,
+	check the pixmap_file field for the name of a pixmap file to load
+	for the tool.
+
+	* lib/sheet.h (SheetObj): added pixmap_file field to structure.  It is
+	at the end of the structure, and it isn't used if the pixmap field
+	is non NULL, so it should not break binary compatibility.
+
+	* objects/custom/load_sheet.[ch]: moved sheet loading code here.  Also
+	added support for the use of an index.sheet file so you can specify
+	the ordering of the shapes in the sheet, and also internationalise
+	the sheet name and actually be able to give a description.  The old
+	readdir based sheet loading code acts as a fallback if an index.sheet
+	file can not be found.
+
+	* objects/custom/custom_util.[ch]: new file containing useful routines
+	needed by the custom object code.  Currently only contains a simple
+	routine for resolving relative paths.
+
+	* objects/custom/custom_object.c (custom_draw): fixed problem with
+	drawing rectangles if the shape has been flipped.
+
+1999-08-30  James Henstridge  <james@daa.com.au>
+
+	* objects/custom/custom_object.c (custom_get_object_menu): allow
+	flipping of custom shapes.  This uses the miggle click object
+	menu.
+
+	* objects/custom/Circuit/npn.shape: fix aspect ratio.
+
+	* objects/custom/custom_object.c (custom_update_data): honour the
+	aspect ratio constraints.
+
+	* objects/custom/shape_info.c (load_shape_info): updated aspect ratio
+	tag parsing, so you can specify a free, fixed or a range for aspect
+	ratios for the shape.
+
+1999-08-29  James Henstridge  <james@daa.com.au>
+
+	* objects/custom/test.xml, objects/custom/Circuit/*.shape: fixed
+	up shape namespace tag.
+
+	* objects/custom/shape_info.c (load_shape_info): check xml:lang
+	attribute on <description> elements to support i18n for custom
+	shape descriptions.
+	Also changed the shape namespace for custom shapes to something
+	a little more sensible.
+
+	* lib/dummy_dep.h (dummy_dep): added extra dummy dependency.
+
+	* lib/intl.c: new file containing some functions for i18n stuff.
+
+	* app/layer_dialog.c (create_button_box): fixed a warning.
+
+	* objects/custom/custom_object.c: use current line style.  Save dash
+	length.
+
+	* objects/flowchart/diamond.c: use current line style.  Save dash
+	length.
+
+	* objects/flowchart/parallelogram.c: use current line style.  Save
+	dash length.
+
+	* objects/flowchart/ellipse.c: use current line style.  Save dash
+	length.
+
+	* objects/flowchart/box.c: use current line style.  Save dash length.
+
+	* objects/standard/ellipse.c: make ellipse use current line style.
+
+	* objects/standard/box.c: use the line style set in the toolbox for
+	new boxes, and remember the dash length.
+
+	* app/commands.c (view_toggle_rulers_callback): fix reshowing of
+	rulers.
+
+1999-08-24  James Henstridge  <james@daa.com.au>
+
+	* objects/flowchart/ellipse.c (ellipse_update_data): made some changes
+	to try to stop ellipse to get infinite width/height when we resize,
+	while trying to keep the text inside the ellipse.
+
+	* objects/flowchart/box.c, objects/flowchart/parallelogram.c,
+	* objects/flowchart/diamond.c, objects/flowchart/ellipse.c: fixed
+	resizing behaviour, so that you can't push objects round the screen
+	with the resize handles.
+
+	* app/lineprops_area.c (dia_arrow_chooser_init, dia_line_chooser_init):
+	get the OK buttons in the dialogs to take default clicks.
+
+	* objects/custom/custom_object.c: added code so that resizing the
+	shape does not end up pushing it round the screen.
+
+1999-08-23  Alexander Larsson  <alla@lysator.liu.se>
+
+        * app/display.[ch]:
+	Generate rectangle with the union of the damaged regions.
+	This is used to optimize the grid paint and the object rendering.
+	display_render_pixmap passes this info to grid_draw() and data_render().
+
+	* app/grid.[ch]:
+	grid_draw doesn't draw grid lines outside of damaged rectangle.
+	Sets dashlength when drawing non-solid grid.
+	
+	* lib/diagramdata.[ch]:
+	data_render() and layer_render() takes an optional damaged rectangle
+	argument. No objects not intersecting this are drawn.
+
+	* app/diagram.c:
+	Fix warning.
+	Call data_render with NULL update rectangle.
+	
+1999-08-23  James Henstridge  <james@daa.com.au>
+
+	* objects/custom/custom_object.c (custom_update_data): if the aspect
+	ratio is fixed, make sure the shape is not distorted.
+
+	* object/custom/shape_info.h, objects/custom/shape_info.c: notice if
+	a <fixaspectratio/> tag is given in the shape file.
+
+	* objects/custom/shape_info.[ch], objects/custom/custom_object.c:
+	added support for stroke-width, stroke and fill CSS attributes
+	specified in style attributes of the SVG elements.  The line width
+	is relative to the user specified line width.  The stroke and fill
+	attributes can only be used to swap the foreground/background
+	colours.
+
+	* lib/widgets.c (dia_line_style_selector_set_linestyle): set the
+	sensitivity on the dash length selector when this function is called.
+
+	* objects/standard/arc.c: same.  Also handle dash length.
+	* objects/standard/zigzagline.c: same.
+	* objects/standard/polyline.c: same.  Also handle dash length.
+	* objects/standard/line.c: use default arrow/line styles.
+
+	* app/interface.c: added callbacks to set the default attributes.
+
+	* lib/attributes.c: added implementations of these functions.
+
+	* lib/attributes.h: added extra prototypes for the new line properties
+	area in the toolbox.
+
+	* app/interface.c (create_lineprops_area): added line properties
+	area to bottom of toolbox.
+
+	* app/lineprops_area.h: a header exporting a few routines of the
+	line properties area widgets.
+
+	* app/lineprops_area.c: new file containing a selector for arrows
+	and line styles to go in the main toolbox.
+
+1999-08-22  Alexander Larsson  <alla@lysator.liu.se>
+
+	* HACKING:
+	Update Gtk+ 1.0.5 comment to 1.2.0.
+
+	* INSTALL:
+	Demand libtool 1.3
+
+	* acconfig.h:
+	Add HAVE_LIBPOPT
+
+	* configure.in:
+	Make sure we don't propagate -ldl and -lpopt to all LIBS
+	by adding new var APP_LIBS that only app/dia links with.
+		
+	* app/Makefile.am:
+	Update run_dia.sh to load custom and flowchart objects.
+
+	* objects/ER/Makefile.am:
+	* objects/FS/Makefile.am:
+	* objects/UML/Makefile.am:
+	* objects/network/Makefile.am:
+	* objects/standard/Makefile.am:
+	* objects/sybase/Makefile.am:
+	Don't build versioned libs.	
+	
+1999-08-22  James Henstridge  <james@daa.com.au>
+
+	* configure.in: added objects/custom/Circuit/Makefile to AC_OUTPUT
+	list.
+
+	* objects/Makefile.am (SUBDIRS): added custom to subdir list -- it
+	should actually work a bit now.
+
+	* objects/custom/Circuit/*: a test sheet for the custom shape code.
+	It is a small collection of circuit elements.
+
+	* objects/custom/shape_info.c: fixed up loading of polylines and
+	polygons.  Before it was removing negative signs :(
+
+	* objects/custom/pixmaps/custom.xpm: drew the custom shape icon.  A
+	placeholder was here before.  I still need to work out how to set
+	icons for individual custom shapes.
+	
+	* objects/custom/custom.c: added code to load the shapes into sheets
+	properly.  The shape files should be arranged into directories, and
+	each directory represents a different sheet in the toolbox.  This
+	will make it very easy to distribute a collection of dia shapes as
+	a tarball.  I still need to work out internationalisation, and maybe
+	also shape ordering in the sheet.
+
+	* objects/custom/custom_object.c: fixed up dialogs for these objects.
+	(custom_create): fix for objects without text areas.
+
+	* objects/custom/shape_info.h, objects/custom/custom_object.c: loading
+	and saving of custom object works correctly now.
+
+1999-08-21  James Henstridge  <james@daa.com.au>
+
+	* objects/flowchart/ellipse.c: 
+	* objects/flowchart/diamond.c: 
+	* objects/flowchart/parallelogram.c: 
+	* objects/flowchart/box.c: Fixed up a few bugs in these objects when
+	copying or loading these object types.  Not all the connection
+	points would be initialised correctly.
+
+	* objects/flowchart/Makefile.am (libflowchart_objects_la_LDFLAGS):
+	similar here.
+
+	* objects/custom/Makefile.am (libcustom_objects_la_LDFLAGS): do not
+	build a versioned library.  It will only ever be dlopen'd, so this
+	is not a problem.
+
+	* objects/custom/custom_object.c (custom_distance_from): allow
+	selecting the object by clicking on the text.  This fixes problems
+	where the text box is outside the graphic.
+
+	* objects/custom/shape_info.c (load_shape_info): fixed up reading
+	of connections points.  It should be possible to add connections
+	to custom objects now.
+
+	* objects/custom/custom_object.c (custom_update_data): fixed resizing
+	due to changes to text.
+
+	* configure.in: added extra makefiles.
+	
+	* objects/custom/shape_info.[ch]:
+	* objects/custom/custom_object.c:
+	* objects/custom/custom.c: the starts of custom shape support in dia.
+	This is not built by default at the moment, since it is not quite
+	complete.  When it is, it will let you create more shapes for dia
+	without writing a line of C.  Its implementation includes buzzwords
+	such as XML and SVG, so it must be good :)
+
+1999-08-19  Karsten Weiss  <karsten@addx.au.s.shuttle.de>
+
+	* app/app_procs.c (app_exit): Use button labels "Quit" and
+	"Cancel" instead of "Yes" and "No".
+	Set default action to "Cancel" instead of "Quit".
+
+1999-08-19  James Henstridge  <james@daa.com.au>
+
+	* objects/flowchart/flowchart.c: added ellipse object.
+	
+	* objects/flowchart/ellipse.c: a new shape for the flowchart toolbox.
+
+1999-08-18  James Henstridge  <james@daa.com.au>d
+
+	* app/color_area.c (color_area_edit): small fix to prevent dia from
+	segfaulting when you try to change the default foreground/background.
+
+1999-08-17  Alexander Larsson  <alla@lysator.liu.se>
+
+	* app/diagram.[ch] (diagram_redraw_all):
+	Added function that redraws all diagrams.
+
+	* app/preferences.c (prefs_apply):
+	Call diagram_redraw_all when prefs are changed.
+
+	* app/render_svg.c:
+	Don't use xmlEncodeEntitiesReentrant(). It doesn't exist on
+	older libxml's, and the old version works good enought here.
+	
+1999-08-17  James Henstridge  <james@daa.com.au>
+
+	* lib/widgets.c: changed handlers that were connected to the GtkButton
+	"pressed" signal to connect to the "clicked" signal.  This removes the
+	problem where dialogs are inactive until you click a mouse button
+	after using a colour selector.
+
+	* configure.in: added extra makefiles to AC_OUTPUT list.
+	
+	* objects/Makefile.am (SUBDIRS): added flowchart module
+
+	* objects/flowchart/*: a collection of shapes for use in flowcharts.
+
+	* app/color_area.c (color_area_events): similar here.
+
+	* app/linewidth_area.c (linewidth_area_events): sometimes a configure
+	event is recieved with event->width == 0, which causes a warning if we
+	try to create a pixmap of that width.
+
+	* app/preferences.c, app/preferences.h, app/grid.c: added code to
+	allow you to configure the colour of the grid, and also lets you
+	set the grid to use dotted lines instead of solid ones.
+	
+	* app/commands.c, app/commands.h, app/diagram.c, app/diagram.h,
+	app/menus.c, app/Makefile.am: added menu entry for exporting SVG files.
+	
+	* app/render_svg.h, app/render_svg.c: an SVG (Scalable Vector Graphics)
+	export filter.  It is not quite complete, but for most shapes it
+	works as expected.  Fonts still need a bit of work.
+
+1999-08-11  Robert Brady  <rwb197@ecs.soton.ac.uk>
+
+	* configure.in: Added "en_GB" to ALL_LINGUAS.
+
+1999-08-04  Fredrik Hallenberg  <hallon@lysator.liu.se>
+
+	* menus.c
+	Added Undo and Redo to GNOME menus.
+	
+	* objects/ER/attribute.c:
+	* objects/ER/entity.c:
+	* objects/ER/participation.c:
+	* objects/ER/relationship.c:
+	Added get/set_state functions.
+
+	* objects/ER/participation.c:
+	Added add/delete segment.
+
+	* po/sv.po
+	Updated Swedish translation.
+
+1999-07-25  Alexander Larsson  <alla@lysator.liu.se>
+
+        * app/preferences.[hc]:
+	Added undo_depth pref.
+	
+	* app/undo.[ch]:
+	Never grow stack larger than pref.undo_depth.
+	undo_depth == 0 means unlimited.
+	Converted printfs to conditionally compiled DEBUG_PRINTFs.
+	
+1999-07-25  Alexander Larsson  <alla@lysator.liu.se>
+
+        * app/diagram.c:
+	* app/group.c:
+	* lib/object.h:
+	* lib/render_object.c:
+	* objects/ER/attribute.c:
+	* objects/ER/entity.c:
+	* objects/ER/participation.c:
+	* objects/ER/relationship.c:
+	* objects/FS/flow-ortho.c:
+	* objects/FS/flow-poly.c:
+	* objects/FS/flow.c:
+	* objects/FS/function.c:
+	* objects/UML/actor.c:
+	* objects/UML/association.c:
+	* objects/UML/class.c:
+	* objects/UML/classicon.c:
+	* objects/UML/component.c:
+	* objects/UML/constraint.c:
+	* objects/UML/dependency.c:
+	* objects/UML/generalization.c:
+	* objects/UML/implements.c:
+	* objects/UML/large_package.c:
+	* objects/UML/lifeline.c:
+	* objects/UML/message.c:
+	* objects/UML/note.c:
+	* objects/UML/object.c:
+	* objects/UML/realizes.c:
+	* objects/UML/small_package.c:
+	* objects/UML/state.c:
+	* objects/UML/usecase.c:
+	* objects/network/bus.c:
+	* objects/standard/arc.c:
+	* objects/standard/box.c:
+	* objects/standard/ellipse.c:
+	* objects/standard/image.c:
+	* objects/standard/line.c:
+	* objects/standard/polyline.c:
+	* objects/standard/textobj.c:
+	* objects/standard/zigzagline.c:
+	Removed all traces of is_empty(). It doesn't work in an
+	Undo/Redo world.
+
+1999-07-25  Alexander Larsson  <alla@lysator.liu.se>
+
+        * app/diagram.c:
+	* app/group.[ch]:
+	* app/undo.[ch]:
+	Undoable grouping and ungrouping.
+
+	* app/layer_dialog.c:
+	* lib/diagramdata.[ch]:
+	Undoable layer ops.
+
+	* app/modify_tool.c:
+	Undoable unconnect on handle move.
+
+	* lib/orth_conn.[ch]:
+	Working undoable add/remove segment.
+	Removed endpoint_handles from OrthConn, renamed
+	midpoint_handles to handles and put the endpoint
+	handles there.
+
+	* objects/standard/zigzagline.c:
+	* objects/ER/participation.c:
+	* objects/UML/association.c:
+	* objects/UML/dependency.c:
+	* objects/UML/generalization.c:
+	* objects/UML/realizes.c:
+	Update for the changes in OrthConn
+	
+1999-07-23  Karsten Weiss  <karsten@addx.au.s.shuttle.de>
+
+	* configure.in: Added "de" to ALL_LINGUAS.
+
+1999-07-17  Alexander Larsson  <alla@lysator.liu.se>
+
+	* dia.1:
+	Fixed typo.
+
+	* app/display.c:
+	* po/da.po:
+	* po/fr.po:
+	* po/hu.po:
+	* po/no.po:
+	* po/pl.po:
+	* po/sv.po:
+	Don't have the <Display> etc part of the menu strings
+	i18n:ed. Patch from Fabrice.Bellet@imag.fr.
+
+	* app/diagram.c:
+	Don't have the <Display> etc part of the menu strings
+	i18n:ed. Patch from Fabrice.Bellet@imag.fr.
+	Don't remove is_empty() objects, that don't work with undo.
+
+	* lib/objchange.[ch]:
+	New files.
+	Definition of ObjectChange. This is essentially an Change
+	exported to the object libs. It encapsulates a change made
+	to an objects internals. It can be applied, reverted and freed.
+	There are also utility functions for doing ObjectChanges that
+	only get/set the whole state of an object to store the change.
+	This cannot be used when the object change deletes or adds a
+	object which has references from other objects, eg. Handles which
+	might be connected.
+
+	* lib/Makefile.am:
+	Added objchange.c and objchange.h.
+
+	* lib/dia_image.c:
+	Return NULL when loading fails.
+
+	* lib/diamenu.h:
+	Menu callbacks return an ObjectChange.
+
+	* lib/dummy_dep.h:
+	Reference objchange.o
+
+	* lib/focus.h:
+	Key events return ObjectChange if they modify the object.
+
+	
+	* lib/object.h:
+	Added object_add_handle_at() function.
+	Apply properties returns an ObjectChange.
+	Remove ObjectState and the get/set state functions, these
+	don't always work. Use the new ObjectChange instead.
+	
+	* lib/object.c:
+	Added object_add_handle_at() function implementation.
+	
+	* lib/orth_conn.[ch]:
+	Use ObjectChange. Not finished yet.
+	Removed get/set/free state functions
+
+	* lib/poly_conn.[ch]:
+	Use ObjectChange.
+	Don't remove segments that are small.
+	Removed get/set/free state functions
+
+	* lib/text.[ch]:
+	Use ObjectChange.
+	Added functions to get/set all text attributes.
+
+	* objects/standard/arc.c:
+	* objects/standard/box.c:
+	* objects/standard/ellipse.c:
+	* objects/standard/image.c:
+	* objects/standard/line.c:
+	* objects/standard/polyline.c:
+	* objects/standard/textobj.c:
+	* objects/standard/zigzagline.c:
+	Use ObjectChange.
+	fixed bug in image_set_state.
+	zigzagline.c not finished yet.
+
+	* app/disp_callbacks.c:
+	Use ObjectChange that are returned from menu callbacks and
+	key_events for undo.
+
+	* app/properties.c:
+	Use ObjectChange that are returned from properties apply
+	for undo.
+
+	* app/undo.c:
+	* app/undo.h:
+	New undo type: ObjectChangeChange. This wraps a change to the
+	internals of an object (and ObjectChange) in code that does
+	app specific stuff (object_add_updates etc.)
+
+1999-07-11  Alexander Larsson  <alla@lysator.liu.se>
+
+	* lib/orth_conn.[ch]:
+	Added code for add/delete segment.
+
+	* objects/standard/zigzagline.c:
+	Use the new orth_conn code.
+	
+
+1999-07-08  Fredrik Hallenberg  <hallon@lysator.liu.se>
+
+	* objects/FS/Makefile.am
+	Removed fs.h from sources.
+
+	* Makefile.am
+	* dia.1
+	Added man page.
+
+1999-07-07  Alexander Larsson  <alla@lysator.liu.se>
+
+	* app/disp_callbacks.c (ddisplay_canvas_events):
+	Fix for bug. Every other arrow-key press got lost.
+	patch from Mr. Data Esq. <data@r47h102.res.gatech.edu>
+
+	* INSTALL:
+	change automake.sh to autogen.sh
+	
+1999-06-24  Alexander Larsson  <alla@lysator.liu.se>
+
+	* app/diagram.c:
+	Don't remove 'empty' objects.
+	This violent destruction of objects won't work
+	with the new undo framework.
+
+	* app/disp_callbacks.c:
+	Save undo info for object menu calls and key_events.
+
+	* app/properties.c:
+	Save undo info on properties apply.
+
+	* lib/dia_image.[ch]:
+	Add refcounting for images.
+
+	* app/render_eps.c:
+	* app/render_gdk.c:
+	* lib/render.h:
+	DiaImage * -> DiaImage
+
+	* app/undo.[ch]:
+	Add undo functions for object state changes.
+
+	* lib/focus.h:
+	* lib/text.c:
+	change of semntics for focus->key_event.
+	Now returns TRUE if the object recieving the event
+	was changed.
+
+	* lib/object.h:
+	Comment changes.
+
+	* lib/orth_conn.[ch]:
+	Don't automatically create and delete segments when
+	handles are moved. This is incompatible with undo.
+	Added state get, set and free functions.
+
+	* lib/orth_conn.[ch]:
+	Added state get, set and free functions.
+
+	* objects/UML/object.c:
+	* objects/UML/uml.c:
+	Fixed typo "UML - Objet" -> "UML - Object".
+	Saved old for backwards compatibility.
+
+	* objects/standard/arc.c:
+	* objects/standard/box.c:
+	* objects/standard/ellipse.c:
+	* objects/standard/image.c:
+	* objects/standard/line.c:
+	* objects/standard/polyline.c:
+	* objects/standard/textobj.c:
+	* objects/standard/zigzagline.c:
+	Added get/set state functions.
+	Textobj has a redo crash-bug.
+	Zigzagline needs object menus to add segments.
+	
+
+1999-06-20  Alexander Larsson  <alla@lysator.liu.se>
+
+	* app/render_eps.c (set_dashlength):
+	Don't generate eps files with zero dash-length.
+
+1999-06-16  Alexander Larsson  <alla@lysator.liu.se>
+
+	* app/commands.c:
+	* app/create_object.c:
+	* app/undo.[ch]:
+	Finished undo for create and paste.
+	
+	* lib/object.h:
+	Started properties undo.
+
+1999-06-14  Alexander Larsson  <alla@lysator.liu.se>
+
+	* TODO:
+	Added resizeable groups.
+
+	* app/app_procs.c:
+	Removed unused variable.
+
+	* app/commands.c:
+	* app/undo.[ch]:
+	Undo/redo for cut/delete done.
+
+	* app/create_object.c:
+	* app/modify_tool.c:
+	* lib/diagramdata.[ch]:
+	* app/diagram.[ch]:
+	renamed diagram_add_selected -> diagram_select
+	renamed diagram_remove_selected -> diagram_unselect
+	
+	* app/properties.[ch]:
+	Added properties_hide_if_shown() function.
+
+1999-06-13  Alexander Larsson  <alla@lysator.liu.se>
+
+	* app/undo.[ch]:
+	* app/Makefile.am:
+	Undo functions.
+	
+	* app/commands.[ch]
+	* app/modify_tool.[ch]
+	* app/object_ops.[ch]
+	* app/connectionpoint_ops.c
+	* app/menus.c
+	Use undo functions.
+	WARNING: Not finished. Will break.
+	Finished: move object, move handle.
+
+	* app/diagram.[ch]
+	Added diagram_selected_break_external() function.
+	It removes all connections between selected objects
+	and non-selected.
+	Add undo stack to Diagram.
+	
+	* lib/diagramdata.[ch]
+	Added layer_remove_objects() function
+	
+1999-06-11  Fredrik Hallenberg  <hallon@lysator.liu.se>
+
+	* objects/FS/Makefile.am
+	* objects/sybase/Makefile.am
+	Now uses GNOME_CFLAGS.
+
+	* app/app_procs.c
+	Now compiles with GNOME even if popt.h isn't available.
+
+1999-06-10  Alexander Larsson  <alla@lysator.liu.se>
+
+	* configure.in
+	* objects/Makefile.am
+	* objects/sybase/*
+	First version of sybase objects from
+	Brian Bruns <camber@umcc.ais.org>
+
+1999-06-10  Fredrik Hallenberg  <hallon@lysator.liu.se>
+
+	* configure.in
+	Added fr to ALL_LINGUAS
+
+1999-06-09  Fredrik Hallenberg  <hallon@lysator.liu.se>
+
+	* configure.in
+	* app/app_procs.c
+	Popt-code is activated if popt is available.
+
+1999-06-08  Alexander Larsson  <alla@lysator.liu.se>
+
+        This is a patch from David Thompson <dcthomp@mail.utexas.edu>
+	
+	* lib/orth_conn.[ch]:
+	Added orthconn_get_middle_handle()
+
+	* lib/text.[ch]:
+	Added text_set_cursor_at_end()
+	
+	* objects/FS/*
+	Added first version of functions structure diagrams.
+	
+1999-05-24  Alexander Larsson  <alla@lysator.liu.se>
+
+	* app/modify_tool.c:
+	Include math.h to remove warning.
+
+	* app/commands.c (dialogs_properties_callback):
+	Bring up correct properties dialog when selected
+	from menu.
+	From Dan Cohn <dan@internap.com>
+
+1999-05-20  Alexander Larsson  <alla@lysator.liu.se>
+
+	Patch from Lars R. Clausen 
+	
+	* app/modify_tool.c:
+	Changed abs to fabs.
+
+1999-05-19  Alexander Larsson  <alla@lysator.liu.se>
+
+	* INSTALL: 
+	* configure.in:
+	Require Gtk+ 1.2.0
+
+1999-05-18  Alexander Larsson  <alla@lysator.liu.se>
+
+	Patches from Dan Cohn <dan@internap.com>
+	
+	* app/commands.[ch]: 
+	* app/display.[ch]: 
+	* app/menus.c:
+	* app/preferences.[ch]:
+	Implements ability to turn on/off connection points in
+	current drawing and in global prefs.
+
+1999-05-18  Alexander Larsson  <alla@lysator.liu.se>
+
+	* lib/widgets.c (dia_line_style_selector_init): 
+	Fixed warnings.
+	
+	* lib/diagramdata.c (layer_update_extents):
+	Fixed uninitialized variable error.
+
+1999-05-17  Alexander Larsson  <alla@lysator.liu.se>
+
+	* lib/dia_image.c:
+	Made some changes to the gdk_imlib visual+colormap setup.
+
+1999-05-17  Alejandro Aguilar Sierra  <asierra@servidor.unam.mx>
+
+	* objects/UML/usecase.c: 
+       * objects/UML/lifeline.c
+	Fine tunning.
+
+	* objects/UML/object.c: 
+	* objects/UML/message.c: 
+ 	Changed font from Courier to Helvetica.
+
+	* lib/widgets.c: 
+	* lib/widgets.h:
+ 	Added dash lenth to the LineStyle widget.
+	
+	* objects/standard/ellipse.c :
+	* objects/standard/zigzagline.c: 
+	* objects/standard/line.c: 
+	Added dash lenght property.
+
+1999-05-16  Alexander Larsson  <alla@lysator.liu.se>
+
+	* app/render_eps.c:
+	First shot at latin1 encoded eps files.
+	Works, but the eps files get a bit large.
+	
+1999-05-16  Alexander Larsson  <alla@lysator.liu.se>
+
+	* objects/UML/class.[ch]: 
+	* objects/UML/uml.[ch]:
+	Reverted the line wrap changes.
+	Some day this might return, but it has to be selectable and
+	default to off for loaded objects, otherwise it breaks file
+	format compatibility.
+	There was also some complains about how it looked, so a making it
+	selectable is good for this too.
+
+1999-05-15  Alexander Larsson  <alla@lysator.liu.se>
+
+	* objects/UML/class.[ch]:
+	Some indentation cleanup.
+	Added wrap_lines variable to class.
+	I'll fix the line break stuff tomorrow.
+
+1999-05-13  Alexander Larsson  <alla@lysator.liu.se>
+
+	* lib/dummy_dep.h:
+	Added ref to poly_conn.o.
+
+	* objects/standard/polyline.c (polyline_draw): 
+	* objects/standard/zigzagline.c (zigzagline_draw): 
+	* objects/standard/arc.c (arc_draw): 
+	* objects/standard/line.c (line_draw):
+	Draw lines before arrows. This makes hollow arrows not
+	show the line.
+
+1999-05-13  Alexander Larsson  <alla@lysator.liu.se>
+
+	Changes from Kim Peasley <kpeasley@ior.com> 
+		
+	* dia/objects/UML/class.c:
+	Break lines with long operations so classes won't be
+	so wide.
+
+	* dia/objects/UML/uml.[ch]:
+	Helperfunctions for the above.
+	
+	* dia/objects/UML/objects.c:
+	Fix bug that duplicated the text in the attributes
+	textwidget each time the object was selected.
+	
+1999-05-12  Alexander Larsson  <alla@lysator.liu.se>
+
+	Changes from Lars R. Clausen <lrclause@cs.uiuc.edu>
+	
+	* app/modify_tool.c:
+	* app/modify_tool.h:
+	Control-drag is restricted to vertical/horizontal movement
+	
+	* lib/object.h:
+	ModifierKeys argument added to object_move_handle
+
+	* app/connectionpoint_ops.c:
+	* app/create_object.c:
+	* app/object_ops.c:
+	* objects/ER/attribute.c:
+	* objects/ER/entity.c:
+	* objects/ER/participation.c:
+	* objects/ER/relationship.c:
+	* objects/UML/actor.c:
+	* objects/UML/association.c:
+	* objects/UML/class.c:
+	* objects/UML/classicon.c:
+	* objects/UML/component.c:
+	* objects/UML/constraint.c:
+	* objects/UML/dependency.c:
+	* objects/UML/generalization.c:
+	* objects/UML/implements.c:
+	* objects/UML/large_package.c:
+	* objects/UML/lifeline.c:
+	* objects/UML/message.c:
+	* objects/UML/note.c:
+	* objects/UML/object.c:
+	* objects/UML/realizes.c:
+	* objects/UML/small_package.c:
+	* objects/UML/state.c:
+	* objects/UML/usecase.c:
+	* objects/network/bus.c:
+	* objects/standard/arc.c:
+	* objects/standard/box.c:
+	* objects/standard/ellipse.c:
+	* objects/standard/image.c:
+	* objects/standard/line.c:
+	* objects/standard/polyline.c:
+	* objects/standard/textobj.c:
+	* objects/standard/zigzagline.c:
+	Changed calls to move_handle to pass the new argument.
+	
+	* lib/widgets.c:
+	* lib/widgets.h:
+	Default line width, color etc #define'd
+	
+	* po/da.po:
+	Updates of danish menus
+
+1999-05-08  Fredrik Hallenberg  <hallon@lysator.liu.se>
+
+	* dia.xpm
+	* dia_gnome_icon.png
+	* dia_gnome_menu_icon.png
+	* dia_logo.png
+	Graphics by Toussaint Frédéric <ftoussin@club-internet.fr>.
+
+	* app/commands.c
+	About dialog shows dia_logo.png. Removed the GNOME about dialog.
+
+	* Makefile.am
+	Distribute the icons and install logo in pkgdatadir.
+	
+	* app/Makefile.am
+	Added DATADIR-define.
+	
+1999-04-28  Alexander Larsson  <alla@lysator.liu.se>
+	Patches from Enrico Scholz <enrico.scholz@wirtschaft.tu-chemnitz.de>
+
+	* dia.spec:
+	Updated version number, made setup quiet, can build from cvs,
+	--enable-gnome, now using automake 1.4 DESTDIR feature, install-strip
+
+	* lib/Makefile.am
+	* objects/ER/Makefile.am
+	* objects/UML/Makefile.am
+	* objects/network/Makefile.am
+	* objects/standard/Makefile.am
+	now builds better with gnome
+
+	* objects/UML/class_dialog.c
+	Fixed typo -> po files must be updated too!!
+	
+1999-04-28  Alexander Larsson  <alla@lysator.liu.se>
+
+	* lib/dummy_dep.h:
+	Added reference so that widgets.o gets linked to the app.
+
+1999-04-23  Alejandro Aguilar Sierra  <asierra@servidor.unam.mx>
+
+	* objects/UML/classicon.c: 
+	Added object mode.
+
+	* objects/UML/actor.c: 
+	Changed position of 'snap-to-grid' so connection points are
+	in the grid.
+
+1999-04-22  Alexander Larsson  <alla@lysator.liu.se>
+
+	* objects/UML/classicon.c:
+	Changed position of 'snap-to-grid'.
+	By Alejandro Aguilar Sierra <asierra@servidor.unam.mx>
+	
+1999-04-22  Alexander Larsson  <alla@lysator.liu.se>
+
+	* objects/network/antenna.c
+	* objects/network/flash.c
+	* objects/network/hub.c
+	* objects/network/modem.c
+	* objects/network/modularswitch.c
+	* objects/network/rj45plug.c
+	* objects/network/scead-plug.c
+	* objects/network/network.c
+	* objects/network/Makefile.am
+	* objects/network/pixmaps/antenna.xpm
+	* objects/network/pixmaps/flash.xpm
+	* objects/network/pixmaps/hub.xpm
+	* objects/network/pixmaps/modem.xpm
+	* objects/network/pixmaps/modularswitch.xpm
+	* objects/network/pixmaps/rj45plug.xpm
+	* objects/network/pixmaps/sceadplug.xpm
+	* objects/network/pixmaps/Makefile.am
+	Lots of new network objects from
+	Roland Steinbach <roland@support-system.com>.
+
+1999-04-15  Alejandro Aguilar Sierra  <asierra@servidor.unam.mx>
+ 
+        * objects/UML/classicon.c: 
+        Fixed connection positions, saved type as int (it has 3 states),
+        and other small fixes.
+	
+1999-04-14  Alexander Larsson  <alla@lysator.liu.se>
+
+	* app/preferences.c:
+	* app/load_save.c:
+	Added preference compress_save. It lets dia save uncompressed
+	xml files.
+
+	* objects/UML/class.c:
+	Fixed bug with size calculation on methods that had class scope.
+	
+1999-04-13  Alejandro Aguilar Sierra  <asierra@servidor.unam.mx>
+
+	* objects/UML/usecase.c: 
+	Added collaboration mode
+	Fixed connection points with text > ellipse bug and other 
+	small things
+
+	* objects/UML/state.c:
+ 	Fixed bug of bad position of text after being either end
+	or begin, moved and returned to text
+
+1999-04-12  Andreas Jaeger  <aj@arthur.rhein-neckar.de>
+
+        * app/preferences.c: Add prototype declaration for prefs_apply.
+
+1999-04-11  Alexander Larsson  <alla@lysator.liu.se>
+
+	* app/preferences.c:
+	Added 'ok' button.
+	Apply don't hide window.
+
+	* app/properties.c:
+	Add 'ok' button.
+
+	* objects/UML/object.c:
+	* objdcts/UML/state.c:
+	Some data was not copied on copy.
+
+	This patch is from
+	Ben Hochstedler <benh@eeyore.moneng.mei.com>
+
+1999-04-09  Alexander Larsson  <alla@lysator.liu.se>
+
+	* app/Makefile.am:
+	Changed link order between X and libxml.
+	Some people had problems with an old libz in their
+	x11 directory.	
+
+1999-04-09  Kjartan Maraas  <kmaraas@online.no>
+
+	* po/no.po: updated translation.
+	
+1999-04-08  Lars R. Clausen <lrclause@cs.uiuc.edu>
+
+	* lib/message.c (message_error):
+	Fixed small error.
+
+	* app/commands.[ch]:
+	* app/diagram.[ch]:
+	Added begining of xfig importing
+
+1999-04-08  Alejandro Aguilar Sierra  <asierra@servidor.unam.mx>
+ 
+	* objects/UML/pixmaps/state.xpm: 
+ 	* objects/UML/state.c: 
+ 	New UML object state machine.
+
+	* objects/UML/uml.c:
+	* objects/UML/Makefile.am:
+	* objects/UML/pixmaps/Makefile.am:
+	Added the state object.
+	
+1999-04-08  Alejandro Aguilar Sierra  <ale@bucefalo>
+ 
+	* objects/UML/usecase.c: 
+	Added dialog to allow move text outside the ellipse.
+ 
+1999-04-08  Alexander Larsson  <alla@lysator.liu.se>
+
+	* Released Dia 0.41
+	Tag called DIA_0_41
+
+	* NEWS:
+	Updates for 0.41.
+	
+1999-04-08  Alexander Larsson  <alla@lysator.liu.se>
+
+	* configure.in:
+	Updated version number to 0.41
+
+	* po/*.po:
+	Update po-files
+
+1999-04-04  Fredrik Hallenberg  <hallon@lysator.liu.se>
+
+	* app/app_procs.c
+	Changed errormessage for --export-to-ps. Removed call to 
+	g_log_set_always_fatal().
+
+	* app/diagram.c
+	* app/disp_callbacks.c
+	* app/load_save.c
+	(i18n) Removed gettext from some debugmessages.
+
+	* app/menus.c
+	Small fix in GNOME-menus. Added warning that will help track
+	problems with translations.
+
+	* po/sv.po
+	(i18n) Updated swedish translation.
+
+1999-04-02  Alexander Larsson  <alla@lysator.liu.se>
+
+	* po/da.po:
+	New updates
+
+1999-04-01  Alexander Larsson  <alla@lysator.liu.se>
+
+	* po/da.po:
+	* po/no.po:
+	Some fixes.
+	
+1999-04-01  Alexander Larsson  <alla@lysator.liu.se>
+
+	* po/da.po:
+	(i18n) Updated the danish translation.
+	From Lars R. Clausen.
+
+1999-04-01  Fredrik Hallenberg  <hallon@lysator.liu.se>
+
+	* app/menus.c
+	(i18n) The popup menu is translated now.
+
+	* po/sv.po
+	(i18n) Updated swedish translation.
+
+1999-03-29  Alexander Larsson  <alla@lysator.liu.se>
+
+	* Released Dia 0.40
+	Tag called DIA_0_40
+
+	* NEWS:
+	Updated for new release
+	
+1999-03-29  Alexander Larsson  <alla@lysator.liu.se>
+
+	* objects/network/bus.c:
+	Added initialization of properties dialog to NULL.
+
+	* app/commands.c (edit_cut_callback):
+	Update menu sensitivity when cut object.
+
+	* app/modify_tool.c (click_select_object):
+	* app/modify_tool.c (modify_button_release): 
+	Call diagram_update_menu_sensitivity() when
+	selecting objects to update stuff that depends
+	on selected/not selected.
+
+1999-03-29  Alexander Larsson  <alla@lysator.liu.se>
+
+	* Makefile.am:
+	Change order of subdir so that libintl.a builds.
+	Now passed make distcheck.
+
+1999-03-28  Alexander Larsson  <alla@lysator.liu.se>
+
+	* lib/font.c (init_x11_font):
+	Stupid bug fixed.
+
+1999-03-28  Alejandro Aguilar Sierra  <asierra@servidor.unam.mx>
+
+	* objects/UML/pixmaps/classicon.xpm: 
+	* objects/UML/classicon.c:
+	* objects/UML/uml.c:
+	Added the class stereotype icon objects.
+
+	* app/commands.c:
+	Changed default ps extension from .ps to .eps.
+	
+1999-03-28  Alexander Larsson  <alla@lysator.liu.se>
+
+	* lib/Makefile.am:
+	Added diamenu.h and intl.h
+
+	* lib/font.c:
+	Stupid typo fix.
+	
+	* objects/UML/pixmaps/Makefile.am:
+	Added message.xpm
+
+	* objects/standard/pixmaps/Makefile.am:
+	Added image.xpm
+
+1999-03-28  Alexander Larsson  <alla@lysator.liu.se>
+
+	* lib/font.c:
+	Use a scalable font before fixed when real font not found.
+
+	* app/commands.c:
+	Removed warning.
+
+	* objects/standard/image.c:
+	Better handling of loading/saving of images.
+
+	* INSTALL:
+	Added some text about cvs, fonts and rewrote some parts.
+
+	* TODO:
+	Updated with new stuff.
+	
+	* configure.in:
+	Bump up version number to 0.40.
+	
+1999-03-28  Alexander Larsson  <alla@lysator.liu.se>
+
+	* app/display.c:
+	Moved diagram_add_ddisplay() call into new_display().
+	Fixed new_display to not use uninitialized variables
+	causing loaded files to show up as black (or garbage).
+	
+	* app/commands.c:
+	* app/app_procs.c:
+	Removed unneeded calls to diagram_add_ddisplay().
+	
+1999-03-28  Alexander Larsson  <alla@lysator.liu.se>
+
+	* objects/UML/lifeline.c:
+	Fixed bug in copy.
+	Patch from Andreas Jaeger <aj@arthur.rhein-neckar.de>.
+
+	* objects/UML/message.c:
+	Fixed bug loading messages with null-text.
+	Patch from Andreas Jaeger <aj@arthur.rhein-neckar.de>.
+
+1999-03-27  Fredrik Hallenberg  <hallon@lysator.liu.se>
+
+	* po/sv.po
+	Updated swedish translation.
+
+	* app/menus.c
+	(GNOME) Removed help-browser from help menu. Fixed typo.
+
+	* app/interface.c
+	(GNOME) Accelerators in diagrams should work now. 
+
+1999-03-25  Fredrik Hallenberg  <hallon@lysator.liu.se>
+
+	* app/app_procs.c
+	* app/commands.c
+	* app/defaults.c
+	* app/disp_callbacks.c
+	* app/display.c
+	* app/interface.c
+	* app/menus.c
+	* app/preferences.c
+	* app/render_eps.c
+	* lib/diagramdata.c
+	* lib/font.c
+	* lib/message.c
+	* lib/widgets.c
+	* objects/ER/*.c
+	* objects/UML/*.c
+	* objects/network/*.c
+	* objects/standard/*.c
+	* po/update_pofiles_in.sh
+	* po/POFILES.in
+	More i18n. All strings (expect rare debug messages) can be
+	translated now. Moved intl.h from app to lib. Updated
+	update_pofiles_in.sh to check all .c-files.
+
+1999-03-23  Alexander Larsson  <alla@lysator.liu.se>
+
+	* app/disp_callbacks.c (ddisplay_canvas_events):
+	Don't drop keys while num-lock, scroll-lock etc is on.
+
+1999-03-22  Alexander Larsson  <alla@lysator.liu.se>
+
+	* app/render_eps.c (draw_image):
+	Fixed exporting of images.
+	Still not perfect, but not outright buggy.
+	
+1999-03-22  Alexander Larsson  <alla@lysator.liu.se>
+
+	* configure.in:
+	* po/hu.po:
+	Added hungarian translation. By Shooby Ban <bansz@szif.hu>.
+
+	* app/Makefile.am:
+	Added $* to the dia call in run_dia.sh
+
+1999-03-22  Lars Clausen  <lrclause@shasta.cs.uiuc.edu>
+	
+	* lib/color.[ch]:
+	Added color_equals() call.
+
+	* objects/standard/arc.c:
+	* objects/standard/line.c:
+	Don't save unneccesary data.
+	
+	* objects/standard/box.c:
+	* objects/standard/ellipse.c:
+	* objects/standard/image.c:
+	* objects/standard/polyline.c:
+	* objects/standard/zigzagline.c:
+	Share properties dialog.
+	Don't save unneccesary data.
+	
+1999-03-22  Seth Alves  <alves@hungry.com>
+
+	* app/menus.c:
+	* app/diagram.c:
+	* app/display.c:
+	small changes so that gnome menus aren't broken
+	
+1999-03-22  Alexander Larsson  <alla@lysator.liu.se>
+
+	* po/da.po:
+	Added danish translation from lrclause@cs.uiuc.edu.
+
+	* po/POFILES.in:
+	Updated file.
+
+	* po/update_pofiles_in.sh:
+	Added script that updates POFILES.in.
+	This should probably be run automatically from somewhere.
+
+1999-03-19  Alexander Larsson  <alla@lysator.liu.se>
+
+	* app/diagram.[ch]:
+	Added function diagram_update_menu_sensitivity() which
+	sets the sensitivity of some menu items. This function
+	is called at each diagram state change (from diagram_modified()).
+	This is needed 	because otherwise the keyboard accelerators
+	don't work correctly.
+
+	* app/display.[ch]:
+	Changed display_set_menu_sensitivity() to display_update_menu_state().
+	Moved lots of code to diagram_update_menu_sensitivity() in
+	diagram.c. Optimized to only look up menu-items from path:s once.
+	
+	* app/disp_callbacks.c:
+	* app/interface.c:
+	When we get a GDK_FOCUS_CHANGE, update menu sensitivity.
+	Need to set GDK_FOCUS_CHANGE_MASK.
+	
+	* app/create_object.c:
+	Call diagram_modified when an object has been created and
+	selected so that the menu sensitivity is updated. 
+
+	* app/menus.[ch]:
+	removed menus_set_sensitive() and menus_set_state(). Exported
+	renamed function menus_get_item_from_path().
+
+1999-03-15  Alexander Larsson  <alla@lysator.liu.se>
+
+	* app/disp_callbacks.c:
+	Show (empty) object menus on object that has none.
+	Show title on object menus.
+
+	* app/display.c:
+	Set zoom factor correctly when opening new displays.
+	Better setting of scrollbars.
+
+	* app/grid.c:
+	* app/menus.h:
+	Some reformating cleanup.
+
+	* lib/diamenu.h:
+	Added title to object menus.
+
+	* objects/*/*.c:
+	Added object menu method (NULL-valued) to all objects.
+
+	* objects/standard/polyline.c:
+	Added title to object menu.
+
+1999-03-14  Alexander Larsson  <alla@lysator.liu.se>
+
+	* app/preferences.[ch]:
+	New files. Implements the preferences dialog and
+	loading/saving of ~/.diarc.
+
+	* app/Makefile.am:
+	Added preferences.[ch].
+
+	* app/app_procs.c:
+	Load preferences on startup.
+
+	* app/commands.[ch]:
+	Added file_preferences_callback to show the preferences dialog.
+
+	* app/create_object.c:
+	Update extents when creating object.
+	Use the reset_tools_after_create preferences setting.
+
+	* app/display.c:
+	Use preferences when creating new display.
+
+	* app/menus.c:
+	Add preferences to menu.
+
+	* app/defaults.c:
+	* app/layer_dialog.c:
+	* app/properties.c:
+	Don't allow shrinking of dialog.
+	Add i18n of some strings.
+
+1999-03-11  Kjartan Maraas  <kmaraas@fib.hl.no>
+        * po/no.po:
+	Norwegian translation added.
+	
+1999-03-11  Alexander Larsson  <alla@lysator.liu.se>
+
+	* objects/standard/line.c: 
+	* objects/standard/arc.c: 
+	* objects/standard/polyline.c: 
+	* objects/standard/zigzagline.c:
+	Loading of arrow data fixed.
+
+1999-03-09  Alexander Larsson  <alla@lysator.liu.se>
+
+	* app/commands.c:
+	Update extents when saving and exporting to postscript.
+	Fixes a bug with postscript bounding-box being wrong.
+
+	* app/defaults.c:
+	Changed border width from 5 to 2.
+
+	* app/group.c:
+	Move grouped objects by the move-point of the first object.
+	Fixes bug that made all objects in the group be off-grid
+	when moving the group, even though all objects was on-grid.
+
+	* app/layer_dialog.c:
+	Update extents when changing layer.
+
+1999-03-08  Alejandro Aguilar Sierra  <asierra@servidor.unam.mx>
+ 
+       * objects/UML/uml.c: 
+       * objects/UML/component.c: 
+       * objects/UML/pixmaps/component.xpm: 
+       Added the UML component object
+	
+1999-03-04  Seth Alves  <alves@hungry.com>
+
+	* objects/UML/generalization.c (generalization_create): avoid
+	math on uninitialized genlz->text_width (NaN causes sigfpe)
+	
+	* objects/UML/realizes.c (realizes_create): same
+
+	* objects/UML/dependency.c (dependency_create): same
+
+1999-03-01  Seth Alves  <alves@hungry.com>
+
+	* app/display.c (ddisplay_active): don't fly a warning panel
+	if ddisplay_active is called when no views are open.
+
+	* app/commands.c (set_default_file_selection_directory): set
+	file selector's default directory if there is already
+	a document open.
+
+1999-02-28  Alexander Larsson  <alla@lysator.liu.se>
+
+	* INSTALL:
+	New info about imlib requirements.
+
+	* Configure.in:
+	Added lib/pixmaps/Makefile to created makefiles.
+
+	* app/app_procs.c:
+	* app/commands.c:
+	Change from obsoleted to newer gtk calls.
+	
+	* load_save.c:
+	Pass filename of the diagram when loading and saving.
+	This creates better oportunities to handle filename saving.
+
+	* lib/object.h:
+	Pass filenames to load and save methods.
+	
+	* lib/dia_image.[ch]:
+	Added dia_image_get_broken() call that returns a image which
+	is used for 'broken' images.
+	
+	* lib/pixmaps/.cvsignore:
+	* lib/pixmaps/Makefile.am:
+	* lib/pixmaps/broken.xpm:
+	New files for the broken image bitmap.
+
+	* lib/widgets.c:
+	Fixed bug with double destroyed filedialog.
+
+	* objects/*/*.c:
+	Updated load and save prototypes to use the new filename argument.
+
+	* objects/image.c:
+	Render broken image instead of line when got no image.
+	Use the new filename in load and save to save (if possible)
+	relative pathnames and to better try to find loaded images.
+
+1999-02-28  Alexander Larsson  <alla@lysator.liu.se>
+
+	* TODO:
+	Some updates to the todo file.
+	
+	* app/menus.c:
+	* app/display.c:
+	Place over/place over => sent to back/bring to front.
+	Added some keyboard shortcuts to menus.
+	
+1999-02-28  Alexander Larsson  <alla@lysator.liu.se>
+
+	* lib/dia_xml.c:
+	Changed string saving/loading to a new method. This should
+	be much better att handling &,<,> and whitespaces.
+	Loading strings of the old kind is still supported for backwards
+	compatibility.
+
+	* samples/ER-demo.dia:
+	* samples/UML-demo.dia:
+	Updated to use the new strings.
+	
+	* app/load_save.c:
+	statusbar modified update fix.
+
+1999-02-27  Seth Alves  <alves@hungry.com>
+
+	* app/app_procs.c (app_init): added a --export-to-ps option
+	which will cause dia to load a dia file and save it as ps
+	and then exit.  this is a little bogus, because it still
+	pops up a window.  this option only shows up if --enable-gnome
+	is used
+
+	* app/display.c (display_set_menu_sensitivity): no Edit/Delete
+	menu when built with --enable-gnome
+
+	* app/interface.c (create_display_shell): build status bar
+	even if --enable-gnome is used
+
+	* app/menus.c: menu fixes for --enable-gnome
+
+	* app/commands.c (file_open_dialog_ok_callback): fixed up
+	menus when --enable-gnome is used
+	(file_export_to_eps_callback): set a default file name
+	when dialog is created
+
+1999-02-27  Alexander Larsson  <alex@c125.ryd.student.liu.se>
+
+	* objects/UML/association.c (association_create):
+	Fixed usage of not initialized variable.
+	Pointed out by Seth Alves <alves@hungry.com>.
+
+1999-02-24  Alexander Larsson  <alex@c125.ryd.student.liu.se>
+
+	* configure.in:
+	Fixed detection of gnome-xml.
+	From Valtteri Vuorikoski <vuori@k.notcom.org>.
+	
+	* app/app_procs.c:
+	Fixed error detection on dlsym calls. 
+	From Valtteri Vuorikoski <vuori@k.notcom.org>.
+
+1999-02-23  Alexander Larsson  <alla@lysator.liu.se>
+
+	* objects/UML/message.c (fill_in_dialog):
+	Fixed warnings.
+
+1999-02-22  Lars Clausen  <lrclause@shasta.cs.uiuc.edu>
+
+	* objects/standard/zigzagline.c:
+	* objects/standard/polyline.c:
+	* objects/standard/line.c:
+	* objects/standard/arc.c:
+	* lib/widgets.h:
+	* lib/arrows.h:
+	* lib/widgets.c:
+	Support for sizeable arrows. 
+
+	* objects/standard/box.c:
+	* objects/standard/ellipse.c:
+	* objects/standard/image.c:
+	Changed creation handle to lower-right.
+	Transparent box/ellipse.
+	
+	* objects/standard/image.c:
+	Better layout of properties boxes.
+
+1999-02-20  Alejandro Aguilar Sierra  <asierra@servidor.unam.mx>
+
+	* objects/UML/message.c (fill_in_dialog): 
+	Fixed dialog fill in. Common dialog for all messages.
+
+	* objects/UML/object.c: 
+	Added multiple instance. Dialog related bugs fixed.
+	Common dialog for all instances. Completed copy and destroy.
+
+	* objects/UML/lifeline.c (lifeline_load): 
+	Conn initialization bug fixed and few bad loading prevention flags.
+	Common dialog for all lifeline objects.
+	
+1999-02-15  Alexander Larsson  <alla@lysator.liu.se>
+
+	* lib/dia_image.[ch]:
+	More work on the DiaImage abstraction.
+	
+	* app/app_procs.c:
+	* app/render_eps.c:
+	* app/render_gdk.c:
+	* objects/standard/image.c:
+	Use the new DiaImage calls.
+
+1999-02-15  Alexander Larsson  <alla@lysator.liu.se>
+
+	* app/menus.c:
+	* app/display.c:
+	Reversed the meaning of align horizontal/vertical.
+
+1999-02-15  Alexander Larsson  <alla@lysator.liu.se>
+
+	* app/load_save.c (diagram_load):
+	Statusbar update fix.
+
+1999-02-15  Alexander Larsson  <alla@lysator.liu.se>
+
+	* app/interface.c (create_display_shell):
+	Fixed status bar size.
+	
+1999-02-15  Alexander Larsson  <alla@lysator.liu.se>
+
+	* lib/dia_image.[ch]:
+	Added extern declaration for dia_image_release.
+	Removed dia_image_draw, as it's not neseccary.
+
+1999-02-14  Alejandro Aguilar Sierra  <asierra@servidor.unam.mx>
+	
+	* app/object_ops.c: 
+	* app/menus.c: 
+	Added equal distance alignment both vertical and horizontal.
+	
+	* objects/UML/object.c: 
+	Added a couple of attributes to load/read that were missing.
+
+	* objects/UML/lifeline.c: 
+	Better handling of handles. Fixed another bug I forgot to add
+	to my last patch.
+	
+1999-02-13  Alexander Larsson  <alla@lysator.liu.se>
+
+	Patch from Lars Clausen <lrclause@shasta.cs.uiuc.edu>
+	
+	* lib/dia_image.[ch]:
+	* lib/Makefile.am:
+	New files. DiaImage wraps the GdkImlibImage.
+
+	* lib/render.h:
+	* app/render_eps.c:
+	* app/render_gdk.c:
+	* lib/render_store.[ch]:
+	* objects/standard/image.c:
+	Use the new DiaImagetype.
+
+	* lib/widgets.c:
+	Removed unused variable to eliminate  warning.
+
+1999-02-11  Alexander Larsson  <alla@lysator.liu.se>
+
+	* objects/standard/box.c:
+	Added rounded corners on the box object.
+
+	* lib/widgets.[ch]:
+	Updated the DiaFileSelector widget.
+	
+1999-02-09  Alejandro Aguilar Sierra  <asierra@servidor.unam.mx>
+
+	* objects/UML/object.c (objet_draw): 
+	Completed underlining of all object name lines. 
+
+	* objects/UML/message.c (fill_in_dialog): 
+	Fixed a bug that filled incorrectly the message's dialog.
+
+	* objects/UML/lifeline.c (lifeline_load): 
+	Some cleanning and fixed a couple of bugs that caused
+	crashes after reading diagrams with lifelines.
+
+	* lib/text.c: 
+	Added flags to prevent crash with void strings
+
+1999-02-07  Matthias Köster <Matthias.Koester@Informatik.Uni-Oldenburg.DE>
+	* app/display.[ch]:
+	Added statusbar to the display widget. Currently shows the zoom
+	factor and modified flag of the viewed diagram. The statusbar is
+	updated upon calls to ddisplay_zoom and ddisplay_update_statusbar.
+	This caused the following additions:
+	
+	* app/diagram.[ch]:
+	Added function diagram_set_modified. Calls
+	ddisplay_update_statusbar for all displays showing the modified diagram.
+	Changed diagram_modified to call diagram_set_modified.
+	
+	* app/interface.c:
+	Added the creation of the statusbar.
+	
+	* app/load_save.c:
+	diagram_save now calls diagram_set_modified instead of setting
+	dia->modified. Needed to force call to display_update_statusbar
+	
+	* app/commands.c:
+	Changed the way view_show_all works. Now calls ddisplay_zoom
+	instead of directly setting the zoom_factor, so the zoom factor is
+	correctly shown in the statusbar.
+
+	* app/magnify.c:
+	Fixed rubberband zoom to use ddisplay_zoom().
+	
+1999-02-07  Fredrik Hallenberg  <hallon@lysator.liu.se>
+
+	* app/app_procs.c
+	Rudimentary GNOME session management.
+	
+	* app/disp_callbacks.c
+	* app/interface.c
+	* app/menus.c
+	* app/menus.h
+	GNOME menus. Problems: 
+	Callbacks doesn't get user_data.
+	Weird warnings when creating popup menus.
+	menus_set_sensitive(), menus_set_state() doesn't work.
+
+1999-02-05  Lars Clausen  <lrclause@shasta.cs.uiuc.edu>
+
+	* configure.in:
+	Add AM_PATH_GDK_IMLIB() call.
+
+	* app/Makefile.am:
+	Add gdk_imlib to linking flags.
+
+	* app/app_procs.c:
+	Init gdk_imlib.
+	Print library-loading error messages on stdout too.
+
+	* app/interface.c:
+	Add standard image to toolbox.
+	
+	* app/render_eps.c: 
+	Set a more reasonable dot length.  Fixed
+	missing initialization of dot length.
+	Added draw_image methods.
+
+	* app/render_gdk.c (new_gdk_renderer): 
+	Dot a bit wider.  Looks good in normal mode now.
+
+	* objects/standard/image.c:
+	* objects/standard/pixmaps/image.xpm:
+	New files. Standard object for images.
+	
+	* app/render_eps.c (set_linestyle):
+	* app/render_gdk.c (set_linestyle):
+	* lib/widgets.c (dia_line_style_selector_init): 
+	* lib/render.h: 
+	New line style DOTTED.
+
+	* lib/render.h:
+	* lib/render_store.c:
+	Change DrawImage call to use gdk_imlib.
+
+	* lib/widgets.[ch]:
+	Added widgets for selecting files.
+	Added dotted to the linestyle selector.
+
+1999-02-06  Alexander Larsson  <alla@lysator.liu.se>
+
+	* objects/network/printer.c:
+	* objects/network/network.c:
+	* objects/network/pixmaps/printer.xpm:
+	* objects/network/.cvsignore:
+	* objects/network/Makefile.am:
+	* objects/network/pixmaps/Makefile.am:
+	New printer object in network.
+	From Martin Hawlisch <hawlisch@roxi.rz.fh-mannheim.de>
+
+	* TODO:
+	Added known XML bug.
+	
+1999-02-06  Alexander Larsson  <alla@lysator.liu.se>
+
+	* app/load_save.c:
+	* lib/dia_xml.c:
+	Reverted back from #include <gnome-xml/tree.h> to
+	#include <tree.h> as this is fixed by the xml-config program.
+	The former way broke for some people.
+	Reported by blizzard@redhat.com.
+
+	* objects/UML/lifeline.c:
+	* objects/UML/message.c:
+	* objects/UML/object.c:
+	Removed some warnings.
+	
+1999-02-04  Alejandro Aguilar Sierra  <asierra@servidor.unam.mx>
+
+	* objects/UML/lifeline.c: 
+	Fixed connection points over the life line when the focus of
+	control is not drawn.
+
+	* objects/UML/message.c: 
+	Now a recursive message can be freely resized using the handles.
+
+1999-02-02  Alejandro Aguilar Sierra  <asierra@servidor.unam.mx>
+
+	* objects/UML/lifeline.c:
+ 	Added connection points.
+	Added properties dialog with the option to draw/hide focus of control
+	box and destruction mark.
+
+	* objects/UML/object.c: 
+	Added properties dialog and stereotype, explicit state and attributes. 
+	It's also possible to mark the object as active.
+
+	* objects/UML/pixmaps/object.xpm: 
+	Cosmetic change.
+
+	* objects/UML/message.c:
+	Added "recursive" message type (was not necessary to use OrthConn).
+
+1999-02-02  Alexander Larsson  <alla@lysator.liu.se>
+
+	* objects/standard/arc.c:
+	Removed old debug code. Fixes a visual bug. From lrclause@cs.uiuc.edu.
+
+1999-02-01  Alexander Larsson  <alla@lysator.liu.se>
+
+	Patch from Lars R. Clausen <lrclause@cs.uiuc.edu>
+	
+	* app/load_save.c:
+	* lib/dia_xml.c:
+	Update xml includes to gnome-xml/*.h.
+
+	* objects/standard/arc.c:
+	Only one property dialog per type.
+	Fix arrows directions.
+
+	* objects/standard/box.c:
+	* objects/standard/ellipse.c:
+	* objects/standard/textobj.c
+	Added default properties dialog.
+	
+
+1999-01-31  Alejandro Aguilar Sierra  <asierra@servidor.unam.mx>
+
+	* objects/UML/Makefile.am: 
+	* objects/UML/uml.c:
+	* objects/UML/lifeline.c: 
+	* objects/UML/object.c: 
+	* objects/UML/message.c:
+	* objects/UML/pixmaps/lifeline.xpm: 
+	* objects/UML/pixmaps/object.xpm: 
+	* objects/UML/pixmaps/message.xpm:
+	Added 3 new UML objects for dynamic modeling. To avoid internal 
+	conflicts, the name "objet" is used for object "object".	
+
+	* lib/arrows.[ch]: 
+	Added ARROW_HALF_HEAD arrow type to allow drawing asynchronous
+	UML messages.
+	
+1999-01-30  Alexander Larsson  <alla@lysator.liu.se>
+
+	* app/display.[ch]:
+	* app/modify_tool.c:
+	Added autoscrolling while doing rubber-band select.
+	This patch from Matthias Köster
+	(Matthias.Koester@Informatik.Uni-Oldenburg.DE)
+	
+
+1999-01-28  Alexander Larsson  <alla@lysator.liu.se>
+
+	* app/defaults.[ch]:
+	New files, deals with default properties dialog.
+
+	* lib/diamenu.h:
+	New file. Contains definitions for the new object menu.
+
+	* lib/poly_conn.[ch]:
+	New file. Base class for poly-line like objects.
+
+	* objects/standard/polyline.c:
+	* objects/standard/pixmaps/polyline.xpm:
+	New files. Polyline object.
+
+	* app/app_procs.c:
+	Fixed bug with infinite loop when registering sheets.
+	
+	* app/commands.c:
+	Removed unneccesary stuff.
+
+	* app/disp_callbacks.c:
+	Support for object menus.
+
+	* app/interface.c:
+	Added polyline to toolbox.
+	Added call to tool_options_dialog_show() when double clicking on
+	tool.
+
+	* app/tool.[ch]:
+	New function tool_options_dialog_show() for tool properties.
+
+	* lib/arrows.[ch]:
+	Added ARROW_NONE.
+
+	* lib/object.h:
+	Added ObjectType methods for handling object default dialogs.
+	Added Object method for handling object_menu.
+	Added unused methods to ObjectTypeOps for future binary
+	compatibility.
+
+	* lib/widgets.[ch]:
+	Added DiaArrowTypeSelector widget.
+
+	* objects/standard/arc.c:
+	* objects/standard/zigzagline.c:
+	Added support for default properties.
+
+	* objects/standard/line.c:
+	Added support for default properties.
+	Just use one properties dialog for all line objects. NOTE: This
+	seems to have a bug. We're working on it.
+
+	* standard/standard.c:
+	Add the polyline object.
+
+1999-01-27  Alexander Larsson  <alla@lysator.liu.se>
+
+	* app/modify_tool.c:
+	Commented out buggy transitive select function. It wasn't really
+	meant to go into cvs.
+	
+
+1999-01-25  Fredrik Hallenberg  <hallon@lysator.liu.se>
+
+	* autogen.sh:
+	* acconfig.h:
+	* configure.in:
+	* Makefile.am:
+	* app/Makefile.am:
+	* po/POTFILES.in:
+	* app/intl.h
+	i18n-support.
+
+	* po/sv.po:
+	Swedish translation. Not completed.
+	
+	* configure.in:
+	* acconfig.h:
+	Added possibility to enable GNOME specific code with configure.
+
+	* configure.in:
+	Added possibility to set debug level with configure.
+
+	* commands.[hc]:
+	Added about dialog.
+
+	* app_procs.c
+	* commands.c
+	* interface.c
+	* menus.c
+	Added some GNOME specific code. Not ready for use.
+
+1999-01-24  Alexander Larsson  <alla@lysator.liu.se>
+
+	* INSTALL:
+	Added text about needing gtk 1.1.13 and gnome-xml.
+	
+	* NEWS:
+	Described changes since last version (0.20).
+
+	Released version 0.30, tagged DIA_0_30.
+
+1999-01-22  Alexander Larsson  <alla@lysator.liu.se>
+
+	* app/magnify.c (magnify_button_release):
+	Fixed a problem when zooming in on a very small box would
+	not release the grabbed pointer-focus.
+
+1999-01-21  Alexander Larsson  <alla@lysator.liu.se>
+
+	* app/load_save.c (diagram_load):
+	Be somewhat more robust when loading files that
+	are not diagrams.
+	
+1999-01-21  Alexander Larsson  <alla@lysator.liu.se>
+
+	* app/app_procs.c:
+	* objects/ER/er.c:
+	* objects/UML/uml.c:
+	* objects/network/network.c:
+	* objects/standard/standard.c:
+	Added versioning of object libraries.
+
+	* app/create_object.c:
+	Don't change tool when an object is created.
+	
+	* objects/network/network.c:
+
+	* TODO:
+	Update
+
+1999-01-19  Alexander Larsson  <alla@lysator.liu.se>
+
+	* configure.in:
+	Updated gtk requirement to Gtk+ 1.1.13.
+
+	* app/display.c:
+	Always add one screenful of scrolling space on
+	each side of a diagram window.
+
+1999-01-19  Jeff Garzik  <jgarzik@pobox.com>
+
+	* autogen.sh:
+	Tell automake to auto-install missing files.
+
+	* app/menus.c:
+	Renamed deprecated Gtk+ function.
+
+1999-01-16  Alexander Larsson  <alla@lysator.liu.se>
+
+	* Makefile.am:
+	* configure.in:
+	* samples/Makefile.am:
+	* samples/ER-demo.dia:
+	* samples/UML-demo.dia:
+	Added samples directory.
+	Added samples for ER and UML.
+	
+	* app/commands.c:
+	* app/disp_callbacks.c:
+	* app/menus.c:
+	Zoom is done by sqrt(2) instead of 2.
+	Lots of more zoom options in the menu.
+
+	* objects/ER/relationship.c:
+	Relationships have 8 connectionpoints instead of 4.
+
+	* objects/UML/class.c:
+	UML class name font a bit smaller.
+	Fixed stupid bug in the copy operation.
+	
+	* app/display.c:
+	Displays are opened at 500x400 instead of 256x256.
+
+	* app/load_save.c:
+	Fixup of internal error message.
+
+	* app/color_area.c:
+	* app/diagram.c:
+	* app/modify_tool.c:
+	* lib/object.c:
+	Removed debug printf's.
+	
+	* TODO (BUGS):
+	Added new known bug.
+
+1999-01-16  Alexander Larsson  <alla@lysator.liu.se>
+
+	* app/interface.c:
+	* app/menus.c:
+	Fixed so accelerator groups work in all windows.
+	Updated to new gtk function names.
+
+	* TODO (BUGS):
+	Removed fixed bug.
+
+	* app/display.c:
+	Updated to new gtk function names.
+	Set sensitivity of the align menu items.	
+
+	* objects/ER/pixmaps/Makefile.am:
+	* objects/UML/pixmaps/Makefile.am:
+	* objects/network/pixmaps/Makefile.am:
+	Fix so that make dist works.
+
+	* app/app_procs.c:
+	* app/color_area.c:
+	* app/commands.c:
+	* app/diagram.c:
+	* app/grid.c:
+	* app/layer_dialog.c:
+	* app/load_save.c:
+	* app/object_ops.c:
+	* app/properties.c:
+	* lib/diagramdata.[ch]:	
+	* lib/message.c:
+	* lib/objects/ER/attribute.c:
+	* lib/objects/ER/entity.c:
+	* lib/objects/ER/participation.c:
+	* lib/objects/ER/relationship.c:
+	* lib/objects/ER/.c:
+	* objects/UML/actor.c:
+	* objects/UML/association.c:
+	* objects/UML/class_dialog.c:
+	* objects/UML/dependency.c:
+	* objects/UML/generalization.c:
+	* objects/UML/large_package.c:
+	* objects/UML/realizes.c:
+	* objects/UML/.c:
+	* objects/UML/.c:
+	Updated to new gtk function names.
+	Removed warnings.
+
+1999-01-15  Alexander Larsson  <alla@lysator.liu.se>
+
+	* TODO:
+	Update TODO.
+
+	* app/app_procs.c:
+	Fixed loading of diagrams specified as arguments.
+
+	* objects/ER/attribute.c:
+	* objects/ER/entity.c:
+	* objects/ER/er.c:
+	* objects/ER/participation.c:
+	* objects/ER/relationship.c:
+	Updated the ER objects.
+	
+
+1999-01-14  Alexander Larsson  <alla@lysator.liu.se>
+
+	* configure.in:
+	* app/Makefile.am:
+	* objects/Makefile.am:
+	* objects/ER/attribute.c:
+	* objects/ER/entity.c:
+	* objects/ER/er.c:
+	* objects/ER/participation.c:
+	* objects/ER/relationship.c:
+	* objects/ER/pixmaps/Makefile.am:
+	* objects/ER/pixmaps/attribute.xpm:
+	* objects/ER/pixmaps/entity.xpm:
+	* objects/ER/pixmaps/participation.xpm:
+	* objects/ER/pixmaps/relationship.xpm:
+	* objects/ER/pixmaps/weakentity.xpm:
+	First commit of entity relationship objects.
+	These were done by hallon@lysator.liu.se.
+	There are still stuff to do on these.
+	
+1999-01-14  Alexander Larsson  <alla@lysator.liu.se>
+
+	* TODO:
+	Updates.
+
+	* app/diagram.[ch]:
+	Change diagram_remove_all_selected to take new argument
+	delete_empty. Empty objects are deleted only if it is TRUE.
+	Removed call to close_eps_renderer. This is now done in end_render
+	in the eps renderer.
+
+	* app/create_object.c:
+	* app/layer_dialog.c:
+	Update calls to diagram_remove_all_selected.
+
+	* app/commands.c:
+	Update calls to diagram_remove_all_selected.
+	Some code reformating.
+	Changed order of adding updates i align_h and align_v.
+
+	* app/modify_tool.c:
+	Update calls to diagram_remove_all_selected.
+	Added pointer grab when doing rubber-band selection, this fixes
+	the bug when draging the box over to another window.
+
+	* app/connectionpoint_ops.[ch]:
+	diagram_update_connections_object changed to take an argument
+	update_nonmoved. This lets connections that has not moved, but
+	the stuff they're connected to has been moved work.
+	Update calls to the new diagram_update_connections_object.
+
+	* app/properties.c:
+	Update calls to the new diagram_update_connections_object.
+	Update extents when properties are applied.
+	
+	* app/disp_callbacks.c:
+	Added support for zooming with the '+' and '-' keys.
+
+	* app/menus.c:
+	Removed old keyboard shortcuts for zoom.
+
+	* lib/render.h:
+	Added calls begin_render and end_render to renderer.
+	These can be used for setup and cleanup.
+
+	* lib/diagramdata.c:
+	Added calls to begin_render and end_render in data_render.
+
+	* app/render_gdk.c:
+	Added begin_render and end_render.
+
+	* app/render_eps.[ch]:
+	Added begin_render and end_render.
+	Moved close_eps_renderer code to end_render.
+	Various fixes to the generated eps code. This fixes importing
+	generated eps into LYX.
+	
+1999-01-12  Alexander Larsson  <alla@lysator.liu.se>
+
+	* TODO:
+	Update of todo.
+	
+	* app/menus.c:
+	Menus for alignment updated.
+
+	* app/object_ops.[ch]:
+	Functions for object alignment updated.
+
+	* app/commands.[ch]:
+	Object alignment callbacks updated.
+	New diagrams are called Untitled-<nr>.
+
+	* app/layer_dialog.c:
+	Active layer selected when showing layers from new
+	diagram.
+
+	* app/load_save.c:
+	Compress xml files when saving.
+	Use xml namespace 'dia'.
+
+	* lib/object.h:
+	Minor comment update.
+
+	* objects/UML/class_dialog.c:
+	Cleanup of the gkt_list_item moving code.
+	Fixed bug with update of operation when moving parameters.
+
+1999-01-10  Alexander Larsson  <alla@lysator.liu.se>
+
+	* app/layer_dialog.[ch]:
+	Fixed the rest of the layers dialog.
+
+	* app/dialog.c:
+	Added call to redo layer dialogs diagram list when changing
+	diagram name.
+
+	* lib/diagramdata.[ch]:
+	Added data_raise_layer and data_lower_layer functions for
+	raising/lowering layers. Added data_add_layer_at for adding a
+	layer at a specified index.
+
+1999-01-05  Alexander Larsson  <alla@lysator.liu.se>
+
+	This is the asierra-990105 patch done by asierra@servidor.unam.mx.
+		
+	* app/app_procs.c:
+	Added support for reading diagrams from the command line.
+
+1998-12-21  Alexander Larsson  <alla@lysator.liu.se>
+
+	This is the asierra-981220 patch done by asierra@servidor.unam.mx.
+		
+	* app/commands.[ch]:
+	Added objects_align_callback().
+
+	* app/menus.c:
+	Added align objects to menu.
+
+	* app/object_ops.[ch]:
+	Add object_list_align().
+	
+1998-12-17  Alexander Larsson  <alla@lysator.liu.se>
+	* app/layer_dialog.[ch]:
+	New files. Handles the layers dialog. Needs a bugfix for glib to
+	work. Sent patch to gtk-list.
+	
+	* app/pixmaps/new.xpm:
+	* app/pixmaps/eye.xbm:
+	* app/pixmaps/lower.xpm:
+	* app/pixmaps/raise.xpm:
+	* app/pixmaps/delete.xpm:
+	New files. Images for the layer dialog buttons.
+	
+	* lib/diagramdata.h
+	* lib/diagramdata.c
+	New files for the DiagramData and Layer structures and functions.
+	
+	* app/app_procs.c:
+	Added call to create_layer_dialog() on startup.
+	
+	* app/commands.[ch]:
+	New callbacks for showing the properties and layout dialog.
+	Changes for the new DiagramData structure.
+
+	* app/connectionpoint_ops.c:
+	* app/cut_n_paste.c:
+	* app/diagram.[ch]:
+	* app/display.[ch]:
+	* app/group.c:
+	* app/modify_tool.c:
+	* app/object_ops.[ch]:
+	* app/render_eps.c:
+	* lib/object.[ch]:
+	Changes for the new DiagramData structure.
+
+	* app/interface.c:
+	* app/properties.c:
+	Set correct wmclasses.
+
+	* app/load_save.c:
+	Fix load and save of layers.
+
+	* diagram.dtd:
+	Update DTD for layers.
+	
+	* app/menus.c:
+	New menus for dialogs.
+
+	
+	* TODO:
+	Some updates.
+	
+1998-12-06  Alexander Larsson  <alla@lysator.liu.se>
+
+	* TODO:
+	Removed the gtk 1.1.5 stuff.
+
+	* configure.in:
+	Updated gtk check to version 1.1.5.
+	Updated version from 0.20 to 0.30
+
+	* app/commands.[ch]:
+	Updated some callbacks to be of type GtkItemFactoryCallback1.
+	Not all are done yet, but it works anyway.
+
+	* app/display.h:
+	Removed Gtk 1.0.0 GtkAcceleratorTable references.
+	
+	* app/interface.c:
+	* app/menus.[ch]:
+	Update to Gtk 1.1.x functions.
+	Use ItemFactory instead of MenuFactory.
+	
+	* app/render_gdk.c:
+	Removed Gtk 1.0.0 references.
+
+	* objects/UML/class_dialog.c:
+	Scrolled window updates for Gtk 1.1.5.
+	
+	* lib/dia_xml.c:
+	Removed ugly fix for gnome-xml bug. Make sure you get the
+	newest version of gnome-xml from CVS.
+	
+1998-12-05  Alexander Larsson  <alla@lysator.liu.se>
+
+	* TODO:
+	Removed the xml load/save line.
+
+	* lib/files.[ch]:
+	Removed files.
+	
+	* lib/Makefile.am:
+	Removed building of files.c
+
+	* app/load_save.c:
+	* lib/connection.c:
+	* lib/element.c:
+	* lib/object.c:
+	* lib/orth_conn.c:
+	* lib/render_object.c:
+	* objects/UML/actor.c:
+	* objects/UML/association.c:
+	* objects/UML/class.c:
+	* objects/UML/constraint.c:
+	* objects/UML/dependency.c:
+	* objects/UML/generalization.c:
+	* objects/UML/implements.c:
+	* objects/UML/large_package.c:
+	* objects/UML/note.c:
+	* objects/UML/realizes.c:
+	* objects/UML/small_package.c:
+	* objects/UML/uml.c:
+	* objects/UML/usecase.c:
+	* objects/network/bus.c:
+	* objects/standard/arc.c:
+	* objects/standard/box.c:
+	* objects/standard/ellipse.c:
+	* objects/standard/line.c:
+	* objects/standard/textobj.c:
+	* objects/standard/zigzagline.c:
+	Removed all includes of files.h
+
+	
+1998-12-05  Alexander Larsson  <alla@lysator.liu.se>
+
+	* dialog.dtd:
+	Made the val property of string be implied.
+	This makes it possible to save strings that
+	are NULL. Just leave out val.
+
+	* objects/lib/dia_xml.c:
+	Fixed string so that it is possible to save strings
+	that are NULL. Also made an ugly workaround of a
+	bug in gnome-xml which removes empty properties.
+	
+	* objects/lib/orth_conn.c:
+	Fixed a bug in saving. Forgot to step through the
+	directions.
+	
+	* objects/UML/association.c: 
+	* objects/UML/class.c: 
+	* objects/UML/constraint.c: 
+	* objects/UML/dependency.c: 
+	* objects/UML/generalization.c: 
+	* objects/UML/implements.c: 
+	* objects/UML/large_package.c: 
+	* objects/UML/note.c: 
+	* objects/UML/small_package.c:
+	* objects/UML/realizes.c:
+	* objects/UML/usecase.c: 
+	* objects/UML/actor.c: 
+	Fixed UML objects to save as xml.
+	The last two were done by asierra@servidor.unam.mx (asierra-981204)
+	
+	* objects/UML/uml.[ch]:
+	Updated *_write() and *_read() functions to use xml.
+
+	* objects/network/bus.c: 
+	* objects/network/computer.c: 
+	* objects/network/disc.c: 
+	* objects/network/monitor.c:
+	Updated network diagrams to use xml.
+
+1998-12-02  Alexander Larsson  <alla@lysator.liu.se>
+
+	* dialog.dtd:
+	New file. DTD that describes the xml file format
+	dia uses.
+
+	* lib/dia_xml.[ch]:
+	New files. Support for saving object to xml files.
+
+	* configure.in:
+	* app/Makefile.am:
+	* lib/Makefile.am:
+	Added check for and usage of gnome-xml library.
+
+	* app/load_save.c:
+	Major chages. Now saves/loads diagrams as xml.
+
+	* lib/object.[ch]:
+	* lib/element.[ch]:
+	* lib/connection.[ch]:
+	* lib/orth_conn.[ch]:
+	* lib/render_object.[ch]:
+	* lib/text.[ch]:
+	Updated object support load/save functions for xml:
+
+	* object/standard/arc.c:
+	* object/standard/box.c:
+	* object/standard/ellipse.c:
+	* object/standard/line.c:
+	* object/standard/textobj.c:
+	* object/standard/zigzagline.c:
+	Updated all standard objects to use xml.
+	
+	NOTE NOTE NOTE
+	Only the standard objects are converted right now, don't
+	save or load uml or network diagrams yet. Also, since this
+	is new code it is deemed a bit unstable.
+	
+	* TODO
+	Added a know bug.
+
+1998-12-01  Alexander Larsson  <alla@lysator.liu.se>
+
+	* objects/UML/class.c:
+	Changed classname font to Helvetica.
+	Added more space above the classname
+
+	* objects/UML/usecase.c:
+	Correct placements of connectionpoints on ellipse.
+	Better algorithm for deciding aspect ration on
+	ellipse.
+
+	These changes were made by Alejandro Aguilar Sierra
+	<asierra@servidor.unam.mx>. (asierra-981201)
+
+1998-11-30  Alexander Larsson  <alla@lysator.liu.se>
+
+	* objects/UML/actor.c:
+	Changed the extents and alignment of the element
+	and the text.
+
+	* objects/UML/.cvsignore:
+	Added usecase.lo and actor.lo.
+
+1998-11-30  Alexander Larsson  <alla@lysator.liu.se>
+
+	* objects/UML/actor.c:
+	* objects/UML/usecase.c:
+	* objects/UML/pixmaps/actor.xpm:
+	* objects/UML/pixmaps/case.xpm:
+	New files. Implements usecase and actor UML objects.
+	These objects are done by Alejandro Aguilar Sierra
+	<asierra@servidor.unam.mx>.
+	
+	* objects/UML/Makefile.am:
+	* objects/UML/pixmaps/Makefile.am:
+	Added usecase and actor to makefile.
+	
+	* AUTHORS:
+	Added Alejandro and Jerome to autors list.
+	
+1998-11-25  Alexander Larsson  <alla@lysator.liu.se>
+
+	* objects/UML/class.c (umlclass_load):
+	Fixed typo. Reported by Jerome.Abela@solsoft.fr
+
+1998-11-24  Alexander Larsson  <alla@lysator.liu.se>
+
+	* app/properties.c:
+	Update connections when doing apply in the properties window.
+
+	* objects/UML/uml.[ch]:
+	* objects/UML/class.[ch]:
+	* objects/UML/class_dialog.c:
+	Added connection points on both sides of attributes and
+	operations in UML classes.
+	Based on idea from Jerome.Abela@solsoft.fr
+	
+1998-11-24  Alexander Larsson  <alla@lysator.liu.se>
+
+	* README:
+	Some new documentation about handles and connectionpoints.
+	
+	* lib/object.[ch]:
+	Added functions object_add_connectionpoint and
+	object_remove_connectionpoint for handling a dynamic
+	number of connectionpoints.
+
+	* objects/UML/class.c:
+	Only reserve space for stereotype when it is shown.
+
+	These changes are from Jerome Abela <Jerome.Abela@solsoft.fr>
+
+1998-11-08  Alexander Larsson  <alla@lysator.liu.se>
+
+	* app/connectionpoint_ops.c:
+	* app/commands.c:
+	* app/disp_callbacks.c:
+	* app/display.[ch]:
+	* app/grid.c:
+	* app/handle_ops.c:
+	* app/magnify.c:
+	* app/modify_tool.c:
+	* app/render_gdk.[ch]:
+	* lib/render.h:
+	Huge cleanup of internal rendering system.
+	Moved a lot of data (pixmap, width, height & gc) into the GdkRenderer.
+	This gives a few new methods for Interactive Renderers for setting
+	clipping regions and drawing pixel based lines and rects.
+	Updated the rest of the code to use the new stuff.
+	
+	* app/render_eps.c:
+	Fixed warning.
+
+	* lib/widgets.c:
+	* objects/standard/zigzagline.c
+	Fixed unused variable warnings.
+
+	* lib/font.c:
+	Fixedbug with stringwidth where width==0.
+
+	* TODO:
+	Added known bug.
+
+1998-11-02  Alexander Larsson  <alla@lysator.liu.se>
+
+	* lib/widgets.[ch]:
+	Added suppot for setting the font of a
+	DiaFontSelector widget.
+	Also fixed some typos in the header.
+
+	* lib/object.h: 
+	Added a comment about the GetPRoperties method call.
+	You have to make sure to update widget state when
+	this method is called. (Not all objects do this yet,
+	to be fixed.)
+
+	* TODO:
+	Some small updates
+
+1998-11-01  Alexander Larsson  <alla@lysator.liu.se>
+
+	* lib/font.c
+	Fixed problem with height of ascent and descent for fonts.
+	It didn't use the whole height (==ascent+descent) when calculatine
+	ascent_ratio and descent_ratio.
+
+	* objects/standard/textobj.c:
+	* objects/standard/box.c:
+	* objects/standard/ellipse.c:
+	* objects/standard/line.c:
+	* objects/standard/arc.c:
+	Updated and added property dialogs for these objects.
+	Also added line width/color/style to those objects
+	that didn't have it.
+	This change breaks fileformat compatibility for these objects.
+	
+	* objects/standard/zigzagline.c:
+	Changed zigzagline to be based on OrthConn, much nicer.
+	Also added line style and color to properties.
+	This change breaks fileformat compatibility for zigzagline.
+
+	* lib/message.c:
+	Fixed bug in message(). Forgot a pair of '&'.
+
+1998-10-29  Alexander Larsson  <alla@lysator.liu.se>
+
+	* lib/widgets.[ch]:
+	Added DiaColorSelector widget.
+	This is a colored button that pops up a color selection
+	dialog when pressed.
+
+1998-10-28  Alexander Larsson  <alla@lysator.liu.se>
+
+	* lib/widgets.[ch]:
+	* lib/Makefile.am:
+	New files, added widgets for selecting fonts, alignment
+	and line-style. Will be used later.
+
+1998-10-12  Alexander Larsson  <alla@lysator.liu.se>
+
+	* app/Makefile.am:
+	* lib/Makefile.am:
+	* objects/UML/Makefile.am:
+	* objects/network/Makefile.am:
+	* objects/standard/Makefile.am:
+	Changed "CFLAGS = -Wall -g" to "CFLAGS = @CFLAGS@"
+	in all Makefile.am.
+
+1998-10-03  Alexander Larsson  <alla@lysator.liu.se>
+
+	* app/handle_ops.c (handle_draw):
+	connected HANDLE_MINOR_CONTROL also becomes red.
+
+1998-10-02  Alexander Larsson  <alla@lysator.liu.se>
+
+	* Makefile.am:
+	removed -ldl from linking. This is added if needed by configure.
+
+	* app/app_procs.c:
+	Open dlls with RTLD_LAZY if it is defined.
+	Some cleanups: char *error -> const char *error
+	Added fprintf()'s to where we exited because of errors.
+
+	* lib/files.c:
+	Include <sys/types.h>
+
+1998-10-01  Alexander Larsson  <alla@lysator.liu.se>
+
+	* acconfig.h:
+	* configure.in:
+	* app/app_procs.c:
+	Detect dlopen better.
+	Detect wether dlopen needs an underscore in the identifier.
+	This code was mostly borrowed from guile.
+
+	* lib/sheet.[ch]:
+	* app/app_procs.c:
+	* objects/standard/standard.c:
+	* objects/network/network.c:
+	* objects/UML/uml.c:
+	* most objects:
+	Changed the way sheets reference objects to use just the
+	name. Changed module loading to a two stage model:
+	First register_objects() is called for all modules.
+	Then register_sheets() is called. This means that
+	sheets can safely include objects from other modules.
+	
+
+1998-09-30  Alexander Larsson  <alla@lysator.liu.se>
+
+	* objects/network/bus.c:
+	* objects/network/network.c:
+	* objects/network/Makefile.am:
+	New file bus.c. Added new object: Ethernet bus.
+
+	* objects/standard/box.c:
+	Added call to gtk_spin_button_set_numeric for linewidth spinner
+	in property dialog.
+
+1998-09-30  Alexander Larsson  <alla@lysator.liu.se>
+
+	* app/connectionpoint_ops.c:
+	* app/create_object.c:
+	* app/group.c:
+	* app/handle_ops.c:
+	* app/modify_tool.c:
+	* lib/connection.c:
+	* lib/element.c:
+	* lib/handle.h:
+	* lib/object.c:
+	* lib/orth_conn.c:
+	* loads of objects:
+	Changed handle->connectable to handle->connect_type.
+	Now handles can be HANDLE_CONNECTABLE_NOBREAK, which means
+	that their connections don't break when moving objects.
+
+	* app/diagram.c:
+	Always select the last handle in an object that has
+	the closest distance.
+	
+	* lib/geometry.[ch]:
+	Added rectangle_add_point function.
+	
+
+1998-09-27  Alexander Larsson  <alla@lysator.liu.se>
+
+	* app/properties.[ch]: New files. Handles the new properties
+	dialog.
+
+	* app/modify_tool.c: Changed to use new properties dialog.
+
+	* app/object_ops.[ch]: Removed object_changed_callback, as it's
+	not needed anymore. This is now handled differently in
+	properties.c
+
+	* lib/object.[ch]:
+	Changed the properties ops for objects. Removed typedefs
+	ChangedObjectTime and ObjectChangedFunc needed for the old way.
+	Added object_return_null function.
+	
+	* app/group.c:
+	* lib/render_object.c:
+	* objects/*/*.c:
+	Changed objects to use the new properties dialog.
+	
+
+1998-09-14  Nuno Ferreira  <nmrf@rnl.ist.utl.pt>
+
+	* */Makefile.am (INCLUDES): Changes to work with srcdir !=
+	builddir.
+
+	* autogen.sh: New file. Copied from gtk and added a call to
+	libtoolize. Anyone knows why this isn't done in gtk?
+
+	* Removed autogenerated files.
+
+1998-09-12  Alexander Larsson  <alla@lysator.liu.se>
+
+	* Added call setlocale(LC_NUMERIC, "C") so that formating of
+	  floating-point numbers in postscript output will be correct.
+	* Did some cleanup of generated postscript files. 

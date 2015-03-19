@@ -1,0 +1,283 @@
+Analisys for : C:\Users\Toto\Projects\Proyecto Nacho Cassol\Proyecto-Parser-C\compilador2\Lote de pruebas\Case 8\airport.c
+
+Quantities are : 
+
+Basic Modules : 4
+Created Modules : 3
+Functions : 2
+Adts : 3
+Attributes : 0
+Defines : 1
+Candidates : 5
+InsideMainAttributes : 2
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Basic Modules are: (4)
+
+	"conio.h"
+
+This is a basic module.
+
+	"time.h"
+
+This is a basic module.
+
+	"stdlib.h"
+
+This is a basic module.
+
+	"stdio.h"
+
+This is a basic module.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Created Modules are: (3)
+
+	"plane.h"
+
+	The functions in this module are (3) : 
+
+	Function name: create_plane
+	Returns: void
+	The arguments are:
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: randomize_company
+	Returns: char
+	The arguments are:
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: set_number
+	Returns: int
+	The arguments are:
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	This module has no modules 
+	The attributes of this module are (1) : 
+
+	plane plane
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+
+	"flight.h"
+
+	The functions in this module are (3) : 
+
+	Function name: BubbleSort_company
+	Returns: void
+	The arguments are:
+		FLIGHT information[0]
+
+		int array_size
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: BubbleSort_number
+	Returns: void
+	The arguments are:
+		FLIGHT information[0]
+
+		int from
+		int to
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: print_information
+	Returns: void
+	The arguments are:
+		FLIGHT information[0]
+
+		int counter
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	The modules of this module are (1) : 
+
+	"time.h"
+
+This is a basic module.
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	The attributes of this module are (1) : 
+
+	FLIGHT FLIGHT
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+
+	"queue.h"
+
+	The functions in this module are (2) : 
+
+	Function name: display
+	Returns: void
+	The arguments are:
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: sizeofqueue
+	Returns: int
+	The arguments are:
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	The modules of this module are (2) : 
+
+	"plane.h"
+
+	The functions in this module are (3) : 
+
+	Function name: create_plane
+	Returns: void
+	The arguments are:
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: randomize_company
+	Returns: char
+	The arguments are:
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: set_number
+	Returns: int
+	The arguments are:
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	This module has no modules 
+	The attributes of this module are (1) : 
+
+	plane plane
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	"conio.h"
+
+This is a basic module.
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	The attributes of this module are (4) : 
+
+	Node Node
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Node rear
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Node front
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	int siz
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Functions are: (2)
+
+	Function name: addplane
+	Returns: void
+	The arguments are:
+
+	Function name: get_average
+	Returns: double
+	The arguments are:
+		double time
+		int counter
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ADTs are: (3)
+
+	The name is : plane
+	The variables are: 
+		time_t request
+		char company
+		int number
+		time_t landed
+	The name is : Node
+	The variables are: 
+		plane data
+		Node next
+	The name is : FLIGHT
+	The variables are: 
+		char company
+		int number
+		time_t arrival
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+It has no attributes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Defines are: (1)
+
+SIZE=100
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Candidate classes are:(5)
+
+CandidateClass: FLIGHT
+	Attributes are: 
+			char company
+			int number
+			time_t arrival
+	Methods are: 
+CandidateClass: Node
+	Attributes are: 
+			plane data
+			Node next
+	Methods are: 
+			Method name: delQueue
+	Returns: Node
+	The arguments are:
+CandidateClass: plane
+	Attributes are: 
+			time_t request
+			char company
+			int number
+			time_t landed
+	Methods are: 
+			Method name: push
+	Returns: void
+	The arguments are:
+		plane value
+			Method name: set_landing_time
+	Returns: void
+	The arguments are:
+		plane plane
+CandidateClass: plane.h
+	Attributes are: 
+			plane plane
+	Methods are: 
+			Method name: create_plane
+	Returns: void
+	The arguments are:
+			Method name: randomize_company
+	Returns: char
+	The arguments are:
+			Method name: set_number
+	Returns: int
+	The arguments are:
+CandidateClass: queue.h
+	Attributes are: 
+			Node Node
+			Node rear
+			Node front
+			int siz
+	Methods are: 
+			Method name: display
+	Returns: void
+	The arguments are:
+			Method name: sizeofqueue
+	Returns: int
+	The arguments are:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+InsideMainAttributes are:(2)
+
+FLIGHT information [100] ; 
+double average ; 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -176,7 +176,18 @@ public class Compiler {
             if (myFile.equals(module.getFile())) {
                 for (Iterator<Function> iterator = functions.iterator(); iterator.hasNext(); ) {
                     Function function = iterator.next();
+                    boolean add=true;
+                    for (Adt adt : adts){
+                       if (function.getReturns().equalsIgnoreCase(adt.getName()))
+                           add=false;
+                        for (Attribute argument : function.getArguments()){
+                            if (argument.getType().equalsIgnoreCase(adt.getName()) && !argument.isArray())
+                                add=false;
+                        }
+                    }
+                    if (add)
                     module.addFunction(function);
+
                     iterator.remove();
                 }
                 for (Iterator<Attribute> iterator = attributes.iterator(); iterator.hasNext(); ) {
@@ -415,10 +426,32 @@ public class Compiler {
                 } else {
                     for (Attribute attribute : function.getArguments()) {
                         if (attribute.getType().equals(adt.getName())) {
+                            if(!attribute.isArray())
                             candidateClass.addMethod(JavaMethod.getJavaMethodFromCFunction(function));
                             break;
                         }
                     }
+                }
+            }
+            CandidateClass existingClass=candidates.get(candidateClass.getName());
+            if(existingClass != null){
+                for(JavaMethod method : existingClass.getMethods()){
+                    boolean alreadyExist=false;
+                   for (JavaMethod newMethod : candidateClass.getMethods()){
+                       if (method.toString().equalsIgnoreCase(newMethod.toString() ))
+                        alreadyExist=true;
+                   }
+                    if(!alreadyExist)
+                        candidateClass.addMethod(method);
+                }
+                for (JavaAttribute attribute : existingClass.getAttributes()){
+                    boolean alreadyExist=false;
+                   for (JavaAttribute newAttribute : candidateClass.getAttributes()){
+                       if(attribute.getName().equalsIgnoreCase(newAttribute.getName()))
+                              alreadyExist=true;
+                   }
+                    if(!alreadyExist)
+                        candidateClass.addAttribute(attribute);
                 }
             }
             candidates.put(candidateClass.getName(),candidateClass);

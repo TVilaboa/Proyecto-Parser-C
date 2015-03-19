@@ -1,0 +1,134 @@
+Analisys for : C:\Users\Toto\Projects\Proyecto Nacho Cassol\Proyecto-Parser-C\compilador2\Lote de pruebas\Case 11\MovieClub\movieClub.c
+
+Quantities are : 
+
+Basic Modules : 4
+Created Modules : 1
+Functions : 3
+Adts : 3
+Attributes : 2
+Defines : 0
+Candidates : 4
+InsideMainAttributes : 3
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Basic Modules are: (4)
+
+	"stdlib.h"
+
+This is a basic module.
+
+	"stdio.h"
+
+This is a basic module.
+
+	"fcntl.h"
+
+This is a basic module.
+
+	"unistd.h"
+
+This is a basic module.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Created Modules are: (1)
+
+	"list.h"
+
+	This module has no functions 
+	The modules of this module are (1) : 
+
+	"stdlib.h"
+
+This is a basic module.
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	The attributes of this module are (1) : 
+
+	List List
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Functions are: (3)
+
+	Function name: insertCashier
+	Returns: Cashier
+	The arguments are:
+
+	Function name: insertMovie
+	Returns: Movie
+	The arguments are:
+
+	Function name: showMenu
+	Returns: int
+	The arguments are:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ADTs are: (3)
+
+	The name is : List
+	The variables are: 
+		void data
+		List next
+	The name is : Cashier
+	The variables are: 
+		char name
+		int cashierInCome
+	The name is : Movie
+	The variables are: 
+		char name
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Variables are: (2)
+
+	Cashier Cashier
+	Movie Movie
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+It has no GlobalVariables
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Candidate classes are:(4)
+
+CandidateClass: Cashier
+	Attributes are: 
+			char name
+			int cashierInCome
+	Methods are: 
+			Method name: insertCashier
+	Returns: Cashier
+	The arguments are:
+CandidateClass: List
+	Attributes are: 
+			void data
+			List next
+	Methods are: 
+			Method name: insert
+	Returns: void
+	The arguments are:
+		List p
+		void data
+		int n
+			Method name: print
+	Returns: void
+	The arguments are:
+		List p
+CandidateClass: Movie
+	Attributes are: 
+			char name
+	Methods are: 
+			Method name: insertMovie
+	Returns: Movie
+	The arguments are:
+CandidateClass: f1
+	Attributes are: 
+			Unknown n
+	Methods are: 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+InsideMainAttributes are:(3)
+
+Cashier Cashier = insertCashier ( ) ; 
+List lista ; 
+int opcion = showMenu ( ) ; 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

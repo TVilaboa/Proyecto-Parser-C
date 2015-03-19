@@ -1,0 +1,104 @@
+Analisys for : C:\Users\Toto\Projects\Proyecto Nacho Cassol\Proyecto-Parser-C\compilador2\Lote de pruebas\Case 9\bank.c
+
+Quantities are : 
+
+Basic Modules : 4
+Created Modules : 0
+Functions : 5
+Adts : 1
+Attributes : 2
+Defines : 1
+Candidates : 1
+InsideMainAttributes : 1
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Basic Modules are: (4)
+
+	"stdlib.h"
+
+This is a basic module.
+
+	"string.h"
+
+This is a basic module.
+
+	"conio.h"
+
+This is a basic module.
+
+	"stdio.h"
+
+This is a basic module.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+It has no modules
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Functions are: (5)
+
+	Function name: Account_information
+	Returns: void
+	The arguments are:
+
+	Function name: Cash_Deposit
+	Returns: void
+	The arguments are:
+
+	Function name: Cash_withdrawl
+	Returns: void
+	The arguments are:
+
+	Function name: Create_new_account
+	Returns: void
+	The arguments are:
+
+	Function name: display_options
+	Returns: void
+	The arguments are:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ADTs are: (1)
+
+	The name is : acc_type
+	The variables are: 
+		char bank_name[20]
+
+		char bank_branch[20]
+
+		char acc_holder_name[30]
+
+		int acc_number
+		char acc_holder_address[100]
+
+		float available_balance
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Variables are: (2)
+
+	acc_type acc_type
+	int num_acc
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Defines are: (1)
+
+ACCOUNTS=20
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Candidate classes are:(1)
+
+CandidateClass: acc_type
+	Attributes are: 
+			char bank_name[20]
+
+			char bank_branch[20]
+
+			char acc_holder_name[30]
+
+			int acc_number
+			char acc_holder_address[100]
+
+			float available_balance
+	Methods are: 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+InsideMainAttributes are:(1)
+
+char option ; 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

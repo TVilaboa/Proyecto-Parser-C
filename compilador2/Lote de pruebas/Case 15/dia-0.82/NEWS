@@ -1,0 +1,79 @@
+dia-0.82:
+* Dia has a new maintainer now.
+* It is now possible to rearange the icons in the toolbox by editing
+  simple XML files.  You can also create new sheets composed of your
+  favourite shapes.  This feature is the work of Cyrille Chepelov
+* New bezierline object.  This object is by Lars Clausen and me (James).
+* Better integration with the gnome file manager -- dia files now have an
+  icon, and you can double click on a file to launch dia.
+* more memory leak fixes based on purify runs by Bruce Mitchener.
+* By holding down shift when using the zoom tool, you can zoom out.  This
+  feature was from Patrick Reynolds.
+* By holding shift when using the move tool, it changes its behaviour to the
+  `grab' type scrolling as seen in acrobat, eog and other programs.
+* More circuit shapes from Andreas Scherf.
+* Other bug fixes I haven't mentioned above (see ChangeLog for details).
+
+News in version 0.81:
+* New printing dialog with "Fit to page" and landscape printing
+* New Circuit objects
+* Fixed loading saving of flowcharts and custom object. This would
+  make dia crash when loading saved files.
+* Portability fixes
+* Added undo support for some missing operations
+* Fixed some memory leaks
+* Fixed crashing bugs
+  
+News in version 0.80:
+* Undo capabilities
+* Printing support
+* Possibilities to create new objects in XML
+* Export to SVG capability
+* Objects can have menus
+* New objects:
+  uml state object.
+  Some new Network objects
+  flowchart sheet.
+  Sybase sheet.
+  Electric circuit sheet.
+* Uses g_module for dll loading (Dia should work on most unixes now).
+* Somewhat better EPS files created
+* More preferences
+* Ctrl-drag handles restricts movement to horizontal/vertical.
+* New logos.
+* Heaps of new stuff i forgot
+* Lots of bugfixes and cleanups.
+
+News in version 0.41:
+* Some internalization bugfixes.
+Note that some translations still has problems. "sv" works.
+
+News in version 0.40: 
+
+* Internationalization
+* Preferences handling
+* Image objects
+* New standard objects: polyline
+* New UML objects: lifeline, object, message, class icon
+* New network object: printer
+* Better standard objects
+* Better gnome compatibility
+* Statusbar in diagram window
+* Default properties for objects
+* Various new features
+* Asorted bugfixes
+
+News in version 0.30: 
+
+* Dia now has a layer system, much like the GIMP.
+* The fileformat changed from my own binary format to an easily readable
+  XML format.
+* New objects for Entity-Relationship modeling.
+* New objects for UML and networking diagrams.
+* Much better properties dialogs for most objects.
+* Postscript output fixed, should work better now.
+* Updated to use Gtk 1.1.x features.
+* New features: Align objects, command line loading, etc.
+* Internal updates.
+* Lots of bugfixes and cleanups.
+

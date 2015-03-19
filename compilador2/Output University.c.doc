@@ -1,0 +1,151 @@
+Analisys for : C:\Users\Toto\Projects\Proyecto Nacho Cassol\Proyecto-Parser-C\compilador2\Lote de pruebas\Case 6\University.c
+
+Quantities are : 
+
+Basic Modules : 3
+Created Modules : 1
+Functions : 0
+Adts : 1
+Attributes : 0
+Defines : 2
+Candidates : 1
+InsideMainAttributes : 2
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Basic Modules are: (3)
+
+	"time.h"
+
+This is a basic module.
+
+	"stdlib.h"
+
+This is a basic module.
+
+	"stdio.h"
+
+This is a basic module.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Created Modules are: (1)
+
+	"student.h"
+
+	The functions in this module are (8) : 
+
+	Function name: BubbleSort
+	Returns: void
+	The arguments are:
+		STUDENT_FINAL average[0]
+
+		int array_size
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: average_per_student
+	Returns: int
+	The arguments are:
+		int code
+		STUDENT_FINAL finals[0]
+
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: averages
+	Returns: void
+	The arguments are:
+		STUDENT_FINAL finals[0]
+
+		STUDENT_FINAL averages[0]
+
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: init_finals
+	Returns: void
+	The arguments are:
+		STUDENT_FINAL finals[0]
+
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: print_average_per_student
+	Returns: void
+	The arguments are:
+		STUDENT_FINAL finals[0]
+
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: print_best_10_averages
+	Returns: void
+	The arguments are:
+		STUDENT_FINAL average[0]
+
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: print_exams_per_student
+	Returns: void
+	The arguments are:
+		STUDENT_FINAL finals[0]
+
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: search_exams_per_student
+	Returns: int
+	The arguments are:
+		int code
+		STUDENT_FINAL finals[0]
+
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	The modules of this module are (1) : 
+
+	"time.h"
+
+This is a basic module.
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	The attributes of this module are (1) : 
+
+	STUDENT_FINAL STUDENT_FINAL
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+It has no functions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+ADTs are: (1)
+
+	The name is : STUDENT_FINAL
+	The variables are: 
+		int student_code
+		int grade
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+It has no attributes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Defines are: (2)
+
+ELEMENTS=200
+STUDENTS=50
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Candidate classes are:(1)
+
+CandidateClass: STUDENT_FINAL
+	Attributes are: 
+			int student_code
+			int grade
+	Methods are: 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+InsideMainAttributes are:(2)
+
+STUDENT_FINAL final_exams [200] ; 
+STUDENT_FINAL average [50] ; 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

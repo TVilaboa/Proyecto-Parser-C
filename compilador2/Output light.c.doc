@@ -1,0 +1,280 @@
+Analisys for : C:\Users\Toto\Projects\Proyecto Nacho Cassol\Proyecto-Parser-C\compilador2\Lote de pruebas\Case 4\light.c
+
+Quantities are : 
+
+Basic Modules : 2
+Created Modules : 3
+Functions : 6
+Adts : 4
+Attributes : 0
+Defines : 0
+Candidates : 4
+InsideMainAttributes : 4
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Basic Modules are: (2)
+
+	"stdio.h"
+
+This is a basic module.
+
+	"stdlib.h"
+
+This is a basic module.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Created Modules are: (3)
+
+	"tree.h"
+
+	This module has no functions 
+	This module has no modules 
+	The attributes of this module are (1) : 
+
+	node node
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+
+	"list.h"
+
+	This module has no functions 
+	This module has no modules 
+	The attributes of this module are (2) : 
+
+	Listitem Listitem
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	List List
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+
+	"lightbulb.h"
+
+	This module has no functions 
+	This module has no modules 
+	The attributes of this module are (1) : 
+
+	lightbulb lightbulb
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Functions are: (6)
+
+	Function name: addbulb
+	Returns: void
+	The arguments are:
+		node root
+
+	Function name: compress
+	Returns: void
+	The arguments are:
+		node tree
+		node newroot
+
+	Function name: compresstree
+	Returns: void
+	The arguments are:
+		node root
+
+	Function name: deletebulb
+	Returns: void
+	The arguments are:
+		node root
+
+	Function name: editbulb
+	Returns: void
+	The arguments are:
+		node root
+
+	Function name: printtree
+	Returns: void
+	The arguments are:
+		node root
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ADTs are: (4)
+
+	The name is : lightbulb
+	The variables are: 
+		char code[5]
+
+		int watts
+		int type
+		int cant
+		int active
+	The name is : Listitem
+	The variables are: 
+		lightbulb data
+		Listitem next
+	The name is : List
+	The variables are: 
+		Listitem head
+	The name is : node
+	The variables are: 
+		lightbulb data
+		node left
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+It has no attributes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+It has no GlobalVariables
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Candidate classes are:(4)
+
+CandidateClass: List
+	Attributes are: 
+			Listitem head
+	Methods are: 
+			Method name: destroy
+	Returns: void
+	The arguments are:
+		List ilist
+			Method name: getitem
+	Returns: lightbulb
+	The arguments are:
+		List ilist
+		int n
+			Method name: initlist
+	Returns: void
+	The arguments are:
+		List ilist
+			Method name: insertback
+	Returns: void
+	The arguments are:
+		List ilist
+		lightbulb val
+			Method name: insertfront
+	Returns: void
+	The arguments are:
+		List ilist
+		lightbulb val
+			Method name: length
+	Returns: int
+	The arguments are:
+		List ilist
+			Method name: setitem
+	Returns: void
+	The arguments are:
+		List ilist
+		int n
+		lightbulb val
+CandidateClass: Listitem
+	Attributes are: 
+			lightbulb data
+			Listitem next
+	Methods are: 
+CandidateClass: lightbulb
+	Attributes are: 
+			char code[5]
+
+			int watts
+			int type
+			int cant
+			int active
+	Methods are: 
+			Method name: insert
+	Returns: void
+	The arguments are:
+		node tree
+		lightbulb val
+			Method name: search
+	Returns: node
+	The arguments are:
+		node tree
+		lightbulb val
+			Method name: getitem
+	Returns: lightbulb
+	The arguments are:
+		List ilist
+		int n
+			Method name: insertback
+	Returns: void
+	The arguments are:
+		List ilist
+		lightbulb val
+			Method name: insertfront
+	Returns: void
+	The arguments are:
+		List ilist
+		lightbulb val
+			Method name: setitem
+	Returns: void
+	The arguments are:
+		List ilist
+		int n
+		lightbulb val
+			Method name: createBulb
+	Returns: void
+	The arguments are:
+		lightbulb bulb
+CandidateClass: node
+	Attributes are: 
+			lightbulb data
+			node left
+	Methods are: 
+			Method name: addbulb
+	Returns: void
+	The arguments are:
+		node root
+			Method name: compress
+	Returns: void
+	The arguments are:
+		node tree
+		node newroot
+			Method name: compresstree
+	Returns: void
+	The arguments are:
+		node root
+			Method name: deletebulb
+	Returns: void
+	The arguments are:
+		node root
+			Method name: editbulb
+	Returns: void
+	The arguments are:
+		node root
+			Method name: printtree
+	Returns: void
+	The arguments are:
+		node root
+			Method name: deltree
+	Returns: void
+	The arguments are:
+		node tree
+			Method name: insert
+	Returns: void
+	The arguments are:
+		node tree
+		lightbulb val
+			Method name: print_inorder
+	Returns: void
+	The arguments are:
+		node tree
+			Method name: print_postorder
+	Returns: void
+	The arguments are:
+		node tree
+			Method name: print_preorder
+	Returns: void
+	The arguments are:
+		node tree
+			Method name: printlightBulb
+	Returns: void
+	The arguments are:
+		node tree
+			Method name: search
+	Returns: node
+	The arguments are:
+		node tree
+		lightbulb val
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+InsideMainAttributes are:(4)
+
+node root ; 
+List mylist ; 
+int n = length ( mylist ) 
+int menu ; 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

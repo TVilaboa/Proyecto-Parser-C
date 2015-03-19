@@ -1,0 +1,326 @@
+Analisys for : C:\Users\Toto\Projects\Proyecto Nacho Cassol\Proyecto-Parser-C\compilador2\Lote de pruebas\Case 5\ballotBox.c
+
+Quantities are : 
+
+Basic Modules : 4
+Created Modules : 4
+Functions : 3
+Adts : 4
+Attributes : 1
+Defines : 0
+Candidates : 6
+InsideMainAttributes : 1
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Basic Modules are: (4)
+
+	"time.h"
+
+This is a basic module.
+
+	"conio.h"
+
+This is a basic module.
+
+	"stdlib.h"
+
+This is a basic module.
+
+	"stdio.h"
+
+This is a basic module.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Created Modules are: (4)
+
+	"school.h"
+
+	This module has no functions 
+	This module has no modules 
+	The attributes of this module are (1) : 
+
+	school school
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+
+	"truck.h"
+
+	The functions in this module are (1) : 
+
+	Function name: createTruck
+	Returns: void
+	The arguments are:
+		int hour
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	The modules of this module are (2) : 
+
+	"school.h"
+
+	This module has no functions 
+	This module has no modules 
+	The attributes of this module are (1) : 
+
+	school school
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	"time.h"
+
+This is a basic module.
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	The attributes of this module are (1) : 
+
+	truck truck
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+
+	"Tree.h"
+
+	This module has no functions 
+	This module has no modules 
+	The attributes of this module are (1) : 
+
+	node node
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+
+	"queue.h"
+
+	The functions in this module are (2) : 
+
+	Function name: display
+	Returns: void
+	The arguments are:
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Function name: sizeofqueue
+	Returns: int
+	The arguments are:
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	The modules of this module are (2) : 
+
+	"truck.h"
+
+	The functions in this module are (1) : 
+
+	Function name: createTruck
+	Returns: void
+	The arguments are:
+		int hour
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	The modules of this module are (2) : 
+
+	"school.h"
+
+	This module has no functions 
+	This module has no modules 
+	The attributes of this module are (1) : 
+
+	school school
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	"time.h"
+
+This is a basic module.
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	The attributes of this module are (1) : 
+
+	truck truck
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	"conio.h"
+
+This is a basic module.
+
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	The attributes of this module are (4) : 
+
+	Node Node
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	int siz
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Node rear
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	Node front
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Functions are: (3)
+
+	Function name: addTruck
+	Returns: void
+	The arguments are:
+
+	Function name: process
+	Returns: void
+	The arguments are:
+		node root
+
+	Function name: report
+	Returns: void
+	The arguments are:
+		node root
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ADTs are: (4)
+
+	The name is : school
+	The variables are: 
+		int code
+		int cantboxes
+	The name is : truck
+	The variables are: 
+		school schools[500]
+
+		int hours
+	The name is : Node
+	The variables are: 
+		truck Data
+		Node next
+	The name is : node
+	The variables are: 
+		school data
+		node left
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Variables are: (1)
+
+	int counter
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+It has no GlobalVariables
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Candidate classes are:(6)
+
+CandidateClass: Node
+	Attributes are: 
+			truck Data
+			Node next
+	Methods are: 
+			Method name: delQueue
+	Returns: Node
+	The arguments are:
+CandidateClass: node
+	Attributes are: 
+			school data
+			node left
+	Methods are: 
+			Method name: process
+	Returns: void
+	The arguments are:
+		node root
+			Method name: report
+	Returns: void
+	The arguments are:
+		node root
+			Method name: deltree
+	Returns: void
+	The arguments are:
+		node tree
+			Method name: insert
+	Returns: void
+	The arguments are:
+		node tree
+		school val
+			Method name: print_inorder
+	Returns: void
+	The arguments are:
+		node tree
+			Method name: print_postorder
+	Returns: void
+	The arguments are:
+		node tree
+			Method name: print_preorder
+	Returns: void
+	The arguments are:
+		node tree
+			Method name: printschool
+	Returns: void
+	The arguments are:
+		node tree
+			Method name: search
+	Returns: node
+	The arguments are:
+		node tree
+		school val
+CandidateClass: queue.h
+	Attributes are: 
+			Node Node
+			int siz
+			Node rear
+			Node front
+	Methods are: 
+			Method name: display
+	Returns: void
+	The arguments are:
+			Method name: sizeofqueue
+	Returns: int
+	The arguments are:
+CandidateClass: school
+	Attributes are: 
+			int code
+			int cantboxes
+	Methods are: 
+			Method name: insert
+	Returns: void
+	The arguments are:
+		node tree
+		school val
+			Method name: search
+	Returns: node
+	The arguments are:
+		node tree
+		school val
+			Method name: createSchool
+	Returns: void
+	The arguments are:
+		school school
+		int code
+		int cant
+CandidateClass: truck
+	Attributes are: 
+			school schools[500]
+
+			int hours
+	Methods are: 
+			Method name: push
+	Returns: void
+	The arguments are:
+		truck value
+CandidateClass: truck.h
+	Attributes are: 
+			truck truck
+	Methods are: 
+			Method name: createTruck
+	Returns: void
+	The arguments are:
+		int hour
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+InsideMainAttributes are:(1)
+
+node root ; 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

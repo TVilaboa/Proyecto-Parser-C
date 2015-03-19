@@ -78,6 +78,14 @@ public class CandidateClass implements Serializable {
 
     }
 
+    public List<JavaMethod> getMethods() {
+        return methods;
+    }
+
+    public void setMethods(List<JavaMethod> methods) {
+        this.methods = methods;
+    }
+
     public List<JavaAttribute> getAttributes() {
         return attributes;
     }

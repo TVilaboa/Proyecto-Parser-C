@@ -1,0 +1,649 @@
+# Makefile.in generated automatically by automake 1.4 from Makefile.am
+
+# Copyright (C) 1994, 1995-8, 1999 Free Software Foundation, Inc.
+# This Makefile.in is free software; the Free Software Foundation
+# gives unlimited permission to copy and/or distribute it,
+# with or without modifications, as long as this notice is preserved.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY, to the extent permitted by law; without
+# even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.
+
+
+SHELL = @SHELL@
+
+srcdir = @srcdir@
+top_srcdir = @top_srcdir@
+VPATH = @srcdir@
+prefix = @prefix@
+exec_prefix = @exec_prefix@
+
+bindir = @bindir@
+sbindir = @sbindir@
+libexecdir = @libexecdir@
+datadir = @datadir@
+sysconfdir = @sysconfdir@
+sharedstatedir = @sharedstatedir@
+localstatedir = @localstatedir@
+libdir = @libdir@
+infodir = @infodir@
+mandir = @mandir@
+includedir = @includedir@
+oldincludedir = /usr/include
+
+DESTDIR =
+
+pkgdatadir = $(datadir)/@PACKAGE@
+pkglibdir = $(libdir)/@PACKAGE@
+pkgincludedir = $(includedir)/@PACKAGE@
+
+top_builddir = ..
+
+ACLOCAL = @ACLOCAL@
+AUTOCONF = @AUTOCONF@
+AUTOMAKE = @AUTOMAKE@
+AUTOHEADER = @AUTOHEADER@
+
+INSTALL = @INSTALL@
+INSTALL_PROGRAM = @INSTALL_PROGRAM@ $(AM_INSTALL_PROGRAM_FLAGS)
+INSTALL_DATA = @INSTALL_DATA@
+INSTALL_SCRIPT = @INSTALL_SCRIPT@
+transform = @program_transform_name@
+
+NORMAL_INSTALL = :
+PRE_INSTALL = :
+POST_INSTALL = :
+NORMAL_UNINSTALL = :
+PRE_UNINSTALL = :
+POST_UNINSTALL = :
+host_alias = @host_alias@
+host_triplet = @host@
+APP_LIBS = @APP_LIBS@
+AS = @AS@
+CATALOGS = @CATALOGS@
+CATOBJEXT = @CATOBJEXT@
+CC = @CC@
+DATADIRNAME = @DATADIRNAME@
+DEBUG_FLAGS = @DEBUG_FLAGS@
+DLLTOOL = @DLLTOOL@
+GDK_IMLIB_CFLAGS = @GDK_IMLIB_CFLAGS@
+GDK_IMLIB_LIBS = @GDK_IMLIB_LIBS@
+GENCAT = @GENCAT@
+GMOFILES = @GMOFILES@
+GMSGFMT = @GMSGFMT@
+GNOME_CFLAGS = @GNOME_CFLAGS@
+GNOME_LIBS = @GNOME_LIBS@
+GTK_CFLAGS = @GTK_CFLAGS@
+GTK_CONFIG = @GTK_CONFIG@
+GTK_LIBS = @GTK_LIBS@
+GT_NO = @GT_NO@
+GT_YES = @GT_YES@
+IMLIB_CFLAGS = @IMLIB_CFLAGS@
+IMLIB_CONFIG = @IMLIB_CONFIG@
+IMLIB_LIBS = @IMLIB_LIBS@
+INCLUDE_LOCALE_H = @INCLUDE_LOCALE_H@
+INSTOBJEXT = @INSTOBJEXT@
+INTLDEPS = @INTLDEPS@
+INTLLIBS = @INTLLIBS@
+INTLOBJS = @INTLOBJS@
+LD = @LD@
+LIBTOOL = @LIBTOOL@
+LN_S = @LN_S@
+MAINT = @MAINT@
+MAKEINFO = @MAKEINFO@
+MKINSTALLDIRS = @MKINSTALLDIRS@
+MSGFMT = @MSGFMT@
+NM = @NM@
+OBJDUMP = @OBJDUMP@
+PACKAGE = @PACKAGE@
+POFILES = @POFILES@
+POSUB = @POSUB@
+RANLIB = @RANLIB@
+USE_INCLUDED_LIBINTL = @USE_INCLUDED_LIBINTL@
+USE_NLS = @USE_NLS@
+VERSION = @VERSION@
+XML_CFLAGS = @XML_CFLAGS@
+XML_CONFIG = @XML_CONFIG@
+XML_LIBS = @XML_LIBS@
+l = @l@
+localedir = @localedir@
+@HAVE_GNOME_PRINT_TRUE@print_files = 	render_gnomeprint.c 	render_gnomeprint.h 	paginate_gnomeprint.c 	paginate_gnomeprint.h
+@HAVE_GNOME_PRINT_FALSE@print_files = 	paginate_psprint.c 	paginate_psprint.h
+
+noinst_PROGRAMS = run_dia.sh
+run_dia_sh_SOURCES = 
+bin_PROGRAMS = dia
+dia_SOURCES =  	    connectionpoint_ops.h 	    connectionpoint_ops.c 	    diagram.c 	    diagram.h 	    commands.c 	    commands.h 	    app_procs.c 	    app_procs.h 	    preferences.c 	    preferences.h 	    load_save.c 	    load_save.h 	    disp_callbacks.c 	    disp_callbacks.h 	    layer_dialog.c 	    layer_dialog.h 	    display.c 	    display.h 	    color_area.c 	    color_area.h 	    linewidth_area.c 	    linewidth_area.h 	    lineprops_area.c 	    lineprops_area.h 	    grid.c 	    grid.h 	    group.c 	    group.h 	    handle_ops.c 	    handle_ops.h 	    interface.c 	    interface.h 	    main.c 	    modify_tool.c 	    modify_tool.h 	    scroll_tool.c 	    scroll_tool.h 	    properties.c 	    properties.h 	    defaults.c 	    defaults.h 	    create_object.c 	    create_object.h 	    magnify.c 	    magnify.h 	    menus.c 	    menus.h 	    cut_n_paste.c 	    cut_n_paste.h 	    object_ops.c 	    object_ops.h 	    render_gdk.c 	    render_gdk.h 	    render_eps.c 	    render_eps.h 	    render_svg.c 	    render_svg.h 	    undo.c 	    undo.h 	    tool.c 	    tool.h 	    pixmaps.h 	    diapagelayout.c 	    diapagelayout.h 	    diaunitspinner.c 	    diaunitspinner.h 	    pagesetup.c 	    pagesetup.h 	    $(print_files)
+
+
+dia_LDADD = ../lib/libdia.a ../objects/custom/libcustom_objects.a     @APP_LIBS@ @XML_LIBS@ @GTK_LIBS@ @INTLLIBS@ @GNOME_LIBS@ @GDK_IMLIB_LIBS@
+
+
+CPPFLAGS =  	-DLOCALEDIR=\"$(localedir)\" 	-DLIBDIR=\"$(libdir)\" 	-DDATADIR=\"$(pkgdatadir)\"
+
+
+INCLUDES =  	-I$(top_srcdir)/intl 	-I$(srcdir)/../lib 	@DEBUG_FLAGS@ 	@XML_CFLAGS@ 	@GTK_CFLAGS@ 	@GDK_IMLIB_CFLAGS@         @GNOME_CFLAGS@
+
+
+LDFLAGS = -export-dynamic
+
+EXTRA_DIST =  	pixmaps/arrow.xpm 	pixmaps/default.xpm 	pixmaps/delete.xpm 	pixmaps/eye.xbm 	pixmaps/lower.xpm 	pixmaps/magnify.xpm 	pixmaps/new.xpm 	pixmaps/raise.xpm 	pixmaps/scroll.xpm 	pixmaps/swap.xpm 	pixmaps/portrait.xpm 	pixmaps/landscape.xpm 	pixmaps/hand-open-data.xbm 	pixmaps/hand-open-mask.xbm 	pixmaps/hand-closed-data.xbm 	pixmaps/hand-closed-mask.xbm
+
+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+CONFIG_HEADER = ../config.h
+CONFIG_CLEAN_FILES = 
+PROGRAMS =  $(bin_PROGRAMS) $(noinst_PROGRAMS)
+
+
+DEFS = @DEFS@ -I. -I$(srcdir) -I..
+LIBS = @LIBS@
+@HAVE_GNOME_PRINT_TRUE@dia_OBJECTS =  connectionpoint_ops.o diagram.o \
+@HAVE_GNOME_PRINT_TRUE@commands.o app_procs.o preferences.o load_save.o \
+@HAVE_GNOME_PRINT_TRUE@disp_callbacks.o layer_dialog.o display.o \
+@HAVE_GNOME_PRINT_TRUE@color_area.o linewidth_area.o lineprops_area.o \
+@HAVE_GNOME_PRINT_TRUE@grid.o group.o handle_ops.o interface.o main.o \
+@HAVE_GNOME_PRINT_TRUE@modify_tool.o scroll_tool.o properties.o \
+@HAVE_GNOME_PRINT_TRUE@defaults.o create_object.o magnify.o menus.o \
+@HAVE_GNOME_PRINT_TRUE@cut_n_paste.o object_ops.o render_gdk.o \
+@HAVE_GNOME_PRINT_TRUE@render_eps.o render_svg.o undo.o tool.o \
+@HAVE_GNOME_PRINT_TRUE@diapagelayout.o diaunitspinner.o pagesetup.o \
+@HAVE_GNOME_PRINT_TRUE@render_gnomeprint.o paginate_gnomeprint.o
+@HAVE_GNOME_PRINT_FALSE@dia_OBJECTS =  connectionpoint_ops.o diagram.o \
+@HAVE_GNOME_PRINT_FALSE@commands.o app_procs.o preferences.o \
+@HAVE_GNOME_PRINT_FALSE@load_save.o disp_callbacks.o layer_dialog.o \
+@HAVE_GNOME_PRINT_FALSE@display.o color_area.o linewidth_area.o \
+@HAVE_GNOME_PRINT_FALSE@lineprops_area.o grid.o group.o handle_ops.o \
+@HAVE_GNOME_PRINT_FALSE@interface.o main.o modify_tool.o scroll_tool.o \
+@HAVE_GNOME_PRINT_FALSE@properties.o defaults.o create_object.o \
+@HAVE_GNOME_PRINT_FALSE@magnify.o menus.o cut_n_paste.o object_ops.o \
+@HAVE_GNOME_PRINT_FALSE@render_gdk.o render_eps.o render_svg.o undo.o \
+@HAVE_GNOME_PRINT_FALSE@tool.o diapagelayout.o diaunitspinner.o \
+@HAVE_GNOME_PRINT_FALSE@pagesetup.o paginate_psprint.o
+dia_DEPENDENCIES =  ../lib/libdia.a \
+../objects/custom/libcustom_objects.a
+dia_LDFLAGS = 
+run_dia_sh_OBJECTS = 
+run_dia_sh_LDADD = $(LDADD)
+run_dia_sh_DEPENDENCIES = 
+run_dia_sh_LDFLAGS = 
+CFLAGS = @CFLAGS@
+COMPILE = $(CC) $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
+LTCOMPILE = $(LIBTOOL) --mode=compile $(CC) $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
+CCLD = $(CC)
+LINK = $(LIBTOOL) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(LDFLAGS) -o $@
+DIST_COMMON =  Makefile.am Makefile.in
+
+
+DISTFILES = $(DIST_COMMON) $(SOURCES) $(HEADERS) $(TEXINFOS) $(EXTRA_DIST)
+
+TAR = tar
+GZIP_ENV = --best
+SOURCES = $(dia_SOURCES) $(run_dia_sh_SOURCES)
+OBJECTS = $(dia_OBJECTS) $(run_dia_sh_OBJECTS)
+
+all: all-redirect
+.SUFFIXES:
+.SUFFIXES: .S .c .lo .o .s
+$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ Makefile.am $(top_srcdir)/configure.in $(ACLOCAL_M4) 
+	cd $(top_srcdir) && $(AUTOMAKE) --gnu --include-deps app/Makefile
+
+Makefile: $(srcdir)/Makefile.in  $(top_builddir)/config.status
+	cd $(top_builddir) \
+	  && CONFIG_FILES=$(subdir)/$@ CONFIG_HEADERS= $(SHELL) ./config.status
+
+
+mostlyclean-binPROGRAMS:
+
+clean-binPROGRAMS:
+	-test -z "$(bin_PROGRAMS)" || rm -f $(bin_PROGRAMS)
+
+distclean-binPROGRAMS:
+
+maintainer-clean-binPROGRAMS:
+
+install-binPROGRAMS: $(bin_PROGRAMS)
+	@$(NORMAL_INSTALL)
+	$(mkinstalldirs) $(DESTDIR)$(bindir)
+	@list='$(bin_PROGRAMS)'; for p in $$list; do \
+	  if test -f $$p; then \
+	    echo " $(LIBTOOL)  --mode=install $(INSTALL_PROGRAM) $$p $(DESTDIR)$(bindir)/`echo $$p|sed 's/$(EXEEXT)$$//'|sed '$(transform)'|sed 's/$$/$(EXEEXT)/'`"; \
+	    $(LIBTOOL)  --mode=install $(INSTALL_PROGRAM) $$p $(DESTDIR)$(bindir)/`echo $$p|sed 's/$(EXEEXT)$$//'|sed '$(transform)'|sed 's/$$/$(EXEEXT)/'`; \
+	  else :; fi; \
+	done
+
+uninstall-binPROGRAMS:
+	@$(NORMAL_UNINSTALL)
+	list='$(bin_PROGRAMS)'; for p in $$list; do \
+	  rm -f $(DESTDIR)$(bindir)/`echo $$p|sed 's/$(EXEEXT)$$//'|sed '$(transform)'|sed 's/$$/$(EXEEXT)/'`; \
+	done
+
+mostlyclean-noinstPROGRAMS:
+
+clean-noinstPROGRAMS:
+	-test -z "$(noinst_PROGRAMS)" || rm -f $(noinst_PROGRAMS)
+
+distclean-noinstPROGRAMS:
+
+maintainer-clean-noinstPROGRAMS:
+
+.c.o:
+	$(COMPILE) -c $<
+
+.s.o:
+	$(COMPILE) -c $<
+
+.S.o:
+	$(COMPILE) -c $<
+
+mostlyclean-compile:
+	-rm -f *.o core *.core
+
+clean-compile:
+
+distclean-compile:
+	-rm -f *.tab.c
+
+maintainer-clean-compile:
+
+.c.lo:
+	$(LIBTOOL) --mode=compile $(COMPILE) -c $<
+
+.s.lo:
+	$(LIBTOOL) --mode=compile $(COMPILE) -c $<
+
+.S.lo:
+	$(LIBTOOL) --mode=compile $(COMPILE) -c $<
+
+mostlyclean-libtool:
+	-rm -f *.lo
+
+clean-libtool:
+	-rm -rf .libs _libs
+
+distclean-libtool:
+
+maintainer-clean-libtool:
+
+dia: $(dia_OBJECTS) $(dia_DEPENDENCIES)
+	@rm -f dia
+	$(LINK) $(dia_LDFLAGS) $(dia_OBJECTS) $(dia_LDADD) $(LIBS)
+
+tags: TAGS
+
+ID: $(HEADERS) $(SOURCES) $(LISP)
+	list='$(SOURCES) $(HEADERS)'; \
+	unique=`for i in $$list; do echo $$i; done | \
+	  awk '    { files[$$0] = 1; } \
+	       END { for (i in files) print i; }'`; \
+	here=`pwd` && cd $(srcdir) \
+	  && mkid -f$$here/ID $$unique $(LISP)
+
+TAGS:  $(HEADERS) $(SOURCES)  $(TAGS_DEPENDENCIES) $(LISP)
+	tags=; \
+	here=`pwd`; \
+	list='$(SOURCES) $(HEADERS)'; \
+	unique=`for i in $$list; do echo $$i; done | \
+	  awk '    { files[$$0] = 1; } \
+	       END { for (i in files) print i; }'`; \
+	test -z "$(ETAGS_ARGS)$$unique$(LISP)$$tags" \
+	  || (cd $(srcdir) && etags $(ETAGS_ARGS) $$tags  $$unique $(LISP) -o $$here/TAGS)
+
+mostlyclean-tags:
+
+clean-tags:
+
+distclean-tags:
+	-rm -f TAGS ID
+
+maintainer-clean-tags:
+
+distdir = $(top_builddir)/$(PACKAGE)-$(VERSION)/$(subdir)
+
+subdir = app
+
+distdir: $(DISTFILES)
+	$(mkinstalldirs) $(distdir)/pixmaps
+	@for file in $(DISTFILES); do \
+	  d=$(srcdir); \
+	  if test -d $$d/$$file; then \
+	    cp -pr $$/$$file $(distdir)/$$file; \
+	  else \
+	    test -f $(distdir)/$$file \
+	    || ln $$d/$$file $(distdir)/$$file 2> /dev/null \
+	    || cp -p $$d/$$file $(distdir)/$$file || :; \
+	  fi; \
+	done
+app_procs.o: app_procs.c ../config.h ../lib/intl.h app_procs.h \
+	../lib/object.h ../lib/geometry.h ../lib/render.h \
+	../lib/color.h ../lib/font.h ../lib/dia_image.h \
+	../lib/connectionpoint.h ../lib/handle.h ../lib/objchange.h \
+	../lib/diamenu.h ../lib/dia_xml.h tool.h display.h diagram.h \
+	../lib/diagramdata.h undo.h grid.h render_gdk.h modify_tool.h \
+	interface.h group.h ../lib/message.h layer_dialog.h load_save.h \
+	preferences.h ../lib/custom.h ../lib/sheet.h
+color_area.o: color_area.c ../config.h ../lib/intl.h color_area.h \
+	../lib/attributes.h ../lib/geometry.h ../lib/color.h \
+	../lib/arrows.h ../lib/render.h ../lib/font.h \
+	../lib/dia_image.h
+commands.o: commands.c ../config.h paginate_psprint.h diagram.h \
+	../lib/geometry.h ../lib/object.h ../lib/render.h \
+	../lib/color.h ../lib/font.h ../lib/dia_image.h \
+	../lib/connectionpoint.h ../lib/handle.h ../lib/objchange.h \
+	../lib/diamenu.h ../lib/dia_xml.h display.h grid.h render_gdk.h \
+	../lib/diagramdata.h undo.h ../lib/intl.h commands.h \
+	app_procs.h object_ops.h cut_n_paste.h load_save.h \
+	../lib/utils.h ../lib/message.h properties.h preferences.h \
+	layer_dialog.h connectionpoint_ops.h pagesetup.h
+connectionpoint_ops.o: connectionpoint_ops.c connectionpoint_ops.h \
+	../lib/connectionpoint.h ../lib/geometry.h ../lib/object.h \
+	../lib/render.h ../lib/color.h ../lib/font.h ../lib/dia_image.h \
+	../lib/handle.h ../lib/objchange.h ../lib/diamenu.h \
+	../lib/dia_xml.h ../config.h diagram.h display.h grid.h \
+	render_gdk.h ../lib/diagramdata.h undo.h object_ops.h
+create_object.o: create_object.c create_object.h ../lib/geometry.h \
+	../lib/object.h ../lib/render.h ../lib/color.h ../lib/font.h \
+	../lib/dia_image.h ../lib/connectionpoint.h ../lib/handle.h \
+	../lib/objchange.h ../lib/diamenu.h ../lib/dia_xml.h \
+	../config.h tool.h display.h diagram.h ../lib/diagramdata.h \
+	undo.h grid.h render_gdk.h connectionpoint_ops.h handle_ops.h \
+	object_ops.h preferences.h
+cut_n_paste.o: cut_n_paste.c cut_n_paste.h ../lib/object.h \
+	../lib/geometry.h ../lib/render.h ../lib/color.h ../lib/font.h \
+	../lib/dia_image.h ../lib/connectionpoint.h ../lib/handle.h \
+	../lib/objchange.h ../lib/diamenu.h ../lib/dia_xml.h \
+	../config.h object_ops.h display.h diagram.h \
+	../lib/diagramdata.h undo.h grid.h render_gdk.h
+defaults.o: defaults.c ../config.h ../lib/intl.h properties.h \
+	../lib/object.h ../lib/geometry.h ../lib/render.h \
+	../lib/color.h ../lib/font.h ../lib/dia_image.h \
+	../lib/connectionpoint.h ../lib/handle.h ../lib/objchange.h \
+	../lib/diamenu.h ../lib/dia_xml.h diagram.h display.h grid.h \
+	render_gdk.h ../lib/diagramdata.h undo.h object_ops.h \
+	connectionpoint_ops.h
+diagram.o: diagram.c ../config.h ../lib/intl.h diagram.h \
+	../lib/geometry.h ../lib/object.h ../lib/render.h \
+	../lib/color.h ../lib/font.h ../lib/dia_image.h \
+	../lib/connectionpoint.h ../lib/handle.h ../lib/objchange.h \
+	../lib/diamenu.h ../lib/dia_xml.h display.h grid.h render_gdk.h \
+	../lib/diagramdata.h undo.h group.h object_ops.h render_eps.h \
+	render_svg.h ../lib/focus.h ../lib/message.h menus.h \
+	properties.h cut_n_paste.h layer_dialog.h
+diapagelayout.o: diapagelayout.c diapagelayout.h diaunitspinner.h \
+	../lib/intl.h ../config.h pixmaps/portrait.xpm \
+	pixmaps/landscape.xpm
+diaunitspinner.o: diaunitspinner.c diaunitspinner.h
+disp_callbacks.o: disp_callbacks.c ../config.h display.h \
+	../lib/geometry.h diagram.h ../lib/object.h ../lib/render.h \
+	../lib/color.h ../lib/font.h ../lib/dia_image.h \
+	../lib/connectionpoint.h ../lib/handle.h ../lib/objchange.h \
+	../lib/diamenu.h ../lib/dia_xml.h ../lib/diagramdata.h undo.h \
+	grid.h render_gdk.h tool.h interface.h ../lib/focus.h \
+	object_ops.h connectionpoint_ops.h menus.h ../lib/message.h \
+	../lib/intl.h
+display.o: display.c ../config.h ../lib/intl.h display.h \
+	../lib/geometry.h diagram.h ../lib/object.h ../lib/render.h \
+	../lib/color.h ../lib/font.h ../lib/dia_image.h \
+	../lib/connectionpoint.h ../lib/handle.h ../lib/objchange.h \
+	../lib/diamenu.h ../lib/dia_xml.h ../lib/diagramdata.h undo.h \
+	grid.h render_gdk.h group.h interface.h handle_ops.h \
+	connectionpoint_ops.h menus.h cut_n_paste.h ../lib/message.h \
+	preferences.h
+grid.o: grid.c ../config.h ../lib/intl.h grid.h ../lib/geometry.h \
+	display.h diagram.h ../lib/object.h ../lib/render.h \
+	../lib/color.h ../lib/font.h ../lib/dia_image.h \
+	../lib/connectionpoint.h ../lib/handle.h ../lib/objchange.h \
+	../lib/diamenu.h ../lib/dia_xml.h ../lib/diagramdata.h undo.h \
+	render_gdk.h preferences.h
+group.o: group.c ../lib/object.h ../lib/geometry.h ../lib/render.h \
+	../lib/color.h ../lib/font.h ../lib/dia_image.h \
+	../lib/connectionpoint.h ../lib/handle.h ../lib/objchange.h \
+	../lib/diamenu.h ../lib/dia_xml.h ../config.h object_ops.h \
+	display.h diagram.h ../lib/diagramdata.h undo.h grid.h \
+	render_gdk.h group.h
+handle_ops.o: handle_ops.c handle_ops.h ../lib/handle.h \
+	../lib/geometry.h ../lib/object.h ../lib/render.h \
+	../lib/color.h ../lib/font.h ../lib/dia_image.h \
+	../lib/connectionpoint.h ../lib/objchange.h ../lib/diamenu.h \
+	../lib/dia_xml.h ../config.h display.h diagram.h \
+	../lib/diagramdata.h undo.h grid.h render_gdk.h
+interface.o: interface.c ../config.h ../lib/intl.h interface.h display.h \
+	../lib/geometry.h diagram.h ../lib/object.h ../lib/render.h \
+	../lib/color.h ../lib/font.h ../lib/dia_image.h \
+	../lib/connectionpoint.h ../lib/handle.h ../lib/objchange.h \
+	../lib/diamenu.h ../lib/dia_xml.h ../lib/diagramdata.h undo.h \
+	grid.h render_gdk.h menus.h disp_callbacks.h tool.h \
+	../lib/sheet.h app_procs.h ../lib/arrows.h color_area.h \
+	linewidth_area.h lineprops_area.h pixmaps.h pixmaps/arrow.xpm \
+	pixmaps/swap.xpm pixmaps/default.xpm pixmaps/magnify.xpm \
+	pixmaps/scroll.xpm
+layer_dialog.o: layer_dialog.c ../config.h ../lib/intl.h layer_dialog.h \
+	diagram.h ../lib/geometry.h ../lib/object.h ../lib/render.h \
+	../lib/color.h ../lib/font.h ../lib/dia_image.h \
+	../lib/connectionpoint.h ../lib/handle.h ../lib/objchange.h \
+	../lib/diamenu.h ../lib/dia_xml.h display.h grid.h render_gdk.h \
+	../lib/diagramdata.h undo.h pixmaps/eye.xbm pixmaps/new.xpm \
+	pixmaps/lower.xpm pixmaps/raise.xpm pixmaps/delete.xpm
+lineprops_area.o: lineprops_area.c ../lib/intl.h ../config.h \
+	../lib/widgets.h ../lib/font.h ../lib/geometry.h \
+	../lib/render.h ../lib/color.h ../lib/dia_image.h \
+	../lib/arrows.h lineprops_area.h
+linewidth_area.o: linewidth_area.c linewidth_area.h ../lib/attributes.h \
+	../lib/geometry.h ../lib/color.h ../lib/arrows.h \
+	../lib/render.h ../lib/font.h ../lib/dia_image.h
+load_save.o: load_save.c ../config.h ../lib/intl.h load_save.h diagram.h \
+	../lib/geometry.h ../lib/object.h ../lib/render.h \
+	../lib/color.h ../lib/font.h ../lib/dia_image.h \
+	../lib/connectionpoint.h ../lib/handle.h ../lib/objchange.h \
+	../lib/diamenu.h ../lib/dia_xml.h display.h grid.h render_gdk.h \
+	../lib/diagramdata.h undo.h group.h ../lib/message.h \
+	preferences.h diapagelayout.h
+magnify.o: magnify.c magnify.h tool.h display.h ../lib/geometry.h \
+	diagram.h ../lib/object.h ../lib/render.h ../lib/color.h \
+	../lib/font.h ../lib/dia_image.h ../lib/connectionpoint.h \
+	../lib/handle.h ../lib/objchange.h ../lib/diamenu.h \
+	../lib/dia_xml.h ../config.h ../lib/diagramdata.h undo.h grid.h \
+	render_gdk.h
+main.o: main.c ../lib/geometry.h diagram.h ../lib/object.h \
+	../lib/render.h ../lib/color.h ../lib/font.h ../lib/dia_image.h \
+	../lib/connectionpoint.h ../lib/handle.h ../lib/objchange.h \
+	../lib/diamenu.h ../lib/dia_xml.h ../config.h display.h grid.h \
+	render_gdk.h ../lib/diagramdata.h undo.h app_procs.h group.h \
+	load_save.h
+menus.o: menus.c ../config.h ../lib/intl.h menus.h commands.h \
+	../lib/message.h display.h ../lib/geometry.h diagram.h \
+	../lib/object.h ../lib/render.h ../lib/color.h ../lib/font.h \
+	../lib/dia_image.h ../lib/connectionpoint.h ../lib/handle.h \
+	../lib/objchange.h ../lib/diamenu.h ../lib/dia_xml.h \
+	../lib/diagramdata.h undo.h grid.h render_gdk.h
+modify_tool.o: modify_tool.c modify_tool.h ../lib/geometry.h tool.h \
+	display.h diagram.h ../lib/object.h ../lib/render.h \
+	../lib/color.h ../lib/font.h ../lib/dia_image.h \
+	../lib/connectionpoint.h ../lib/handle.h ../lib/objchange.h \
+	../lib/diamenu.h ../lib/dia_xml.h ../config.h \
+	../lib/diagramdata.h undo.h grid.h render_gdk.h handle_ops.h \
+	object_ops.h connectionpoint_ops.h ../lib/message.h \
+	properties.h
+object_ops.o: object_ops.c object_ops.h ../lib/object.h \
+	../lib/geometry.h ../lib/render.h ../lib/color.h ../lib/font.h \
+	../lib/dia_image.h ../lib/connectionpoint.h ../lib/handle.h \
+	../lib/objchange.h ../lib/diamenu.h ../lib/dia_xml.h \
+	../config.h display.h diagram.h ../lib/diagramdata.h undo.h \
+	grid.h render_gdk.h connectionpoint_ops.h handle_ops.h \
+	../lib/message.h
+pagesetup.o: pagesetup.c ../config.h pagesetup.h diagram.h \
+	../lib/geometry.h ../lib/object.h ../lib/render.h \
+	../lib/color.h ../lib/font.h ../lib/dia_image.h \
+	../lib/connectionpoint.h ../lib/handle.h ../lib/objchange.h \
+	../lib/diamenu.h ../lib/dia_xml.h display.h grid.h render_gdk.h \
+	../lib/diagramdata.h undo.h ../lib/intl.h diapagelayout.h
+paginate_gnomeprint.o: paginate_gnomeprint.c diagram.h ../lib/geometry.h \
+	../lib/object.h ../lib/render.h ../lib/color.h ../lib/font.h \
+	../lib/dia_image.h ../lib/connectionpoint.h ../lib/handle.h \
+	../lib/objchange.h ../lib/diamenu.h ../lib/dia_xml.h \
+	../config.h display.h grid.h render_gdk.h ../lib/diagramdata.h \
+	undo.h paginate_gnomeprint.h render_gnomeprint.h
+paginate_psprint.o: paginate_psprint.c ../lib/intl.h ../config.h \
+	../lib/message.h diagram.h ../lib/geometry.h ../lib/object.h \
+	../lib/render.h ../lib/color.h ../lib/font.h ../lib/dia_image.h \
+	../lib/connectionpoint.h ../lib/handle.h ../lib/objchange.h \
+	../lib/diamenu.h ../lib/dia_xml.h display.h grid.h render_gdk.h \
+	../lib/diagramdata.h undo.h render_eps.h paginate_psprint.h \
+	diapagelayout.h
+preferences.o: preferences.c ../config.h ../lib/intl.h ../lib/widgets.h \
+	../lib/font.h ../lib/geometry.h ../lib/render.h ../lib/color.h \
+	../lib/dia_image.h ../lib/arrows.h preferences.h
+properties.o: properties.c ../lib/intl.h ../config.h properties.h \
+	../lib/object.h ../lib/geometry.h ../lib/render.h \
+	../lib/color.h ../lib/font.h ../lib/dia_image.h \
+	../lib/connectionpoint.h ../lib/handle.h ../lib/objchange.h \
+	../lib/diamenu.h ../lib/dia_xml.h diagram.h display.h grid.h \
+	render_gdk.h ../lib/diagramdata.h undo.h object_ops.h \
+	connectionpoint_ops.h ../lib/message.h
+render_eps.o: render_eps.c ../config.h ../lib/intl.h render_eps.h \
+	../lib/geometry.h ../lib/render.h ../lib/color.h ../lib/font.h \
+	../lib/dia_image.h display.h diagram.h ../lib/object.h \
+	../lib/connectionpoint.h ../lib/handle.h ../lib/objchange.h \
+	../lib/diamenu.h ../lib/dia_xml.h ../lib/diagramdata.h undo.h \
+	grid.h render_gdk.h ../lib/message.h
+render_gdk.o: render_gdk.c render_gdk.h ../lib/geometry.h \
+	../lib/render.h ../lib/color.h ../lib/font.h ../lib/dia_image.h \
+	display.h diagram.h ../lib/object.h ../lib/connectionpoint.h \
+	../lib/handle.h ../lib/objchange.h ../lib/diamenu.h \
+	../lib/dia_xml.h ../config.h ../lib/diagramdata.h undo.h grid.h \
+	../lib/message.h
+render_gnomeprint.o: render_gnomeprint.c ../config.h ../lib/intl.h \
+	render_gnomeprint.h ../lib/geometry.h ../lib/render.h \
+	../lib/color.h ../lib/font.h ../lib/dia_image.h display.h \
+	diagram.h ../lib/object.h ../lib/connectionpoint.h \
+	../lib/handle.h ../lib/objchange.h ../lib/diamenu.h \
+	../lib/dia_xml.h ../lib/diagramdata.h undo.h grid.h \
+	render_gdk.h ../lib/message.h
+render_svg.o: render_svg.c ../config.h ../lib/intl.h render_svg.h \
+	../lib/geometry.h ../lib/render.h ../lib/color.h ../lib/font.h \
+	../lib/dia_image.h display.h diagram.h ../lib/object.h \
+	../lib/connectionpoint.h ../lib/handle.h ../lib/objchange.h \
+	../lib/diamenu.h ../lib/dia_xml.h ../lib/diagramdata.h undo.h \
+	grid.h render_gdk.h ../lib/message.h
+scroll_tool.o: scroll_tool.c scroll_tool.h ../lib/geometry.h tool.h \
+	display.h diagram.h ../lib/object.h ../lib/render.h \
+	../lib/color.h ../lib/font.h ../lib/dia_image.h \
+	../lib/connectionpoint.h ../lib/handle.h ../lib/objchange.h \
+	../lib/diamenu.h ../lib/dia_xml.h ../config.h \
+	../lib/diagramdata.h undo.h grid.h render_gdk.h handle_ops.h \
+	object_ops.h connectionpoint_ops.h ../lib/message.h \
+	pixmaps/hand-open-data.xbm pixmaps/hand-open-mask.xbm \
+	pixmaps/hand-closed-data.xbm pixmaps/hand-closed-mask.xbm
+tool.o: tool.c tool.h display.h ../lib/geometry.h diagram.h \
+	../lib/object.h ../lib/render.h ../lib/color.h ../lib/font.h \
+	../lib/dia_image.h ../lib/connectionpoint.h ../lib/handle.h \
+	../lib/objchange.h ../lib/diamenu.h ../lib/dia_xml.h \
+	../config.h ../lib/diagramdata.h undo.h grid.h render_gdk.h \
+	create_object.h magnify.h modify_tool.h scroll_tool.h \
+	interface.h defaults.h
+undo.o: undo.c undo.h diagram.h ../lib/geometry.h ../lib/object.h \
+	../lib/render.h ../lib/color.h ../lib/font.h ../lib/dia_image.h \
+	../lib/connectionpoint.h ../lib/handle.h ../lib/objchange.h \
+	../lib/diamenu.h ../lib/dia_xml.h ../config.h display.h grid.h \
+	render_gdk.h ../lib/diagramdata.h object_ops.h properties.h \
+	connectionpoint_ops.h ../lib/focus.h group.h preferences.h
+
+info-am:
+info: info-am
+dvi-am:
+dvi: dvi-am
+check-am: all-am
+check: check-am
+installcheck-am:
+installcheck: installcheck-am
+install-exec-am: install-binPROGRAMS
+install-exec: install-exec-am
+
+install-data-am:
+install-data: install-data-am
+
+install-am: all-am
+	@$(MAKE) $(AM_MAKEFLAGS) install-exec-am install-data-am
+install: install-am
+uninstall-am: uninstall-binPROGRAMS
+uninstall: uninstall-am
+all-am: Makefile $(PROGRAMS)
+all-redirect: all-am
+install-strip:
+	$(MAKE) $(AM_MAKEFLAGS) AM_INSTALL_PROGRAM_FLAGS=-s install
+installdirs:
+	$(mkinstalldirs)  $(DESTDIR)$(bindir)
+
+
+mostlyclean-generic:
+
+clean-generic:
+
+distclean-generic:
+	-rm -f Makefile $(CONFIG_CLEAN_FILES)
+	-rm -f config.cache config.log stamp-h stamp-h[0-9]*
+
+maintainer-clean-generic:
+mostlyclean-am:  mostlyclean-binPROGRAMS mostlyclean-noinstPROGRAMS \
+		mostlyclean-compile mostlyclean-libtool \
+		mostlyclean-tags mostlyclean-generic
+
+mostlyclean: mostlyclean-am
+
+clean-am:  clean-binPROGRAMS clean-noinstPROGRAMS clean-compile \
+		clean-libtool clean-tags clean-generic mostlyclean-am
+
+clean: clean-am
+
+distclean-am:  distclean-binPROGRAMS distclean-noinstPROGRAMS \
+		distclean-compile distclean-libtool distclean-tags \
+		distclean-generic clean-am
+	-rm -f libtool
+
+distclean: distclean-am
+
+maintainer-clean-am:  maintainer-clean-binPROGRAMS \
+		maintainer-clean-noinstPROGRAMS \
+		maintainer-clean-compile maintainer-clean-libtool \
+		maintainer-clean-tags maintainer-clean-generic \
+		distclean-am
+	@echo "This command is intended for maintainers to use;"
+	@echo "it deletes files that may require special tools to rebuild."
+
+maintainer-clean: maintainer-clean-am
+
+.PHONY: mostlyclean-binPROGRAMS distclean-binPROGRAMS clean-binPROGRAMS \
+maintainer-clean-binPROGRAMS uninstall-binPROGRAMS install-binPROGRAMS \
+mostlyclean-noinstPROGRAMS distclean-noinstPROGRAMS \
+clean-noinstPROGRAMS maintainer-clean-noinstPROGRAMS \
+mostlyclean-compile distclean-compile clean-compile \
+maintainer-clean-compile mostlyclean-libtool distclean-libtool \
+clean-libtool maintainer-clean-libtool tags mostlyclean-tags \
+distclean-tags clean-tags maintainer-clean-tags distdir info-am info \
+dvi-am dvi check check-am installcheck-am installcheck install-exec-am \
+install-exec install-data-am install-data install-am install \
+uninstall-am uninstall all-redirect all-am all installdirs \
+mostlyclean-generic distclean-generic clean-generic \
+maintainer-clean-generic clean mostlyclean distclean maintainer-clean
+
+
+run_dia.sh: Makefile.am
+	echo "#!$(SHELL) " > run_dia.sh
+	echo "export DIA_LIB_PATH DIA_SHAPE_PATH DIA_INT_SHAPE_PATH DIA_SHEET_PATH" >> run_dia.sh
+	echo DIA_LIB_PATH=`pwd`/../objects/standard/.libs >> run_dia.sh
+	echo DIA_LIB_PATH=\$$DIA_LIB_PATH:`pwd`/../objects/UML/.libs >> run_dia.sh
+	echo DIA_LIB_PATH=\$$DIA_LIB_PATH:`pwd`/../objects/ER/.libs >> run_dia.sh
+	echo DIA_LIB_PATH=\$$DIA_LIB_PATH:`pwd`/../objects/network/.libs >> run_dia.sh
+	echo DIA_LIB_PATH=\$$DIA_LIB_PATH:`pwd`/../objects/FS/.libs >> run_dia.sh
+	echo DIA_LIB_PATH=\$$DIA_LIB_PATH:`pwd`/../objects/sybase/.libs >> run_dia.sh
+	echo DIA_LIB_PATH=\$$DIA_LIB_PATH:`pwd`/../objects/flowchart/.libs >> run_dia.sh
+	echo DIA_SHAPE_PATH=`pwd`/../shapes >> run_dia.sh
+	echo DIA_INT_SHAPE_PATH=`pwd`/../objects >> run_dia.sh
+	echo DIA_SHEET_PATH=`pwd`/../sheets >> run_dia.sh
+	echo >> run_dia.sh
+	echo "`pwd`/dia \$$*" >> run_dia.sh
+	chmod a+x run_dia.sh
+
+# Tell versions [3.59,3.63) of GNU make to not export all variables.
+# Otherwise a system limit (for SysV at least) may be exceeded.
+.NOEXPORT:

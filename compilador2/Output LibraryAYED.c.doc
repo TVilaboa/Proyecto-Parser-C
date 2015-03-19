@@ -1,0 +1,210 @@
+Analisys for : C:\Users\Toto\Projects\Proyecto Nacho Cassol\Proyecto-Parser-C\compilador2\Lote de pruebas\Case 12\Library\LibraryAYED.c
+
+Quantities are : 
+
+Basic Modules : 2
+Created Modules : 2
+Functions : 9
+Adts : 5
+Attributes : 1
+Defines : 0
+Candidates : 5
+InsideMainAttributes : 1
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Basic Modules are: (2)
+
+	"stdlib.h"
+
+This is a basic module.
+
+	"stdio.h"
+
+This is a basic module.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Created Modules are: (2)
+
+	"List.h"
+
+	This module has no functions 
+	This module has no modules 
+	The attributes of this module are (2) : 
+
+	Listitem Listitem
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	List List
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+
+	"books.h"
+
+	This module has no functions 
+	This module has no modules 
+	The attributes of this module are (3) : 
+
+	author_structure author_structure
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	book_structure book_structure
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+	loan_structure loan_structure
+	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Functions are: (9)
+
+	Function name: Listbooks
+	Returns: void
+	The arguments are:
+
+	Function name: Listloan
+	Returns: void
+	The arguments are:
+
+	Function name: addBook
+	Returns: void
+	The arguments are:
+
+	Function name: deletebook
+	Returns: void
+	The arguments are:
+
+	Function name: devolverbook
+	Returns: void
+	The arguments are:
+
+	Function name: editbook
+	Returns: void
+	The arguments are:
+
+	Function name: historialloan
+	Returns: void
+	The arguments are:
+
+	Function name: loadListbooks
+	Returns: void
+	The arguments are:
+
+	Function name: prestarbook
+	Returns: void
+	The arguments are:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ADTs are: (5)
+
+	The name is : author_structure
+	The variables are: 
+		char name[40]
+
+		char lastname[40]
+
+	The name is : book_structure
+	The variables are: 
+		char name[40]
+
+		int code
+		author_structure author
+		char category[40]
+
+		int taken
+	The name is : loan_structure
+	The variables are: 
+		char student[40]
+
+		book_structure book
+	The name is : Listitem
+	The variables are: 
+		void data
+		Listitem next
+	The name is : List
+	The variables are: 
+		Listitem head
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Variables are: (1)
+
+	List mylist
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+It has no GlobalVariables
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Candidate classes are:(5)
+
+CandidateClass: List
+	Attributes are: 
+			Listitem head
+	Methods are: 
+			Method name: destroy
+	Returns: void
+	The arguments are:
+		List ilist
+			Method name: getitem
+	Returns: void
+	The arguments are:
+		List ilist
+		int n
+			Method name: initlist
+	Returns: void
+	The arguments are:
+		List ilist
+			Method name: insertback
+	Returns: void
+	The arguments are:
+		List ilist
+		void val
+			Method name: insertfront
+	Returns: void
+	The arguments are:
+		List ilist
+		void val
+			Method name: length
+	Returns: int
+	The arguments are:
+		List ilist
+			Method name: setitem
+	Returns: void
+	The arguments are:
+		List ilist
+		int n
+		void val
+CandidateClass: Listitem
+	Attributes are: 
+			void data
+			Listitem next
+	Methods are: 
+CandidateClass: author_structure
+	Attributes are: 
+			char name[40]
+
+			char lastname[40]
+
+	Methods are: 
+CandidateClass: book_structure
+	Attributes are: 
+			char name[40]
+
+			int code
+			author_structure author
+			char category[40]
+
+			int taken
+	Methods are: 
+			Method name: createBook
+	Returns: void
+	The arguments are:
+		book_structure book
+CandidateClass: loan_structure
+	Attributes are: 
+			char student[40]
+
+			book_structure book
+	Methods are: 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+InsideMainAttributes are:(1)
+
+int menu ; 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
